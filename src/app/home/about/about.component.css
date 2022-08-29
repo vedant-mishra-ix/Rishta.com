@@ -1,0 +1,30 @@
+h1{
+  margin-top: 5%;
+}
+.heading
+{
+  text-align: center;
+  margin-top: 2%;
+}
+.imgFirst
+{
+  background-image: url('./AboutRishta1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:400px;
+  height: 300px;
+  border-radius: 1vw;
+  border-style: none;
+  border-color: black;
+}
+.imgSecond
+{
+  background-image: url('./AboutRishta.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:400px;
+  height: 300px;
+  border-radius: 1vw;
+  border-style: none;
+  border-color: black;
+}

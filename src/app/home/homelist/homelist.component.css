@@ -1,0 +1,34 @@
+.imgFirst
+{
+  background-image: url('./HomeRishta.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:286px;
+  height: 350px;
+  border-radius: 1vw;
+  border-style: none;
+  border-color: black;
+}
+.imgSecond
+{
+  background-image: url('./HomeRishta1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:286px;
+  height: 350px;
+  border-radius: 1vw;
+  border-style: none;
+  border-color: black;
+}
+.imgThird
+{
+  background-image: url('./AboutRishta.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:286px;
+  height: 350px;
+  border-radius: 1vw;
+  border-style: none;
+  border-color: black;
+}
+
