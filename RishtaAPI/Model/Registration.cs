@@ -8,8 +8,7 @@ namespace RishtaAPI.Model
 {
     public class Registration
     {
-        [Required]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [Required]
         public string UserName { get; set; }
         [Required]
@@ -41,6 +40,7 @@ namespace RishtaAPI.Model
         public string ParentMobile { get; set; }
         public string FamilyType { get; set; }
         public string FamilyStatus { get; set; }
-        public IFormFile ProfilePhoto { get; set; }
+        public string ProfilePhoto { get; set; }
+        public IFormFile Files { get; set; }
     }
 }
