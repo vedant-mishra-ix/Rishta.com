@@ -1,0 +1,34 @@
+
+<div class="container-fluid">
+  <form class="form  rounded bg-light border border-3  Margin Form-Overflow"
+  [formGroup]="loginProfile" (ngSubmit)="login()" >
+    <h3>Login</h3>
+  <div class="row mt-4">
+    <div class="col">
+      <input type="text" id="userName" class="form-control w-50"
+      placeholder="userName" formControlName="userName">
+      <span *ngIf="loginValidation['userName'].errors?.['required'] &&
+       (loginValidation['userName'].touched || loginValidation['userName'].dirty)" class="ValidationError">
+       This field is required</span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <input type="text" id="password" class="form-control w-50"
+       placeholder="password" formControlName="password">
+      <span *ngIf="loginValidation['password'].errors?.['required'] &&
+       (loginValidation['password'].touched || loginValidation['password'].dirty)" class="ValidationError">
+       This field is required</span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <input type="submit" [disabled]="loginProfile.invalid"  class="btn btn-primary w-50" value="Login" >
+      <br>
+      <span>For new user please register<a routerLink="/registration">Sign-up</a></span>
+    </div>
+  </div>
+  </form>
+</div>
+
+
