@@ -155,8 +155,9 @@
         <label for="State">State:</label>
       </div>
       <div class="col-6">
-        <select class="form-control" name="State" id="State" formControlName="State">
-          <option *ngFor="let stateList of StateList">{{stateList.states}}</option>
+        <select (change)="OnSelect($event)" class="form-control" name="State" id="State" formControlName="State">
+          <option>--Select State--</option>
+          <option *ngFor="let stateList of StateList" value="{{stateList.id}}">{{stateList.states}}</option>
         </select>
       </div>
     </div>
@@ -166,7 +167,7 @@
       </div>
       <div class="col-6">
         <select class="form-control" name="City" id="City" formControlName="City">
-          <option *ngFor="let cityList of CityList;let i = index">{{cityList.cities}}</option>
+          <option *ngFor="let cityList of CityListContain;let i = index">{{cityList.cities}}</option>
         </select>
       </div>
     </div>

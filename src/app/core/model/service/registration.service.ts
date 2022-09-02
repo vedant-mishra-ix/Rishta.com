@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class RegistrationService {
 
-  BaseUrl ='http://localhost:55339';
+  BaseUrl =`http://localhost:55339/api/Authenticate/register`;
   constructor(private http: HttpClient) { }
 
   Registration(RegistrationData:any):Observable<any>
   {
-    return this.http.post(`http://localhost:55339/api/Registration`,RegistrationData);
+    return this.http.post(`http://localhost:55339/api/Authenticate/register`,RegistrationData);
   }
 }

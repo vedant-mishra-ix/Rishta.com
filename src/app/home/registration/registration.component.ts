@@ -27,6 +27,7 @@ export class RegistrationComponent implements OnInit {
   Registration : FormGroup = new FormGroup({});
   Files!: File;
   CityList:any=[];
+  CityListContain:any=[];
   StateList:any=[];
 
   constructor(private fb : FormBuilder, private cityService: CityService,
@@ -94,7 +95,7 @@ export class RegistrationComponent implements OnInit {
       },error => {alert("Something Wrong")}
       )
     console.log(this.Registration.value);
-   // this.Registration.reset();
+    //this.Registration.reset();
    }
 
    get RegistrationValidation()
@@ -119,7 +120,10 @@ export class RegistrationComponent implements OnInit {
       this.StateList = res;
     })
   }
-
+  OnSelect(State:any)
+  {
+    this.CityListContain = this.CityList.filter((e:any) => e.id == State.target.value);
+  }
   HandleFile(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
