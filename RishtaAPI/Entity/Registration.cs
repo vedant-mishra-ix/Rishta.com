@@ -6,6 +6,7 @@ namespace RishtaAPI.Entity
 {
     public class Registration
     {
+        [Key]
         [Required]
         public int Id { get; set; }
         [Required]

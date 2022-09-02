@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace RishtaAPI.Entity
         public int Id { get; set; }
         [Required]
         public string Cities { get; set; }
+        
+        public int StatesId { get; set; }
     }
 }

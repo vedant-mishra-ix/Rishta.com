@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RishtaAPI.Model;
 using RishtaAPI.Service;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace RishtaAPI.Controllers
 {
+    [Authorize(Roles =UserRoles.Users)]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
