@@ -6,11 +6,12 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class ProfilUpdateService {
 
   constructor(private http: HttpClient) { }
-  LoginData(LoginData:any):Observable<any>
+  Update(profile:any):Observable<any>
   {
-    return this.http.post<any>(`${environment.baseApiUrl}/api/Authenticate/login`,LoginData);
+    //const options = { params: new HttpParams().set('Username', profile) };
+    return this.http.put(`${environment.baseApiUrl}/api/User`,profile);
   }
 }

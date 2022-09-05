@@ -19,18 +19,4 @@ export class GuardService {
   {
     return localStorage.removeItem(this.tokenKey);
   }
-
-  HaveAccess(){
-    var loggintoken=localStorage.getItem('token')||'';
-    var _extractedtoken=loggintoken.split('.')[2];
-    console.log(loggintoken);
-    var _atobdata=atob(_extractedtoken);
-    var _finaldata=JSON.parse(_atobdata);
-    if(_finaldata.role=='Admin'){
-      return true
-    }else{
-      alert('you not having access');
-      return false
-    }
-  }
 }

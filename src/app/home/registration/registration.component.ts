@@ -29,6 +29,7 @@ export class RegistrationComponent implements OnInit {
   CityList:any=[];
   CityListContain:any=[];
   StateList:any=[];
+  Date:any;
 
   constructor(private fb : FormBuilder, private cityService: CityService,
     private stateService:StateService,private RegistrationService : RegistrationService,
@@ -92,22 +93,19 @@ export class RegistrationComponent implements OnInit {
       {
         alert("Registration Done: "+ res.UserName);
         this.Route.navigate(['login']);
-      },error => {alert("Something Wrong")}
+      },error => {alert("Something Wrong or user name already exist")}
       )
     console.log(this.Registration.value);
-    //this.Registration.reset();
    }
-
    get RegistrationValidation()
    {
     return this.Registration.controls;
    }
-
   ngOnInit(): void {
     this.GetCity();
     this.GetState();
+    this.Date =  new Date().toISOString().split('T')[0]
   }
-
   GetCity()
   {
     this.cityService.GetCityData().subscribe(res => {

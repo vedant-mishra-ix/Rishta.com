@@ -1,0 +1,30 @@
+.table-overflow
+{
+  width: 80vw;
+  overflow: auto;
+  height: 76vh;
+  padding-right: 5vw;
+}
+.font
+{
+  font-size: 1rem;
+}
+.width
+{
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 600px;
+  height: 450px;
+  border-radius: 8px 8px 8px 8px;
+}
+.Slider-Width
+{
+  margin-left: 19vw;
+  margin-top: 5vh;
+  width: 40vw;
+}
+.profile-data
+{
+  font-size:2vw;
+  background-color: rgba(0, 0, 0, .3);
+}

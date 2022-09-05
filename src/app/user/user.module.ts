@@ -8,6 +8,9 @@ import { MatchedComponent } from './matched/matched.component';
 import { EditComponent } from './edit/edit.component';
 import { UserComponent } from './user.component';
 import { ListComponent } from './list/list.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ProfileUpdateComponent } from './profile-update/profile-update.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,11 +20,14 @@ import { ListComponent } from './list/list.component';
     MatchedComponent,
     EditComponent,
     UserComponent,
-    ListComponent
+    ListComponent,
+    UserProfileComponent,
+    ProfileUpdateComponent
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class UserModule { }

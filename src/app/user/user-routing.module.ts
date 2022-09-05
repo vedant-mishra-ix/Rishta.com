@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
 import { MatchedComponent } from './matched/matched.component';
+import { ProfileUpdateComponent } from './profile-update/profile-update.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserComponent } from './user.component';
 
 const routes: Routes = [
@@ -13,6 +15,14 @@ const routes: Routes = [
       {
         path:'',
         component:ListComponent
+      },
+      {
+        path:'profile',
+        component:UserProfileComponent
+      },
+      {
+        path:"update/:Id",
+        component:ProfileUpdateComponent
       },
       {
         path:'matche',

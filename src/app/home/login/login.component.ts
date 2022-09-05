@@ -13,6 +13,7 @@ import { LoginService } from 'src/app/core/model/service/login.service';
 export class LoginComponent implements OnInit {
 
   Role = Role;
+  UserName:any;
   loginProfile: FormGroup = new FormGroup({});
   constructor(private fb: FormBuilder, private LoginService: LoginService,
     private GuardService:GuardService,private route: Router) {
@@ -25,6 +26,8 @@ export class LoginComponent implements OnInit {
     this.LoginService.LoginData(this.loginProfile.value).subscribe({
       next: (res) => {
         alert("Login Succesfull:" + this.loginProfile.value.userName)
+        this.UserName = this.loginProfile.value.userName;
+        localStorage.setItem('UserName:',this.UserName);
         this.GuardService.setToken(res.token);
         localStorage.setItem('role:',res.role);
         var GetRole = localStorage.getItem('role:');

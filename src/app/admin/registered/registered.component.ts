@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminProfileService } from 'src/app/core/model/admin-service/admin-profile.service';
+import { RegisteredDeleteService } from 'src/app/core/model/admin-service/registered-delete.service';
+import { RegisteredService } from 'src/app/core/model/admin-service/registered.service';
 
 @Component({
   selector: 'app-registered',
@@ -7,9 +10,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisteredComponent implements OnInit {
 
-  constructor() { }
+  Registered:any[]=[];
+  Uservalue = localStorage.getItem('UserName:');
+  Id:any;
+  constructor(private RegisteredService: RegisteredService,
+    private DeleteService: RegisteredDeleteService, private AdminProfile: AdminProfileService ) { }
 
   ngOnInit(): void {
+    this.AdminProfile.UserProfile(this.Uservalue ?? '').subscribe(
+      {
+        next: (res) => {
+                this.Id =res.id;
+                this.ProfileRegistered(res.id);
+        }
+      })
   }
-
+  ProfileRegistered(Id:any)
+  {
+    this.RegisteredService.Registered(Id ?? '').subscribe({next: (res) =>
+    {
+      for(let i = 0 ; i < res.length ; i++ )
+      {
+        if(res[i].userName != 'pankaj')
+        {
+          this.Registered.push(res[i]);
+          console.log("data: "+ this.Registered);
+        }
+      }
+    }})
+  }
+  Delete(id:any)
+  {
+    this.DeleteService.Delete(id ?? '').subscribe({next:(res) =>
+    {
+      alert("Data deleted Succesful");
+    }});
+    this.ProfileRegistered(id);
+  }
 }
