@@ -13,9 +13,11 @@ namespace RishtaAPI.Service
     public interface IRegistrationService
     {
         public Task<Model.Registration> Registration(Model.Registration obj);
+        public IEnumerable<Model.Registration> Registrations(int Id);
         public IEnumerable<Model.Registration> Registrations();
-        public string RegistrationUpdate(Model.Registration obj);
-        public String Registration(int Id);
+        public UserProfile Registrationuser(string Username);
+        public Task<Update> RegistrationUpdate(Model.Update obj);
+        public string Registration(int Id);
     }
     public class RegistrationService:IRegistrationService
     {
@@ -54,6 +56,7 @@ namespace RishtaAPI.Service
                 FamilyType=obj.FamilyType,
                 FamilyStatus=obj.FamilyStatus,
                 ProfilePhoto= obj.ProfilePhoto,
+                IsActive = true,
             };
 
             var DataAdd = await RegistrationDa.Registration(AddObj);
@@ -66,9 +69,45 @@ namespace RishtaAPI.Service
             return "Succes";
         }
 
-        public IEnumerable<Model.Registration> Registrations()
+        public UserProfile Registrationuser(string Username)
         {
-            var AllData = RegistrationDa.Registrations();
+            var SpecificUser = RegistrationDa.Registrations(Username);
+           
+            return  new UserProfile()
+            {
+                Id = SpecificUser.Id,
+                UserName = SpecificUser.UserName,
+                Email = SpecificUser.Email,
+                Mobile = SpecificUser.Mobile,
+                DateOfBirth = SpecificUser.DateOfBirth,
+                CreatedDateTime = SpecificUser.CreatedDateTime,
+                ModifiedDateTime = SpecificUser.ModifiedDateTime,
+                Password = SpecificUser.Password,
+                Address = SpecificUser.Address,
+                Cast = SpecificUser.Cast,
+                Sex = SpecificUser.Sex,
+                Religious = SpecificUser.Religious,
+                MartialStatus = SpecificUser.MartialStatus,
+                MotherTongue = SpecificUser.MotherTongue,
+                Height = SpecificUser.Height,
+                Country = SpecificUser.Country,
+                State = SpecificUser.State,
+                City = SpecificUser.City,
+                HighestEducation = SpecificUser.HighestEducation,
+                Occupation = SpecificUser.Occupation,
+                AnnualIncome = SpecificUser.AnnualIncome,
+                ParentMobile = SpecificUser.ParentMobile,
+                FamilyType = SpecificUser.FamilyType,
+                FamilyStatus = SpecificUser.FamilyStatus,
+                ProfilePhoto = SpecificUser.ProfilePhoto
+            };
+
+
+        }
+
+        public IEnumerable<Model.Registration> Registrations(int Id)
+        {
+            var AllData = RegistrationDa.Registrations(Id);
             return (from AllDetails in AllData
                     select new Model.Registration
                     {
@@ -96,14 +135,16 @@ namespace RishtaAPI.Service
                         ParentMobile = AllDetails.ParentMobile,
                         FamilyType = AllDetails.FamilyType,
                         FamilyStatus = AllDetails.FamilyStatus,
+                        ProfilePhoto = AllDetails.ProfilePhoto
 
                     }).ToList();
         }
 
-        public string RegistrationUpdate(Model.Registration obj)
+        public async Task<Update> RegistrationUpdate(Model.Update obj)
         {
             var UpdateObj = new Entity.Registration
             {
+                Id = obj.Id,
             UserName = obj.UserName,
             Email = obj.Email,
             Mobile = obj.Mobile,
@@ -127,10 +168,44 @@ namespace RishtaAPI.Service
             ParentMobile = obj.ParentMobile,
             FamilyType = obj.FamilyType,
             FamilyStatus = obj.FamilyStatus,
+            ProfilePhoto = obj.ProfilePhoto,
         };
-           RegistrationDa.Registration(UpdateObj,Convert.ToInt32( obj.Id));
-            return "Success";
+          var Dat = await RegistrationDa.Registration(UpdateObj,obj.Id);
+            return new Update { Id = UpdateObj.Id};
         }
 
+        public IEnumerable<Model.Registration> Registrations()
+        {
+            var GetAll = RegistrationDa.Registrations();
+            return (from AllData in GetAll
+                    select new Model.Registration
+                    {
+                        Id = AllData.Id,
+                        UserName = AllData.UserName,
+                        Email = AllData.Email,
+                        Mobile = AllData.Mobile,
+                        DateOfBirth = AllData.DateOfBirth,
+                        CreatedDateTime = AllData.CreatedDateTime,
+                        ModifiedDateTime = DateTime.Now,
+                        Password = AllData.Password,
+                        Address = AllData.Address,
+                        Cast = AllData.Cast,
+                        Sex = AllData.Sex,
+                        Religious = AllData.Religious,
+                        MartialStatus = AllData.MartialStatus,
+                        MotherTongue = AllData.MotherTongue,
+                        Height = AllData.Height,
+                        Country = AllData.Country,
+                        State = AllData.State,
+                        City = AllData.City,
+                        HighestEducation = AllData.HighestEducation,
+                        Occupation = AllData.Occupation,
+                        AnnualIncome = AllData.AnnualIncome,
+                        ParentMobile = AllData.ParentMobile,
+                        FamilyType = AllData.FamilyType,
+                        FamilyStatus = AllData.FamilyStatus,
+                        ProfilePhoto = AllData.ProfilePhoto,
+                    }).ToList();
+        }
     }
 }

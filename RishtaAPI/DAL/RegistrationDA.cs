@@ -10,8 +10,10 @@ namespace RishtaAPI.DAL
     public interface IRegistration
     {
         public Task<Registration> Registration(Registration obj);
+        public IEnumerable<Registration> Registrations(int Id);
         public IEnumerable<Registration> Registrations();
-        public bool Registration(Registration obj , int Id);
+        public Registration Registrations(string UserName);
+        public Task<Registration> Registration(Registration obj , int Id);
         public bool Registration(int Id);
     }
     public class RegistrationDA:IRegistration
@@ -29,7 +31,7 @@ namespace RishtaAPI.DAL
             return AddData.Entity;
         }
 
-        public bool Registration(Registration obj, int Id)
+        public async Task<Registration> Registration(Registration obj, int Id)
         {
             var DataUpdate = RegistrationDb.Registration.FirstOrDefault(obj => obj.Id == Id);
             if(DataUpdate != null)
@@ -57,12 +59,14 @@ namespace RishtaAPI.DAL
                 DataUpdate.ParentMobile = obj.ParentMobile;
                 DataUpdate.FamilyType = obj.FamilyType;
                 DataUpdate.FamilyStatus = obj.FamilyStatus;
+                DataUpdate.ProfilePhoto = obj.ProfilePhoto;
+                 var data = RegistrationDb.Registration.Update(DataUpdate);
                 RegistrationDb.SaveChanges();
-                return true;
+                return data.Entity;
             }
             else
             {
-                return false;
+                return null;
             }
         }
 
@@ -81,11 +85,31 @@ namespace RishtaAPI.DAL
             }
         }
 
+        public IEnumerable<Registration> Registrations(int Id)
+        {
+            var GetAllData = RegistrationDb.Registration.Where(obj => obj.Id != Id ).ToList();
+            if(GetAllData != null)
+            {
+                RegistrationDb.SaveChanges();
+                return GetAllData;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Registration Registrations(string UserName)
+        {
+            var SpecificUser =  RegistrationDb.Registration.FirstOrDefault(obj => obj.UserName == UserName);
+            return SpecificUser;
+        }
+
         public IEnumerable<Registration> Registrations()
         {
-            var GetAllData = RegistrationDb.Registration.ToList();
+            var GetAll = RegistrationDb.Registration.ToList();
             RegistrationDb.SaveChanges();
-            return GetAllData;
+            return GetAll;
         }
     }
 }

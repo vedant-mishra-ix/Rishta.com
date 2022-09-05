@@ -1,6 +1,7 @@
 ﻿ 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace RishtaAPI.Entity
 {
@@ -41,5 +42,10 @@ namespace RishtaAPI.Entity
         public string FamilyType { get; set; }
         public string FamilyStatus { get; set; }
         public string ProfilePhoto { get; set; }
+        public bool IsActive { get; set; }
+        // one to many
+        public ICollection<ReportProfile> ReportProfiles { get; set; }
+        // one to one
+        public virtual MemberShip MemberShip { get; set; }
     }
 }

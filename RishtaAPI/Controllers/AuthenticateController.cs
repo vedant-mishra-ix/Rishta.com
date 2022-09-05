@@ -83,8 +83,8 @@ namespace JWTAuthenticationWithSwagger.Controllers
         public async Task<IActionResult> Register([FromForm] Registration model)
         {
             var userExists = await userManager.FindByNameAsync(model.UserName);
-            //if (userExists != null)
-            //    return StatusCode(StatusCodes.Status500InternalServerError);
+            if (userExists != null)
+                return StatusCode(StatusCodes.Status500InternalServerError);
 
             ApplicationUser user = new ApplicationUser()
             {
@@ -113,7 +113,6 @@ namespace JWTAuthenticationWithSwagger.Controllers
                     var filepath = "\\images\\" + model.Files.FileName;
                     model.ProfilePhoto = filepath;
                 }
-             //   await RegistrationService.Registration(model);
                 var result = await userManager.CreateAsync(user, model.Password);
                 //  if (!result.Succeeded)
                 //return StatusCode(StatusCodes.Status500InternalServerError);
@@ -130,11 +129,9 @@ namespace JWTAuthenticationWithSwagger.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex + "Something wrong");
-            }
-            
+            }  
           
         }
-
 
         [HttpPost]
         [Route("RegisterAdmin")]

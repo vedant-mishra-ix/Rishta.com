@@ -21,14 +21,28 @@ namespace RishtaAPI.Controllers
             RegistrationService = _RegistrationService;
         }
         [HttpGet]
+        [Route("Registered")]
+
         public IActionResult Registrations()
         {
             return Ok(RegistrationService.Registrations());
         }
-        [HttpDelete]
+
+        [HttpGet]
+        public IActionResult Registrations(int Id)
+        {
+            return Ok(RegistrationService.Registrations(Id));
+        }
+        [HttpDelete("{Id}")]
         public IActionResult Registration(int Id)
         {
             return Ok(RegistrationService.Registration(Id));
+        }
+        [HttpGet]
+        [Route("profile")]
+        public IActionResult Regsistrations(string Username)
+        {
+            return Ok(RegistrationService.Registrationuser(Username));
         }
     }
 }
