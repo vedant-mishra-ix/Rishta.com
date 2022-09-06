@@ -16,6 +16,7 @@
   width: 600px;
   height: 450px;
   border-radius: 8px 8px 8px 8px;
+  cursor: pointer;
 }
 .Slider-Width
 {

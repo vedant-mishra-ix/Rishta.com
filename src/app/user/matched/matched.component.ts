@@ -35,7 +35,7 @@ export class MatchedComponent implements OnInit {
     })
   }
   GenderData(event: any) {
-    this.DependentBasedList =[];
+    this.DependentBasedList = [];
     this.Sex = event;
     this.UserName = localStorage.getItem("UserName:");
     this.GenderService.Gender(this.Sex).subscribe({
@@ -52,14 +52,14 @@ export class MatchedComponent implements OnInit {
     })
   }
   MartialStatusData(event: any) {
-    this.DependentBasedList =[];
+    this.DependentBasedList = [];
     this.Martial = event;
     this.UserName = localStorage.getItem("UserName:");
     this.MartialService.Martial(this.Martial).subscribe({
       next: (res) => {
         this.MartialBasedList.length = 0;
         this.GenderBasedList.length = 0;
-        this.FamilyBasedList.length =0;
+        this.FamilyBasedList.length = 0;
         for (let i = 0; i < res.length; i++) {
           if (res[i].userName != 'pankaj' && res[i].userName != this.UserName) {
             this.MartialBasedList.push(res[i]);
@@ -69,7 +69,7 @@ export class MatchedComponent implements OnInit {
     })
   }
   FamilyTypeData(event: any) {
-    this.DependentBasedList =[];
+    this.DependentBasedList = [];
     this.Family = event;
     this.UserName = localStorage.getItem("UserName:");
     this.FamilyTypeService.FamilyType(this.Family).subscribe({
@@ -89,22 +89,19 @@ export class MatchedComponent implements OnInit {
   DependentFilter() {
     this.FamilyBasedList = [];
     this.UserName = localStorage.getItem("UserName:");
-    this.DependentBasedList.length =0;
-    this.GenderService.Gender(this.Sex).subscribe({next:(res)=>
-    {
-      for(let i = 0 ; i < res.length ; i++)
-      {
-        if((res[i].sex == this.Sex && res[i].martialStatus == this.Martial)&&
-          res[i].familyType == this.Family)
-          {
+    this.DependentBasedList.length = 0;
+    this.GenderService.Gender(this.Sex).subscribe({
+      next: (res) => {
+        for (let i = 0; i < res.length; i++) {
+          if ((res[i].sex == this.Sex && res[i].martialStatus == this.Martial) &&
+            res[i].familyType == this.Family) {
             this.DependentBasedList.push(res[i]);
-            console.log("Depnde:  "+ this.DependentBasedList);
           }
+        }
       }
-    }})
+    })
   }
-  ResetAll()
-  {
+  ResetAll() {
     this.GenderBasedList.length = 0;
     this.FamilyBasedList.length = 0;
     this.MartialBasedList.length = 0;

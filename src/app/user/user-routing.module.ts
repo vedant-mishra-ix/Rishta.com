@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './list/list.component';
 import { MatchedComponent } from './matched/matched.component';
 import { ProfileUpdateComponent } from './profile-update/profile-update.component';
+import { SpecificProfileComponent } from './specific-profile/specific-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserComponent } from './user.component';
 
@@ -27,6 +28,10 @@ const routes: Routes = [
         path:'preference',
         component:MatchedComponent
       },
+      {
+        path:'specific',
+        component:SpecificProfileComponent
+      }
     ]
   }
 ];

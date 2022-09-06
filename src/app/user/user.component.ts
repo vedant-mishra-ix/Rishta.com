@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { UserProfileService } from '../core/model/service/user-profile.service';
 import { LoginComponent } from '../home/login/login.component';
 
 @Component({
@@ -7,10 +8,18 @@ import { LoginComponent } from '../home/login/login.component';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  constructor() { }
+  UserName = localStorage.getItem("UserName:")
+  Id:any;
+  constructor(private ProfileService: UserProfileService) { }
 
   ngOnInit(): void {
-
+    this.ProfileService.UserProfile(this.UserName ?? '').subscribe(
+      {
+        next: (res) => {
+          localStorage.setItem("Id:",res.id);
+          this.ngOnInit();
+        }
+      })
   }
 
 }

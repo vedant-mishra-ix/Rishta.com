@@ -71,8 +71,6 @@ export class UserProfileComponent implements OnInit {
                 this.FamilyType = res.familyType;
                 this.FamilyStatus = res.familyStatus;
                 this.ProfilePhoto = res.profilePhoto;
-          console.log("User profile value: " + this.ProfilePhoto);
-          localStorage.setItem("Id:",this.Id);
           localStorage.setItem("ProfilePhoto:",this.ProfilePhoto);
         }
       })

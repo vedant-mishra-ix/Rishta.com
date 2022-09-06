@@ -24,48 +24,46 @@ export class RegistrationComponent implements OnInit {
   Religious = Religious;
   FamilyType = FamilyType;
   FamilyStatus = FamilyStatus;
-  Registration : FormGroup = new FormGroup({});
+  Registration: FormGroup = new FormGroup({});
   Files!: File;
-  CityList:any=[];
-  CityListContain:any=[];
-  StateList:any=[];
-  Date:any;
+  CityList: any = [];
+  CityListContain: any = [];
+  StateList: any = [];
+  Date: any;
 
-  constructor(private fb : FormBuilder, private cityService: CityService,
-    private stateService:StateService,private RegistrationService : RegistrationService,
-    private Route: Router)
-  {
+  constructor(private fb: FormBuilder, private cityService: CityService,
+    private stateService: StateService, private RegistrationService: RegistrationService,
+    private Route: Router) {
     this.Registration = this.fb.group({
-      UserName:['',Validators.required],
-      Email:['',Validators.required],
-      Mobile:['',Validators.required],
-      Dob:['',Validators.required],
-      Password:['',Validators.required],
-      Address:['',Validators.required],
-      Cast:[''],
-      Sex:['',Validators.required],
-      Religious:[''],
-      MartialStatus:[''],
-      MotherTongue:[''],
-      Height:[''],
-      Country:[''],
-      State:[''],
-      City:[''],
-      HighestEducation:[''],
-      Occupation:[''],
-      AnnualIncome:[''],
-      ParentMobile:[''],
-      FamilyType:[''],
-      FamilyStatus:[''],
-      ProfilePhoto:[''],
-      files:['',Validators.required],
+      UserName: ['', Validators.required],
+      Email: ['', Validators.required],
+      Mobile: ['', Validators.required],
+      Dob: ['', Validators.required],
+      Password: ['', Validators.required],
+      Address: ['', Validators.required],
+      Cast: [''],
+      Sex: ['', Validators.required],
+      Religious: [''],
+      MartialStatus: [''],
+      MotherTongue: [''],
+      Height: [''],
+      Country: [''],
+      State: [''],
+      City: [''],
+      HighestEducation: [''],
+      Occupation: [''],
+      AnnualIncome: [''],
+      ParentMobile: [''],
+      FamilyType: [''],
+      FamilyStatus: [''],
+      ProfilePhoto: [''],
+      files: ['', Validators.required],
       fileSource: [''],
     })
-   }
+  }
 
-   Submit()
-   {
-    const formData:any = new FormData();
+  Submit() {
+    const formData: any = new FormData();
     formData.append('files', this.Registration.get('fileSource')?.value);
     formData.append('UserName', this.Registration.get('UserName')?.value);
     formData.append('Email', this.Registration.get('Email')?.value);
@@ -89,38 +87,33 @@ export class RegistrationComponent implements OnInit {
     formData.append('FamilyType', this.Registration.get('FamilyType')?.value);
     formData.append('FamilyStatus', this.Registration.get('FamilyStatus')?.value);
     formData.append('image', this.Registration.get('image')?.value);
-    this.RegistrationService.Registration(formData).subscribe((res) =>
-      {
-        alert("Registration Done: "+ res.UserName);
-        this.Route.navigate(['login']);
-      },error => {alert("Something Wrong or user name already exist")}
-      )
+    this.RegistrationService.Registration(formData).subscribe((res) => {
+      alert("Registration Done: " + res.UserName);
+      this.Route.navigate(['login']);
+    }, error => { alert("Something Wrong or user name already exist") }
+    )
     console.log(this.Registration.value);
-   }
-   get RegistrationValidation()
-   {
+  }
+  get RegistrationValidation() {
     return this.Registration.controls;
-   }
+  }
   ngOnInit(): void {
     this.GetCity();
     this.GetState();
-    this.Date =  new Date().toISOString().split('T')[0]
+    this.Date = new Date().toISOString().split('T')[0]
   }
-  GetCity()
-  {
+  GetCity() {
     this.cityService.GetCityData().subscribe(res => {
       this.CityList = res;
     })
   }
-  GetState()
-  {
+  GetState() {
     this.stateService.GetStateData().subscribe(res => {
       this.StateList = res;
     })
   }
-  OnSelect(State:any)
-  {
-    this.CityListContain = this.CityList.filter((e:any) => e.id == State.target.value);
+  OnSelect(State: any) {
+    this.CityListContain = this.CityList.filter((e: any) => e.id == State.target.value);
   }
   HandleFile(event: any) {
     if (event.target.files.length > 0) {

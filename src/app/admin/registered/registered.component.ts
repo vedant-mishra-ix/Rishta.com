@@ -10,41 +10,38 @@ import { RegisteredService } from 'src/app/core/model/admin-service/registered.s
 })
 export class RegisteredComponent implements OnInit {
 
-  Registered:any[]=[];
+  Registered: any[] = [];
   Uservalue = localStorage.getItem('UserName:');
-  Id:any;
+  Id: any;
   constructor(private RegisteredService: RegisteredService,
-    private DeleteService: RegisteredDeleteService, private AdminProfile: AdminProfileService ) { }
+    private DeleteService: RegisteredDeleteService, private AdminProfile: AdminProfileService) { }
 
   ngOnInit(): void {
     this.AdminProfile.UserProfile(this.Uservalue ?? '').subscribe(
       {
         next: (res) => {
-                this.Id =res.id;
-                this.ProfileRegistered(res.id);
+          this.Id = res.id;
+          this.ProfileRegistered(res.id);
         }
       })
   }
-  ProfileRegistered(Id:any)
-  {
-    this.RegisteredService.Registered(Id ?? '').subscribe({next: (res) =>
-    {
-      for(let i = 0 ; i < res.length ; i++ )
-      {
-        if(res[i].userName != 'pankaj')
-        {
-          this.Registered.push(res[i]);
-          console.log("data: "+ this.Registered);
+  ProfileRegistered(Id: any) {
+    this.RegisteredService.Registered(Id ?? '').subscribe({
+      next: (res) => {
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].userName != 'pankaj') {
+            this.Registered.push(res[i]);
+          }
         }
       }
-    }})
+    })
   }
-  Delete(id:any)
-  {
-    this.DeleteService.Delete(id ?? '').subscribe({next:(res) =>
-    {
-      alert("Data deleted Succesful");
-    }});
+  Delete(id: any) {
+    this.DeleteService.Delete(id ?? '').subscribe({
+      next: (res) => {
+        alert("Data deleted Succesful");
+      }
+    });
     this.ProfileRegistered(id);
   }
 }

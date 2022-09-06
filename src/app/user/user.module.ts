@@ -10,6 +10,7 @@ import { ListComponent } from './list/list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ProfileUpdateComponent } from './profile-update/profile-update.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SpecificProfileComponent } from './specific-profile/specific-profile.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserComponent,
     ListComponent,
     UserProfileComponent,
-    ProfileUpdateComponent
+    ProfileUpdateComponent,
+    SpecificProfileComponent
   ],
   imports: [
     CommonModule,

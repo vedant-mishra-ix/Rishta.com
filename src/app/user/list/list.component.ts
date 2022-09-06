@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserListService } from 'src/app/core/model/service/user-list.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class ListComponent implements OnInit {
 
   UserList:any[]=[];
   Id = localStorage.getItem("Id:");
-  constructor(private UserListService:UserListService) { }
+  constructor(private UserListService:UserListService,private route:Router) { }
 
   ngOnInit(): void {
     this.GetData();
@@ -25,10 +26,17 @@ export class ListComponent implements OnInit {
           if(res[i].userName != 'pankaj')
           {
             this.UserList.push(res[i]);
-            console.log("data: "+ this.UserList);
           }
         }
       }})
   }
-
+  UserProfile(Data:any)
+  {
+    localStorage.setItem("UserSpecific:",Data.userName);
+    localStorage.setItem("UserSpecific1:",Data.email);
+    localStorage.setItem("UserSpecific2:",Data.mobile);
+    localStorage.setItem("UserSpecific3:",Data.address);
+    localStorage.setItem("UserSpecific4:",Data.profilePhoto);
+    this.route.navigate(['./User/specific']);
+  }
 }

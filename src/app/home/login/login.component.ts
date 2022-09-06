@@ -13,10 +13,10 @@ import { LoginService } from 'src/app/core/model/service/login.service';
 export class LoginComponent implements OnInit {
 
   Role = Role;
-  UserName:any;
+  UserName: any;
   loginProfile: FormGroup = new FormGroup({});
   constructor(private fb: FormBuilder, private LoginService: LoginService,
-    private GuardService:GuardService,private route: Router) {
+    private GuardService: GuardService, private route: Router) {
     this.loginProfile = fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
@@ -27,18 +27,16 @@ export class LoginComponent implements OnInit {
       next: (res) => {
         alert("Login Succesfull:" + this.loginProfile.value.userName)
         this.UserName = this.loginProfile.value.userName;
-        localStorage.setItem('UserName:',this.UserName);
+        localStorage.setItem('UserName:', this.UserName);
         this.GuardService.setToken(res.token);
-        localStorage.setItem('role:',res.role);
+        localStorage.setItem('role:', res.role);
         var GetRole = localStorage.getItem('role:');
-       if(GetRole == "User")
-       {
-        this.route.navigate(['User']);
-       }
-       else
-       {
-        this.route.navigate(['Admin']);
-       }
+        if (GetRole == "User") {
+          this.route.navigate(['User']);
+        }
+        else {
+          this.route.navigate(['Admin']);
+        }
       }, error: () => {
         alert("Something Wrong:")
       }
