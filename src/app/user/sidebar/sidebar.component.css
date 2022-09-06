@@ -7,14 +7,20 @@
 {
   list-style: none;
   background-color:rgba(0, 0, 0, .8);
-  height: 91.2vh;
-  width: 13vw;
+  height: 91.4vh;
+  width: 15vw;
 }
 .item-list
 {
   margin-right: 30px;
   padding-top: 70px;
   font-weight: bold;
-  font-size: 1.5vw;
-  color: white;
+  font-size: 1.2vw;
+  color:brown;
+  cursor: pointer;
+}
+.icon
+{
+  color: whitesmoke;
+  padding-left: 5px;
 }

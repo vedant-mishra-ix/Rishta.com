@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
 import { MatchedComponent } from './matched/matched.component';
 import { ProfileUpdateComponent } from './profile-update/profile-update.component';
@@ -25,13 +24,9 @@ const routes: Routes = [
         component:ProfileUpdateComponent
       },
       {
-        path:'matche',
+        path:'preference',
         component:MatchedComponent
       },
-      {
-        path:'edit/:id',
-        component:EditComponent
-      }
     ]
   }
 ];

@@ -10,17 +10,20 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 })
 export class HeaderComponent implements OnInit {
 
-  UserProfile = localStorage.getItem("ProfilePhoto:");
+  UserProfile:any;
   UserName = localStorage.getItem("UserName:")
   constructor(private route : Router, private AuthService: GuardService) { }
   Logout()
   {
     this.route.navigate([''])
+    localStorage.removeItem("Id:");
+    localStorage.removeItem("ProfilePhoto:");
+    localStorage.removeItem('role:');
     return this.AuthService.deleteToken();
   }
   ngOnInit(): void {
     console.log("HEader: "+ this.UserProfile);
-
+    this.UserProfile = localStorage.getItem("ProfilePhoto:");
   }
 
 }

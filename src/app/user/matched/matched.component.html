@@ -1,1 +1,82 @@
-<p>matched works!</p>
+
+<div class="container-fluid mt-5">
+  <form [formGroup]="GenderList">
+    <div class="row">
+    <div class="col-2">
+      <select class="form-control" (ngModelChange)="GenderData($event)"  name="Sex" id="Sex" formControlName="Sex">
+        <option>- Select Gender -</option>
+        <option *ngFor="let gender of Gender | keyvalue" >{{gender.value}}</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <select class="form-control" (ngModelChange)="MartialStatusData($event)" name="MartialStatus" id="MartialStatus" formControlName="MartialStatus">
+        <option>- Select MartialStatus -</option>
+        <option *ngFor="let Martial of MartialStatus | keyvalue" >{{Martial.value}}</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <select class="form-control" (ngModelChange)="FamilyTypeData($event)"  name="FamilyType" id="FamilyType" formControlName="FamilyType">
+        <option>- Select FamilyType -</option>
+        <option *ngFor="let Family of FamilyType | keyvalue" >{{Family.value}}</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <input type="button" class="form-control btn btn-primary" value="Apply all" (click)="DependentFilter()">
+    </div>
+    <div class="col-2">
+      <input type="submit" class="form-control btn btn-primary" value="Reset All" (click)="ResetAll()">
+    </div>
+    </div>
+  </form>
+</div>
+<div class="container-fluid justify-content-start mt-5 table-overflow">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Profile</th>
+        <th>User Name</th>
+        <th>User Email</th>
+        <th>User Mobile</th>
+        <th>User Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let list of GenderBasedList ">
+        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+        <td>{{list.userName}}</td>
+        <td>{{list.email}}</td>
+        <td>{{list.mobile}}</td>
+        <td>{{list.sex}}</td>
+        <td>
+        </td>
+      </tr>
+      <tr *ngFor="let list of MartialBasedList ">
+        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+        <td>{{list.userName}}</td>
+        <td>{{list.email}}</td>
+        <td>{{list.mobile}}</td>
+        <td>{{list.sex}}</td>
+        <td>
+        </td>
+      </tr>
+      <tr *ngFor="let list of FamilyBasedList ">
+        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+        <td>{{list.userName}}</td>
+        <td>{{list.email}}</td>
+        <td>{{list.mobile}}</td>
+        <td>{{list.sex}}</td>
+        <td>
+        </td>
+      </tr>
+      <tr *ngFor="let list of DependentBasedList ">
+        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+        <td>{{list.userName}}</td>
+        <td>{{list.email}}</td>
+        <td>{{list.mobile}}</td>
+        <td>{{list.sex}}</td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+

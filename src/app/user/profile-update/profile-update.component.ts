@@ -25,49 +25,22 @@ export class ProfileUpdateComponent implements OnInit {
   Religious1 = Religious;
   FamilyType1 = FamilyType;
   FamilyStatus1 = FamilyStatus;
-  Registration : FormGroup = new FormGroup({});
+  Registration: FormGroup = new FormGroup({});
   Files!: File;
-  CityList:any=[];
-  CityListContain:any=[];
-  StateList:any=[];
-  id:any;
-  Id:any;
-                UserName:any;
-                Email:any;
-                Mobile:any;
-                DateOfBirth:any;
-                CreatedDateTime:any;
-                ModifiedDateTime:any;
-                Password:any;
-                Address:any;
-                Cast:any;
-                Sex:any
-                Religious: any;
-                MartialStatus:any;
-                MotherTongue:any;
-                Height:any;
-                Country:any;
-                State:any;
-                City:any;
-                HighestEducation:any;
-                Occupation:any;
-                AnnualIncome:any;
-                ParentMobile:any;
-                FamilyType:any;
-                FamilyStatus:any;
-                ProfilePhoto:any;
+  CityList: any = [];
+  CityListContain: any = [];
+  StateList: any = [];
+  id: any;
+  Id: any;
+  constructor(private fb: FormBuilder, private cityService: CityService,
+    private stateService: StateService,
+    private Route: Router, private idRoute: ActivatedRoute, private ProfileService: UserProfileService,
+    private UpdateService: ProfilUpdateService) {
+  }
 
-  constructor(private fb : FormBuilder, private cityService: CityService,
-    private stateService:StateService,
-    private Route: Router, private idRoute: ActivatedRoute,private ProfileService: UserProfileService,
-    private UpdateService: ProfilUpdateService)
-  {
-   }
-
-   Uservalue = localStorage.getItem('UserName:');
-   Submit()
-   {
-    const formData:any = new FormData();
+  Uservalue = localStorage.getItem('UserName:');
+  Submit() {
+    const formData: any = new FormData();
     formData.append('files', this.Registration.get('fileSource')?.value);
     formData.append('Id', this.Registration.get('Id')?.value);
     formData.append('UserName', this.Registration.get('UserName')?.value);
@@ -93,99 +66,99 @@ export class ProfileUpdateComponent implements OnInit {
     formData.append('FamilyStatus', this.Registration.get('FamilyStatus')?.value);
     formData.append('image', this.Registration.get('image')?.value);
     console.log(this.Registration.value);
-    this.UpdateService.Update(formData).subscribe({next:(res)=>
-    {
-      alert("Profile updated succesful:");
-      this.Route.navigate(['./User']);
-    },error: () => {
-      alert("Something Wrong:")}});
-   }
+    this.UpdateService.Update(formData).subscribe({
+      next: (res) => {
+        alert("Profile updated succesful:");
+        this.Route.navigate(['./User']);
+      }, error: () => {
+        alert("Something Wrong:")
+      }
+    });
+  }
 
-   get RegistrationValidation()
-   {
+  get RegistrationValidation() {
     return this.Registration.controls;
-   }
+  }
 
   ngOnInit(): void {
     this.Registration = this.fb.group({
-      Id:[''],
-      UserName:['',Validators.required],
-      Email:['',Validators.required],
-      Mobile:['',Validators.required],
-      Dob:['',Validators.required],
-      Password:['',Validators.required],
-      Address:['',Validators.required],
-      Cast:[''],
-      Sex:['',Validators.required],
-      Religious:[''],
-      MartialStatus:[''],
-      MotherTongue:[''],
-      Height:[''],
-      Country:[''],
-      State:[''],
-      City:[''],
-      HighestEducation:[''],
-      Occupation:[''],
-      AnnualIncome:[''],
-      ParentMobile:[''],
-      FamilyType:[''],
-      FamilyStatus:[''],
-      ProfilePhoto:[''],
-      files:[''],
+      Id: [''],
+      UserName: ['', Validators.required],
+      Email: ['', Validators.required],
+      Mobile: ['', Validators.required],
+      Dob: ['', Validators.required],
+      Password: ['', Validators.required],
+      Address: ['', Validators.required],
+      Cast: [''],
+      Sex: ['', Validators.required],
+      Religious: [''],
+      MartialStatus: [''],
+      MotherTongue: [''],
+      Height: [''],
+      Country: [''],
+      State: [''],
+      City: [''],
+      HighestEducation: [''],
+      Occupation: [''],
+      AnnualIncome: [''],
+      ParentMobile: [''],
+      FamilyType: [''],
+      FamilyStatus: [''],
+      ProfilePhoto: [''],
+      files: [''],
       fileSource: [''],
     });
     this.GetCity();
     this.GetState();
     this.id = this.idRoute.snapshot.paramMap.get('Id');
-    console.log(this.Uservalue , "this is userValue")
     this.ProfileService.UserProfile(this.Uservalue ?? '').subscribe(
       {
         next: (res) => {
-                this.Id =res.id;
-                this.UserName = res.userName
-                this.Email = res.email;
-                this.Mobile = res.mobile;
-                this.DateOfBirth = res.dateOfBirth;
-                this.CreatedDateTime = res.createdDateTime;
-                this.ModifiedDateTime = res.modifiedDateTime;
-                this.Password = res.password;
-                this.Address = res.address;
-                this.Cast = res.cast;
-                this.Sex = res.sex;
-                this.Religious = res.religious;
-                this.MartialStatus = res.martialStatus;
-                this.MotherTongue = res.motherTongue;
-                this.Height = res.height;
-                this.Country = res.country;
-                this.State = res.state;
-                this.City = res.city;
-                this.HighestEducation = res.highestEducation;
-                this.Occupation = res.occupation;
-                this.AnnualIncome = res.annualIncome;
-                this.ParentMobile = res.parentMobile;
-                this.FamilyType = res.familyType;
-                this.FamilyStatus = res.familyStatus;
-                this.ProfilePhoto = res.profilePhoto;
-          console.log("User profile value1: " + this.ProfilePhoto);
+          this.Registration.patchValue(
+            {
+              Id: res.id,
+              UserName: res.userName,
+              Email: res.email,
+              Mobile: res.mobile,
+              DateOfBirth: res.dateOfBirth,
+              CreatedDateTime: res.createdDateTime,
+              ModifiedDateTime: res.modifiedDateTime,
+              Password: res.password,
+              Address: res.address,
+              Cast: res.cast,
+              Sex: res.sex,
+              Religious: res.religious,
+              MartialStatus: res.martialStatus,
+              MotherTongue: res.motherTongue,
+              Height: res.height,
+              Country: res.country,
+              State: res.state,
+              City: res.city,
+              HighestEducation: res.highestEducation,
+              Occupation: res.occupation,
+              AnnualIncome: res.annualIncome,
+              ParentMobile: res.parentMobile,
+              FamilyType: res.familyType,
+              FamilyStatus: res.familyStatus,
+              ProfilePhoto: res.profilePhoto
+            }
+          );
         }
       })
   }
 
-  GetCity()
-  {
+  GetCity() {
     this.cityService.GetCityData().subscribe(res => {
       this.CityList = res;
     })
   }
-  GetState()
-  {
+  GetState() {
     this.stateService.GetStateData().subscribe(res => {
       this.StateList = res;
     })
   }
-  OnSelect(State:any)
-  {
-    this.CityListContain = this.CityList.filter((e:any) => e.id == State.target.value);
+  OnSelect(State: any) {
+    this.CityListContain = this.CityList.filter((e: any) => e.id == State.target.value);
   }
   HandleFile(event: any) {
     if (event.target.files.length > 0) {
@@ -197,8 +170,3 @@ export class ProfileUpdateComponent implements OnInit {
   }
 
 }
-
-// this.Registration.patchValue(
-
-  // {Id:res.id,
-  //   UserName:res.userName});

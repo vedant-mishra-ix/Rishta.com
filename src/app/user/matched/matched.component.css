@@ -1,0 +1,11 @@
+.table-overflow
+{
+  width: 80vw;
+  overflow: auto;
+  height: 66vh;
+  padding-right: 5vw;
+}
+.font
+{
+  font-size: 1rem;
+}

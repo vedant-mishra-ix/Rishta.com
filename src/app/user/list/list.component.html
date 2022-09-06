@@ -1,54 +1,4 @@
-<!-- <div class="container-fluid justify-content-start mt-5 table-overflow">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Profile</th>
-        <th>User Name</th>
-        <th>User Email</th>
-        <th>User Mobile</th>
-        <th>User Dob</th>
-        <th>User Gender</th>
-        <th colspan="2">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let list of UserList">
-        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
-        <td>{{list.userName}}</td>
-        <td>{{list.email}}</td>
-        <td>{{list.mobile}}</td>
-        <td>{{list.dob}}</td>
-        <td>{{list.sex}}</td>
-        <td>
-        </td>
-        <td> <span class="btn btn-danger font  w-50 m-4" (click)="Delete(list.id)">Delete</span></td>
-      </tr>
-    </tbody>
-  </table> -->
-  <!-- <div id="carouselExampleCaptions" class="carousel slide w-25" data-bs-ride="carousel">
-    <div class="carousel-indicators" >
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner" *ngFor="let list of UserList">
-      <div class="carousel-item active slide" >
-        <img src="http://localhost:8080/{{list.profilePhoto}}" class="width">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Some representative placeholder content for the first slide.</p>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div> -->
+
   <div id="carouselExampleCaptions" class="carousel slide Slider-Width " data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" *ngFor="let list of UserList; let index = index" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
@@ -57,9 +7,11 @@
     <div class="carousel-inner">
       <div  *ngFor="let list of UserList;let index = index"  class="carousel-item active"  [ngClass]="{'active': index === 1}">
         <img src="http://localhost:8080/{{list.profilePhoto}}" class="width" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5 class="profile-data">Name: {{list.userName}}</h5>
-          <p class="profile-data">Gender: {{list.sex}}</p>
+        <div class="carousel-caption d-none d-md-block ">
+          <div class="profile-data">
+          <h5>Name: {{list.userName}}</h5>
+          <h5>Gender: {{list.sex}}</h5>
+          </div>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
       <label for="UserName">Id:<span class="ValidationError">*</span></label>
     </div>
     <div class="col-6">
-      <input  class="form-control" value={{Id}} type="text" name="Id" id="Id" formControlName="Id">
+      <input  class="form-control" readonly type="text" name="Id" id="Id" formControlName="Id">
       <span *ngIf="RegistrationValidation['Id']?.errors?.['required']
       && (RegistrationValidation['Id']?.touched || RegistrationValidation['Id']?.dirty)"
       class="ValidationError">
@@ -20,7 +20,7 @@
         <label for="UserName">Name:<span class="ValidationError">*</span></label>
       </div>
       <div class="col-6">
-        <input  class="form-control" value="{{UserName}}" type="text" name="UserName" id="UserName" formControlName="UserName"
+        <input  class="form-control" readonly type="text" name="UserName" id="UserName" formControlName="UserName"
         >
         <span *ngIf="RegistrationValidation['UserName']?.errors?.['required']
         && (RegistrationValidation['UserName']?.touched || RegistrationValidation['UserName']?.dirty)"
@@ -33,7 +33,7 @@
         <label for="Email">Email:<span class="ValidationError">*</span></label>
       </div>
       <div class="col-6">
-        <input class="form-control" value={{Email}} type="email" name="Email" id="Email" formControlName="Email">
+        <input class="form-control" type="email" name="Email" id="Email" formControlName="Email">
         <span *ngIf="RegistrationValidation['Email']?.errors?.['required']
         && (RegistrationValidation['Email']?.touched || RegistrationValidation['Email']?.dirty)"
         class="ValidationError">
@@ -45,7 +45,7 @@
         <label for="Mobile">Mobile:<span class="ValidationError">*</span></label>
       </div>
       <div class="col-6">
-        <input class="form-control" value={{Mobile}} type="text" name="Mobile" id="Mobile" formControlName="Mobile"
+        <input class="form-control"  type="text" name="Mobile" id="Mobile" formControlName="Mobile"
          oninput="this.value=this.value.replace(/[^0-9 .]/g,'')" maxlength="10">
         <span *ngIf="RegistrationValidation['Mobile']?.errors?.['required']
         && (RegistrationValidation['Mobile']?.touched || RegistrationValidation['Mobile']?.dirty)"
@@ -58,7 +58,7 @@
         <label for="Dob">DOB:<span class="ValidationError">*</span></label>
       </div>
       <div class="col-6">
-        <input class="form-control" value={{DateOfBirth}} type="date" name="Dob" id="Dob" formControlName="Dob">
+        <input class="form-control"  type="date" name="Dob" id="Dob" formControlName="Dob">
         <span *ngIf="RegistrationValidation['Dob']?.errors?.['required']
         && (RegistrationValidation['Dob']?.touched || RegistrationValidation['Dob']?.dirty)"
         class="ValidationError">
@@ -70,7 +70,7 @@
         <label for="Password">Password:<span class="ValidationError">*</span></label>
       </div>
       <div class="col-6">
-        <input class="form-control" value={{Password}} type="password" name="Password" id="Password" formControlName="Password">
+        <input class="form-control" readonly type="password" name="Password" id="Password" formControlName="Password">
         <span *ngIf="RegistrationValidation['Password']?.errors?.['required']
         && (RegistrationValidation['Password']?.touched || RegistrationValidation['Password']?.dirty)"
         class="ValidationError">
@@ -82,7 +82,7 @@
         <label for="Address">Address:<span class="ValidationError">*</span></label>
       </div>
       <div class="col-6">
-        <textarea class="form-control" value={{Address}} rows="1" name="Address" id="Address" formControlName="Address"></textarea>
+        <textarea class="form-control" rows="1" name="Address" id="Address" formControlName="Address"></textarea>
         <span *ngIf="RegistrationValidation['Address']?.errors?.['required']
         && (RegistrationValidation['Address']?.touched || RegistrationValidation['Address']?.dirty)"
         class="ValidationError">
@@ -94,7 +94,7 @@
         <label for="Cast">Cast:</label>
       </div>
       <div class="col-6">
-        <input class="form-control" value={{Cast}} type="text" name="Cast" id="Cast" formControlName="Cast">
+        <input class="form-control" type="text" name="Cast" id="Cast" formControlName="Cast">
       </div>
     </div>
     <div class="row mt-3">
@@ -102,7 +102,7 @@
         <label for="Sex">Gender:<span class="ValidationError">*</span></label>
       </div>
       <div class="col-6">
-        <select class="form-control" value={{Sex}} name="Sex" id="Sex" formControlName="Sex">
+        <select class="form-control"  name="Sex" id="Sex" formControlName="Sex">
           <option>- Select Gender -</option>
           <option *ngFor="let gender of Gender | keyvalue">{{gender.value}}</option>
         </select>
@@ -117,7 +117,7 @@
         <label for="Religious">Religious:</label>
       </div>
       <div class="col-6">
-        <select class="form-control" value={{Religious}} name="Religious" id="Religious" formControlName="Religious">
+        <select class="form-control"  name="Religious" id="Religious" formControlName="Religious">
           <option>- Select Religious -</option>
           <option *ngFor="let religious of Religious1 | keyvalue">{{religious.value}}</option>
         </select>
@@ -128,7 +128,7 @@
         <label for="MartialStatus">Martial Status:</label>
       </div>
       <div class="col-6">
-        <select class="form-control" value={{MartialStatus}} name="MartialStatus" id="MartialStatus" formControlName="MartialStatus">
+        <select class="form-control"  name="MartialStatus" id="MartialStatus" formControlName="MartialStatus">
           <option>- Select Martial Status-</option>
           <option *ngFor="let martialstatus of MarriageStatus | keyvalue">{{martialstatus.value}}</option>
         </select>
@@ -139,7 +139,7 @@
         <label for="MotherTongue">Mother Tongue</label>
       </div>
       <div class="col-6">
-        <select class="form-control" value={{MotherTongue}} name="MotherTongue" id="MotherTongue" formControlName="MotherTongue">
+        <select class="form-control" name="MotherTongue" id="MotherTongue" formControlName="MotherTongue">
           <option>- Select Mother Tongue -</option>
           <option *ngFor="let mothertongue of MotherTongue1 | keyvalue">{{mothertongue.value}}</option>
         </select>
@@ -150,7 +150,7 @@
         <label for="Height">Height</label>
       </div>
       <div class="col-6">
-        <input class="form-control" value={{Height}} type="text" name="Height" id="Height" placeholder="Feet" formControlName="Height"
+        <input class="form-control" type="text" name="Height" id="Height" placeholder="Feet" formControlName="Height"
           oninput="this.value=this.value.replace(/[^0-9 .]/g,'')">
       </div>
     </div>
@@ -159,7 +159,7 @@
         <label for="Country">Country:</label>
       </div>
       <div class="col-6">
-        <select class="form-control" value={{Country}} name="Country" id="Country" formControlName="Country">
+        <select class="form-control"  name="Country" id="Country" formControlName="Country">
           <option>India</option>
         </select>
       </div>
@@ -169,7 +169,7 @@
         <label for="State">State:</label>
       </div>
       <div class="col-6">
-        <select (change)="OnSelect($event)" value={{State}} class="form-control" name="State" id="State" formControlName="State">
+        <select (change)="OnSelect($event)"  class="form-control" name="State" id="State" formControlName="State">
           <option>--Select State--</option>
           <option *ngFor="let stateList of StateList" value="{{stateList.id}}">{{stateList.states}}</option>
         </select>
@@ -180,7 +180,7 @@
         <label for="City">City</label>
       </div>
       <div class="col-6">
-        <select class="form-control" value={{City}} name="City" id="City" formControlName="City">
+        <select class="form-control"  name="City" id="City" formControlName="City">
           <option *ngFor="let cityList of CityListContain;let i = index">{{cityList.cities}}</option>
         </select>
       </div>
@@ -190,7 +190,7 @@
         <label for="HighestEducation">Highest Education:</label>
       </div>
       <div class="col-6">
-        <input class="form-control" value={{HighestEducation}} type="text" name="HighestEducation" id="HighestEducation" formControlName="HighestEducation">
+        <input class="form-control"  type="text" name="HighestEducation" id="HighestEducation" formControlName="HighestEducation">
       </div>
     </div>
     <div class="row mt-3">
@@ -198,7 +198,7 @@
         <label for="Occupation">Occupation:</label>
       </div>
       <div class="col-6">
-        <input class="form-control" value={{Occupation}} type="text" name="Occupation" id="Occupation" formControlName="Occupation">
+        <input class="form-control"  type="text" name="Occupation" id="Occupation" formControlName="Occupation">
       </div>
     </div>
     <div class="row mt-3">
@@ -206,7 +206,7 @@
         <label for="AnnualIncome">Annual Income(lakhs):</label>
       </div>
       <div class="col-6">
-        <input class="form-control" value={{AnnualIncome}} type="text" name="AnnualIncome" id="AnnualIncome" formControlName="AnnualIncome"
+        <input class="form-control" type="text" name="AnnualIncome" id="AnnualIncome" formControlName="AnnualIncome"
           oninput="this.value=this.value.replace(/[^0-9 .]/g,'')">
       </div>
     </div>
@@ -215,7 +215,7 @@
         <label for="ParentMobile">Parent Pho:</label>
       </div>
       <div class="col-6">
-        <input class="form-control" value={{ParentMobile}} type="text" name="ParentMobile" id="ParentMobile" formControlName="ParentMobile"
+        <input class="form-control" type="text" name="ParentMobile" id="ParentMobile" formControlName="ParentMobile"
          oninput="this.value=this.value.replace(/[^0-9 .]/g,'')" maxlength="10">
       </div>
     </div>
@@ -224,7 +224,7 @@
         <label for="FamilyType">Family Type:</label>
       </div>
       <div class="col-6">
-        <select class="form-control" value={{FamilyType}} name="FamilyType" id="FamilyType" formControlName="FamilyType">
+        <select class="form-control" name="FamilyType" id="FamilyType" formControlName="FamilyType">
           <option>- Select Family Type -</option>
           <option *ngFor="let familytype of FamilyType1 | keyvalue">{{familytype.value}}</option>
         </select>
@@ -235,7 +235,7 @@
         <label for="FamilyStatus">Family Status:</label>
       </div>
       <div class="col-6">
-        <select class="form-control" value={{FamilyStatus}} name="FamilyStatus" id="FamilyStatus" formControlName="FamilyStatus">
+        <select class="form-control" name="FamilyStatus" id="FamilyStatus" formControlName="FamilyStatus">
           <option>- Select Family Status -</option>
           <option *ngFor="let familystatus of FamilyStatus1 | keyvalue">{{familystatus.value}}</option>
         </select>

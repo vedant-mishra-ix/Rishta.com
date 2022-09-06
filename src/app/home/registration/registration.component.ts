@@ -58,7 +58,7 @@ export class RegistrationComponent implements OnInit {
       FamilyType:[''],
       FamilyStatus:[''],
       ProfilePhoto:[''],
-      files:[''],
+      files:['',Validators.required],
       fileSource: [''],
     })
    }

@@ -5,7 +5,6 @@ import { UserRoutingModule } from './user-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatchedComponent } from './matched/matched.component';
-import { EditComponent } from './edit/edit.component';
 import { UserComponent } from './user.component';
 import { ListComponent } from './list/list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -18,7 +17,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     SidebarComponent,
     MatchedComponent,
-    EditComponent,
     UserComponent,
     ListComponent,
     UserProfileComponent,
