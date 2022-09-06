@@ -15,6 +15,9 @@ namespace RishtaAPI.Service
         public Task<Model.Registration> Registration(Model.Registration obj);
         public IEnumerable<Model.Registration> Registrations(int Id);
         public IEnumerable<Model.Registration> Registrations();
+        public IEnumerable<Model.Registration> RegistrationGenderBased(string Sex);
+        public IEnumerable<Model.Registration> RegistrationGenderMartialStatus(string MartialStatus);
+        public IEnumerable<Model.Registration> RegistrationGenderFamilyType(string FamilyType);
         public UserProfile Registrationuser(string Username);
         public Task<Update> RegistrationUpdate(Model.Update obj);
         public string Registration(int Id);
@@ -99,7 +102,7 @@ namespace RishtaAPI.Service
                 ParentMobile = SpecificUser.ParentMobile,
                 FamilyType = SpecificUser.FamilyType,
                 FamilyStatus = SpecificUser.FamilyStatus,
-                ProfilePhoto = SpecificUser.ProfilePhoto
+                ProfilePhoto =  SpecificUser.ProfilePhoto
             };
 
 
@@ -205,6 +208,103 @@ namespace RishtaAPI.Service
                         FamilyType = AllData.FamilyType,
                         FamilyStatus = AllData.FamilyStatus,
                         ProfilePhoto = AllData.ProfilePhoto,
+                    }).ToList();
+        }
+
+
+        public IEnumerable<Model.Registration> RegistrationGenderBased(string Sex)
+        {
+            var GenderBased = RegistrationDa.RegistrationsGender(Sex);
+            return (from Gender in GenderBased
+                    select new Model.Registration
+                    {
+                        Id = Gender.Id,
+                        UserName = Gender.UserName,
+                        Email = Gender.Email,
+                        Mobile = Gender.Mobile,
+                        DateOfBirth = Gender.DateOfBirth,
+                        Password = Gender.Password,
+                        Address = Gender.Address,
+                        Cast = Gender.Cast,
+                        Sex = Gender.Sex,
+                        Religious = Gender.Religious,
+                        MartialStatus = Gender.MartialStatus,
+                        MotherTongue = Gender.MotherTongue,
+                        Height = Gender.Height,
+                        Country = Gender.Country,
+                        State = Gender.State,
+                        City = Gender.City,
+                        HighestEducation = Gender.HighestEducation,
+                        Occupation = Gender.Occupation,
+                        AnnualIncome = Gender.AnnualIncome,
+                        ParentMobile = Gender.ParentMobile,
+                        FamilyType = Gender.FamilyType,
+                        FamilyStatus = Gender.FamilyStatus,
+                        ProfilePhoto = Gender.ProfilePhoto,
+                    }).ToList();
+        }
+
+        public IEnumerable<Model.Registration> RegistrationGenderMartialStatus(string MartialStatus)
+        {
+            var MartialStatusBased = RegistrationDa.RegistrationsMartialStatus(MartialStatus);
+            return (from Martial in MartialStatusBased
+                    select new Model.Registration
+                    {
+                        Id = Martial.Id,
+                        UserName = Martial.UserName,
+                        Email = Martial.Email,
+                        Mobile = Martial.Mobile,
+                        DateOfBirth = Martial.DateOfBirth,
+                        Password = Martial.Password,
+                        Address = Martial.Address,
+                        Cast = Martial.Cast,
+                        Sex = Martial.Sex,
+                        Religious = Martial.Religious,
+                        MartialStatus = Martial.MartialStatus,
+                        MotherTongue = Martial.MotherTongue,
+                        Height = Martial.Height,
+                        Country = Martial.Country,
+                        State = Martial.State,
+                        City = Martial.City,
+                        HighestEducation = Martial.HighestEducation,
+                        Occupation = Martial.Occupation,
+                        AnnualIncome = Martial.AnnualIncome,
+                        ParentMobile = Martial.ParentMobile,
+                        FamilyType = Martial.FamilyType,
+                        FamilyStatus = Martial.FamilyStatus,
+                        ProfilePhoto = Martial.ProfilePhoto,
+                    }).ToList();
+        }
+
+        public IEnumerable<Model.Registration> RegistrationGenderFamilyType(string FamilyType)
+        {
+            var FamilyTypeBased = RegistrationDa.RegistrationsFamilyType(FamilyType);
+            return (from Family in FamilyTypeBased
+                    select new Model.Registration
+                    {
+                        Id = Family.Id,
+                        UserName = Family.UserName,
+                        Email = Family.Email,
+                        Mobile = Family.Mobile,
+                        DateOfBirth = Family.DateOfBirth,
+                        Password = Family.Password,
+                        Address = Family.Address,
+                        Cast = Family.Cast,
+                        Sex = Family.Sex,
+                        Religious = Family.Religious,
+                        MartialStatus = Family.MartialStatus,
+                        MotherTongue = Family.MotherTongue,
+                        Height = Family.Height,
+                        Country = Family.Country,
+                        State = Family.State,
+                        City = Family.City,
+                        HighestEducation = Family.HighestEducation,
+                        Occupation = Family.Occupation,
+                        AnnualIncome = Family.AnnualIncome,
+                        ParentMobile = Family.ParentMobile,
+                        FamilyType = Family.FamilyType,
+                        FamilyStatus = Family.FamilyStatus,
+                        ProfilePhoto = Family.ProfilePhoto,
                     }).ToList();
         }
     }

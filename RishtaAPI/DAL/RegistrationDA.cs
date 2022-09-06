@@ -12,6 +12,9 @@ namespace RishtaAPI.DAL
         public Task<Registration> Registration(Registration obj);
         public IEnumerable<Registration> Registrations(int Id);
         public IEnumerable<Registration> Registrations();
+        public IEnumerable<Registration> RegistrationsGender(string Sex);
+        public IEnumerable<Registration> RegistrationsMartialStatus(string MartialStatus);
+        public IEnumerable<Registration> RegistrationsFamilyType(string FamilyType);
         public Registration Registrations(string UserName);
         public Task<Registration> Registration(Registration obj , int Id);
         public bool Registration(int Id);
@@ -110,6 +113,45 @@ namespace RishtaAPI.DAL
             var GetAll = RegistrationDb.Registration.ToList();
             RegistrationDb.SaveChanges();
             return GetAll;
+        }
+
+        public IEnumerable<Registration> RegistrationsFamilyType(string FamilyType)
+        {
+            var FamilyBasedList = RegistrationDb.Registration.Where(obj => obj.FamilyType == FamilyType).ToList();
+            if (FamilyBasedList != null)
+            {
+                return FamilyBasedList;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public IEnumerable<Registration> RegistrationsGender(string Sex)
+        {
+            var GenderBasedList = RegistrationDb.Registration.Where(obj => obj.Sex == Sex).ToList();
+            if(GenderBasedList != null)
+            {
+                return GenderBasedList;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public IEnumerable<Registration> RegistrationsMartialStatus(string MartialStatus)
+        {
+            var MartialStatusBasedList = RegistrationDb.Registration.Where(obj => obj.MartialStatus == MartialStatus).ToList();
+            if (MartialStatusBasedList != null)
+            {
+                return MartialStatusBasedList;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

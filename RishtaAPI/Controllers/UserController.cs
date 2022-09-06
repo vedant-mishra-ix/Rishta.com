@@ -60,6 +60,24 @@ namespace RishtaAPI.Controllers
         {
             return Ok(RegistrationService.Registrationuser(Username));
         }
-        
+        [HttpGet]
+        [Route("Gender")]
+        public IActionResult Registrations(string Sex)
+        {
+            return Ok(RegistrationService.RegistrationGenderBased(Sex));
+        }
+        [HttpGet]
+        [Route("Martial")]
+        public IActionResult RegistrationsMartialStatus(string MartialStatus)
+        {
+            return Ok(RegistrationService.RegistrationGenderMartialStatus(MartialStatus));
+        }
+        [HttpGet]
+        [Route("FamilyType")]
+        public IActionResult RegistrationsFamilyType(string FamilyType)
+        {
+            return Ok(RegistrationService.RegistrationGenderFamilyType(FamilyType));
+        }
+
     }
 }
