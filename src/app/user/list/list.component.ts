@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ReportProfileService } from 'src/app/core/model/service/report-profile.service';
 import { UserListService } from 'src/app/core/model/service/user-list.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class ListComponent implements OnInit {
 
   UserList:any[]=[];
   Id = localStorage.getItem("Id:");
-  constructor(private UserListService:UserListService,private route:Router) { }
+  constructor(private UserListService:UserListService,private route:Router,
+    private ReportService:ReportProfileService) { }
 
   ngOnInit(): void {
     this.GetData();
@@ -38,5 +40,12 @@ export class ListComponent implements OnInit {
     localStorage.setItem("UserSpecific3:",Data.address);
     localStorage.setItem("UserSpecific4:",Data.profilePhoto);
     this.route.navigate(['./User/specific']);
+  }
+  ProfileReport(event:any)
+  {
+    this.ReportService.ReportProfile(event.id).subscribe({next:(res)=>
+    {
+      alert("Profile Reported");
+    },error:()=> {alert("Something Wrong")}})
   }
 }

@@ -6,10 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homelist.component.css']
 })
 export class HomelistComponent implements OnInit {
-
   constructor() { }
-
   ngOnInit(): void {
   }
-
 }

@@ -6,11 +6,13 @@
     </div>
     <div class="carousel-inner">
       <div  *ngFor="let list of UserList;let index = index"  class="carousel-item active"  [ngClass]="{'active': index === 1}">
-        <img (click)="UserProfile(list)" src="http://localhost:8080/{{list.profilePhoto}}" class="width" alt="...">
+        <img  src="http://localhost:8080/{{list.profilePhoto}}" class="width" alt="...">
         <div class="carousel-caption d-none d-md-block ">
           <div class="profile-data">
-          <h5>Name: {{list.userName}}</h5>
-          <h5>Gender: {{list.sex}}</h5>
+          <h5 class="Profile-Action1" (click)="UserProfile(list)">Name: {{list.userName}}</h5>
+          <h5 class="Profile-Action">Gender: {{list.sex}}
+            <span><a class="btn btn-danger report" (click)="ProfileReport(list)">Report</a></span>
+          </h5>
           </div>
         </div>
       </div>

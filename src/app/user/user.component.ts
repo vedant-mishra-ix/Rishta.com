@@ -17,7 +17,6 @@ export class UserComponent implements OnInit {
       {
         next: (res) => {
           localStorage.setItem("Id:",res.id);
-          this.ngOnInit();
         }
       })
   }

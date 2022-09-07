@@ -16,7 +16,6 @@
   width: 600px;
   height: 450px;
   border-radius: 8px 8px 8px 8px;
-  cursor: pointer;
 }
 .Slider-Width
 {
@@ -29,3 +28,13 @@
   font-size:2vw;
   background-color: rgba(0, 0, 0, .3);
 }
+.Profile-Action1
+{
+  cursor: pointer;
+}
+.Profile-Action
+{
+  cursor: pointer;
+  margin-left: 80px;
+}
+

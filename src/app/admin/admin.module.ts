@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AdminComponent } from './admin.component';
 import { RegisteredComponent } from './registered/registered.component';
+import { ReportedProfileComponent } from './reported-profile/reported-profile.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { RegisteredComponent } from './registered/registered.component';
     HeaderComponent,
     SidebarComponent,
     AdminComponent,
-    RegisteredComponent
+    RegisteredComponent,
+    ReportedProfileComponent
   ],
   imports: [
     CommonModule,
