@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Http;
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 namespace RishtaAPI.Model

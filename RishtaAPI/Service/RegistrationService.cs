@@ -1,12 +1,11 @@
 ﻿using RishtaAPI.DAL;
 using RishtaAPI.Model;
-using RishtaAPI.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using System.IO;
+
 
 namespace RishtaAPI.Service
 {
@@ -22,7 +21,7 @@ namespace RishtaAPI.Service
         public Task<Update> RegistrationUpdate(Model.Update obj);
         public string Registration(int Id);
     }
-    public class RegistrationService:IRegistrationService
+    public class RegistrationService : IRegistrationService
     {
         private readonly IRegistration RegistrationDa;
         private readonly IWebHostEnvironment webHostEnvironment;
@@ -36,34 +35,34 @@ namespace RishtaAPI.Service
         {
             var AddObj = new Entity.Registration
             {
-                UserName=obj.UserName,
-                Email=obj.Email,
-                Mobile=obj.Mobile,
+                UserName = obj.UserName,
+                Email = obj.Email,
+                Mobile = obj.Mobile,
                 DateOfBirth = obj.DateOfBirth,
                 CreatedDateTime = DateTime.Now,
-                Password =obj.Password,
-                Address=obj.Address,
-                Cast=obj.Cast,
-                Sex=obj.Sex,
-                Religious=obj.Religious,
-                MartialStatus=obj.MartialStatus,
-                MotherTongue=obj.MotherTongue,
-                Height=obj.Height,
-                Country=obj.Country,
-                State=obj.State,
-                City=obj.City,
-                HighestEducation=obj.HighestEducation,
-                Occupation=obj.Occupation,
-                AnnualIncome=obj.AnnualIncome,
-                ParentMobile=obj.ParentMobile,
-                FamilyType=obj.FamilyType,
-                FamilyStatus=obj.FamilyStatus,
-                ProfilePhoto= obj.ProfilePhoto,
+                Password = obj.Password,
+                Address = obj.Address,
+                Cast = obj.Cast,
+                Sex = obj.Sex,
+                Religious = obj.Religious,
+                MartialStatus = obj.MartialStatus,
+                MotherTongue = obj.MotherTongue,
+                Height = obj.Height,
+                Country = obj.Country,
+                State = obj.State,
+                City = obj.City,
+                HighestEducation = obj.HighestEducation,
+                Occupation = obj.Occupation,
+                AnnualIncome = obj.AnnualIncome,
+                ParentMobile = obj.ParentMobile,
+                FamilyType = obj.FamilyType,
+                FamilyStatus = obj.FamilyStatus,
+                ProfilePhoto = obj.ProfilePhoto,
                 IsActive = true,
             };
 
             var DataAdd = await RegistrationDa.Registration(AddObj);
-            return new Model.Registration { Id = DataAdd.Id};
+            return new Model.Registration { Id = DataAdd.Id };
         }
 
         public string Registration(int Id)
@@ -75,8 +74,8 @@ namespace RishtaAPI.Service
         public UserProfile Registrationuser(string Username)
         {
             var SpecificUser = RegistrationDa.Registrations(Username);
-           
-            return  new UserProfile()
+
+            return new UserProfile()
             {
                 Id = SpecificUser.Id,
                 UserName = SpecificUser.UserName,
@@ -102,9 +101,8 @@ namespace RishtaAPI.Service
                 ParentMobile = SpecificUser.ParentMobile,
                 FamilyType = SpecificUser.FamilyType,
                 FamilyStatus = SpecificUser.FamilyStatus,
-                ProfilePhoto =  SpecificUser.ProfilePhoto
+                ProfilePhoto = SpecificUser.ProfilePhoto
             };
-
 
         }
 
@@ -148,33 +146,33 @@ namespace RishtaAPI.Service
             var UpdateObj = new Entity.Registration
             {
                 Id = obj.Id,
-            UserName = obj.UserName,
-            Email = obj.Email,
-            Mobile = obj.Mobile,
-            DateOfBirth = obj.DateOfBirth,
-            CreatedDateTime = obj.CreatedDateTime,
-            ModifiedDateTime = DateTime.Now,
-            Password = obj.Password,
-            Address = obj.Address,
-            Cast = obj.Cast,
-            Sex = obj.Sex,
-            Religious = obj.Religious,
-            MartialStatus = obj.MartialStatus,
-            MotherTongue = obj.MotherTongue,
-            Height = obj.Height,
-            Country = obj.Country,
-            State = obj.State,
-            City = obj.City,
-            HighestEducation = obj.HighestEducation,
-            Occupation = obj.Occupation,
-            AnnualIncome = obj.AnnualIncome,
-            ParentMobile = obj.ParentMobile,
-            FamilyType = obj.FamilyType,
-            FamilyStatus = obj.FamilyStatus,
-            ProfilePhoto = obj.ProfilePhoto,
-        };
-          var Dat = await RegistrationDa.Registration(UpdateObj,obj.Id);
-            return new Update { Id = UpdateObj.Id};
+                UserName = obj.UserName,
+                Email = obj.Email,
+                Mobile = obj.Mobile,
+                DateOfBirth = obj.DateOfBirth,
+                CreatedDateTime = obj.CreatedDateTime,
+                ModifiedDateTime = DateTime.Now,
+                Password = obj.Password,
+                Address = obj.Address,
+                Cast = obj.Cast,
+                Sex = obj.Sex,
+                Religious = obj.Religious,
+                MartialStatus = obj.MartialStatus,
+                MotherTongue = obj.MotherTongue,
+                Height = obj.Height,
+                Country = obj.Country,
+                State = obj.State,
+                City = obj.City,
+                HighestEducation = obj.HighestEducation,
+                Occupation = obj.Occupation,
+                AnnualIncome = obj.AnnualIncome,
+                ParentMobile = obj.ParentMobile,
+                FamilyType = obj.FamilyType,
+                FamilyStatus = obj.FamilyStatus,
+                ProfilePhoto = obj.ProfilePhoto,
+            };
+            var Dat = await RegistrationDa.Registration(UpdateObj, obj.Id);
+            return new Update { Id = UpdateObj.Id };
         }
 
         public IEnumerable<Model.Registration> Registrations()

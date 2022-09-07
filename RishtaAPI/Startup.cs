@@ -36,14 +36,16 @@ namespace RishtaAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RishtaAPI", Version = "v1" });
             });
             services.AddDbContext<CoreDbContext>(op => op.UseSqlServer(Configuration.GetConnectionString("Database"))); //Add       
-           
 
-            services.AddScoped<IState,StateDA>();
-            services.AddScoped<ICity,CityDA>();
-            services.AddScoped<IRegistration,RegistrationDA>();
+
+            services.AddScoped<IState, StateDA>();
+            services.AddScoped<ICity, CityDA>();
+            services.AddScoped<IRegistration, RegistrationDA>();
+            services.AddScoped<IReportProfile, ReportProfileDA>();
             services.AddScoped<IStateService, StateService>();
-            services.AddScoped<ICityService,CityService>();
-            services.AddScoped<IRegistrationService,RegistrationService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IRegistrationService, RegistrationService>();
+            services.AddScoped<IReportProfileService, ReportProfileService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<CoreDbContext>()
@@ -72,14 +74,7 @@ namespace RishtaAPI
 
             services.AddSwaggerGen(swagger =>
             {
-                //This is to generate the Default UI of Swagger Documentation    
-                //swagger.SwaggerDoc("v1", new OpenApiInfo
-                //{
-                //    Version = "v1",
-                //    Title = "ASP.NET 5 Web API",
-                //    Description = "Authentication and Authorization in ASP.NET 5 with JWT and Swagger"
-                //});
-                // To Enable authorization using Swagger (JWT)    
+
                 swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
@@ -101,7 +96,6 @@ namespace RishtaAPI
                                 }
                             },
                             new string[] {}
-
                     }
                 });
             });
@@ -117,7 +111,6 @@ namespace RishtaAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RishtaAPI v1"));
             }
-
 
             app.UseCors(x => x
                 .AllowAnyOrigin()

@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RishtaAPI.Model;
 using RishtaAPI.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace RishtaAPI.Controllers
 {
@@ -16,9 +12,11 @@ namespace RishtaAPI.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IRegistrationService RegistrationService;
-        public AdminController(IRegistrationService _RegistrationService)
+        private readonly IReportProfileService ReportProfileService;
+        public AdminController(IRegistrationService _RegistrationService, IReportProfileService _ReportProfileService)
         {
             RegistrationService = _RegistrationService;
+            ReportProfileService = _ReportProfileService;
         }
         [HttpGet]
         [Route("Registered")]
@@ -43,6 +41,12 @@ namespace RishtaAPI.Controllers
         public IActionResult Regsistrations(string Username)
         {
             return Ok(RegistrationService.Registrationuser(Username));
+        }
+        [HttpGet]
+        [Route("ReportedProfileData")]
+        public  IActionResult ReportedProfilesData()
+        {
+            return Ok(ReportProfileService.ReportProfiles());
         }
     }
 }

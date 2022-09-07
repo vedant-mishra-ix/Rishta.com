@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using RishtaAPI.Model;
 using RishtaAPI.Service;
 using System;
-using System.Collections.Generic;
+
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace RishtaAPI.Controllers
@@ -18,11 +17,15 @@ namespace RishtaAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly IRegistrationService RegistrationService;
+        private readonly IReportProfileService ReportProfileService;
         private readonly IWebHostEnvironment WebHostEnvironment;
-        public UserController(IRegistrationService _RegistrationService, IWebHostEnvironment _WebHostEnvironment)
+        public UserController(IRegistrationService _RegistrationService, IWebHostEnvironment _WebHostEnvironment,
+            IReportProfileService _ReportProfileService
+            )
         {
             RegistrationService = _RegistrationService;
             WebHostEnvironment = _WebHostEnvironment;
+            ReportProfileService = _ReportProfileService;
         }
         [HttpGet]
         public IActionResult Registrations(int Id)
@@ -32,8 +35,6 @@ namespace RishtaAPI.Controllers
         [HttpPut]
         public IActionResult Registration([FromForm]Model.Update obj)
         {
-
-
             try
             {
                 if (!Directory.Exists(WebHostEnvironment.WebRootPath + "\\images\\"))
@@ -77,6 +78,21 @@ namespace RishtaAPI.Controllers
         public IActionResult RegistrationsFamilyType(string FamilyType)
         {
             return Ok(RegistrationService.RegistrationGenderFamilyType(FamilyType));
+        }
+        [HttpPost]
+        [Route("ReportProfile")]
+        public async Task<IActionResult> ReportProfiles( int Id)
+        {
+            try
+            {
+                var test = await ReportProfileService.ReportProfile(Id);
+                return Ok(test);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+           }
         }
 
     }
