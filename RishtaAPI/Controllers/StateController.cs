@@ -1,6 +1,9 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RishtaAPI.Model;
 using RishtaAPI.Service;
+using System;
 
 namespace RishtaAPI.Controllers
 {
@@ -8,15 +11,22 @@ namespace RishtaAPI.Controllers
     [ApiController]
     public class StateController : ControllerBase
     {
-        private readonly IStateService StateService;
-        public StateController(IStateService _StateService)
+        private readonly IStateService _StateService;
+        public StateController(IStateService StateService)
         {
-            StateService = _StateService;
+            _StateService = StateService;
         }
         [HttpGet]
         public IActionResult States()
         {
-            return Ok(StateService.States());
+            try
+            {
+                return Ok(_StateService.States());
+            }
+            catch(Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound,new Response { Status="Error",Message= "Data not found in database" });
+            }
         }
     }
 }

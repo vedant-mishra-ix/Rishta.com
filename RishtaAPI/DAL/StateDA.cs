@@ -11,14 +11,14 @@ namespace RishtaAPI.DAL
     }
     public class StateDA : IState
     {
-        private readonly CoreDbContext StateDb;
-        public StateDA(CoreDbContext _StateDb)
+        private readonly CoreDbContext _StateDb;
+        public StateDA(CoreDbContext StateDb)
         {
-            StateDb = _StateDb;
+            _StateDb = StateDb;
         }
         public IEnumerable<State> States()
         {
-            var AllStates = StateDb.State.ToList();
+            var AllStates = _StateDb.State.ToList();
             if(AllStates != null)
             {
                 return AllStates;

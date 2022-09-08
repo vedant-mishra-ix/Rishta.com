@@ -11,14 +11,14 @@ namespace RishtaAPI.Service
     }
     public class StateService : IStateService
     {
-        private readonly IState StateDa;
-        public StateService(IState _StateDa)
+        private readonly IState _StateDa;
+        public StateService(IState StateDa)
         {
-            StateDa = _StateDa;
+            _StateDa = StateDa;
         }
         public IEnumerable<State> States()
         {
-            var AllStates = StateDa.States();
+            var AllStates = _StateDa.States();
             return (from StatesList in AllStates
                     select new State
                     {

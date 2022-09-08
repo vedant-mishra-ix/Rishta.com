@@ -11,14 +11,14 @@ namespace RishtaAPI.DAL
     }
     public class CityDA : ICity
     {
-        private readonly CoreDbContext CityDb;
-        public CityDA(CoreDbContext _CityDb)
+        private readonly CoreDbContext _CityDb;
+        public CityDA(CoreDbContext CityDb)
         {
-            CityDb = _CityDb;
+            _CityDb = CityDb;
         }
         public IEnumerable<City> Cities()
         {
-            var AllCity = CityDb.City.ToList();
+            var AllCity = _CityDb.City.ToList();
             return AllCity;
         }
     }

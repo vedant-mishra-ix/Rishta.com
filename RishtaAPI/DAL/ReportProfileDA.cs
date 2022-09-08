@@ -16,17 +16,17 @@ namespace RishtaAPI.DAL
     }
     public class ReportProfileDA : IReportProfile
     {
-        private readonly CoreDbContext ReportProfileDb;
-        public ReportProfileDA(CoreDbContext _ReportProfileDb)
+        private readonly CoreDbContext _ReportProfileDb;
+        public ReportProfileDA(CoreDbContext ReportProfileDb)
         {
-            ReportProfileDb = _ReportProfileDb;
+            _ReportProfileDb = ReportProfileDb;
         }
         public async Task<Entity.ReportProfile> ReportProfile(Entity.ReportProfile obj)
         {
             try
             {
-                var ReportedProfileAdd = await ReportProfileDb.ReportProfile.AddAsync(obj);
-                ReportProfileDb.SaveChanges();
+                var ReportedProfileAdd = await _ReportProfileDb.ReportProfile.AddAsync(obj);
+                _ReportProfileDb.SaveChanges();
                 return ReportedProfileAdd.Entity;
             }
             catch(Exception e)
@@ -37,7 +37,7 @@ namespace RishtaAPI.DAL
         // First way 
         //public IEnumerable<ReportProfileVM> ReportProfiles()
         //{
-        //    var ReportedProfiles = ReportProfileDb.ReportProfile.Join(ReportProfileDb.Registration,
+        //    var ReportedProfiles = _ReportProfileDb.ReportProfile.Join(ReportProfileDb.Registration,
         //                            ReportedId => ReportedId.RegisteredId,
         //                            ReportProfileId => ReportProfileId.Id,
         //                            (ReportedId, ReportProfileId) => new ReportProfileVM
@@ -51,7 +51,7 @@ namespace RishtaAPI.DAL
         //}
         public IEnumerable<ReportProfileVM> ReportProfiles()
         {
-            var data = ReportProfileDb.ReportProfile.Include(x => x.Registration);
+            var data = _ReportProfileDb.ReportProfile.Include(x => x.Registration);
             var ReportedProfiles = data.Select(x => new ReportProfileVM
                 {
                     ReportedId = x.Registration.Id,

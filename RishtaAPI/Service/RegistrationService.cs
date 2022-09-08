@@ -23,12 +23,12 @@ namespace RishtaAPI.Service
     }
     public class RegistrationService : IRegistrationService
     {
-        private readonly IRegistration RegistrationDa;
-        private readonly IWebHostEnvironment webHostEnvironment;
-        public RegistrationService(IRegistration _RegistrationDa, IWebHostEnvironment hostEnvironment)
+        private readonly IRegistration _RegistrationDa;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public RegistrationService(IRegistration RegistrationDa, IWebHostEnvironment hostEnvironment)
         {
-            RegistrationDa = _RegistrationDa;
-            webHostEnvironment = hostEnvironment;
+            _RegistrationDa = RegistrationDa;
+            _webHostEnvironment = hostEnvironment;
         }
 
         public async Task<Model.Registration> Registration(Model.Registration obj)
@@ -61,19 +61,19 @@ namespace RishtaAPI.Service
                 IsActive = true,
             };
 
-            var DataAdd = await RegistrationDa.Registration(AddObj);
+            var DataAdd = await _RegistrationDa.Registration(AddObj);
             return new Model.Registration { Id = DataAdd.Id };
         }
 
         public string Registration(int Id)
         {
-            RegistrationDa.Registration(Id);
+            _RegistrationDa.Registration(Id);
             return "Succes";
         }
 
         public UserProfile Registrationuser(string Username)
         {
-            var SpecificUser = RegistrationDa.Registrations(Username);
+            var SpecificUser = _RegistrationDa.Registrations(Username);
 
             return new UserProfile()
             {
@@ -108,7 +108,7 @@ namespace RishtaAPI.Service
 
         public IEnumerable<Model.Registration> Registrations(int Id)
         {
-            var AllData = RegistrationDa.Registrations(Id);
+            var AllData = _RegistrationDa.Registrations(Id);
             return (from AllDetails in AllData
                     select new Model.Registration
                     {
@@ -171,13 +171,13 @@ namespace RishtaAPI.Service
                 FamilyStatus = obj.FamilyStatus,
                 ProfilePhoto = obj.ProfilePhoto,
             };
-            var Dat = await RegistrationDa.Registration(UpdateObj, obj.Id);
+            var Dat = await _RegistrationDa.Registration(UpdateObj, obj.Id);
             return new Update { Id = UpdateObj.Id };
         }
 
         public IEnumerable<Model.Registration> Registrations()
         {
-            var GetAll = RegistrationDa.Registrations();
+            var GetAll = _RegistrationDa.Registrations();
             return (from AllData in GetAll
                     select new Model.Registration
                     {
@@ -212,7 +212,7 @@ namespace RishtaAPI.Service
 
         public IEnumerable<Model.Registration> RegistrationGenderBased(string Sex)
         {
-            var GenderBased = RegistrationDa.RegistrationsGender(Sex);
+            var GenderBased = _RegistrationDa.RegistrationsGender(Sex);
             return (from Gender in GenderBased
                     select new Model.Registration
                     {
@@ -244,7 +244,7 @@ namespace RishtaAPI.Service
 
         public IEnumerable<Model.Registration> RegistrationGenderMartialStatus(string MartialStatus)
         {
-            var MartialStatusBased = RegistrationDa.RegistrationsMartialStatus(MartialStatus);
+            var MartialStatusBased = _RegistrationDa.RegistrationsMartialStatus(MartialStatus);
             return (from Martial in MartialStatusBased
                     select new Model.Registration
                     {
@@ -276,7 +276,7 @@ namespace RishtaAPI.Service
 
         public IEnumerable<Model.Registration> RegistrationGenderFamilyType(string FamilyType)
         {
-            var FamilyTypeBased = RegistrationDa.RegistrationsFamilyType(FamilyType);
+            var FamilyTypeBased = _RegistrationDa.RegistrationsFamilyType(FamilyType);
             return (from Family in FamilyTypeBased
                     select new Model.Registration
                     {

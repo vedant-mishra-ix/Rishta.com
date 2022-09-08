@@ -22,30 +22,30 @@ namespace JWTAuthenticationWithSwagger.Controllers
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
-        private readonly IRegistrationService RegistrationService;
-        private readonly IWebHostEnvironment WebHostEnvironment;
-        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IRegistrationService _RegistrationService;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
-        private readonly RoleManager<IdentityRole> RoleManager;
+        private readonly RoleManager<IdentityRole> _RoleManager;
 
         public AuthenticateController(UserManager<ApplicationUser> userManager, IConfiguration configuration,
-            IRegistrationService _RegistrationService, IWebHostEnvironment _webHostEnvironment, RoleManager<IdentityRole> _RoleManager)
+            IRegistrationService RegistrationService, IWebHostEnvironment webHostEnvironment, RoleManager<IdentityRole> RoleManager)
         {
-            this.userManager = userManager;
+            _userManager = userManager;
             _configuration = configuration;
-            RegistrationService = _RegistrationService;
-            WebHostEnvironment = _webHostEnvironment;
-            RoleManager = _RoleManager;
+            _RegistrationService = RegistrationService;
+            _WebHostEnvironment = webHostEnvironment;
+            _RoleManager = RoleManager;
         }
 
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] Login model)
         {
-            var user = await userManager.FindByNameAsync(model.UserName);
-            if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
+            var user = await _userManager.FindByNameAsync(model.UserName);
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var userRoles = await userManager.GetRolesAsync(user);
+                var userRoles = await _userManager.GetRolesAsync(user);
 
                 var authClaims = new List<Claim>
                 {
@@ -82,9 +82,9 @@ namespace JWTAuthenticationWithSwagger.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromForm] Registration model)
         {
-            var userExists = await userManager.FindByNameAsync(model.UserName);
+            var userExists = await _userManager.FindByNameAsync(model.UserName);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError,new Response { Status="Error",Message="User Already Exist!"});
 
             ApplicationUser user = new ApplicationUser()
             {
@@ -98,37 +98,33 @@ namespace JWTAuthenticationWithSwagger.Controllers
                 Name = "user"
             };
 
-            await RoleManager.CreateAsync(idetityrole);
+            await _RoleManager.CreateAsync(idetityrole);
 
             try
             {
-                if (!Directory.Exists(WebHostEnvironment.WebRootPath + "\\images\\"))
+                if (!Directory.Exists(_WebHostEnvironment.WebRootPath + "\\images\\"))
                 {
-                    Directory.CreateDirectory(WebHostEnvironment.WebRootPath + "\\images\\");
+                    Directory.CreateDirectory(_WebHostEnvironment.WebRootPath + "\\images\\");
                 }
-                using (FileStream fileStream = System.IO.File.Create(WebHostEnvironment.WebRootPath + "\\images\\" + model.Files.FileName))
+                using (FileStream fileStream = System.IO.File.Create(_WebHostEnvironment.WebRootPath + "\\images\\" + model.Files.FileName))
                 {
                     model.Files.CopyTo(fileStream);
                     fileStream.Flush();
                     var filepath = "\\images\\" + model.Files.FileName;
                     model.ProfilePhoto = filepath;
                 }
-                var result = await userManager.CreateAsync(user, model.Password);
-                //  if (!result.Succeeded)
-                //return StatusCode(StatusCodes.Status500InternalServerError);
-
-                // return Ok("success");
-                if (!await RoleManager.RoleExistsAsync(UserRoles.Admin))
-                    await RoleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-                if (!await RoleManager.RoleExistsAsync(UserRoles.Users))
-                    await RoleManager.CreateAsync(new IdentityRole(UserRoles.Users));
-                if (await RoleManager.RoleExistsAsync(UserRoles.Admin))
-                    await userManager.AddToRoleAsync(user, UserRoles.Users);
-                return Ok(RegistrationService.Registration(model));
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (!await _RoleManager.RoleExistsAsync(UserRoles.Admin))
+                    await _RoleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                if (!await _RoleManager.RoleExistsAsync(UserRoles.Users))
+                    await _RoleManager.CreateAsync(new IdentityRole(UserRoles.Users));
+                if (await _RoleManager.RoleExistsAsync(UserRoles.Admin))
+                    await _userManager.AddToRoleAsync(user, UserRoles.Users);
+                return Ok(_RegistrationService.Registration(model));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex + "Something wrong");
+                return StatusCode(StatusCodes.Status500InternalServerError,new Response { Status="Error",Message="Internal server Error"});
             }  
           
         }
@@ -137,7 +133,7 @@ namespace JWTAuthenticationWithSwagger.Controllers
         [Route("RegisterAdmin")]
         public async Task<IActionResult> RegisterAdmin([FromForm] Registration model)
         {
-            var userExists = await userManager.FindByNameAsync(model.UserName);
+            var userExists = await _userManager.FindByNameAsync(model.UserName);
             //if (userExists != null)
             //    return StatusCode(StatusCodes.Status500InternalServerError);
 
@@ -147,40 +143,28 @@ namespace JWTAuthenticationWithSwagger.Controllers
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = model.UserName
             };
-
-            //IdentityRole idetityRole = new IdentityRole
-            //{
-            //    Name = "User"
-            //};
-
-            //await RoleManager.CreateAsync(idetityRole);
-
             try
             {
-                if (!Directory.Exists(WebHostEnvironment.WebRootPath + "\\images\\"))
+                if (!Directory.Exists(_WebHostEnvironment.WebRootPath + "\\images\\"))
                 {
-                    Directory.CreateDirectory(WebHostEnvironment.WebRootPath + "\\images\\");
+                    Directory.CreateDirectory(_WebHostEnvironment.WebRootPath + "\\images\\");
                 }
-                using (FileStream fileStream = System.IO.File.Create(WebHostEnvironment.WebRootPath + "\\images\\" + model.Files.FileName))
+                using (FileStream fileStream = System.IO.File.Create(_WebHostEnvironment.WebRootPath + "\\images\\" + model.Files.FileName))
                 {
                     model.Files.CopyTo(fileStream);
                     fileStream.Flush();
                     var filepath = "\\images\\" + model.Files.FileName;
                     model.ProfilePhoto = filepath;
                 }
-                await RegistrationService.Registration(model);
-                var result = await userManager.CreateAsync(user, model.Password);
-                //  if (!result.Succeeded)
-                //return StatusCode(StatusCodes.Status500InternalServerError);
-
-                // return Ok("success");
-                if (!await RoleManager.RoleExistsAsync(UserRoles.Admin))
-                    await RoleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-                if (!await RoleManager.RoleExistsAsync(UserRoles.Users))
-                    await RoleManager.CreateAsync(new IdentityRole(UserRoles.Users));
-                if (await RoleManager.RoleExistsAsync(UserRoles.Admin))
-                    await userManager.AddToRoleAsync(user, UserRoles.Admin);
-                return Ok(RegistrationService.Registration(model));
+                await _RegistrationService.Registration(model);
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (!await _RoleManager.RoleExistsAsync(UserRoles.Admin))
+                    await _RoleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                if (!await _RoleManager.RoleExistsAsync(UserRoles.Users))
+                    await _RoleManager.CreateAsync(new IdentityRole(UserRoles.Users));
+                if (await _RoleManager.RoleExistsAsync(UserRoles.Admin))
+                    await _userManager.AddToRoleAsync(user, UserRoles.Admin);
+                return Ok(_RegistrationService.Registration(model));
             }
             catch (Exception ex)
             {

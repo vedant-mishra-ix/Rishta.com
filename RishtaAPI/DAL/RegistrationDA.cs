@@ -21,22 +21,22 @@ namespace RishtaAPI.DAL
     }
     public class RegistrationDA : IRegistration
     {
-        private readonly CoreDbContext RegistrationDb;
-        public RegistrationDA(CoreDbContext _RegistrationDb)
+        private readonly CoreDbContext _RegistrationDb;
+        public RegistrationDA(CoreDbContext RegistrationDb)
         {
-            RegistrationDb = _RegistrationDb;
+            _RegistrationDb = RegistrationDb;
         }
 
         public async Task<Registration> Registration(Registration obj)
         {
-            var AddData = await RegistrationDb.Registration.AddAsync(obj);
-            RegistrationDb.SaveChanges();
+            var AddData = await _RegistrationDb.Registration.AddAsync(obj);
+            _RegistrationDb.SaveChanges();
             return AddData.Entity;
         }
 
         public async Task<Registration> Registration(Registration obj, int Id)
         {
-            var DataUpdate = RegistrationDb.Registration.FirstOrDefault(obj => obj.Id == Id);
+            var DataUpdate = _RegistrationDb.Registration.FirstOrDefault(obj => obj.Id == Id);
             if (DataUpdate != null)
             {
                 DataUpdate.UserName = obj.UserName;
@@ -63,8 +63,8 @@ namespace RishtaAPI.DAL
                 DataUpdate.FamilyType = obj.FamilyType;
                 DataUpdate.FamilyStatus = obj.FamilyStatus;
                 DataUpdate.ProfilePhoto = obj.ProfilePhoto;
-                var data = RegistrationDb.Registration.Update(DataUpdate);
-                RegistrationDb.SaveChanges();
+                var data = _RegistrationDb.Registration.Update(DataUpdate);
+                _RegistrationDb.SaveChanges();
                 return data.Entity;
             }
             else
@@ -75,11 +75,11 @@ namespace RishtaAPI.DAL
 
         public bool Registration(int Id)
         {
-            var DeleteData = RegistrationDb.Registration.FirstOrDefault(obj => obj.Id == Id);
+            var DeleteData = _RegistrationDb.Registration.FirstOrDefault(obj => obj.Id == Id);
             if (DeleteData != null)
             {
-                RegistrationDb.Registration.Remove(DeleteData);
-                RegistrationDb.SaveChanges();
+                _RegistrationDb.Registration.Remove(DeleteData);
+                _RegistrationDb.SaveChanges();
                 return true;
             }
             else
@@ -90,10 +90,10 @@ namespace RishtaAPI.DAL
 
         public IEnumerable<Registration> Registrations(int Id)
         {
-            var GetAllData = RegistrationDb.Registration.Where(obj => obj.Id != Id).ToList();
+            var GetAllData = _RegistrationDb.Registration.Where(obj => obj.Id != Id).ToList();
             if (GetAllData != null)
             {
-                RegistrationDb.SaveChanges();
+                _RegistrationDb.SaveChanges();
                 return GetAllData;
             }
             else
@@ -104,20 +104,20 @@ namespace RishtaAPI.DAL
 
         public Registration Registrations(string UserName)
         {
-            var SpecificUser = RegistrationDb.Registration.FirstOrDefault(obj => obj.UserName == UserName);
+            var SpecificUser = _RegistrationDb.Registration.FirstOrDefault(obj => obj.UserName == UserName);
             return SpecificUser;
         }
 
         public IEnumerable<Registration> Registrations()
         {
-            var GetAll = RegistrationDb.Registration.ToList();
-            RegistrationDb.SaveChanges();
+            var GetAll = _RegistrationDb.Registration.ToList();
+            _RegistrationDb.SaveChanges();
             return GetAll;
         }
 
         public IEnumerable<Registration> RegistrationsFamilyType(string FamilyType)
         {
-            var FamilyBasedList = RegistrationDb.Registration.Where(obj => obj.FamilyType == FamilyType).ToList();
+            var FamilyBasedList = _RegistrationDb.Registration.Where(obj => obj.FamilyType == FamilyType).ToList();
             if (FamilyBasedList != null)
             {
                 return FamilyBasedList;
@@ -130,7 +130,7 @@ namespace RishtaAPI.DAL
 
         public IEnumerable<Registration> RegistrationsGender(string Sex)
         {
-            var GenderBasedList = RegistrationDb.Registration.Where(obj => obj.Sex == Sex).ToList();
+            var GenderBasedList = _RegistrationDb.Registration.Where(obj => obj.Sex == Sex).ToList();
             if (GenderBasedList != null)
             {
                 return GenderBasedList;
@@ -143,7 +143,7 @@ namespace RishtaAPI.DAL
 
         public IEnumerable<Registration> RegistrationsMartialStatus(string MartialStatus)
         {
-            var MartialStatusBasedList = RegistrationDb.Registration.Where(obj => obj.MartialStatus == MartialStatus).ToList();
+            var MartialStatusBasedList = _RegistrationDb.Registration.Where(obj => obj.MartialStatus == MartialStatus).ToList();
             if (MartialStatusBasedList != null)
             {
                 return MartialStatusBasedList;

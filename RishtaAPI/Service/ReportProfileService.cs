@@ -14,10 +14,10 @@ namespace RishtaAPI.Service
     }
     public class ReportProfileService : IReportProfileService
     {
-        private readonly IReportProfile ReportProfileDa;
-        public ReportProfileService(IReportProfile _ReportProfileDa)
+        private readonly IReportProfile _ReportProfileDa;
+        public ReportProfileService(IReportProfile ReportProfileDa)
         {
-            ReportProfileDa = _ReportProfileDa;
+            _ReportProfileDa = ReportProfileDa;
         }
         public async Task<ReportProfile> ReportProfile(int Id)
         {
@@ -26,13 +26,13 @@ namespace RishtaAPI.Service
                 RegisteredId = Id,
                 CreatedDateTime = DateTime.Now,
             };
-            var AddData = await ReportProfileDa.ReportProfile(AddReportProfile);
+            var AddData = await _ReportProfileDa.ReportProfile(AddReportProfile);
             return new ReportProfile { Id = AddReportProfile.Id };
         }
 
         public IEnumerable<ReportProfileVM> ReportProfiles()
         {
-            var ReportedData = ReportProfileDa.ReportProfiles();
+            var ReportedData = _ReportProfileDa.ReportProfiles();
             return (from AllData in ReportedData
                     select new Model.ReportProfileVM
                     {
@@ -41,7 +41,7 @@ namespace RishtaAPI.Service
                         ReportedEmail = AllData.ReportedEmail,
                         ReportedImage = AllData.ReportedImage,
                         ReportedCount = AllData.ReportedCount
-                        
+
                     }).ToList();
 
         }

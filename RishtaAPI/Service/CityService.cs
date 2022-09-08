@@ -11,14 +11,14 @@ namespace RishtaAPI.Service
     }
     public class CityService : ICityService
     {
-        private readonly ICity CityDa; 
-        public CityService(ICity _CityDa)
+        private readonly ICity _CityDa;
+        public CityService(ICity CityDa)
         {
-            CityDa = _CityDa;
+            _CityDa = CityDa;
         }
         public IEnumerable<City> Cities()
         {
-            var AllCity = CityDa.Cities();
+            var AllCity = _CityDa.Cities();
             return (from CityList in AllCity
                     select new City
                     {
