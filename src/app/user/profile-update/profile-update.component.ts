@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { FamilyStatus } from 'src/app/core/model/family-status';
 import { FamilyType } from 'src/app/core/model/family-type';
 import { Gender } from 'src/app/core/model/gender';
@@ -35,7 +36,7 @@ export class ProfileUpdateComponent implements OnInit {
   constructor(private fb: FormBuilder, private cityService: CityService,
     private stateService: StateService,
     private Route: Router, private idRoute: ActivatedRoute, private ProfileService: UserProfileService,
-    private UpdateService: ProfilUpdateService) {
+    private UpdateService: ProfilUpdateService,private toastr: ToastrService) {
   }
 
   Uservalue = localStorage.getItem('UserName:');
@@ -68,10 +69,11 @@ export class ProfileUpdateComponent implements OnInit {
     console.log(this.Registration.value);
     this.UpdateService.Update(formData).subscribe({
       next: (res) => {
-        alert("Profile updated succesful:");
+        this.toastr.success("Profile Updated Successful");
+        location.reload();
         this.Route.navigate(['./User']);
       }, error: () => {
-        alert("Something Wrong:")
+        this.toastr.error("Something Wrong")
       }
     });
   }

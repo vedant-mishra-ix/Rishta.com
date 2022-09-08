@@ -10,6 +10,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomelistComponent } from './homelist/homelist.component';
 import { CityService } from '../core/model/service/city.service';
+import { ShareModule } from '../share/share.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -19,12 +23,15 @@ import { CityService } from '../core/model/service/city.service';
     ContactComponent,
     LoginComponent,
     RegistrationComponent,
-    HomelistComponent
+    HomelistComponent,
+
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShareModule,
+    ToastrModule.forRoot(),
   ],
   providers:[CityService]
 })

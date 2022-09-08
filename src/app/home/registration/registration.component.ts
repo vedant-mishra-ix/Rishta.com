@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FamilyStatus } from 'src/app/core/model/family-status';
@@ -10,7 +10,7 @@ import { Religious } from 'src/app/core/model/religious';
 import { CityService } from 'src/app/core/model/service/city.service';
 import { RegistrationService } from 'src/app/core/model/service/registration.service';
 import { StateService } from 'src/app/core/model/service/state.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -33,7 +33,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private cityService: CityService,
     private stateService: StateService, private RegistrationService: RegistrationService,
-    private Route: Router) {
+    private Route: Router,private toastr: ToastrService) {
     this.Registration = this.fb.group({
       UserName: ['', Validators.required],
       Email: ['', Validators.required],
@@ -88,9 +88,9 @@ export class RegistrationComponent implements OnInit {
     formData.append('FamilyStatus', this.Registration.get('FamilyStatus')?.value);
     formData.append('image', this.Registration.get('image')?.value);
     this.RegistrationService.Registration(formData).subscribe((res) => {
-      alert("Registration Done: " + res.UserName);
+      this.toastr.success("Successful Registration Done");
       this.Route.navigate(['login']);
-    }, error => { alert("Something Wrong or user name already exist") }
+    }, error => {this.toastr.error("Something wrong or User Name Already exist! ")}
     )
     console.log(this.Registration.value);
   }
@@ -123,5 +123,4 @@ export class RegistrationComponent implements OnInit {
       });
     }
   }
-
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { GuardService } from 'src/app/core/guard/guard.service';
 import { Role } from 'src/app/core/model/role';
 import { LoginService } from 'src/app/core/model/service/login.service';
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   UserName: any;
   loginProfile: FormGroup = new FormGroup({});
   constructor(private fb: FormBuilder, private LoginService: LoginService,
-    private GuardService: GuardService, private route: Router) {
+    private GuardService: GuardService, private route: Router,private toastr: ToastrService) {
     this.loginProfile = fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
@@ -25,11 +26,11 @@ export class LoginComponent implements OnInit {
   login() {
     this.LoginService.LoginData(this.loginProfile.value).subscribe({
       next: (res) => {
-        alert("Login Succesfull:" + this.loginProfile.value.userName)
         this.UserName = this.loginProfile.value.userName;
         localStorage.setItem('UserName:', this.UserName);
         this.GuardService.setToken(res.token);
         localStorage.setItem('role:', res.role);
+        this.toastr.success("Successful Login")
         var GetRole = localStorage.getItem('role:');
         if (GetRole == "User") {
           this.route.navigate(['User']);
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
           this.route.navigate(['Admin']);
         }
       }, error: () => {
-        alert("Something Wrong:")
+        this.toastr.error("Something wrong");
       }
     });
   }

@@ -7,6 +7,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AdminComponent } from './admin.component';
 import { RegisteredComponent } from './registered/registered.component';
 import { ReportedProfileComponent } from './reported-profile/reported-profile.component';
+import { ShareModule } from '../share/share.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ReportedProfileComponent } from './reported-profile/reported-profile.co
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ShareModule
   ]
 })
 export class AdminModule { }

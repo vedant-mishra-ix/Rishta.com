@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ReportProfileService } from 'src/app/core/model/service/report-profile.service';
 import { UserListService } from 'src/app/core/model/service/user-list.service';
 
@@ -13,7 +14,7 @@ export class ListComponent implements OnInit {
   UserList:any[]=[];
   Id = localStorage.getItem("Id:");
   constructor(private UserListService:UserListService,private route:Router,
-    private ReportService:ReportProfileService) { }
+    private ReportService:ReportProfileService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.GetData();
@@ -45,7 +46,7 @@ export class ListComponent implements OnInit {
   {
     this.ReportService.ReportProfile(event.id).subscribe({next:(res)=>
     {
-      alert("Profile Reported");
-    },error:()=> {alert("Something Wrong")}})
+      this.toastr.success("Profile Reported Successfuly")
+    },error:()=> {this.toastr.error("Something wrong")}})
   }
 }

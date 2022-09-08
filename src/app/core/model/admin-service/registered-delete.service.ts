@@ -12,6 +12,6 @@ export class RegisteredDeleteService {
   Delete(index:any):Observable<any>
   {
     const options = { params: new HttpParams().set('Id', index) };
-    return this.http.delete(`${environment.baseApiUrl}/api/Admin/${index}`,options);
+    return this.http.delete(`${environment.baseApiUrl}/api/Admin/${index}`);
   }
 }

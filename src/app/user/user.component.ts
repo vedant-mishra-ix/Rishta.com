@@ -10,7 +10,8 @@ import { LoginComponent } from '../home/login/login.component';
 export class UserComponent implements OnInit {
   UserName = localStorage.getItem("UserName:")
   Id:any;
-  constructor(private ProfileService: UserProfileService) { }
+  constructor(private ProfileService: UserProfileService) {
+   }
 
   ngOnInit(): void {
     this.ProfileService.UserProfile(this.UserName ?? '').subscribe(
@@ -20,5 +21,4 @@ export class UserComponent implements OnInit {
         }
       })
   }
-
 }

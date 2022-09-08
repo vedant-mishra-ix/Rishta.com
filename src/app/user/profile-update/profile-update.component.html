@@ -248,6 +248,10 @@
       <div class="col-6">
         <input class="form-control" type="file" (change)="HandleFile($event)"
          name="files" id="files" formControlName="files">
+         <span *ngIf="RegistrationValidation['files']?.errors?.['required']
+         && (RegistrationValidation['files']?.touched || RegistrationValidation['files']?.dirty)"
+         class="ValidationError">
+         This field is required</span>
       </div>
     </div>
     <div class="row mt-3">

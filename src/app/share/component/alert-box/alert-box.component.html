@@ -1,0 +1,26 @@
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Are You Sure</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"
+                (click)="okPopup()">
+          yes
+        </button>
+        <button type="button" class="btn btn-danger"
+                (click)="closePopup()">
+          no
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
