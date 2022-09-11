@@ -124,7 +124,7 @@ namespace JWTAuthenticationWithSwagger.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,new Response { Status="Error",Message="Internal server Error"});
+                return StatusCode(StatusCodes.Status204NoContent,new Response { Status="Error",Message="Internal server Error"});
             }  
           
         }

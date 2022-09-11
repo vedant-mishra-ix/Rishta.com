@@ -21,6 +21,7 @@ namespace RishtaAPI.Data
         public DbSet<State> State { get; set; }
         public DbSet<Registration> Registration { get; set; }
         public DbSet<ReportProfile> ReportProfile { get; set; }
+        public DbSet<RequestProfile> RequestProfile { get; set; }
 
     }
 }

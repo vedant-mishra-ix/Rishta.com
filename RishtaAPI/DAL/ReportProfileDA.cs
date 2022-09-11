@@ -29,7 +29,7 @@ namespace RishtaAPI.DAL
                 _ReportProfileDb.SaveChanges();
                 return ReportedProfileAdd.Entity;
             }
-            catch(Exception e)
+            catch(Exception )
             {
                 throw;
             }      

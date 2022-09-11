@@ -45,6 +45,7 @@ namespace RishtaAPI.Entity
         public bool IsActive { get; set; }
         // one to many
         public ICollection<ReportProfile> ReportProfiles { get; set; }
+        public ICollection<RequestProfile> RequestProfiles { get; set; }
         // one to one
         public virtual MemberShip MemberShip { get; set; }
     }

@@ -19,7 +19,7 @@ namespace RishtaAPI.Service
         public IEnumerable<Model.Registration> RegistrationGenderFamilyType(string FamilyType);
         public UserProfile Registrationuser(string Username);
         public Task<Update> RegistrationUpdate(Model.Update obj);
-        public string Registration(int Id);
+        public Model.Registration Registration(int Id);
     }
     public class RegistrationService : IRegistrationService
     {
@@ -65,10 +65,10 @@ namespace RishtaAPI.Service
             return new Model.Registration { Id = DataAdd.Id };
         }
 
-        public string Registration(int Id)
+        public Model.Registration Registration(int Id)
         {
             _RegistrationDa.Registration(Id);
-            return "Succes";
+            return new Model.Registration { Id=Id};
         }
 
         public UserProfile Registrationuser(string Username)

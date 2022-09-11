@@ -18,14 +18,16 @@ namespace RishtaAPI.Controllers
     {
         private readonly IRegistrationService _RegistrationService;
         private readonly IReportProfileService _ReportProfileService;
+        private readonly IRequestProfileService _RequestProfileService;
         private readonly IWebHostEnvironment _WebHostEnvironment;
         public UserController(IRegistrationService RegistrationService, IWebHostEnvironment WebHostEnvironment,
-            IReportProfileService ReportProfileService
+            IReportProfileService ReportProfileService, IRequestProfileService RequestProfileService
             )
         {
             _RegistrationService = RegistrationService;
             _WebHostEnvironment = WebHostEnvironment;
             _ReportProfileService = ReportProfileService;
+            _RequestProfileService = RequestProfileService;
         }
         [HttpGet]
         public IActionResult Registrations(int Id)
@@ -126,8 +128,50 @@ namespace RishtaAPI.Controllers
             catch (Exception)
             {
 
-                return StatusCode(StatusCodes.Status500InternalServerError,new Response { Status="Error",Message="Internal server error"});
+                return StatusCode(StatusCodes.Status204NoContent,new Response { Status="Error",Message="Internal server error"});
            }
+        }
+        [HttpPost]
+        [Route("RequestProfile")]
+        public async Task<IActionResult> RequestProfile(RequestSend request)
+        {
+            try
+            {
+                var AddRequestData = await _RequestProfileService.RequestProfiles(request);
+                return Ok(AddRequestData);
+            }
+            catch(Exception)
+            {
+                return StatusCode(StatusCodes.Status204NoContent,new Response { Status="Error",Message=" No content found"});
+            }
+        }
+        [HttpGet]
+        [Route("RequestProfiles")]
+        public  IActionResult RequestProfiles(int Id)
+        {
+            try
+            {
+                var GetRequestData =  _RequestProfileService.RequestProfiles(Id);
+                return Ok(GetRequestData);
+            }
+            catch(Exception)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Id didn't matched"});
+            }
+        }
+        [HttpGet]
+        [Route("RequestProfileHistory")]
+        public IActionResult RequestProfileHistory(int Id)
+        {
+            try
+            {
+                var RequestHistory = _RequestProfileService.RequestProfileHistory(Id);
+                return Ok(RequestHistory);
+            }
+            catch(Exception)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Id didn't matched"});
+            }
         }
 
     }

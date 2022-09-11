@@ -42,10 +42,12 @@ namespace RishtaAPI
             services.AddScoped<ICity, CityDA>();
             services.AddScoped<IRegistration, RegistrationDA>();
             services.AddScoped<IReportProfile, ReportProfileDA>();
+            services.AddScoped<IRequestProfile, RequestProfileDA>();
             services.AddScoped<IStateService, StateService>();
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IRegistrationService, RegistrationService>();
             services.AddScoped<IReportProfileService, ReportProfileService>();
+            services.AddScoped<IRequestProfileService, RequestProfileService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<CoreDbContext>()
