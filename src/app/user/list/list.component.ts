@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ReportProfileService } from 'src/app/core/model/service/report-profile.service';
+import { RequestProfileService } from 'src/app/core/model/service/request-profile.service';
 import { UserListService } from 'src/app/core/model/service/user-list.service';
 
 @Component({
@@ -11,42 +12,51 @@ import { UserListService } from 'src/app/core/model/service/user-list.service';
 })
 export class ListComponent implements OnInit {
 
-  UserList:any[]=[];
+  UserList: any[] = [];
   Id = localStorage.getItem("Id:");
-  constructor(private UserListService:UserListService,private route:Router,
-    private ReportService:ReportProfileService,private toastr: ToastrService) { }
+
+
+  constructor(private UserListService: UserListService, private route: Router,
+    private ReportService: ReportProfileService, private toastr: ToastrService,
+    private RequestService: RequestProfileService) { }
 
   ngOnInit(): void {
     this.GetData();
   }
 
-  GetData()
-  {
-    this.UserListService.Registered(this.Id).subscribe({next:(res)=>
-      {
-        for(let i = 0 ; i < res.length ; i++ )
-        {
-          if(res[i].userName != 'pankaj')
-          {
+  GetData() {
+    this.UserListService.Registered(this.Id).subscribe({
+      next: (res) => {
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].userName != 'pankaj') {
             this.UserList.push(res[i]);
           }
         }
-      }})
+      }
+    })
   }
-  UserProfile(Data:any)
-  {
-    localStorage.setItem("UserSpecific:",Data.userName);
-    localStorage.setItem("UserSpecific1:",Data.email);
-    localStorage.setItem("UserSpecific2:",Data.mobile);
-    localStorage.setItem("UserSpecific3:",Data.address);
-    localStorage.setItem("UserSpecific4:",Data.profilePhoto);
+  UserProfile(Data: any) {
+    localStorage.setItem("UserSpecific:", Data.userName);
+    localStorage.setItem("UserSpecific1:", Data.email);
+    localStorage.setItem("UserSpecific2:", Data.mobile);
+    localStorage.setItem("UserSpecific3:", Data.address);
+    localStorage.setItem("UserSpecific4:", Data.profilePhoto);
     this.route.navigate(['./User/specific']);
   }
-  ProfileReport(event:any)
-  {
-    this.ReportService.ReportProfile(event.id).subscribe({next:(res)=>
-    {
-      this.toastr.success("Profile Reported Successfuly")
-    },error:()=> {this.toastr.error("Something wrong")}})
+  ProfileReport(event: any) {
+    this.ReportService.ReportProfile(event.id).subscribe({
+      next: (res) => {
+        this.toastr.success("Profile Reported Successfuly")
+      }, error: () => { this.toastr.error("Something wrong") }
+    })
+  }
+
+  RequestSend(event: any) {
+    let reqdata={"requestId":this.Id,"registeredId":event.id}
+    this.RequestService.Request(reqdata).subscribe({
+      next: (res) => {
+        this.toastr.success("Request send succesfuly");
+      }, error: () => { this.toastr.error("Something wrong")}
+    })
   }
 }

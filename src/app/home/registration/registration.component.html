@@ -8,11 +8,12 @@
         <label for="UserName">Name:<span class="ValidationError">*</span></label>
       </div>
       <div class="col-6">
-        <input  class="form-control" type="text" name="UserName" id="UserName" formControlName="UserName">
+        <input  class="form-control" type="text" name="UserName" id="UserName" formControlName="UserName"
+        oninput="this.value=this.value.replace(/^[0-9 .]/g,'')">
         <span *ngIf="RegistrationValidation['UserName']?.errors?.['required']
         && (RegistrationValidation['UserName']?.touched || RegistrationValidation['UserName']?.dirty)"
         class="ValidationError">
-        This field is required</span>
+        This field is required(Numeric value not allowed )</span>
       </div>
     </div>
     <div class="row mt-3">
@@ -25,7 +26,11 @@
         && (RegistrationValidation['Email']?.touched || RegistrationValidation['Email']?.dirty)"
         class="ValidationError">
         This field is required</span>
-      </div>
+        <span *ngIf="RegistrationValidation['Email']?.errors?.['email']
+        && (RegistrationValidation['Email']?.touched || RegistrationValidation['Email']?.dirty)"
+        class="ValidationError">
+        This field valid email</span>
+        </div>
     </div>
     <div class="row mt-3">
       <div class="col-2">
@@ -37,7 +42,7 @@
         <span *ngIf="RegistrationValidation['Mobile']?.errors?.['required']
         && (RegistrationValidation['Mobile']?.touched || RegistrationValidation['Mobile']?.dirty)"
         class="ValidationError">
-        This field is required</span>
+        This field is required (ex:vedant@gmail.com)</span>
       </div>
     </div>
     <div class="row mt-3">
@@ -45,11 +50,12 @@
         <label for="Dob">DOB:<span class="ValidationError">*</span></label>
       </div>
       <div class="col-6">
-        <input class="form-control" type="date" max={{Date}} name="Dob" id="Dob" formControlName="Dob">
+        <input class="form-control" type="date" max={{Date}} name="Dob" id="Dob"
+        (keyup)="AgeCalculate()" formControlName="Dob">
         <span *ngIf="RegistrationValidation['Dob']?.errors?.['required']
         && (RegistrationValidation['Dob']?.touched || RegistrationValidation['Dob']?.dirty)"
         class="ValidationError">
-        This field is required</span>
+        This field is required and Age must be 18</span>
       </div>
     </div>
     <div class="row mt-3">

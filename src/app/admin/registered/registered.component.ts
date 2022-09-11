@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AdminProfileService } from 'src/app/core/model/admin-service/admin-profile.service';
 import { RegisteredDeleteService } from 'src/app/core/model/admin-service/registered-delete.service';
 import { RegisteredService } from 'src/app/core/model/admin-service/registered.service';
@@ -17,7 +18,8 @@ export class RegisteredComponent implements OnInit {
   Id: any;
   DelId: any;
   constructor(private RegisteredService: RegisteredService,
-    private DeleteService: RegisteredDeleteService, private AdminProfile: AdminProfileService) { }
+    private DeleteService: RegisteredDeleteService, private AdminProfile: AdminProfileService
+    , private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.AdminProfile.UserProfile(this.Uservalue ?? '').subscribe(
@@ -44,9 +46,9 @@ export class RegisteredComponent implements OnInit {
     if (e) {
       this.DeleteService.Delete(this.DelId ?? '').subscribe({
         next: (res) => {
-          alert("Data deleted Succesful");
-        }
-      });
+          this.toastr.success("Data Deleted Successfuly")
+        }, error: () => { this.toastr.error("Something wrong") }
+      })
       this.ProfileRegistered(this.DelId);
     }
   }

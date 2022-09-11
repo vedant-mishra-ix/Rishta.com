@@ -1,0 +1,44 @@
+.margin
+{
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+}
+span
+{
+  font-weight: bolder;
+  font-size: 2rem;
+  color: brown;
+}
+p{
+  margin-top: 5vh;
+}
+.contact
+{
+  margin-right: 8vw;
+  background-color:lavender;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.contact1
+{
+  margin-left: 8vw;
+  background-color:lavenderblush;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.contact2
+{
+  background-color:lightcyan;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.heading
+{
+  text-align: center;
+  margin-top: 2%;
+}
+.contact1:hover,.contact2:hover,.contact:hover{
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.1);
+}

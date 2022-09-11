@@ -8,7 +8,7 @@ h1{
 }
 .imgFirst
 {
-  background-image: url('./AboutRishta1.jpg');
+  background-image: url('../../../assets/pexels-transtudios-photography-&-video-3156648.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   width:400px;
@@ -16,10 +16,12 @@ h1{
   border-radius: 1vw;
   border-style: none;
   border-color: black;
+  transition: transform .9s;
+  margin: 0 auto;
 }
 .imgSecond
 {
-  background-image: url('./AboutRishta.jpg');
+  background-image: url('../../../assets/pexels-viresh-studio-1444442.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   width:400px;
@@ -27,4 +29,11 @@ h1{
   border-radius: 1vw;
   border-style: none;
   border-color: black;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.imgFirst:hover,.imgSecond:hover{
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.1);
 }

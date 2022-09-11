@@ -30,13 +30,16 @@ export class RegistrationComponent implements OnInit {
   CityListContain: any = [];
   StateList: any = [];
   Date: any;
+  currentYear: number = 0;
+  age: number = 0;
+  Error='red';
 
   constructor(private fb: FormBuilder, private cityService: CityService,
     private stateService: StateService, private RegistrationService: RegistrationService,
     private Route: Router,private toastr: ToastrService) {
     this.Registration = this.fb.group({
       UserName: ['', Validators.required],
-      Email: ['', Validators.required],
+      Email: ['', [Validators.required,Validators.email]],
       Mobile: ['', Validators.required],
       Dob: ['', Validators.required],
       Password: ['', Validators.required],
@@ -63,6 +66,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   Submit() {
+    if(this.age > 18)
+    {
     const formData: any = new FormData();
     formData.append('files', this.Registration.get('fileSource')?.value);
     formData.append('UserName', this.Registration.get('UserName')?.value);
@@ -92,6 +97,8 @@ export class RegistrationComponent implements OnInit {
       this.Route.navigate(['login']);
     }, error => {this.toastr.error("Something wrong or User Name Already exist! ")}
     )
+  }
+  this.toastr.error("Age must be 18 or greater than");
     console.log(this.Registration.value);
   }
   get RegistrationValidation() {
@@ -122,5 +129,14 @@ export class RegistrationComponent implements OnInit {
         fileSource: file
       });
     }
+  }
+  AgeCalculate() {
+    let currentYear = new Date();
+    let dob = new Date(this.Registration.value.Dob);
+    let year = dob.getFullYear();
+    let currentYearValue = currentYear.getFullYear()
+    this.currentYear = currentYearValue;
+    this.age = currentYearValue - year;
+    console.log("Dob: "+ this.age);
   }
 }

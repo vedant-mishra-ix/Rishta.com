@@ -1,5 +1,18 @@
 .imgFirst
 {
+  background-image: url('../../../assets/pexels-cinestyle-india-1589216.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:286px;
+  height: 350px;
+  border-radius: 1vw;
+  border-style: none;
+  border-color: black;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.imgSecond
+{
   background-image: url('./HomeRishta.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -8,10 +21,12 @@
   border-radius: 1vw;
   border-style: none;
   border-color: black;
+  transition: transform .9s;
+  margin: 0 auto;
 }
-.imgSecond
+.imgThird
 {
-  background-image: url('./HomeRishta1.jpg');
+  background-image: url('../../../assets/pexels-zara-hamdane-6294505.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   width:286px;
@@ -19,8 +34,33 @@
   border-radius: 1vw;
   border-style: none;
   border-color: black;
+  transition: transform .9s;
+  margin: 0 auto;
 }
-.imgThird
+
+.Background
+{
+  background-image: url('../../../assets/pexels-nghia-trinh-931796.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+  height: 200vh;
+}
+.imgFirst1
+{
+  background-image: url('../../../assets/pexels-the-shaan-photography-5332403.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:286px;
+  height: 350px;
+  border-radius: 1vw;
+  border-style: none;
+  border-color: black;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.imgSecond1
 {
   background-image: url('./AboutRishta.jpg');
   background-size: cover;
@@ -30,5 +70,26 @@
   border-radius: 1vw;
   border-style: none;
   border-color: black;
+  transition: transform .9s;
+  margin: 0 auto;
 }
+.imgThird1
+{
+  background-image: url('../../../assets/pexels-anna-pou-9345717.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:286px;
+  height: 350px;
+  border-radius: 1vw;
+  border-style: none;
+  border-color: black;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.imgFirst:hover,.imgSecond:hover,.imgThird:hover,.imgFirst1:hover,.imgSecond1:hover,.imgThird1:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.1);
+}
+
 

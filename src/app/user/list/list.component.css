@@ -31,10 +31,13 @@
 .Profile-Action1
 {
   cursor: pointer;
-}
-.Profile-Action
-{
-  cursor: pointer;
-  margin-left: 80px;
-}
 
+}
+.report1
+{
+  padding-right: 80px;
+}
+.report
+{
+  padding-left: 80px;
+}

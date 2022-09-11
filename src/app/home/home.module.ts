@@ -14,6 +14,7 @@ import { ShareModule } from '../share/share.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     RegistrationComponent,
     HomelistComponent,
+    FooterComponent,
 
   ],
   imports: [

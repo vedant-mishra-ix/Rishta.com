@@ -33,6 +33,9 @@ export class ProfileUpdateComponent implements OnInit {
   StateList: any = [];
   id: any;
   Id: any;
+  Date:any;
+  currentYear:number=0;
+  age:number=0;
   constructor(private fb: FormBuilder, private cityService: CityService,
     private stateService: StateService,
     private Route: Router, private idRoute: ActivatedRoute, private ProfileService: UserProfileService,
@@ -41,6 +44,8 @@ export class ProfileUpdateComponent implements OnInit {
 
   Uservalue = localStorage.getItem('UserName:');
   Submit() {
+    if(this.age >= 18)
+    {
     const formData: any = new FormData();
     formData.append('files', this.Registration.get('fileSource')?.value);
     formData.append('Id', this.Registration.get('Id')?.value);
@@ -77,6 +82,8 @@ export class ProfileUpdateComponent implements OnInit {
       }
     });
   }
+  this.toastr.error("Age must be greater than 18");
+  }
 
   get RegistrationValidation() {
     return this.Registration.controls;
@@ -107,7 +114,7 @@ export class ProfileUpdateComponent implements OnInit {
       FamilyType: [''],
       FamilyStatus: [''],
       ProfilePhoto: [''],
-      files: [''],
+      files: ['',Validators.required],
       fileSource: [''],
     });
     this.GetCity();
@@ -122,7 +129,7 @@ export class ProfileUpdateComponent implements OnInit {
               UserName: res.userName,
               Email: res.email,
               Mobile: res.mobile,
-              DateOfBirth: res.dateOfBirth,
+              DateOfBirth: res.dateofBirth,
               CreatedDateTime: res.createdDateTime,
               ModifiedDateTime: res.modifiedDateTime,
               Password: res.password,
@@ -147,6 +154,7 @@ export class ProfileUpdateComponent implements OnInit {
           );
         }
       })
+      this.Date = new Date().toISOString().split('T')[0]
   }
 
   GetCity() {
@@ -171,4 +179,13 @@ export class ProfileUpdateComponent implements OnInit {
     }
   }
 
+  AgeCalculate() {
+    let currentYear = new Date();
+    let dob = new Date(this.Registration.value.Dob);
+    let year = dob.getFullYear();
+    let currentYearValue = currentYear.getFullYear()
+    this.currentYear = currentYearValue;
+    this.age = currentYearValue - year;
+    console.log("Dob: "+ this.age);
+  }
 }

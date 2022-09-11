@@ -9,3 +9,24 @@
 {
   font-size: 1rem;
 }
+.Zoom1:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.1);
+}
+.Zoom1 {
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.Zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.4);
+}
+.Zoom {
+  transition: transform .9s;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+}
+

@@ -9,9 +9,11 @@
         <img  src="http://localhost:8080/{{list.profilePhoto}}" class="width" alt="...">
         <div class="carousel-caption d-none d-md-block ">
           <div class="profile-data">
-          <h5 class="Profile-Action1" (click)="UserProfile(list)">Name: {{list.userName}}</h5>
+            <span class="report1"><a class="btn btn-success" (click)="RequestSend(list)">Request</a></span>
+            <span class="report"><a class="btn btn-danger" (click)="ProfileReport(list)">Report</a></span>
+          <h5 class="Profile-Action1" (click)="UserProfile(list)">Name: {{list.userName}}
+          </h5>
           <h5 class="Profile-Action">Gender: {{list.sex}}
-            <span><a class="btn btn-danger report" (click)="ProfileReport(list)">Report</a></span>
           </h5>
           </div>
         </div>

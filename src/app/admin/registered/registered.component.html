@@ -7,19 +7,17 @@
         <th>User Name</th>
         <th>User Email</th>
         <th>User Mobile</th>
-        <th>User Dob</th>
         <th>User Gender</th>
         <th colspan="2">Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let list of Registered">
-        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
-        <td>{{list.userName}}</td>
-        <td>{{list.email}}</td>
-        <td>{{list.mobile}}</td>
-        <td>{{list.dob}}</td>
-        <td>{{list.sex}}</td>
+        <td><img class="Zoom" src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+        <td class="Zoom1">{{list.userName}}</td>
+        <td class="Zoom1">{{list.email}}</td>
+        <td class="Zoom1">{{list.mobile}}</td>
+        <td class="Zoom1">{{list.sex}}</td>
         <td>
         </td>
         <td> <span class="btn btn-danger font  w-50 m-4" (click)="Delete(list.id)">Delete</span></td>

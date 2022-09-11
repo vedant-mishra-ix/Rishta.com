@@ -11,6 +11,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ProfileUpdateComponent } from './profile-update/profile-update.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SpecificProfileComponent } from './specific-profile/specific-profile.component';
+import { RequestComponent } from './request/request.component';
+import { HistoryComponent } from './history/history.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { SpecificProfileComponent } from './specific-profile/specific-profile.co
     ListComponent,
     UserProfileComponent,
     ProfileUpdateComponent,
-    SpecificProfileComponent
+    SpecificProfileComponent,
+    RequestComponent,
+    HistoryComponent,
   ],
   imports: [
     CommonModule,
