@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HistoryComponent } from './history/history.component';
 import { ListComponent } from './list/list.component';
 import { MatchedComponent } from './matched/matched.component';
+import { MembershipComponent } from './membership/membership.component';
 import { ProfileUpdateComponent } from './profile-update/profile-update.component';
 import { RequestComponent } from './request/request.component';
 import { SpecificProfileComponent } from './specific-profile/specific-profile.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path:'history',
         component:HistoryComponent
+      },
+      {
+        path:'membership',
+        component:MembershipComponent
       }
     ]
   }

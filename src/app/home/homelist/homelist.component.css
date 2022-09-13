@@ -38,14 +38,14 @@
   margin: 0 auto;
 }
 
-.Background
+.background
 {
   background-image: url('../../../assets/pexels-nghia-trinh-931796.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   width: 100%;
-  height: 200vh;
+  height:auto;
 }
 .imgFirst1
 {

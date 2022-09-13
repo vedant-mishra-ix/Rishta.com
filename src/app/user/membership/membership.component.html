@@ -1,0 +1,18 @@
+<div class="container-fluid justify-content-start mt-5 table-overflow">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Plans</th>
+        <th>Plans Benefits</th>
+        <th>Plans Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let list of plansList">
+        <td class="zoom1">{{list.plansName}}</td>
+        <td class="zoom1">{{list.benefits}}</td>
+        <td class="zoom1">{{list.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

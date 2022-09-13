@@ -8,14 +8,17 @@ import { ReportedProfilesService } from 'src/app/core/model/admin-service/report
 })
 export class ReportedProfileComponent implements OnInit {
 
-  ReportedList:any=[];
+  reportedList:any=[];
   constructor(private ReportedProfileService: ReportedProfilesService) { }
 
   ngOnInit(): void {
-    this.ReportedProfileService.ReportedAccount().subscribe({
+    this.reportedProfile();
+  }
+  reportedProfile()
+  {
+    this.ReportedProfileService.reportedAccount().subscribe({
       next: (res) => {
-        this.ReportedList =  res;
-        console.log("Reported data1: "+ this.ReportedList[0].reportedId);
+        this.reportedList =  res;
       }, error: () => {
         alert("something wrong");
       }
