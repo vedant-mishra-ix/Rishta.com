@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class RequestHistoryService {
   constructor(private http: HttpClient) { }
 
-  History(Id:any):Observable<any>
+  history(Id:any):Observable<any>
   {
     const parm = {};
     return this.http.get(`${environment.baseApiUrl}/api/User/RequestProfileHistory?Id=`+Id,parm);

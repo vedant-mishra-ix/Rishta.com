@@ -13,47 +13,47 @@ import { AlertBoxComponent } from 'src/app/share/component/alert-box/alert-box.c
 export class RegisteredComponent implements OnInit {
 
   @ViewChild(AlertBoxComponent) alert!: AlertBoxComponent;
-  Registered: any[] = [];
-  Uservalue = localStorage.getItem('UserName:');
-  Id: any;
-  DelId: any;
-  constructor(private RegisteredService: RegisteredService,
-    private DeleteService: RegisteredDeleteService, private AdminProfile: AdminProfileService
+  registered: any[] = [];
+  uservalue = localStorage.getItem('UserName:');
+  id: any;
+  deleteId: any;
+  constructor(private registeredService: RegisteredService,
+    private deleteService: RegisteredDeleteService, private adminProfile: AdminProfileService
     , private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.AdminProfile.UserProfile(this.Uservalue ?? '').subscribe(
+    this.adminProfile.userProfile(this.uservalue ?? '').subscribe(
       {
         next: (res) => {
-          this.Id = res.id;
-          this.ProfileRegistered(res.id);
+          this.id = res.id;
+          this.profileRegistered(res.id);
         }
       })
   }
-  ProfileRegistered(Id: any) {
-    this.RegisteredService.Registered(Id ?? '').subscribe({
+  profileRegistered(Id: any) {
+    this.registeredService.registered(Id ?? '').subscribe({
       next: (res) => {
-        this.Registered.length = 0;
+        this.registered.length = 0;
         for (let i = 0; i < res.length; i++) {
           if (res[i].userName != 'pankaj') {
-            this.Registered.push(res[i]);
+            this.registered.push(res[i]);
           }
         }
       }
     })
   }
-  Del(e: any) {
+  deletePopup(e: any) {
     if (e) {
-      this.DeleteService.Delete(this.DelId ?? '').subscribe({
+      this.deleteService.delete(this.deleteId ?? '').subscribe({
         next: (res) => {
           this.toastr.success("Data Deleted Successfuly")
         }, error: () => { this.toastr.error("Something wrong") }
       })
-      this.ProfileRegistered(this.DelId);
+      this.profileRegistered(this.deleteId);
     }
   }
-  Delete(id: any) {
+  deleteData(id: any) {
     this.alert.openPopup();
-    this.DelId = id;
+    this.deleteId = id;
   }
 }

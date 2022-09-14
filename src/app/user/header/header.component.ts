@@ -11,11 +11,11 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 })
 export class HeaderComponent implements OnInit {
 
-  UserProfile: any;
-  UserName = localStorage.getItem("UserName:")
-  constructor(private route: Router, private AuthService: GuardService,
-    private ProfileService: UserProfileService) { }
-  Logout() {
+  userProfile: any;
+  userName = localStorage.getItem("UserName:")
+  constructor(private route: Router, private authService: GuardService,
+    private profileService: UserProfileService) { }
+  logOut() {
     this.route.navigate([''])
     localStorage.removeItem("Id:");
     localStorage.removeItem("ProfilePhoto:");
@@ -25,13 +25,13 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem("UserSpecific2:");
     localStorage.removeItem("UserSpecific3:");
     localStorage.removeItem("UserSpecific4:");
-    return this.AuthService.deleteToken();
+    return this.authService.deleteToken();
   }
   ngOnInit(): void {
-    this.ProfileService.UserProfile(this.UserName ?? '').subscribe(
+    this.profileService.userProfile(this.userName ?? '').subscribe(
       {
         next: (res) => {
-          this.UserProfile = res.profilePhoto;
+          this.userProfile = res.profilePhoto;
         }
       })
   }

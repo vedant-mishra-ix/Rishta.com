@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SpecificProfileComponent } from './specific-profile/specific-profile.component';
 import { RequestComponent } from './request/request.component';
 import { HistoryComponent } from './history/history.component';
+import { MembershipComponent } from './membership/membership.component';
+import { MembershipAddComponent } from './membership-add/membership-add.component';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { HistoryComponent } from './history/history.component';
     SpecificProfileComponent,
     RequestComponent,
     HistoryComponent,
+    MembershipComponent,
+    MembershipAddComponent,
   ],
   imports: [
     CommonModule,

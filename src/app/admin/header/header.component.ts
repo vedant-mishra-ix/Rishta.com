@@ -9,12 +9,12 @@ import { GuardService } from 'src/app/core/guard/guard.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private route: Router , private AuthService: GuardService) { }
+  constructor(private route: Router , private authService: GuardService) { }
 
-  Logout()
+  logOut()
   {
     this.route.navigate([''])
-    return this.AuthService.deleteToken();
+    return this.authService.deleteToken();
   }
   ngOnInit(): void {
   }

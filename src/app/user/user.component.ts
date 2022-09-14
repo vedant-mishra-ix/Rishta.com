@@ -8,13 +8,13 @@ import { LoginComponent } from '../home/login/login.component';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  UserName = localStorage.getItem("UserName:")
+  userName = localStorage.getItem("UserName:")
   Id:any;
-  constructor(private ProfileService: UserProfileService) {
+  constructor(private profileService: UserProfileService) {
    }
 
   ngOnInit(): void {
-    this.ProfileService.UserProfile(this.UserName ?? '').subscribe(
+    this.profileService.userProfile(this.userName ?? '').subscribe(
       {
         next: (res) => {
           localStorage.setItem("Id:",res.id);
