@@ -14,7 +14,10 @@ import { SpecificProfileComponent } from './specific-profile/specific-profile.co
 import { RequestComponent } from './request/request.component';
 import { HistoryComponent } from './history/history.component';
 import { MembershipComponent } from './membership/membership.component';
+<<<<<<< HEAD
 import { MembershipAddComponent } from './membership-add/membership-add.component';
+=======
+>>>>>>> 04c1c66b1da8c9662dc33a1d379f3a7e351a8219
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { MembershipAddComponent } from './membership-add/membership-add.componen
     RequestComponent,
     HistoryComponent,
     MembershipComponent,
+<<<<<<< HEAD
     MembershipAddComponent,
+=======
+>>>>>>> 04c1c66b1da8c9662dc33a1d379f3a7e351a8219
   ],
   imports: [
     CommonModule,
