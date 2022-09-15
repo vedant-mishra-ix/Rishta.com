@@ -84,10 +84,16 @@ export class ProfileUpdateComponent implements OnInit {
   else{
     this.toastr.error("Age must be greater than 18");
   }
+<<<<<<< HEAD
   }
   get registrationValidation() {
     return this.registration.controls;
   }
+=======
+  get registrationValidation() {
+    return this.registration.controls;
+  }
+>>>>>>> 98a1810ba74fc92dc55af00ebe5b1928cad3c302
   ngOnInit(): void {
     this.registration = this.fb.group({
       Id: [''],

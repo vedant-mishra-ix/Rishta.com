@@ -3,7 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HistoryComponent } from './history/history.component';
 import { ListComponent } from './list/list.component';
 import { MatchedComponent } from './matched/matched.component';
+<<<<<<< HEAD
 import { MembershipAddComponent } from './membership-add/membership-add.component';
+=======
+<<<<<<< HEAD
+import { MembershipAddComponent } from './membership-add/membership-add.component';
+=======
+>>>>>>> 04c1c66b1da8c9662dc33a1d379f3a7e351a8219
+>>>>>>> 98a1810ba74fc92dc55af00ebe5b1928cad3c302
 import { MembershipComponent } from './membership/membership.component';
 import { ProfileUpdateComponent } from './profile-update/profile-update.component';
 import { RequestComponent } from './request/request.component';
@@ -47,10 +54,19 @@ const routes: Routes = [
       {
         path:'membership',
         component:MembershipComponent
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 98a1810ba74fc92dc55af00ebe5b1928cad3c302
       },
       {
         path:'addmembership',
         component:MembershipAddComponent
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 04c1c66b1da8c9662dc33a1d379f3a7e351a8219
+>>>>>>> 98a1810ba74fc92dc55af00ebe5b1928cad3c302
       }
     ]
   }
