@@ -18,28 +18,28 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegistrationComponent implements OnInit {
 
-  Gender = Gender;
-  MarriageStatus = MarriageStatus;
-  MotherTongue = MotherTongue;
-  Religious = Religious;
-  FamilyType = FamilyType;
-  FamilyStatus = FamilyStatus;
-  Registration: FormGroup = new FormGroup({});
+  gender = Gender;
+  marriageStatus = MarriageStatus;
+  motherTongue = MotherTongue;
+  religious = Religious;
+  familyType = FamilyType;
+  familyStatus = FamilyStatus;
+  registration: FormGroup = new FormGroup({});
   Files!: File;
-  CityList: any = [];
-  CityListContain: any = [];
-  StateList: any = [];
-  Date: any;
+  cityList: any = [];
+  cityListContain: any = [];
+  stateList: any = [];
+  date: any;
   currentYear: number = 0;
   age: number = 0;
-  Error='red';
+  Error = 'red';
 
   constructor(private fb: FormBuilder, private cityService: CityService,
-    private stateService: StateService, private RegistrationService: RegistrationService,
-    private Route: Router,private toastr: ToastrService) {
-    this.Registration = this.fb.group({
+    private stateService: StateService, private registrationService: RegistrationService,
+    private route: Router, private toastr: ToastrService) {
+    this.registration = this.fb.group({
       UserName: ['', Validators.required],
-      Email: ['', [Validators.required,Validators.email]],
+      Email: ['', [Validators.required, Validators.email]],
       Mobile: ['', Validators.required],
       Dob: ['', Validators.required],
       Password: ['', Validators.required],
@@ -64,79 +64,77 @@ export class RegistrationComponent implements OnInit {
       fileSource: [''],
     })
   }
-
-  Submit() {
-    if(this.age > 18)
-    {
-    const formData: any = new FormData();
-    formData.append('files', this.Registration.get('fileSource')?.value);
-    formData.append('UserName', this.Registration.get('UserName')?.value);
-    formData.append('Email', this.Registration.get('Email')?.value);
-    formData.append('Mobile', this.Registration.get('Mobile')?.value);
-    formData.append('Dob', this.Registration.get('Dob')?.value);
-    formData.append('Password', this.Registration.get('Password')?.value);
-    formData.append('Address', this.Registration.get('Address')?.value);
-    formData.append('Cast', this.Registration.get('Cast')?.value);
-    formData.append('Sex', this.Registration.get('Sex')?.value);
-    formData.append('Religious', this.Registration.get('Religious')?.value);
-    formData.append('MartialStatus', this.Registration.get('MartialStatus')?.value);
-    formData.append('MotherTongue', this.Registration.get('MotherTongue')?.value);
-    formData.append('Height', this.Registration.get('Height')?.value);
-    formData.append('Country', this.Registration.get('Country')?.value);
-    formData.append('State', this.Registration.get('State')?.value);
-    formData.append('City', this.Registration.get('City')?.value);
-    formData.append('HighestEducation', this.Registration.get('HighestEducation')?.value);
-    formData.append('Occupation', this.Registration.get('Occupation')?.value);
-    formData.append('AnnualIncome', this.Registration.get('AnnualIncome')?.value);
-    formData.append('ParentMobile', this.Registration.get('ParentMobile')?.value);
-    formData.append('FamilyType', this.Registration.get('FamilyType')?.value);
-    formData.append('FamilyStatus', this.Registration.get('FamilyStatus')?.value);
-    formData.append('image', this.Registration.get('image')?.value);
-    this.RegistrationService.Registration(formData).subscribe((res) => {
-      this.toastr.success("Successful Registration Done");
-      this.Route.navigate(['login']);
-    }, error => {this.toastr.error("Something wrong or User Name Already exist! ")}
-    )
+  submit() {
+    if (this.age >= 18) {
+      const formData: any = new FormData();
+      formData.append('files', this.registration.get('fileSource')?.value);
+      formData.append('UserName', this.registration.get('UserName')?.value);
+      formData.append('Email', this.registration.get('Email')?.value);
+      formData.append('Mobile', this.registration.get('Mobile')?.value);
+      formData.append('Dob', this.registration.get('Dob')?.value);
+      formData.append('Password', this.registration.get('Password')?.value);
+      formData.append('Address', this.registration.get('Address')?.value);
+      formData.append('Cast', this.registration.get('Cast')?.value);
+      formData.append('Sex', this.registration.get('Sex')?.value);
+      formData.append('Religious', this.registration.get('Religious')?.value);
+      formData.append('MartialStatus', this.registration.get('MartialStatus')?.value);
+      formData.append('MotherTongue', this.registration.get('MotherTongue')?.value);
+      formData.append('Height', this.registration.get('Height')?.value);
+      formData.append('Country', this.registration.get('Country')?.value);
+      formData.append('State', this.registration.get('State')?.value);
+      formData.append('City', this.registration.get('City')?.value);
+      formData.append('HighestEducation', this.registration.get('HighestEducation')?.value);
+      formData.append('Occupation', this.registration.get('Occupation')?.value);
+      formData.append('AnnualIncome', this.registration.get('AnnualIncome')?.value);
+      formData.append('ParentMobile', this.registration.get('ParentMobile')?.value);
+      formData.append('FamilyType', this.registration.get('FamilyType')?.value);
+      formData.append('FamilyStatus', this.registration.get('FamilyStatus')?.value);
+      formData.append('image', this.registration.get('image')?.value);
+      this.registrationService.Registration(formData).subscribe((res) => {
+        this.toastr.success("Successful Registration Done");
+        this.route.navigate(['login']);
+      }, error => { this.toastr.error("Something wrong or User Name Already exist! ") }
+      )
+    }
+    else {
+      this.toastr.error("Age must be 18 or greater than");
+    }
   }
-  this.toastr.error("Age must be 18 or greater than");
-    console.log(this.Registration.value);
-  }
-  get RegistrationValidation() {
-    return this.Registration.controls;
+  get registrationValidation() {
+    return this.registration.controls;
   }
   ngOnInit(): void {
-    this.GetCity();
-    this.GetState();
-    this.Date = new Date().toISOString().split('T')[0]
+    this.getCity();
+    this.getState();
+    this.date = new Date().toISOString().split('T')[0]
   }
-  GetCity() {
-    this.cityService.GetCityData().subscribe(res => {
-      this.CityList = res;
+  getCity() {
+    this.cityService.getCityData().subscribe(res => {
+      this.cityList = res;
     })
   }
-  GetState() {
-    this.stateService.GetStateData().subscribe(res => {
-      this.StateList = res;
+  getState() {
+    this.stateService.getStateData().subscribe(res => {
+      this.stateList = res;
     })
   }
-  OnSelect(State: any) {
-    this.CityListContain = this.CityList.filter((e: any) => e.id == State.target.value);
+  onSelect(State: any) {
+    this.cityListContain = this.cityList.filter((e: any) => e.id == State.target.value);
   }
-  HandleFile(event: any) {
+  handleFile(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.Registration.patchValue({
+      this.registration.patchValue({
         fileSource: file
       });
     }
   }
-  AgeCalculate() {
+  ageCalculate() {
     let currentYear = new Date();
-    let dob = new Date(this.Registration.value.Dob);
+    let dob = new Date(this.registration.value.Dob);
     let year = dob.getFullYear();
     let currentYearValue = currentYear.getFullYear()
     this.currentYear = currentYearValue;
     this.age = currentYearValue - year;
-    console.log("Dob: "+ this.age);
   }
 }

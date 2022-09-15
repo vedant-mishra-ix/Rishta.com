@@ -10,73 +10,71 @@ import { UserProfileService } from 'src/app/core/model/service/user-profile.serv
 })
 export class UserProfileComponent implements OnInit {
 
-  Uservalue = localStorage.getItem('UserName:');
-  UserProfile:any=[];
-                Id:any;
-                UserName:any;
-                Email:any;
-                Mobile:any;
-                DateOfBirth:any;
-                CreatedDateTime:any;
-                ModifiedDateTime:any;
-                Password:any;
-                Address:any;
-                Cast:any;
-                Sex:any
-                Religious:any;
-                MartialStatus:any;
-                MotherTongue:any;
-                Height:any;
-                Country:any;
-                State:any;
-                City:any;
-                HighestEducation:any;
-                Occupation:any;
-                AnnualIncome:any;
-                ParentMobile:any;
-                FamilyType:any;
-                FamilyStatus:any;
-                ProfilePhoto:any;
-  constructor(private ProfileService: UserProfileService, private route : Router) { }
+  userValue = localStorage.getItem('UserName:');
+  userProfile:any=[];
+                id:any;
+                userName:any;
+                email:any;
+                mobile:any;
+                dateOfBirth:any;
+                createdDateTime:any;
+                modifiedDateTime:any;
+                password:any;
+                address:any;
+                cast:any;
+                sex:any
+                religious:any;
+                martialStatus:any;
+                motherTongue:any;
+                height:any;
+                country:any;
+                state:any;
+                city:any;
+                highestEducation:any;
+                occupation:any;
+                annualIncome:any;
+                parentMobile:any;
+                familyType:any;
+                familyStatus:any;
+                profilePhoto:any;
+  constructor(private profileService: UserProfileService, private route : Router) { }
 
 
   ngOnInit(): void {
-    console.log("USer profiler: " + this.UserProfile);
-
-    this.ProfileService.UserProfile(this.Uservalue ?? '').subscribe(
+    this.profileService.userProfile(this.userValue ?? '').subscribe(
       {
         next: (res) => {
-                this.Id =res.id;
-                this.UserName = res.userName
-                this.Email = res.email;
-                this.Mobile = res.mobile;
-                this.DateOfBirth = res.dateOfBirth;
-                this.CreatedDateTime = res.createdDateTime;
-                this.ModifiedDateTime = res.modifiedDateTime;
-                this.Password = res.password;
-                this.Address = res.address;
-                this.Cast = res.cast;
-                this.Sex = res.sex;
-                this.Religious = res.religious;
-                this.MartialStatus = res.martialStatus;
-                this.MotherTongue = res.motherTongue;
-                this.Height = res.height;
-                this.Country = res.country;
-                this.State = res.state;
-                this.City = res.city;
-                this.HighestEducation = res.highestEducation;
-                this.Occupation = res.occupation;
-                this.AnnualIncome = res.annualIncome;
-                this.ParentMobile = res.parentMobile;
-                this.FamilyType = res.familyType;
-                this.FamilyStatus = res.familyStatus;
-                this.ProfilePhoto = res.profilePhoto;
-          localStorage.setItem("ProfilePhoto:",this.ProfilePhoto);
+                this.id =res.id;
+                this.userName = res.userName
+                this.email = res.email;
+                this.mobile = res.mobile;
+                this.dateOfBirth = res.dateOfBirth;
+                this.createdDateTime = res.createdDateTime;
+                this.modifiedDateTime = res.modifiedDateTime;
+                this.password = res.password;
+                this.address = res.address;
+                this.cast = res.cast;
+                this.sex = res.sex;
+                this.religious = res.religious;
+                this.martialStatus = res.martialStatus;
+                this.motherTongue = res.motherTongue;
+                this.height = res.height;
+                this.country = res.country;
+                this.state = res.state;
+                this.city = res.city;
+                this.highestEducation = res.highestEducation;
+                this.occupation = res.occupation;
+                this.annualIncome = res.annualIncome;
+                this.parentMobile = res.parentMobile;
+                this.familyType = res.familyType;
+                this.familyStatus = res.familyStatus;
+                this.profilePhoto = res.profilePhoto;
+          localStorage.setItem("ProfilePhoto:",this.profilePhoto);
         }
       })
   }
 
-  Update(id:any)
+  update(id:any)
   {
     this.route.navigate([`./User/update/${id}`]);
   }

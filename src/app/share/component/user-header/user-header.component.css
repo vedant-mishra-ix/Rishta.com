@@ -1,0 +1,22 @@
+.img
+{
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  border-radius: 5vw;
+  border-style: none;
+  border-color: black;
+}
+.font
+{
+font-size: 14px;
+}
+.margin
+{
+  margin-top: -8px;
+  margin-bottom: -14px;
+}
+.link-click{
+  cursor: pointer;
+}

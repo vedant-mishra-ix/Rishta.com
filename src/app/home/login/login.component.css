@@ -1,4 +1,4 @@
-.Margin
+.margin
 {
   margin-top: 30vh;
   padding-left: 35vw;
@@ -7,12 +7,12 @@
   margin-bottom: 10vh;
 }
 
-.Heading
+.heading
 {
   margin-top: 30px;
   text-align: center;
 }
-.ValidationError
+.validationError
 {
   color: red;
   font-weight: lighter;

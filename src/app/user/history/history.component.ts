@@ -8,22 +8,22 @@ import { RequestHistoryService } from 'src/app/core/model/service/request-histor
 })
 export class HistoryComponent implements OnInit {
 
-  HistoryList:any=[];
-  Id = localStorage.getItem("Id:");
-  constructor(private HistoryService: RequestHistoryService) { }
+  historyList:any=[];
+  id = localStorage.getItem("Id:");
+  constructor(private historyService: RequestHistoryService) { }
 
   ngOnInit(): void {
-    this.History();
+    this.history();
   }
-  History()
+  history()
   {
-    this.HistoryService.History(this.Id).subscribe({next:(res)=>
+    this.historyService.history(this.id).subscribe({next:(res)=>
     {
       for(let i = 0 ; i < res.length ; i++)
       {
-        if(this.Id == res[i].registeredId)
+        if(this.id == res[i].registeredId)
         {
-          this.HistoryList.push(res[i]);
+          this.historyList.push(res[i]);
         }
       }
     }})
