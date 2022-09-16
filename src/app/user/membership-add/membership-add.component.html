@@ -1,0 +1,36 @@
+
+<div class="container-fluid  ">
+  <form class="form rounded-5  bg-light margin shadow "
+  [formGroup]="memberShip" (ngSubmit)="submit()">
+    <h3>Membership</h3>
+  <div class="row mt-4">
+    <div class="col"><span>Name:</span>
+      <select (change)="onSelect($event)"  class="form-control shadow w-50" name="PlansName" id="PlansName" formControlName="PlansName">
+        <option>--Select Plans--</option>
+        <option *ngFor="let list of plansList" value="{{list.plansName}}">{{list.plansName}}</option>
+      </select>
+      <span *ngIf="memberShipValidation['PlansName'].errors?.['required'] &&
+       (memberShipValidation['PlansName'].touched || memberShipValidation['PlansName'].dirty)" class="validationError">
+       This field is required</span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">Plans Price:
+      <select  class="form-control shadow w-50" name="Pay" id="Pay" formControlName="Pay">
+        <option>--Select Amount--</option>
+        <option *ngFor="let list of planIdContain">{{list.price}}</option>
+      </select>
+      <span *ngIf="memberShipValidation['Pay'].errors?.['required'] &&
+       (memberShipValidation['Pay'].touched || memberShipValidation['Pay'].dirty)" class="validationError">
+       This field is required</span>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <input type="submit" [disabled]="memberShip.invalid"  class="btn btn-primary w-50" value="Pay" >
+    </div>
+  </div>
+  </form>
+</div>
+
+

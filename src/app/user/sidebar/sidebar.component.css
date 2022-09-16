@@ -32,4 +32,14 @@
   -webkit-transform: scale(1.5); /* Safari 3-8 */
   transform: scale(1.1);
 }
-
+.hover:hover
+{
+  background-color:palevioletred;
+  border-radius: 10px;
+}
+.text-hover:hover
+{
+  background-color:rgb(4, 52, 4);
+  font-size: 15px;
+  border-radius: 10px;
+}

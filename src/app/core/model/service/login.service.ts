@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class LoginService {
 
   constructor(private http: HttpClient) { }
-  LoginData(LoginData:any):Observable<any>
+  loginData(LoginData:any):Observable<any>
   {
     return this.http.post<any>(`${environment.baseApiUrl}/api/Authenticate/login`,LoginData);
   }

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ReportProfileService {
 
   constructor(private http: HttpClient) { }
-  ReportProfile(Id:any):Observable<any>
+  reportProfile(Id:any):Observable<any>
   {
     console.log("Report data: "+ Id);
     const parm = {};

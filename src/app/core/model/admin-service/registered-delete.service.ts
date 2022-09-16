@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class RegisteredDeleteService {
 
   constructor(private http: HttpClient) { }
-  Delete(index:any):Observable<any>
+  delete(index:any):Observable<any>
   {
     const options = { params: new HttpParams().set('Id', index) };
     return this.http.delete(`${environment.baseApiUrl}/api/Admin/${index}`);

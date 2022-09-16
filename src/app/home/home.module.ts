@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { AboutComponent } from './about/about.component';
@@ -12,9 +11,8 @@ import { HomelistComponent } from './homelist/homelist.component';
 import { CityService } from '../core/model/service/city.service';
 import { ShareModule } from '../share/share.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { ToastrModule } from 'ngx-toastr';
-import { FooterComponent } from './footer/footer.component';
+
 
 
 @NgModule({
@@ -25,7 +23,6 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     RegistrationComponent,
     HomelistComponent,
-    FooterComponent,
 
   ],
   imports: [

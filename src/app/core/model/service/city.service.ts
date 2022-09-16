@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class CityService {
 
   constructor(private http: HttpClient) { }
-  GetCityData():Observable<any>
+  getCityData():Observable<any>
   {
     return this.http.get(`${environment.baseApiUrl}/api/City`);
   }
