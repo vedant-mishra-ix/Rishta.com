@@ -71,7 +71,11 @@ export class RegistrationComponent implements OnInit {
       formData.append('UserName', this.registration.get('UserName')?.value);
       formData.append('Email', this.registration.get('Email')?.value);
       formData.append('Mobile', this.registration.get('Mobile')?.value);
+<<<<<<< HEAD
       formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+      formData.append('Dob', this.registration.get('Dob')?.value);
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
       formData.append('Password', this.registration.get('Password')?.value);
       formData.append('Address', this.registration.get('Address')?.value);
       formData.append('Cast', this.registration.get('Cast')?.value);
@@ -90,9 +94,12 @@ export class RegistrationComponent implements OnInit {
       formData.append('FamilyType', this.registration.get('FamilyType')?.value);
       formData.append('FamilyStatus', this.registration.get('FamilyStatus')?.value);
       formData.append('image', this.registration.get('image')?.value);
+<<<<<<< HEAD
       for (var pair of formData.entries()) {
         console.log("form data value::"+pair[0]+ ', ' + pair[1]);
     }
+=======
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
       this.registrationService.Registration(formData).subscribe((res) => {
         this.toastr.success("Successful Registration Done");
         this.route.navigate(['login']);
@@ -122,7 +129,11 @@ export class RegistrationComponent implements OnInit {
     })
   }
   onSelect(State: any) {
+<<<<<<< HEAD
     this.cityListContain = this.cityList.filter((e: any) => e.statesId == State.target.value);
+=======
+    this.cityListContain = this.cityList.filter((e: any) => e.id == State.target.value);
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
   }
   handleFile(event: any) {
     if (event.target.files.length > 0) {

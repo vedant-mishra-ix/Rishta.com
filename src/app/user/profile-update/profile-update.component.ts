@@ -51,7 +51,11 @@ export class ProfileUpdateComponent implements OnInit {
     formData.append('UserName', this.registration.get('UserName')?.value);
     formData.append('Email', this.registration.get('Email')?.value);
     formData.append('Mobile', this.registration.get('Mobile')?.value);
+<<<<<<< HEAD
     formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+    formData.append('Dob', this.registration.get('Dob')?.value);
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
     formData.append('Password', this.registration.get('Password')?.value);
     formData.append('Address', this.registration.get('Address')?.value);
     formData.append('Cast', this.registration.get('Cast')?.value);
@@ -84,10 +88,22 @@ export class ProfileUpdateComponent implements OnInit {
   else{
     this.toastr.error("Age must be greater than 18");
   }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
   }
   get registrationValidation() {
     return this.registration.controls;
   }
+<<<<<<< HEAD
+=======
+=======
+  get registrationValidation() {
+    return this.registration.controls;
+  }
+>>>>>>> 98a1810ba74fc92dc55af00ebe5b1928cad3c302
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
   ngOnInit(): void {
     this.registration = this.fb.group({
       Id: [''],

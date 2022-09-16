@@ -13,11 +13,24 @@ import { UserListService } from 'src/app/core/model/service/user-list.service';
 })
 export class ListComponent implements OnInit {
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
   userList: any = [];
   id = localStorage.getItem("Id:");
   historyList: any = [];
   count: number = 0;
   ProfileCount = localStorage.getItem("ProfileVisible:");
+<<<<<<< HEAD
+=======
+=======
+  userList: any[] = [];
+  id = localStorage.getItem("Id:");
+  historyList: any = [];
+  count: number = 0;
+>>>>>>> 98a1810ba74fc92dc55af00ebe5b1928cad3c302
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
 
   constructor(private userListService: UserListService, private route: Router,
     private reportService: ReportProfileService, private toastr: ToastrService,
@@ -28,7 +41,14 @@ export class ListComponent implements OnInit {
     this.history();
   }
   getData() {
+<<<<<<< HEAD
     this.userList.length=0;
+=======
+<<<<<<< HEAD
+    this.userList.length=0;
+=======
+>>>>>>> 98a1810ba74fc92dc55af00ebe5b1928cad3c302
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
     this.userListService.registered(this.id).subscribe({
       next: (res) => {
         for (let i = 0; i < res.length; i++) {

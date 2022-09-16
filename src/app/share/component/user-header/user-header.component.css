@@ -20,8 +20,11 @@ font-size: 14px;
 .link-click{
   cursor: pointer;
 }
+<<<<<<< HEAD
 .hover:hover
 {
   background-color: green;
   border-radius: 10px;
 }
+=======
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
