@@ -39,7 +39,11 @@
 }
 .text-hover:hover
 {
+<<<<<<< HEAD
   background-color:maroon;
+=======
+  background-color:rgb(4, 52, 4);
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
   font-size: 15px;
   border-radius: 10px;
 }

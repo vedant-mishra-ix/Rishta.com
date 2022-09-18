@@ -1,18 +1,43 @@
+<<<<<<< HEAD
 <h4 class="heading">Registration</h4>
 <div class="container-fluid ">
   <form class="form mt-4 rounded bg-light border border-3 pb-5 pt-3 margin form-overflow" [formGroup]="registration"
     (ngSubmit)="submit()">
+=======
+
+<h3 class="heading">Registration</h3>
+<div class="container-fluid ">
+<<<<<<< HEAD
+  <form class="form mt-4 rounded bg-light border border-3 pb-5 pt-3 margin form-overflow"
+=======
+  <form class="form mt-4 rounded bg-light border border-3  margin form-overflow"
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
+  [formGroup]="registration" (ngSubmit)="submit()">
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
     <div class="row">
       <div class="col-2">
         <label for="UserName">Name:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
+<<<<<<< HEAD
         <input class="form-control" type="text" name="UserName" id="UserName" formControlName="UserName"
           oninput="this.value=this.value.replace(/^[0-9 .]/g,'')">
         <span *ngIf="registrationValidation['UserName']?.errors?.['required']
         && (registrationValidation['UserName']?.touched || registrationValidation['UserName']?.dirty)"
           class="validationError ">
           This field is required(Numeric value not allowed )</span>
+=======
+        <input  class="form-control" type="text" name="UserName" id="UserName" formControlName="UserName"
+        oninput="this.value=this.value.replace(/^[0-9 .]/g,'')">
+        <span *ngIf="registrationValidation['UserName']?.errors?.['required']
+        && (registrationValidation['UserName']?.touched || registrationValidation['UserName']?.dirty)"
+<<<<<<< HEAD
+        class="validationError ">
+=======
+        class="validationError">
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
+        This field is required(Numeric value not allowed )</span>
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
       </div>
     </div>
     <div class="row mt-3">
@@ -23,6 +48,7 @@
         <input class="form-control" type="email" name="Email" id="Email" formControlName="Email">
         <span *ngIf="registrationValidation['Email']?.errors?.['required']
         && (registrationValidation['Email']?.touched || registrationValidation['Email']?.dirty)"
+<<<<<<< HEAD
           class="validationError">
           This field is required</span>
         <span *ngIf="registrationValidation['Email']?.errors?.['email']
@@ -30,6 +56,15 @@
           class="validationError">
           This field valid email</span>
       </div>
+=======
+        class="validationError">
+        This field is required</span>
+        <span *ngIf="registrationValidation['Email']?.errors?.['email']
+        && (registrationValidation['Email']?.touched || registrationValidation['Email']?.dirty)"
+        class="validationError">
+        This field valid email</span>
+        </div>
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
     </div>
     <div class="row mt-3">
       <div class="col-2">
@@ -37,11 +72,19 @@
       </div>
       <div class="col-6">
         <input class="form-control" type="text" name="Mobile" id="Mobile" formControlName="Mobile"
+<<<<<<< HEAD
           oninput="this.value=this.value.replace(/[^0-9 .]/g,'')" maxlength="10">
         <span *ngIf="registrationValidation['Mobile']?.errors?.['required']
         && (registrationValidation['Mobile']?.touched || registrationValidation['Mobile']?.dirty)"
           class="validationError">
           This field is required (ex:vedant@gmail.com)</span>
+=======
+         oninput="this.value=this.value.replace(/[^0-9 .]/g,'')" maxlength="10">
+        <span *ngIf="registrationValidation['Mobile']?.errors?.['required']
+        && (registrationValidation['Mobile']?.touched || registrationValidation['Mobile']?.dirty)"
+        class="validationError">
+        This field is required (ex:vedant@gmail.com)</span>
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
       </div>
     </div>
     <div class="row mt-3">
@@ -49,11 +92,20 @@
         <label for="Dob">DOB:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
+<<<<<<< HEAD
         <input class="form-control" type="date" max={{date}} name="Dob" id="Dob" (keyup)="ageCalculate()"
           formControlName="Dob">
         <span *ngIf="registrationValidation['Dob']?.errors?.['required']
         && (registrationValidation['Dob']?.touched || registrationValidation['Dob']?.dirty)" class="validationError">
           This field is required and Age must be 18</span>
+=======
+        <input class="form-control" type="date" max={{date}} name="Dob" id="Dob"
+        (keyup)="ageCalculate()" formControlName="Dob">
+        <span *ngIf="registrationValidation['Dob']?.errors?.['required']
+        && (registrationValidation['Dob']?.touched || registrationValidation['Dob']?.dirty)"
+        class="validationError">
+        This field is required and Age must be 18</span>
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
       </div>
     </div>
     <div class="row mt-3">
@@ -64,8 +116,13 @@
         <input class="form-control" type="password" name="Password" id="Password" formControlName="Password">
         <span *ngIf="registrationValidation['Password']?.errors?.['required']
         && (registrationValidation['Password']?.touched ||registrationValidation['Password']?.dirty)"
+<<<<<<< HEAD
           class="validationError">
           This field is required</span>
+=======
+        class="validationError">
+        This field is required</span>
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
       </div>
     </div>
     <div class="row mt-3">
@@ -76,8 +133,13 @@
         <textarea class="form-control" rows="1" name="Address" id="Address" formControlName="Address"></textarea>
         <span *ngIf="registrationValidation['Address']?.errors?.['required']
         && (registrationValidation['Address']?.touched || registrationValidation['Address']?.dirty)"
+<<<<<<< HEAD
           class="validationError">
           This field is required</span>
+=======
+        class="validationError">
+        This field is required</span>
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
       </div>
     </div>
     <div class="row mt-3">
@@ -98,8 +160,14 @@
           <option *ngFor="let gender of gender | keyvalue">{{gender.value}}</option>
         </select>
         <span *ngIf="registrationValidation['Sex']?.errors?.['required']
+<<<<<<< HEAD
         && (registrationValidation['Sex']?.touched || registrationValidation['Sex']?.dirty)" class="validationError">
           This field is required</span>
+=======
+        && (registrationValidation['Sex']?.touched || registrationValidation['Sex']?.dirty)"
+        class="validationError">
+        This field is required</span>
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
       </div>
     </div>
     <div class="row mt-3">
@@ -171,8 +239,17 @@
       </div>
       <div class="col-6">
         <select class="form-control" name="City" id="City" formControlName="City">
+<<<<<<< HEAD
           <option>--Select State--</option>
           <option *ngFor="let cityList of cityListContain">{{cityList.cities}}</option>
+=======
+<<<<<<< HEAD
+          <option>--Select State--</option>
+          <option *ngFor="let cityList of cityListContain">{{cityList.cities}}</option>
+=======
+          <option *ngFor="let cityList of cityListContain;let i = index">{{cityList.cities}}</option>
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
         </select>
       </div>
     </div>
@@ -238,12 +315,21 @@
         <label for="files">Photo:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
+<<<<<<< HEAD
         <input class="form-control" type="file" (change)="handleFile($event)" name="files" id="files"
           formControlName="files">
         <span *ngIf="registrationValidation['files']?.errors?.['required']
          && (registrationValidation['files']?.touched || registrationValidation['files']?.dirty)"
           class="validationError">
           This field is required</span>
+=======
+        <input class="form-control" type="file" (change)="handleFile($event)"
+         name="files" id="files" formControlName="files">
+         <span *ngIf="registrationValidation['files']?.errors?.['required']
+         && (registrationValidation['files']?.touched || registrationValidation['files']?.dirty)"
+         class="validationError">
+         This field is required</span>
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
       </div>
     </div>
     <div class="row mt-3">

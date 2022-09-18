@@ -8,7 +8,12 @@
 }
 .heading
 {
+<<<<<<< HEAD
   font-weight: bolder;
+=======
+  margin-top: 30px;
+  text-align: center;
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
 }
 .validationError
 {
