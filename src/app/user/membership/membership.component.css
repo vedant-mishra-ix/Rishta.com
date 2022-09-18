@@ -1,0 +1,31 @@
+.table-overflow
+{
+  width: 80vw;
+  overflow: auto;
+  height: 76vh;
+  padding-right: 4vw;
+}
+.font
+{
+  font-size: 1rem;
+}
+.zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.7);
+}
+.zoom {
+  transition: transform .9s;
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+}
+.zoom1:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.1);
+}
+.zoom1 {
+  transition: transform .9s;
+  margin: 0 auto;
+}

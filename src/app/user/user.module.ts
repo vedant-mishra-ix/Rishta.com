@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
-import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatchedComponent } from './matched/matched.component';
 import { UserComponent } from './user.component';
@@ -13,11 +12,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SpecificProfileComponent } from './specific-profile/specific-profile.component';
 import { RequestComponent } from './request/request.component';
 import { HistoryComponent } from './history/history.component';
+import { MembershipComponent } from './membership/membership.component';
+import { MembershipAddComponent } from './membership-add/membership-add.component';
+import { ShareModule } from '../share/share.module';
+import { ProfileMatchedComponent } from './profile-matched/profile-matched.component';
 
 
 @NgModule({
   declarations: [
-    HeaderComponent,
     SidebarComponent,
     MatchedComponent,
     UserComponent,
@@ -27,11 +29,15 @@ import { HistoryComponent } from './history/history.component';
     SpecificProfileComponent,
     RequestComponent,
     HistoryComponent,
+    MembershipComponent,
+    MembershipAddComponent,
+    ProfileMatchedComponent,
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     ReactiveFormsModule,
+    ShareModule
   ]
 })
 export class UserModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MembershipAddService } from '../core/model/service/membership-add.service';
 import { UserProfileService } from '../core/model/service/user-profile.service';
 import { LoginComponent } from '../home/login/login.component';
 
@@ -8,16 +9,18 @@ import { LoginComponent } from '../home/login/login.component';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  UserName = localStorage.getItem("UserName:")
-  Id:any;
-  constructor(private ProfileService: UserProfileService) {
-   }
+  userName = localStorage.getItem("UserName:")
+  Id: any;
+  constructor(private profileService: UserProfileService, private memberShipService: MembershipAddService) {
+  }
 
   ngOnInit(): void {
-    this.ProfileService.UserProfile(this.UserName ?? '').subscribe(
+    this.profileService.userProfile(this.userName ?? '').subscribe(
       {
         next: (res) => {
-          localStorage.setItem("Id:",res.id);
+          localStorage.setItem("Id:", res.id);
+          localStorage.setItem("City:",res.city);
+          localStorage.setItem("Gender:",res.sex);
         }
       })
   }
