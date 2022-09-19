@@ -8,24 +8,39 @@ import { RequestHistoryService } from 'src/app/core/model/service/request-histor
 })
 export class HistoryComponent implements OnInit {
 
-  HistoryList:any=[];
-  Id = localStorage.getItem("Id:");
-  constructor(private HistoryService: RequestHistoryService) { }
+  historyList:any=[];
+  id = localStorage.getItem("Id:");
+  page:number=1;
+  count:number=0;
+  tableSize:number=3;
+  tableSizes:any=[3,6,9,12];
+  constructor(private historyService: RequestHistoryService) { }
 
   ngOnInit(): void {
-    this.History();
+    this.history();
   }
-  History()
+  history()
   {
-    this.HistoryService.History(this.Id).subscribe({next:(res)=>
+    this.historyService.history(this.id).subscribe({next:(res)=>
     {
       for(let i = 0 ; i < res.length ; i++)
       {
-        if(this.Id == res[i].registeredId)
+        if(this.id == res[i].registeredId)
         {
-          this.HistoryList.push(res[i]);
+          this.historyList.push(res[i]);
         }
       }
     }})
+  }
+  onTableDataChange(event:any)
+  {
+    this.page = event;
+    this.history();
+  }
+  onTableSizeChange(event:any):void
+  {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.history();
   }
 }

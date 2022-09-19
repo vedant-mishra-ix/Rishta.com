@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeComponent } from './home.component';
 import { HomelistComponent } from './homelist/homelist.component';
 import { LoginComponent } from './login/login.component';
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path:"registration",
         component:RegistrationComponent
+      },
+      {
+        path:"forgot",
+        component:ForgotPasswordComponent
       }
     ]
   },

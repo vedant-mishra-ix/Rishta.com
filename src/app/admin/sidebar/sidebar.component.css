@@ -31,3 +31,19 @@
   color: whitesmoke;
   padding-left: 5px;
 }
+.hover:hover
+{
+  background-color:lightpink;
+  border-radius: 30px;
+}
+.icon:hover
+{
+  background-color:saddlebrown;
+  border-radius: 30px;
+}
+.notification
+{
+  font-weight: bolder;
+  font-size:medium;
+  color: red;
+}

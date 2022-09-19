@@ -1,4 +1,12 @@
-<div class="container-fluid justify-content-start mt-5 table-overflow">
+<div class="container-fluid justify-content-start mt-5">
+  <div class="d-flex justify-content-left">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -8,10 +16,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let list of HistoryList">
-        <td><img class="Zoom" src="http://localhost:8080/{{list.requestImage}}" width="50px" height="50px"></td>
-        <td class="Zoom1">{{list.requestUserName}}</td>
-        <td class="Zoom1">{{list.requestEmail}}</td>
+      <tr *ngFor="let list of historyList| paginate:{ itemsPerPage:this.tableSize,
+        currentPage:this.page,totalItems:this.count};let i = index">
+        <td><img class="zoom" src="http://localhost:8080/{{list.requestImage}}"></td>
+        <td class="zoom1">{{list.requestUserName}}</td>
+        <td class="zoom1">{{list.requestEmail}}</td>
       </tr>
     </tbody>
   </table>

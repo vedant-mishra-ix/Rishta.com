@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notfound',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotfoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route:Router) { }
 
+  reload()
+  {
+    this.route.navigate(['']);
+  }
   ngOnInit(): void {
   }
 

@@ -1,96 +1,96 @@
-<h3 class="Heading">Profile Update</h3>
+<h4 class="heading">Profile Update</h4>
 <div class="container-fluid ">
-  <form class="form mt-4 rounded bg-light border border-3  Margin Form-Overflow"
-  [formGroup]="Registration" (ngSubmit)="Submit()">
+  <form class="form mt-4 rounded bg-light border border-3 shadow-lg margin form-overflow"
+  [formGroup]="registration" (ngSubmit)="submit()">
 
-  <div class="row">
+  <div class="row mt-3">
     <div class="col-2">
-      <label for="UserName">Id:<span class="ValidationError">*</span></label>
+      <label for="UserName">Id:<span class="validationError">*</span></label>
     </div>
     <div class="col-6">
       <input  class="form-control" readonly type="text" name="Id" id="Id" formControlName="Id">
-      <span *ngIf="RegistrationValidation['Id']?.errors?.['required']
-      && (RegistrationValidation['Id']?.touched || RegistrationValidation['Id']?.dirty)"
-      class="ValidationError">
+      <span *ngIf="registrationValidation['Id']?.errors?.['required']
+      && (registrationValidation['Id']?.touched || registrationValidation['Id']?.dirty)"
+      class="validationError">
       This field is required</span>
     </div>
   </div>
-    <div class="row">
+    <div class="row mt-3">
       <div class="col-2">
-        <label for="UserName">Name:<span class="ValidationError">*</span></label>
+        <label for="UserName">Name:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <input  class="form-control" readonly type="text" name="UserName" id="UserName" formControlName="UserName"
         >
-        <span *ngIf="RegistrationValidation['UserName']?.errors?.['required']
-        && (RegistrationValidation['UserName']?.touched || RegistrationValidation['UserName']?.dirty)"
-        class="ValidationError">
+        <span *ngIf="registrationValidation['UserName']?.errors?.['required']
+        && (registrationValidation['UserName']?.touched || registrationValidation['UserName']?.dirty)"
+        class="validationError">
         This field is required</span>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Email">Email:<span class="ValidationError">*</span></label>
+        <label for="Email">Email:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <input class="form-control" type="email" name="Email" id="Email" formControlName="Email">
-        <span *ngIf="RegistrationValidation['Email']?.errors?.['required']
-        && (RegistrationValidation['Email']?.touched || RegistrationValidation['Email']?.dirty)"
-        class="ValidationError">
+        <span *ngIf="registrationValidation['Email']?.errors?.['required']
+        && (registrationValidation['Email']?.touched || registrationValidation['Email']?.dirty)"
+        class="validationError">
         This field is required</span>
-        <span *ngIf="RegistrationValidation['Email']?.errors?.['email']
-        && (RegistrationValidation['Email']?.touched || RegistrationValidation['Email']?.dirty)"
-        class="ValidationError">
+        <span *ngIf="registrationValidation['Email']?.errors?.['email']
+        && (registrationValidation['Email']?.touched || registrationValidation['Email']?.dirty)"
+        class="validationError">
         This field valid email</span>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Mobile">Mobile:<span class="ValidationError">*</span></label>
+        <label for="Mobile">Mobile:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <input class="form-control"  type="text" name="Mobile" id="Mobile" formControlName="Mobile"
          oninput="this.value=this.value.replace(/[^0-9 .]/g,'')" maxlength="10">
-        <span *ngIf="RegistrationValidation['Mobile']?.errors?.['required']
-        && (RegistrationValidation['Mobile']?.touched || RegistrationValidation['Mobile']?.dirty)"
-        class="ValidationError">
+        <span *ngIf="registrationValidation['Mobile']?.errors?.['required']
+        && (registrationValidation['Mobile']?.touched || registrationValidation['Mobile']?.dirty)"
+        class="validationError">
         This field is required</span>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Dob">DOB:<span class="ValidationError">*</span></label>
+        <label for="Dob">DOB:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
-        <input class="form-control" max={{Date}}  type="date" name="Dob" id="Dob"
-        (keyup)="AgeCalculate()" formControlName="Dob">
-        <span *ngIf="RegistrationValidation['Dob']?.errors?.['required']
-        && (RegistrationValidation['Dob']?.touched || RegistrationValidation['Dob']?.dirty)"
-        class="ValidationError">
+        <input class="form-control" max={{date}}  type="date" name="Dob" id="Dob"
+        (keyup)="ageCalculate()" formControlName="Dob">
+        <span *ngIf="registrationValidation['Dob']?.errors?.['required']
+        && (registrationValidation['Dob']?.touched || registrationValidation['Dob']?.dirty)"
+        class="validationError">
         This field is required</span>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Password">Password:<span class="ValidationError">*</span></label>
+        <label for="Password">Password:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <input class="form-control" readonly type="password" name="Password" id="Password" formControlName="Password">
-        <span *ngIf="RegistrationValidation['Password']?.errors?.['required']
-        && (RegistrationValidation['Password']?.touched || RegistrationValidation['Password']?.dirty)"
-        class="ValidationError">
+        <span *ngIf="registrationValidation['Password']?.errors?.['required']
+        && (registrationValidation['Password']?.touched || registrationValidation['Password']?.dirty)"
+        class="validationError">
         This field is required</span>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Address">Address:<span class="ValidationError">*</span></label>
+        <label for="Address">Address:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <textarea class="form-control" rows="1" name="Address" id="Address" formControlName="Address"></textarea>
-        <span *ngIf="RegistrationValidation['Address']?.errors?.['required']
-        && (RegistrationValidation['Address']?.touched || RegistrationValidation['Address']?.dirty)"
-        class="ValidationError">
+        <span *ngIf="registrationValidation['Address']?.errors?.['required']
+        && (registrationValidation['Address']?.touched || registrationValidation['Address']?.dirty)"
+        class="validationError">
         This field is required</span>
       </div>
     </div>
@@ -104,16 +104,16 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Sex">Gender:<span class="ValidationError">*</span></label>
+        <label for="Sex">Gender:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <select class="form-control"  name="Sex" id="Sex" formControlName="Sex">
           <option>- Select Gender -</option>
-          <option *ngFor="let gender of Gender | keyvalue">{{gender.value}}</option>
+          <option *ngFor="let gender of gender | keyvalue">{{gender.value}}</option>
         </select>
-        <span *ngIf="RegistrationValidation['Sex']?.errors?.['required']
-        && (RegistrationValidation['Sex']?.touched || RegistrationValidation['Sex']?.dirty)"
-        class="ValidationError">
+        <span *ngIf="registrationValidation['Sex']?.errors?.['required']
+        && (registrationValidation['Sex']?.touched || registrationValidation['Sex']?.dirty)"
+        class="validationError">
         This field is required</span>
       </div>
     </div>
@@ -124,7 +124,7 @@
       <div class="col-6">
         <select class="form-control"  name="Religious" id="Religious" formControlName="Religious">
           <option>- Select Religious -</option>
-          <option *ngFor="let religious of Religious1 | keyvalue">{{religious.value}}</option>
+          <option *ngFor="let religious of religious1 | keyvalue">{{religious.value}}</option>
         </select>
       </div>
     </div>
@@ -135,7 +135,7 @@
       <div class="col-6">
         <select class="form-control"  name="MartialStatus" id="MartialStatus" formControlName="MartialStatus">
           <option>- Select Martial Status-</option>
-          <option *ngFor="let martialstatus of MarriageStatus | keyvalue">{{martialstatus.value}}</option>
+          <option *ngFor="let martialstatus of marriageStatus | keyvalue">{{martialstatus.value}}</option>
         </select>
       </div>
     </div>
@@ -146,7 +146,7 @@
       <div class="col-6">
         <select class="form-control" name="MotherTongue" id="MotherTongue" formControlName="MotherTongue">
           <option>- Select Mother Tongue -</option>
-          <option *ngFor="let mothertongue of MotherTongue1 | keyvalue">{{mothertongue.value}}</option>
+          <option *ngFor="let mothertongue of motherTongue1 | keyvalue">{{mothertongue.value}}</option>
         </select>
       </div>
     </div>
@@ -174,7 +174,7 @@
         <label for="State">State:</label>
       </div>
       <div class="col-6">
-        <select (change)="OnSelect($event)"  class="form-control" name="State" id="State" formControlName="State">
+        <select (change)="onSelect($event)"  class="form-control" name="State" id="State" formControlName="State">
           <option>--Select State--</option>
           <option *ngFor="let stateList of StateList" value="{{stateList.id}}">{{stateList.states}}</option>
         </select>
@@ -186,7 +186,7 @@
       </div>
       <div class="col-6">
         <select class="form-control"  name="City" id="City" formControlName="City">
-          <option *ngFor="let cityList of CityListContain;let i = index">{{cityList.cities}}</option>
+          <option *ngFor="let cityList of cityListContain;let i = index">{{cityList.cities}}</option>
         </select>
       </div>
     </div>
@@ -195,7 +195,8 @@
         <label for="HighestEducation">Highest Education:</label>
       </div>
       <div class="col-6">
-        <input class="form-control"  type="text" name="HighestEducation" id="HighestEducation" formControlName="HighestEducation">
+        <input class="form-control"  type="text" name="HighestEducation" id="HighestEducation"
+        formControlName="HighestEducation">
       </div>
     </div>
     <div class="row mt-3">
@@ -203,7 +204,8 @@
         <label for="Occupation">Occupation:</label>
       </div>
       <div class="col-6">
-        <input class="form-control"  type="text" name="Occupation" id="Occupation" formControlName="Occupation">
+        <input class="form-control"  type="text" name="Occupation" id="Occupation"
+        formControlName="Occupation">
       </div>
     </div>
     <div class="row mt-3">
@@ -211,7 +213,8 @@
         <label for="AnnualIncome">Annual Income(lakhs):</label>
       </div>
       <div class="col-6">
-        <input class="form-control" type="text" name="AnnualIncome" id="AnnualIncome" formControlName="AnnualIncome"
+        <input class="form-control" type="text" name="AnnualIncome" id="AnnualIncome"
+        formControlName="AnnualIncome"
           oninput="this.value=this.value.replace(/[^0-9 .]/g,'')">
       </div>
     </div>
@@ -220,7 +223,8 @@
         <label for="ParentMobile">Parent Pho:</label>
       </div>
       <div class="col-6">
-        <input class="form-control" type="text" name="ParentMobile" id="ParentMobile" formControlName="ParentMobile"
+        <input class="form-control" type="text" name="ParentMobile" id="ParentMobile"
+        formControlName="ParentMobile"
          oninput="this.value=this.value.replace(/[^0-9 .]/g,'')" maxlength="10">
       </div>
     </div>
@@ -231,7 +235,7 @@
       <div class="col-6">
         <select class="form-control" name="FamilyType" id="FamilyType" formControlName="FamilyType">
           <option>- Select Family Type -</option>
-          <option *ngFor="let familytype of FamilyType1 | keyvalue">{{familytype.value}}</option>
+          <option *ngFor="let familytype of familyType1 | keyvalue">{{familytype.value}}</option>
         </select>
       </div>
     </div>
@@ -242,7 +246,7 @@
       <div class="col-6">
         <select class="form-control" name="FamilyStatus" id="FamilyStatus" formControlName="FamilyStatus">
           <option>- Select Family Status -</option>
-          <option *ngFor="let familystatus of FamilyStatus1 | keyvalue">{{familystatus.value}}</option>
+          <option *ngFor="let familystatus of familyStatus1 | keyvalue">{{familystatus.value}}</option>
         </select>
       </div>
     </div>
@@ -251,11 +255,11 @@
         <label for="files">Photo:</label>
       </div>
       <div class="col-6">
-        <input class="form-control" type="file" (change)="HandleFile($event)"
+        <input class="form-control" type="file" (change)="handleFile($event)"
          name="files" id="files" formControlName="files">
-         <span *ngIf="RegistrationValidation['files']?.errors?.['required']
-         && (RegistrationValidation['files']?.touched || RegistrationValidation['files']?.dirty)"
-         class="ValidationError">
+         <span *ngIf="registrationValidation['files']?.errors?.['required']
+         && (registrationValidation['files']?.touched || registrationValidation['files']?.dirty)"
+         class="validationError">
          This field is required</span>
       </div>
     </div>
