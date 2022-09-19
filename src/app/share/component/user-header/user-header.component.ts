@@ -25,11 +25,19 @@ export class UserHeaderComponent implements OnInit {
       localStorage.removeItem("UserSpecific2:");
       localStorage.removeItem("UserSpecific3:");
       localStorage.removeItem("UserSpecific4:");
+<<<<<<< HEAD
       localStorage.removeItem("City:");
       localStorage.removeItem("Gender:");
       localStorage.removeItem("ProfileMatched:");
       localStorage.removeItem("NotificationCount:");
       localStorage.removeItem("RequestGet:");
+=======
+<<<<<<< HEAD
+      localStorage.removeItem("City:");
+      localStorage.removeItem("Gender:");
+=======
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
       return this.authService.deleteToken();
     }
     ngOnInit(): void {

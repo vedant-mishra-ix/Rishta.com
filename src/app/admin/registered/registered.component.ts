@@ -18,6 +18,7 @@ export class RegisteredComponent implements OnInit {
   uservalue = localStorage.getItem('UserName:');
   id: any;
   deleteId: any;
+<<<<<<< HEAD
   page: number = 1;
   count: number = 0;
   tableSize: number = 3;
@@ -25,6 +26,8 @@ export class RegisteredComponent implements OnInit {
   registeredCount: any;
   reponseCount: any;
   notificationCount: any;
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
   constructor(private registeredService: RegisteredService,
     private deleteService: RegisteredDeleteService, private adminProfile: AdminProfileService
     , private toastr: ToastrService) { }
@@ -35,7 +38,10 @@ export class RegisteredComponent implements OnInit {
         next: (res) => {
           this.id = res.id;
           this.profileRegistered(res.id);
+<<<<<<< HEAD
           this.registeredDataNotification(this.registeredCount, this.reponseCount);
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
         }
       })
   }
@@ -46,13 +52,17 @@ export class RegisteredComponent implements OnInit {
         for (let i = 0; i < res.length; i++) {
           if (res[i].userName != 'pankaj') {
             this.registered.push(res[i]);
+<<<<<<< HEAD
             this.registeredCount = this.registered.length;
             this.reponseCount = res.length;
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
           }
         }
       }
     })
   }
+<<<<<<< HEAD
   registeredDataNotification(counterFirst: any, counterSecond: any) {
     if (counterSecond == counterFirst) {
       this.notificationCount = 1;
@@ -62,6 +72,8 @@ export class RegisteredComponent implements OnInit {
       localStorage.setItem("RegisteredDataNotification:", this.notificationCount);
     }
   }
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
   deletePopup(e: any) {
     if (e) {
       this.deleteService.delete(this.deleteId ?? '').subscribe({
@@ -75,6 +87,7 @@ export class RegisteredComponent implements OnInit {
   deleteData(id: any) {
     this.alert.openPopup();
     this.deleteId = id;
+<<<<<<< HEAD
   }
   onTableDataChange(event: any) {
     this.page = event;
@@ -84,5 +97,7 @@ export class RegisteredComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
     this.profileRegistered(this.id);
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
   }
 }

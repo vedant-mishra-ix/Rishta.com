@@ -10,11 +10,14 @@ import { MembershipProfilesService } from 'src/app/core/model/admin-service/memb
 export class SubscribersComponent implements OnInit {
 
   subscribersList:any=[];
+<<<<<<< HEAD
   page:number=1;
   count:number=0;
   tableSize:number=3;
   tableSizes:any=[3,6,9,12];
   notificationCount:any;
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
   constructor(private membershipService: MembershipProfilesService,private toaster:ToastrService) { }
 
   ngOnInit(): void {
@@ -25,6 +28,7 @@ export class SubscribersComponent implements OnInit {
     this.membershipService.membershipProfiles().subscribe({next:(res)=>
     {
       this.subscribersList = res;
+<<<<<<< HEAD
       if(this.subscribersList.length != res.length)
       {
         this.notificationCount = 1;
@@ -32,6 +36,11 @@ export class SubscribersComponent implements OnInit {
       }
     }})
   }
+=======
+    }})
+  }
+
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
   remove(id:any)
   {
     this.membershipService.deleteProfile(id).subscribe({next:(res)=>
@@ -43,6 +52,7 @@ export class SubscribersComponent implements OnInit {
       this.toaster.error("Something wrong")
     }})
   }
+<<<<<<< HEAD
   onTableDataChange(event:any)
   {
     this.page = event;
@@ -54,4 +64,6 @@ export class SubscribersComponent implements OnInit {
     this.page = 1;
     this.subscribers();
   }
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
 }

@@ -1,4 +1,5 @@
 <app-alert-box (PopItem)="deletePopup($event)"></app-alert-box>
+<<<<<<< HEAD
 <div class="container-fluid justify-content-start mt-5 ">
   <div class="d-flex justify-content-left">
     <pagination-controls
@@ -8,6 +9,9 @@
     >
     </pagination-controls>
   </div>
+=======
+<div class="container-fluid justify-content-start mt-5 table-overflow">
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
   <table class="table table-striped">
     <thead>
       <tr>
@@ -20,8 +24,12 @@
       </tr>
     </thead>
     <tbody>
+<<<<<<< HEAD
       <tr *ngFor="let list of registered  | paginate:{ itemsPerPage:this.tableSize,
         currentPage:this.page,totalItems:this.count};let i = index">
+=======
+      <tr *ngFor="let list of registered">
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
         <td><img class="zoom" src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
         <td class="zoom1">{{list.userName}}</td>
         <td class="zoom1">{{list.email}}</td>

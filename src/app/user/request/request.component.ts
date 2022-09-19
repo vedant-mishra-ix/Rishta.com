@@ -13,11 +13,14 @@ export class RequestComponent implements OnInit {
   id = localStorage.getItem("Id:");
   requestList: any = [];
   removeId: any;
+<<<<<<< HEAD
   page:number=1;
   count:number=0;
   tableSize:number=3;
   tableSizes:any=[3,6,9,12];
   notificationCount:any;
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
   constructor(private requestService: RequestProfileService, private toastr: ToastrService,
     private route: Router) { }
 
@@ -31,8 +34,11 @@ export class RequestComponent implements OnInit {
         for (let i = 0; i < res.length; i++) {
           if (this.id == res[i].registeredId) {
             this.requestList.push(res[i]);
+<<<<<<< HEAD
             this.notificationCount = this.requestList.length;
             localStorage.setItem("RequestGet:",this.notificationCount);
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
             this.toastr.success("You have Received Request")
           }
         }
@@ -58,6 +64,7 @@ export class RequestComponent implements OnInit {
         this.requestData();
       }
     })
+<<<<<<< HEAD
   }
   onTableDataChange(event:any)
   {
@@ -69,5 +76,7 @@ export class RequestComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
     this.requestData();
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
   }
 }

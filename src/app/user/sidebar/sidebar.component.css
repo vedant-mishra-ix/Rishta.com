@@ -39,6 +39,7 @@
 }
 .text-hover:hover
 {
+<<<<<<< HEAD
   background-color:maroon;
   font-size: 15px;
   border-radius: 10px;
@@ -49,3 +50,13 @@
   font-size:medium;
   color: red;
 }
+=======
+<<<<<<< HEAD
+  background-color:maroon;
+=======
+  background-color:rgb(4, 52, 4);
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+  font-size: 15px;
+  border-radius: 10px;
+}
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656

@@ -7,7 +7,10 @@ import { RegisteredComponent } from './registered/registered.component';
 import { ReportedProfileComponent } from './reported-profile/reported-profile.component';
 import { ShareModule } from '../share/share.module';
 import { SubscribersComponent } from './subscribers/subscribers.component';
+<<<<<<< HEAD
 import{NgxPaginationModule} from 'ngx-pagination';
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
 
 
 @NgModule({

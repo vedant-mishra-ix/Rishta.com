@@ -10,10 +10,13 @@ export class HistoryComponent implements OnInit {
 
   historyList:any=[];
   id = localStorage.getItem("Id:");
+<<<<<<< HEAD
   page:number=1;
   count:number=0;
   tableSize:number=3;
   tableSizes:any=[3,6,9,12];
+=======
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
   constructor(private historyService: RequestHistoryService) { }
 
   ngOnInit(): void {
