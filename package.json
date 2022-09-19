@@ -19,9 +19,12 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+<<<<<<< HEAD
     "@ng-bootstrap/ng-bootstrap": "^12.1.2",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.1.3",
+=======
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
     "ngx-pagination": "^6.0.2",
     "ngx-toastr": "^14.0.0",
     "rxjs": "~7.5.0",

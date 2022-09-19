@@ -30,8 +30,11 @@ export class ProfileUpdateComponent implements OnInit {
   Files!: File;
   cityList: any = [];
   cityListContain: any = [];
+<<<<<<< HEAD
   countryList:any=[];
   stateListContain:any=[];
+=======
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
   StateList: any = [];
   id: any;
   Id: any;
@@ -53,7 +56,23 @@ export class ProfileUpdateComponent implements OnInit {
     formData.append('UserName', this.registration.get('UserName')?.value);
     formData.append('Email', this.registration.get('Email')?.value);
     formData.append('Mobile', this.registration.get('Mobile')?.value);
+<<<<<<< HEAD
     formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+<<<<<<< HEAD
+    formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+<<<<<<< HEAD
+    formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+<<<<<<< HEAD
+    formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+    formData.append('Dob', this.registration.get('Dob')?.value);
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
     formData.append('Password', this.registration.get('Password')?.value);
     formData.append('Address', this.registration.get('Address')?.value);
     formData.append('Cast', this.registration.get('Cast')?.value);
@@ -86,10 +105,40 @@ export class ProfileUpdateComponent implements OnInit {
   else{
     this.toastr.error("Age must be greater than 18");
   }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
   }
   get registrationValidation() {
     return this.registration.controls;
   }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+  get registrationValidation() {
+    return this.registration.controls;
+  }
+>>>>>>> 98a1810ba74fc92dc55af00ebe5b1928cad3c302
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
   ngOnInit(): void {
     this.registration = this.fb.group({
       Id: [''],
@@ -120,7 +169,10 @@ export class ProfileUpdateComponent implements OnInit {
     });
     this.getCity();
     this.getState();
+<<<<<<< HEAD
     this.getCountry();
+=======
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
     this.id = this.idRoute.snapshot.paramMap.get('Id');
     this.profileService.userProfile(this.uservalue ?? '').subscribe(
       {
@@ -131,7 +183,19 @@ export class ProfileUpdateComponent implements OnInit {
               UserName: res.userName,
               Email: res.email,
               Mobile: res.mobile,
+<<<<<<< HEAD
               Dob: res.dateOfBirth,
+=======
+<<<<<<< HEAD
+              Dob: res.dateOfBirth,
+=======
+<<<<<<< HEAD
+              Dob: res.dateOfBirth,
+=======
+              DateOfBirth: res.dateOfBirth,
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
               CreatedDateTime: res.createdDateTime,
               ModifiedDateTime: res.modifiedDateTime,
               Password: res.password,
@@ -158,6 +222,7 @@ export class ProfileUpdateComponent implements OnInit {
       })
       this.date = new Date().toISOString().split('T')[0]
   }
+<<<<<<< HEAD
   getCountry()
   {
     this.stateService.getCountry().subscribe(res =>{
@@ -169,17 +234,30 @@ export class ProfileUpdateComponent implements OnInit {
       this.cityList = res;
     })
   }
+=======
+  getCity() {
+    this.cityService.getCityData().subscribe(res => {
+      this.cityList = res;
+    })
+  }
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
   getState() {
     this.stateService.getStateData().subscribe(res => {
       this.StateList = res;
     })
   }
+<<<<<<< HEAD
   onSelectCountry(country: any) {
     this.stateListContain = this.StateList.filter((e: any) => e.countryId == country.target.value);
   }
   onSelect(state: any) {
     this.cityListContain = this.cityList.filter((e: any) => e.statesId == state.target.value);
   }
+=======
+  onSelect(State: any) {
+    this.cityListContain = this.cityList.filter((e: any) => e.id == State.target.value);
+  }
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
   handleFile(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];

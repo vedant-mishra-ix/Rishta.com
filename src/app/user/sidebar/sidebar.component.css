@@ -39,13 +39,34 @@
 }
 .text-hover:hover
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
   background-color:maroon;
   font-size: 15px;
   border-radius: 10px;
 }
 .notification
 {
+<<<<<<< HEAD
   font-weight:900;
   font-size:medium;
   color: red;
 }
+=======
+  font-weight: bolder;
+  font-size:medium;
+  color: red;
+}
+=======
+<<<<<<< HEAD
+  background-color:maroon;
+=======
+  background-color:rgb(4, 52, 4);
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+  font-size: 15px;
+  border-radius: 10px;
+}
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c

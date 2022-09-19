@@ -12,7 +12,18 @@ import { CityService } from '../core/model/service/city.service';
 import { ShareModule } from '../share/share.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+<<<<<<< HEAD
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+=======
+<<<<<<< HEAD
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+=======
+<<<<<<< HEAD
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+=======
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
 
 
 
@@ -24,7 +35,18 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     LoginComponent,
     RegistrationComponent,
     HomelistComponent,
+<<<<<<< HEAD
     ForgotPasswordComponent,
+=======
+<<<<<<< HEAD
+    ForgotPasswordComponent,
+=======
+<<<<<<< HEAD
+    ForgotPasswordComponent,
+=======
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
 
   ],
   imports: [

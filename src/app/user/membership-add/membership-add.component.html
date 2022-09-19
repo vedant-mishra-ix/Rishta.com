@@ -1,10 +1,34 @@
 
 <div class="container-fluid  ">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
   <form class="form rounded-3 border border-3 pb-4  bg-light margin shadow "
   [formGroup]="memberShip" (ngSubmit)="submit()">
     <h4 class="heading">Membership</h4>
   <div class="row mt-4">
     <div class="col"><span class="heading">Plans Name:</span>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+  <form class="form rounded-5  bg-light margin shadow "
+  [formGroup]="memberShip" (ngSubmit)="submit()">
+<<<<<<< HEAD
+    <h3>Membership</h3>
+=======
+    <h3>Member-ship</h3>
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
+  <div class="row mt-4">
+    <div class="col"><span>Name:</span>
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
       <select (change)="onSelect($event)"  class="form-control shadow w-50" name="PlansName" id="PlansName" formControlName="PlansName">
         <option>--Select Plans--</option>
         <option *ngFor="let list of plansList" value="{{list.plansName}}">{{list.plansName}}</option>
@@ -15,7 +39,19 @@
     </div>
   </div>
   <div class="row mt-3">
+<<<<<<< HEAD
     <div class="col"><span class="heading">Plans Price:</span>
+=======
+<<<<<<< HEAD
+    <div class="col"><span class="heading">Plans Price:</span>
+=======
+<<<<<<< HEAD
+    <div class="col"><span class="heading">Plans Price:</span>
+=======
+    <div class="col">Plans Price:
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
       <select  class="form-control shadow w-50" name="Pay" id="Pay" formControlName="Pay">
         <option>--Select Amount--</option>
         <option *ngFor="let list of planIdContain">{{list.price}}</option>
@@ -27,7 +63,19 @@
   </div>
   <div class="row mt-3">
     <div class="col">
+<<<<<<< HEAD
       <input type="submit" [disabled]="memberShip.invalid"  class="btn btn-primary w-50 " value="Payment" >
+=======
+<<<<<<< HEAD
+      <input type="submit" [disabled]="memberShip.invalid"  class="btn btn-primary w-50 " value="Payment" >
+=======
+<<<<<<< HEAD
+      <input type="submit" [disabled]="memberShip.invalid"  class="btn btn-primary w-50 " value="Payment" >
+=======
+      <input type="submit" [disabled]="memberShip.invalid"  class="btn btn-primary w-50" value="Pay" >
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
     </div>
   </div>
   </form>
