@@ -1,21 +1,23 @@
-.Margin
+.margin
 {
-  padding-left: 26vw;
-  margin-left: 20px;
+  padding-left: 23vw;
+  padding-bottom: 10px;
 }
-.Form-Overflow
+.form-overflow
 {
-  width: 80vw;
+  width: 79vw;
   overflow: auto;
-  height: 73vh;
-  padding-right: 5vw;
+  height: 72vh;
+  padding-right: 2vw;
+  padding-bottom: 30px;
 }
-.Heading
+.heading
 {
-  margin-top: 30px;
+  padding-top: 20px;
   text-align: center;
+  font-weight: bolder;
 }
-.ValidationError
+.validationError
 {
   color: red;
   font-weight: lighter;

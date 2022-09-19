@@ -3,21 +3,23 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { GuardService } from '../guard/guard.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardGuard implements CanActivate {
-  constructor(private GuardService : GuardService , private route : Router){}
+
+  constructor(private guardService : GuardService , private route : Router){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const token = this.GuardService.getToken();
+      const token = this.guardService.getToken();
       if(token && token !== '')
       {
         return true;
       }
       this.route.navigate(['./login'])
-    return false;
+      return false;
   }
 
 }

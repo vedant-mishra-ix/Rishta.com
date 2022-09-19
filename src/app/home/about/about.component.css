@@ -11,8 +11,8 @@ h1{
   background-image: url('../../../assets/pexels-transtudios-photography-&-video-3156648.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  width:400px;
-  height: 300px;
+  width:100%;
+  height: 50vh;
   border-radius: 1vw;
   border-style: none;
   border-color: black;
@@ -24,8 +24,8 @@ h1{
   background-image: url('../../../assets/pexels-viresh-studio-1444442.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  width:400px;
-  height: 300px;
+  width:100%;
+  height: 50vh;
   border-radius: 1vw;
   border-style: none;
   border-color: black;

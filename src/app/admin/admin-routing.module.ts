@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { RegisteredComponent } from './registered/registered.component';
 import { ReportedProfileComponent } from './reported-profile/reported-profile.component';
+import { SubscribersComponent } from './subscribers/subscribers.component';
 
 const routes: Routes = [
   {
@@ -10,12 +11,16 @@ const routes: Routes = [
     component:AdminComponent,
     children:[
       {
-        path:"Registered",
+        path:"registered",
         component:RegisteredComponent
       },
       {
-        path:"Reported",
+        path:"reported",
         component:ReportedProfileComponent
+      },
+      {
+        path:"subscriber",
+        component:SubscribersComponent
       }
     ]
   }

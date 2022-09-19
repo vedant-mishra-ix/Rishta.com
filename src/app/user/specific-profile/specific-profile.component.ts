@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpecificProfileComponent implements OnInit {
 
-  UserName = localStorage.getItem('UserSpecific:');
-  Email = localStorage.getItem('UserSpecific1:');
-  Mobile = localStorage.getItem('UserSpecific2:');
-  Address = localStorage.getItem('UserSpecific3:');
-  ProfilePhoto = localStorage.getItem('UserSpecific4:');
+  userName = localStorage.getItem('UserSpecific:');
+  email = localStorage.getItem('UserSpecific1:');
+  mobile = localStorage.getItem('UserSpecific2:');
+  address = localStorage.getItem('UserSpecific3:');
+  profilePhoto = localStorage.getItem('UserSpecific4:');
   constructor() {
   }
 
