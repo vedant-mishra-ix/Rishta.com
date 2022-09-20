@@ -1,6 +1,7 @@
 <div class="container-fluid mt-5">
   <form [formGroup]="genderList">
     <div class="row">
+<<<<<<< HEAD
       <div class="col-2">
         <select class="form-control" (ngModelChange)="genderData($event)"
         name="Sex" id="Sex" formControlName="Sex">
@@ -32,6 +33,32 @@
         <input type="submit" class="form-control btn btn-primary" value="Reset All"
         (click)="resetAll()">
       </div>
+=======
+    <div class="col-2">
+      <select class="form-control" (ngModelChange)="genderData($event)"  name="Sex" id="Sex" formControlName="Sex">
+        <option>- Select Gender -</option>
+        <option *ngFor="let gender of gender | keyvalue" >{{gender.value}}</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <select class="form-control" (ngModelChange)="martialStatusData($event)" name="MartialStatus" id="MartialStatus" formControlName="MartialStatus">
+        <option>- Select MartialStatus -</option>
+        <option *ngFor="let Martial of martialStatus | keyvalue" >{{Martial.value}}</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <select class="form-control" (ngModelChange)="familyTypeData($event)"  name="FamilyType" id="FamilyType" formControlName="FamilyType">
+        <option>- Select FamilyType -</option>
+        <option *ngFor="let Family of familyType | keyvalue" >{{Family.value}}</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <input type="button" class="form-control btn btn-primary" value="Apply all" (click)="dependentFilter()">
+    </div>
+    <div class="col-2">
+      <input type="submit" class="form-control btn btn-primary" value="Reset All" (click)="resetAll()">
+    </div>
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
     </div>
   </form>
 </div>
@@ -48,7 +75,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let list of genderBasedList ">
+<<<<<<< HEAD
         <td><img src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
+=======
+        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
         <td>{{list.userName}}</td>
         <td>{{list.email}}</td>
         <td>{{list.mobile}}</td>
@@ -57,7 +88,11 @@
         </td>
       </tr>
       <tr *ngFor="let list of martialBasedList ">
+<<<<<<< HEAD
         <td><img src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
+=======
+        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
         <td>{{list.userName}}</td>
         <td>{{list.email}}</td>
         <td>{{list.mobile}}</td>
@@ -66,7 +101,11 @@
         </td>
       </tr>
       <tr *ngFor="let list of familyBasedList ">
+<<<<<<< HEAD
         <td><img src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
+=======
+        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
         <td>{{list.userName}}</td>
         <td>{{list.email}}</td>
         <td>{{list.mobile}}</td>
@@ -75,7 +114,11 @@
         </td>
       </tr>
       <tr *ngFor="let list of dependentBasedList ">
+<<<<<<< HEAD
         <td><img src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
+=======
+        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
         <td>{{list.userName}}</td>
         <td>{{list.email}}</td>
         <td>{{list.mobile}}</td>

@@ -8,6 +8,7 @@
     <div class="carousel-inner">
       <div  *ngFor="let list of userList;let index = index"  class="carousel-item active"
        [ngClass]="{'active': index === 1}">
+<<<<<<< HEAD
         <img  src="http://localhost:55339/{{list.profilePhoto}}" class="width" alt="...">
         <div class="carousel-caption d-none d-md-block ">
           <div class="profile-data">
@@ -15,6 +16,13 @@
             </span>
             <span class="report-report"><a class="btn btn-danger" (click)="profileReport(list)">Report</a>
             </span>
+=======
+        <img  src="http://localhost:8080/{{list.profilePhoto}}" class="width" alt="...">
+        <div class="carousel-caption d-none d-md-block ">
+          <div class="profile-data">
+            <span class="report-request"><a class="btn btn-success" (click)="requestSend(list)">Request</a></span>
+            <span class="report-report"><a class="btn btn-danger" (click)="profileReport(list)">Report</a></span>
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
           <h5 class="profile-action" (click)="userProfile(list)">Name: {{list.userName}}
           </h5>
           <h5 class="Profile-Action">Gender: {{list.sex}}

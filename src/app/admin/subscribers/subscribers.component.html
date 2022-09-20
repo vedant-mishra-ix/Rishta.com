@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container-fluid justify-content-start mt-5 ">
   <div class="form-group margin">
     <input
@@ -7,6 +8,13 @@
       [(ngModel)]="filterTerm"
     />
   </div>
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+<div class="container-fluid justify-content-start mt-5 ">
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
   <div class="d-flex justify-content-left">
     <pagination-controls
       previousLabel="Prev"
@@ -15,6 +23,15 @@
     >
     </pagination-controls>
   </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+<div class="container-fluid justify-content-start mt-5 table-overflow">
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
   <table class="table table-striped">
     <thead>
       <tr>
@@ -27,9 +44,24 @@
       </tr>
     </thead>
     <tbody>
+<<<<<<< HEAD
       <tr *ngFor="let list of subscribersList | filter: filterTerm | paginate:{ itemsPerPage:this.tableSize,
         currentPage:this.page,totalItems:this.count};let i = index">
         <td><img class="zoom" src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
+=======
+<<<<<<< HEAD
+      <tr *ngFor="let list of subscribersList | paginate:{ itemsPerPage:this.tableSize,
+        currentPage:this.page,totalItems:this.count};let i = index">
+=======
+<<<<<<< HEAD
+      <tr *ngFor="let list of subscribersList | paginate:{ itemsPerPage:this.tableSize,
+        currentPage:this.page,totalItems:this.count};let i = index">
+=======
+      <tr *ngFor="let list of subscribersList">
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+        <td><img class="zoom" src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
         <td class="zoom1">{{list.id}}</td>
         <td class="zoom1">{{list.userName}}</td>
         <td class="zoom1">{{list.email}}</td>

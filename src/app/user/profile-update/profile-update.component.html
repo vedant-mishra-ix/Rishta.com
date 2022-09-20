@@ -1,6 +1,30 @@
+<<<<<<< HEAD
 <h4 class="heading">Profile Update</h4>
 <div class="container-fluid ">
   <form class="form mt-4 rounded bg-light border border-3 shadow-lg margin form-overflow"
+=======
+<<<<<<< HEAD
+<h4 class="heading">Profile Update</h4>
+<div class="container-fluid ">
+  <form class="form mt-4 rounded bg-light border border-3 shadow-lg margin form-overflow"
+=======
+<<<<<<< HEAD
+<h4 class="heading">Profile Update</h4>
+<div class="container-fluid ">
+  <form class="form mt-4 rounded bg-light border border-3 shadow-lg margin form-overflow"
+=======
+<<<<<<< HEAD
+<h4 class="heading">Profile Update</h4>
+<div class="container-fluid ">
+  <form class="form mt-4 rounded bg-light border border-3 shadow-lg margin form-overflow"
+=======
+<h3 class="heading">Profile Update</h3>
+<div class="container-fluid ">
+  <form class="form mt-4 rounded bg-light border border-3  margin form-overflow"
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
   [formGroup]="registration" (ngSubmit)="submit()">
 
   <div class="row mt-3">
@@ -8,8 +32,12 @@
       <label for="UserName">Id:<span class="validationError">*</span></label>
     </div>
     <div class="col-6">
+<<<<<<< HEAD
       <input  class="form-control" readonly type="text" name="Id" id="Id"
       formControlName="Id">
+=======
+      <input  class="form-control" readonly type="text" name="Id" id="Id" formControlName="Id">
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
       <span *ngIf="registrationValidation['Id']?.errors?.['required']
       && (registrationValidation['Id']?.touched || registrationValidation['Id']?.dirty)"
       class="validationError">
@@ -77,8 +105,12 @@
         <label for="Password">Password:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
+<<<<<<< HEAD
         <input class="form-control" readonly type="password" name="Password" id="Password"
          formControlName="Password">
+=======
+        <input class="form-control" readonly type="password" name="Password" id="Password" formControlName="Password">
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
         <span *ngIf="registrationValidation['Password']?.errors?.['required']
         && (registrationValidation['Password']?.touched || registrationValidation['Password']?.dirty)"
         class="validationError">
@@ -90,8 +122,12 @@
         <label for="Address">Address:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
+<<<<<<< HEAD
         <textarea class="form-control" rows="1" name="Address" id="Address"
         formControlName="Address"></textarea>
+=======
+        <textarea class="form-control" rows="1" name="Address" id="Address" formControlName="Address"></textarea>
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
         <span *ngIf="registrationValidation['Address']?.errors?.['required']
         && (registrationValidation['Address']?.touched || registrationValidation['Address']?.dirty)"
         class="validationError">
@@ -170,8 +206,12 @@
         <label for="Country">Country:</label>
       </div>
       <div class="col-6">
+<<<<<<< HEAD
         <select (change)="onSelectCountry($event)" class="form-control"  name="Country" id="Country"
         formControlName="Country">
+=======
+        <select (change)="onSelectCountry($event)" class="form-control"  name="Country" id="Country" formControlName="Country">
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
           <option>--Select Country--</option>
           <option *ngFor="let country of countryList" value="{{country.id}}">{{country.countries}}</option>
         </select>
@@ -182,11 +222,17 @@
         <label for="State">State:</label>
       </div>
       <div class="col-6">
+<<<<<<< HEAD
         <select (change)="onSelect($event)"  class="form-control" name="State" id="State"
         formControlName="State">
           <option>--Select State--</option>
           <option *ngFor="let stateList of stateListContain" value="{{stateList.id}}">
             {{stateList.states}}</option>
+=======
+        <select (change)="onSelect($event)"  class="form-control" name="State" id="State" formControlName="State">
+          <option>--Select State--</option>
+          <option *ngFor="let stateList of stateListContain" value="{{stateList.id}}">{{stateList.states}}</option>
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
         </select>
       </div>
     </div>

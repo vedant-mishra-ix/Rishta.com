@@ -39,13 +39,43 @@
 }
 .text-hover:hover
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
   background-color:maroon;
   font-size: 15px;
   border-radius: 10px;
 }
 .notification
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
   font-weight:900;
   font-size:medium;
   color: red;
 }
+<<<<<<< HEAD
+=======
+=======
+  font-weight: bolder;
+  font-size:medium;
+  color: red;
+}
+=======
+<<<<<<< HEAD
+  background-color:maroon;
+=======
+  background-color:rgb(4, 52, 4);
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+  font-size: 15px;
+  border-radius: 10px;
+}
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7

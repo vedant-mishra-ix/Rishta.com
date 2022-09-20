@@ -27,9 +27,19 @@ export class RegistrationComponent implements OnInit {
   registration: FormGroup = new FormGroup({});
   Files!: File;
   cityList: any = [];
+<<<<<<< HEAD
   countryList:any=[];
   cityListContain: any = [];
   stateListContain:any=[];
+=======
+<<<<<<< HEAD
+  countryList:any=[];
+  cityListContain: any = [];
+  stateListContain:any=[];
+=======
+  cityListContain: any = [];
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
   stateList: any = [];
   date: any;
   currentYear: number = 0;
@@ -73,7 +83,27 @@ export class RegistrationComponent implements OnInit {
       formData.append('UserName', this.registration.get('UserName')?.value);
       formData.append('Email', this.registration.get('Email')?.value);
       formData.append('Mobile', this.registration.get('Mobile')?.value);
+<<<<<<< HEAD
       formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+<<<<<<< HEAD
+      formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+<<<<<<< HEAD
+      formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+<<<<<<< HEAD
+      formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+<<<<<<< HEAD
+      formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+=======
+      formData.append('Dob', this.registration.get('Dob')?.value);
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
       formData.append('Password', this.registration.get('Password')?.value);
       formData.append('Address', this.registration.get('Address')?.value);
       formData.append('Cast', this.registration.get('Cast')?.value);
@@ -92,9 +122,36 @@ export class RegistrationComponent implements OnInit {
       formData.append('FamilyType', this.registration.get('FamilyType')?.value);
       formData.append('FamilyStatus', this.registration.get('FamilyStatus')?.value);
       formData.append('image', this.registration.get('image')?.value);
+<<<<<<< HEAD
       for (var pair of formData.entries()) {
         console.log("form data value::"+pair[0]+ ', ' + pair[1]);
     }
+=======
+<<<<<<< HEAD
+      for (var pair of formData.entries()) {
+        console.log("form data value::"+pair[0]+ ', ' + pair[1]);
+    }
+=======
+<<<<<<< HEAD
+      for (var pair of formData.entries()) {
+        console.log("form data value::"+pair[0]+ ', ' + pair[1]);
+    }
+=======
+<<<<<<< HEAD
+      for (var pair of formData.entries()) {
+        console.log("form data value::"+pair[0]+ ', ' + pair[1]);
+    }
+=======
+<<<<<<< HEAD
+      for (var pair of formData.entries()) {
+        console.log("form data value::"+pair[0]+ ', ' + pair[1]);
+    }
+=======
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
       this.registrationService.Registration(formData).subscribe((res) => {
         this.toastr.success("Successful Registration Done");
         this.route.navigate(['login']);
@@ -111,7 +168,14 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.getCity();
     this.getState();
+<<<<<<< HEAD
     this.getCountry();
+=======
+<<<<<<< HEAD
+    this.getCountry();
+=======
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
     this.date = new Date().toISOString().split('T')[0]
   }
   getCity() {
@@ -119,6 +183,10 @@ export class RegistrationComponent implements OnInit {
       this.cityList = res;
     })
   }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
   getCountry()
   {
     this.stateService.getCountry().subscribe(res =>{
@@ -136,6 +204,31 @@ export class RegistrationComponent implements OnInit {
   onSelect(State: any) {
     this.cityListContain = this.cityList.filter((e: any) => e.statesId == State.target.value);
   }
+<<<<<<< HEAD
+=======
+=======
+  getState() {
+    this.stateService.getStateData().subscribe(res => {
+      this.stateList = res;
+    })
+  }
+  onSelect(State: any) {
+<<<<<<< HEAD
+    this.cityListContain = this.cityList.filter((e: any) => e.statesId == State.target.value);
+=======
+<<<<<<< HEAD
+    this.cityListContain = this.cityList.filter((e: any) => e.statesId == State.target.value);
+=======
+<<<<<<< HEAD
+    this.cityListContain = this.cityList.filter((e: any) => e.statesId == State.target.value);
+=======
+    this.cityListContain = this.cityList.filter((e: any) => e.id == State.target.value);
+>>>>>>> 1a5366669bdaca024c8077996839e0d6ef746a42
+>>>>>>> 76aef980cbfd3b732aa842473a19af63dabac739
+>>>>>>> ecefed146e08f8c5d7c4f7dc2d4c85501ecaa656
+  }
+>>>>>>> 97d6a5956686e7f34d963dc30b59020dab2d6a6c
+>>>>>>> a51345ccd83c29617aa61a45094d47c0ce2d6ca7
   handleFile(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
