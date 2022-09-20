@@ -9,23 +9,28 @@
 {
   font-size: 1rem;
 }
-.Zoom1:hover {
+.zoom1:hover {
   -ms-transform: scale(1.5); /* IE 9 */
   -webkit-transform: scale(1.5); /* Safari 3-8 */
   transform: scale(1.1);
 }
-.Zoom1 {
+.zoom1 {
   transition: transform .9s;
   margin: 0 auto;
 }
-.Zoom:hover {
+.zoom:hover {
   -ms-transform: scale(1.5); /* IE 9 */
   -webkit-transform: scale(1.5); /* Safari 3-8 */
   transform: scale(1.4);
 }
-.Zoom {
+.zoom {
   transition: transform .9s;
   width: 90px;
   height: 90px;
   margin: 0 auto;
+}
+.margin
+{
+  margin-top: -30px;
+  margin-bottom: 20px;
 }

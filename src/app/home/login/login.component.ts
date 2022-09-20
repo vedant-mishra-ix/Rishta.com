@@ -13,29 +13,31 @@ import { LoginService } from 'src/app/core/model/service/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  Role = Role;
-  UserName: any;
+  role = Role;
+  userName: any;
+  color="FireBrick"
   loginProfile: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder, private LoginService: LoginService,
-    private GuardService: GuardService, private route: Router,private toastr: ToastrService) {
+  constructor(private fb: FormBuilder, private loginService: LoginService,
+    private guardService: GuardService, private route: Router,private toastr: ToastrService) {
     this.loginProfile = fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
     })
   }
   login() {
-    this.LoginService.LoginData(this.loginProfile.value).subscribe({
+    this.loginService.loginData(this.loginProfile.value).subscribe({
       next: (res) => {
-        this.UserName = this.loginProfile.value.userName;
-        localStorage.setItem('UserName:', this.UserName);
-        this.GuardService.setToken(res.token);
+        this.color = "ForestGreen";
+        this.userName = this.loginProfile.value.userName;
+        localStorage.setItem('UserName:', this.userName);
+        this.guardService.setToken(res.token);
         localStorage.setItem('role:', res.role);
         this.toastr.success("Successful Login")
         var GetRole = localStorage.getItem('role:');
-        if (GetRole == "User") {
+        if (GetRole == this.role.User) {
           this.route.navigate(['User']);
         }
-        else {
+        else{
           this.route.navigate(['Admin']);
         }
       }, error: () => {
@@ -46,7 +48,6 @@ export class LoginComponent implements OnInit {
   get loginValidation() {
     return this.loginProfile.controls;
   }
-
   ngOnInit(): void {
   }
 

@@ -17,7 +17,7 @@
   height: 450px;
   border-radius: 8px 8px 8px 8px;
 }
-.Slider-Width
+.slider-width
 {
   margin-left: 19vw;
   margin-top: 5vh;
@@ -28,16 +28,16 @@
   font-size:2vw;
   background-color: rgba(0, 0, 0, .3);
 }
-.Profile-Action1
+.profile-action
 {
   cursor: pointer;
 
 }
-.report1
+.report-request
 {
   padding-right: 80px;
 }
-.report
+.report-report
 {
   padding-left: 80px;
 }

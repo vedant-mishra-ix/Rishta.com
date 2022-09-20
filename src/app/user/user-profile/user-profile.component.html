@@ -1,30 +1,28 @@
-<div class="container-fluid justify-content-start mt-4 table-overflow  shadow-lg p-3 mb-5 bg-body rounded">
-
+<div class="container-fluid justify-content-start mt-5 shadow-lg mb-5 table-overflow border border-3
+bg-body rounded">
   <table class="table table-striped">
-    <span class="Profile-Image"><img class="rounded-circle width" src="http://localhost:8080/{{ProfilePhoto}}" width="100px" height="100px"></span>
+    <span class="Profile-Image"><img class="rounded-circle width" src="http://localhost:55339/{{profilePhoto}}"
+        width="100px" height="100px"></span>
     <tbody>
       <tr>
         <th>User Name</th>
-        <th>{{UserName}}</th>
+        <th>{{userName}}</th>
       </tr>
       <tr>
         <th>Email</th>
-        <th>{{Email}}</th>
+        <th>{{email}}</th>
       </tr>
       <tr>
         <th>Mobile</th>
-        <th>{{Mobile}}</th>
-      </tr>
-      <tr>
-        <th>Password</th>
-        <th>{{Password}}</th>
+        <th>{{mobile}}</th>
       </tr>
       <tr>
         <th>Address</th>
-        <th>{{Address}}</th>
+        <th>{{address}}</th>
       </tr>
       <tr>
-        <th colspan="2"><a class="btn btn-primary" (click)="Update(Id)">Update Profile</a></th>
+        <th colspan="2"><a class="btn btn-primary" (click)="update(id)">Update Profile</a></th>
       </tr>
     </tbody>
   </table>
+</div>

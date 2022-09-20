@@ -1,6 +1,6 @@
 .imgFirst
 {
-  background-image: url('../../../assets/pexels-cinestyle-india-1589216.jpg');
+  background-image: url('../../../assets/pexels-cinestyle-india-1589216-copy-0.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   width:286px;
@@ -13,7 +13,7 @@
 }
 .imgSecond
 {
-  background-image: url('./HomeRishta.jpg');
+  background-image: url('../../../assets/HomeRishta1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   width:286px;
@@ -38,14 +38,14 @@
   margin: 0 auto;
 }
 
-.Background
+.background
 {
   background-image: url('../../../assets/pexels-nghia-trinh-931796.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   width: 100%;
-  height: 200vh;
+  height:auto;
 }
 .imgFirst1
 {
@@ -62,7 +62,7 @@
 }
 .imgSecond1
 {
-  background-image: url('./AboutRishta.jpg');
+  background-image: url('../../../assets/AboutRishta1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   width:286px;
@@ -86,10 +86,72 @@
   transition: transform .9s;
   margin: 0 auto;
 }
-.imgFirst:hover,.imgSecond:hover,.imgThird:hover,.imgFirst1:hover,.imgSecond1:hover,.imgThird1:hover {
+.imgbottom
+{
+  background-image: url('../../../assets/pexels-krishna-studio-2293102.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100%;
+  height: 70vh;
+  border-radius: 1vw;
+  border-style: none;
+  border-color: black;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.img-carousel-first
+{
+  background-image: url('../../../assets/pexels-krishna-studio-2293102.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100%;
+  height: 100vh;
+  border: none;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.img-carousel-second
+{
+  background-image: url('../../../assets/pexels-krishna-studio-2293102.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100%;
+  height: 100vh;
+  border: none;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.img-carousel-third
+{
+  background-image: url('../../../assets/hero-bg3.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100%;
+  height: 100vh;
+  border: none;
+  transition: transform .9s;
+  margin: 0 auto;
+}
+.imgFirst:hover,.imgSecond:hover,.imgThird:hover,.imgFirst1:hover,.imgSecond1:hover
+,.imgThird1:hover{
   -ms-transform: scale(1.5); /* IE 9 */
   -webkit-transform: scale(1.5); /* Safari 3-8 */
   transform: scale(1.1);
 }
-
-
+.fonts
+{
+  font-family:"Open Sans";
+}
+/* carousel-content start */
+.carousel-content
+{
+  padding-top: 400px;
+  padding-bottom: 200px;
+  color: red;
+  text-align: center;
+  font-weight: bolder;
+  font-style: italic;
+  font-family: cursive;
+  background-color: rgba(0, 0, 0, .1);
+}
+/* carousel-content end */
