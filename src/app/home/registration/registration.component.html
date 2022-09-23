@@ -8,8 +8,9 @@
       </div>
       <div class="col-6">
         <input class="form-control" type="text" name="UserName" id="UserName"
-        formControlName="UserName" oninput="this.value=this.value.replace(/^[0-9 .]/g,'')">
-        <span *ngIf="registrationValidation['UserName']?.errors?.['required']
+        formControlName="UserName" oninput="this.value=this.value.replace(/^[0-9 .]/g,'')"
+        [ngClass]="{ 'is-invalid': submitted && registrationValidation['UserName'].errors }">
+        <span *ngIf="submitted && registrationValidation['UserName'].errors?.['required']
         && (registrationValidation['UserName']?.touched || registrationValidation['UserName']?.dirty)"
           class="validationError "> This field is required(Numeric value not allowed )</span>
       </div>
@@ -20,13 +21,14 @@
       </div>
       <div class="col-6">
         <input class="form-control" type="email" name="Email" id="Email"
-        formControlName="Email">
-        <span *ngIf="registrationValidation['Email']?.errors?.['required']
+        formControlName="Email" [ngClass]="{ 'is-invalid': submitted &&
+        registrationValidation['Email'].errors }">
+        <span *ngIf="submitted && registrationValidation['Email']?.errors?.['required']
         && (registrationValidation['Email']?.touched || registrationValidation['Email']?.dirty)"
           class="validationError">This field is required</span>
         <span *ngIf="registrationValidation['Email']?.errors?.['email']
         && (registrationValidation['Email']?.touched || registrationValidation['Email']?.dirty)"
-          class="validationError">This field valid email</span>
+          class="validationError">This field valid email (ex:vedant@gmail.com)</span>
       </div>
     </div>
     <div class="row mt-3">
@@ -35,10 +37,11 @@
       </div>
       <div class="col-6">
         <input class="form-control" type="text" name="Mobile" id="Mobile" formControlName="Mobile"
-          oninput="this.value=this.value.replace(/[^0-9 .]/g,'')" maxlength="10">
-        <span *ngIf="registrationValidation['Mobile']?.errors?.['required']
+          oninput="this.value=this.value.replace(/[^0-9 .]/g,'')" maxlength="10"
+          [ngClass]="{ 'is-invalid': submitted && registrationValidation['Mobile'].errors }">
+        <span *ngIf="submitted && registrationValidation['Mobile']?.errors?.['required']
         && (registrationValidation['Mobile']?.touched || registrationValidation['Mobile']?.dirty)"
-          class="validationError">This field is required (ex:vedant@gmail.com)</span>
+          class="validationError">This field is required</span>
       </div>
     </div>
     <div class="row mt-3">
@@ -47,8 +50,9 @@
       </div>
       <div class="col-6">
         <input class="form-control" type="date" max={{date}} name="Dob" id="Dob" (keyup)="ageCalculate()"
-          formControlName="Dob">
-        <span *ngIf="registrationValidation['Dob']?.errors?.['required']
+          formControlName="Dob" [ngClass]="{ 'is-invalid': submitted &&
+          registrationValidation['Dob'].errors }">
+        <span *ngIf="submitted && registrationValidation['Dob']?.errors?.['required']
         && (registrationValidation['Dob']?.touched || registrationValidation['Dob']?.dirty)"
         class="validationError"> This field is required and Age must be 18</span>
       </div>
@@ -59,8 +63,9 @@
       </div>
       <div class="col-6">
         <input class="form-control" type="password" name="Password" id="Password"
-        formControlName="Password">
-        <span *ngIf="registrationValidation['Password']?.errors?.['required']
+        formControlName="Password" [ngClass]="{ 'is-invalid': submitted &&
+        registrationValidation['Password'].errors }">
+        <span *ngIf="submitted && registrationValidation['Password']?.errors?.['required']
         && (registrationValidation['Password']?.touched ||registrationValidation['Password']?.dirty)"
           class="validationError">This field is required</span>
       </div>
@@ -71,8 +76,9 @@
       </div>
       <div class="col-6">
         <textarea class="form-control text-letter" rows="1" name="Address" id="Address"
-        formControlName="Address"></textarea>
-        <span *ngIf="registrationValidation['Address']?.errors?.['required']
+        formControlName="Address" [ngClass]="{ 'is-invalid': submitted &&
+        registrationValidation['Address'].errors }"></textarea>
+        <span *ngIf="submitted && registrationValidation['Address']?.errors?.['required']
         && (registrationValidation['Address']?.touched || registrationValidation['Address']?.dirty)"
           class="validationError">This field is required</span>
       </div>
@@ -94,7 +100,7 @@
           <option>- Select Gender -</option>
           <option *ngFor="let gender of gender | keyvalue">{{gender.value}}</option>
         </select>
-        <span *ngIf="registrationValidation['Sex']?.errors?.['required']
+        <span *ngIf=" submitted && registrationValidation['Sex']?.errors?.['required']
         && (registrationValidation['Sex']?.touched || registrationValidation['Sex']?.dirty)"
         class="validationError">This field is required</span>
       </div>
@@ -239,15 +245,16 @@
       </div>
       <div class="col-6">
         <input class="form-control" type="file" (change)="handleFile($event)" name="files" id="files"
-          formControlName="files">
-        <span *ngIf="registrationValidation['files']?.errors?.['required']
+          formControlName="files" [ngClass]="{ 'is-invalid': submitted &&
+          registrationValidation['files'].errors }">
+        <span *ngIf="submitted && registrationValidation['files']?.errors?.['required']
          && (registrationValidation['files']?.touched || registrationValidation['files']?.dirty)"
           class="validationError">This field is required</span>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-8">
-        <input class="btn btn-primary w-100" [disabled]="registration.invalid" type="submit">
+        <input class="btn btn-primary w-100" type="submit">
       </div>
     </div>
   </form>
