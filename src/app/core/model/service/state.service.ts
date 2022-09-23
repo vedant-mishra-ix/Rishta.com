@@ -8,8 +8,12 @@ import { environment } from 'src/environments/environment';
 })
 export class StateService {
   constructor(private http: HttpClient) { }
-  GetStateData():Observable<any>
+  getStateData():Observable<any>
   {
-    return this.http.get(`${environment.baseApiUrl}/api/State`);
+    return this.http.get(`${environment.baseApiUrl}/api/State/States`);
+  }
+  getCountry():Observable<any>
+  {
+    return this.http.get(`${environment.baseApiUrl}/api/Country/Countries`);
   }
 }

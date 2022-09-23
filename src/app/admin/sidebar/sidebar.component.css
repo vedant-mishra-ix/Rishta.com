@@ -31,3 +31,39 @@
   color: whitesmoke;
   padding-left: 5px;
 }
+.hover:hover
+{
+  background-color:lightpink;
+  border-radius: 30px;
+}
+.icon:hover
+{
+  background-color:saddlebrown;
+  border-radius: 30px;
+}
+.notification
+{
+  font-weight: bolder;
+  font-size:medium;
+  color: red;
+}
+@media(max-width:400px){
+  .sidebar
+  {
+    width: 100%;
+  }
+}
+@media(max-width:900px){
+  .bi
+{
+  margin-left: -28px;
+  width: 20px;
+  font-size: 10px;
+}
+}
+@media(max-width:1100px) {
+  .item
+  {
+    height: 132vh;
+  }
+}

@@ -8,9 +8,9 @@ import { environment } from 'src/environments/environment';
 })
 export class UserListService {
   constructor(private http: HttpClient) { }
-  Registered(index:any):Observable<any>
+  registered(index:any):Observable<any>
   {
-    const options = { params: new HttpParams().set('Id', index) };
-    return this.http.get(`${environment.baseApiUrl}/api/User`,options);
+    const options = { params: new HttpParams().set('id', index) };
+    return this.http.get(`${environment.baseApiUrl}/api/User/Registrations`,options);
   }
 }

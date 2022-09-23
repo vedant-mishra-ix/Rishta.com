@@ -9,3 +9,9 @@
 {
   font-size: 1rem;
 }
+@media (max-width:500px) {
+  .responsive {
+    height: 100vh;
+    font-size: .7rem;
+  }
+}

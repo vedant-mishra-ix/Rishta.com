@@ -13,7 +13,6 @@ export class AlertBoxComponent implements OnInit {
   id:number=0;
   clickYes:boolean=false;
   clickNo:boolean=false;
-
   openPopup() {
     this.displayStyle = "block";
   }

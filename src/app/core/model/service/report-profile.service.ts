@@ -10,10 +10,10 @@ import { environment } from 'src/environments/environment';
 export class ReportProfileService {
 
   constructor(private http: HttpClient) { }
-  ReportProfile(Id:any):Observable<any>
+  reportProfile(id:any):Observable<any>
   {
-    console.log("Report data: "+ Id);
+    console.log("Report data: "+ id);
     const parm = {};
-    return this.http.post(`${environment.baseApiUrl}/api/User/ReportProfile?Id=`+Id,parm);
+    return this.http.post(`${environment.baseApiUrl}/api/User/ReportProfile?id=`+id,parm);
   }
 }

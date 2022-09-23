@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder,FormGroup } from '@angular/forms';
 import { FamilyType } from 'src/app/core/model/family-type';
 import { Gender } from 'src/app/core/model/gender';
 import { MarriageStatus } from 'src/app/core/model/marriage-status';
@@ -14,101 +14,98 @@ import { MartialStatusService } from 'src/app/core/model/service/martial-status.
 })
 export class MatchedComponent implements OnInit {
 
-  Gender = Gender;
-  MartialStatus = MarriageStatus;
-  FamilyType = FamilyType;
-  GenderBasedList: any[] = [];
-  MartialBasedList: any[] = [];
-  FamilyBasedList: any[] = [];
-  DependentBasedList: any[] = [];
-  Sex: any;
-  Martial: any;
-  Family: any;
-  UserName: any;
-  GenderList: FormGroup = new FormGroup({});
-  constructor(private GenderService: GenderListService, private fb: FormBuilder,
-    private MartialService: MartialStatusService, private FamilyTypeService: FamilyTypeService) {
-    this.GenderList = this.fb.group({
+  gender = Gender;
+  martialStatus = MarriageStatus;
+  familyType = FamilyType;
+  genderBasedList: any[] = [];
+  martialBasedList: any[] = [];
+  familyBasedList: any[] = [];
+  dependentBasedList: any[] = [];
+  sex: any;
+  martial: any;
+  family: any;
+  userName: any;
+  genderList: FormGroup = new FormGroup({});
+  constructor(private genderService: GenderListService, private fb: FormBuilder,
+    private martialService: MartialStatusService, private familyTypeService: FamilyTypeService) {
+    this.genderList = this.fb.group({
       Sex: [''],
       MartialStatus: [''],
       FamilyType: [''],
     })
   }
-  GenderData(event: any) {
-    this.DependentBasedList = [];
-    this.Sex = event;
-    this.UserName = localStorage.getItem("UserName:");
-    this.GenderService.Gender(this.Sex).subscribe({
+  genderData(event: any) {
+    this.dependentBasedList = [];
+    this.sex = event;
+    this.userName = localStorage.getItem("UserName:");
+    this.genderService.gender(this.sex).subscribe({
       next: (res) => {
-        this.GenderBasedList.length = 0;
-        this.FamilyBasedList.length = 0;
-        this.MartialBasedList.length = 0;
+        this.genderBasedList.length = 0;
+        this.familyBasedList.length = 0;
+        this.martialBasedList.length = 0;
         for (let i = 0; i < res.length; i++) {
-          if (res[i].userName != 'pankaj' && res[i].userName != this.UserName) {
-            this.GenderBasedList.push(res[i]);
+          if (res[i].userName != 'pankaj' && res[i].userName != this.userName) {
+            this.genderBasedList.push(res[i]);
           }
         }
       }
     })
   }
-  MartialStatusData(event: any) {
-    this.DependentBasedList = [];
-    this.Martial = event;
-    this.UserName = localStorage.getItem("UserName:");
-    this.MartialService.Martial(this.Martial).subscribe({
+  martialStatusData(event: any) {
+    this.dependentBasedList = [];
+    this.martial = event;
+    this.userName = localStorage.getItem("UserName:");
+    this.martialService.martial(this.martial).subscribe({
       next: (res) => {
-        this.MartialBasedList.length = 0;
-        this.GenderBasedList.length = 0;
-        this.FamilyBasedList.length = 0;
+        this.martialBasedList.length = 0;
+        this.genderBasedList.length = 0;
+        this.familyBasedList.length = 0;
         for (let i = 0; i < res.length; i++) {
-          if (res[i].userName != 'pankaj' && res[i].userName != this.UserName) {
-            this.MartialBasedList.push(res[i]);
+          if (res[i].userName != 'pankaj' && res[i].userName != this.userName) {
+            this.martialBasedList.push(res[i]);
           }
         }
       }
     })
   }
-  FamilyTypeData(event: any) {
-    this.DependentBasedList = [];
-    this.Family = event;
-    this.UserName = localStorage.getItem("UserName:");
-    this.FamilyTypeService.FamilyType(this.Family).subscribe({
+  familyTypeData(event: any) {
+    this.dependentBasedList = [];
+    this.family = event;
+    this.userName = localStorage.getItem("UserName:");
+    this.familyTypeService.familyType(this.family).subscribe({
       next: (res) => {
-        this.MartialBasedList.length = 0;
-        this.GenderBasedList.length = 0;
-        this.FamilyBasedList.length = 0;
+        this.martialBasedList.length = 0;
+        this.genderBasedList.length = 0;
+        this.familyBasedList.length = 0;
         for (let i = 0; i < res.length; i++) {
-          if (res[i].userName != 'pankaj' && res[i].userName != this.UserName) {
-            this.FamilyBasedList.push(res[i]);
+          if (res[i].userName != 'pankaj' && res[i].userName != this.userName) {
+            this.familyBasedList.push(res[i]);
           }
         }
       }
     })
   }
-
-  DependentFilter() {
-    this.FamilyBasedList = [];
-    this.UserName = localStorage.getItem("UserName:");
-    this.DependentBasedList.length = 0;
-    this.GenderService.Gender(this.Sex).subscribe({
+  dependentFilter() {
+    this.familyBasedList = [];
+    this.userName = localStorage.getItem("UserName:");
+    this.dependentBasedList.length = 0;
+    this.genderService.gender(this.sex).subscribe({
       next: (res) => {
         for (let i = 0; i < res.length; i++) {
-          if ((res[i].sex == this.Sex && res[i].martialStatus == this.Martial) &&
-            res[i].familyType == this.Family) {
-            this.DependentBasedList.push(res[i]);
+          if ((res[i].sex == this.sex && res[i].martialStatus == this.martial) &&
+            res[i].familyType == this.family) {
+            this.dependentBasedList.push(res[i]);
           }
         }
       }
     })
   }
-  ResetAll() {
-    this.GenderBasedList.length = 0;
-    this.FamilyBasedList.length = 0;
-    this.MartialBasedList.length = 0;
-    this.DependentBasedList.length = 0
+  resetAll() {
+    this.genderBasedList.length = 0;
+    this.familyBasedList.length = 0;
+    this.martialBasedList.length = 0;
+    this.dependentBasedList.length = 0
   }
   ngOnInit(): void {
   }
-
-
 }

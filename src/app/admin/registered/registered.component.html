@@ -1,6 +1,22 @@
-<app-alert-box (PopItem)="Del($event)"></app-alert-box>
-<div class="container-fluid justify-content-start mt-5 table-overflow">
-  <table class="table table-striped">
+<app-alert-box (PopItem)="deletePopup($event)"></app-alert-box>
+<div class="container-fluid justify-content-start mt-5">
+  <div class="form-group margin">
+    <input
+      type="text"
+      class="form-control search-bar border border-3 rounded-pill"
+      placeholder="Search..."
+      [(ngModel)]="filterTerm"
+    />
+  </div>
+  <div class="d-flex justify-content-left">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
+  <table class="table table-striped responsive">
     <thead>
       <tr>
         <th>Profile</th>
@@ -12,15 +28,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let list of Registered">
-        <td><img class="Zoom" src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
-        <td class="Zoom1">{{list.userName}}</td>
-        <td class="Zoom1">{{list.email}}</td>
-        <td class="Zoom1">{{list.mobile}}</td>
-        <td class="Zoom1">{{list.sex}}</td>
+      <tr *ngFor="let list of registered | filter: filterTerm | paginate:{ itemsPerPage:this.tableSize,
+        currentPage:this.page,totalItems:this.count};let i = index">
+        <td><img class="zoom" src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
+        <td class="zoom1">{{list.userName}}</td>
+        <td class="zoom1">{{list.email}}</td>
+        <td class="zoom1">{{list.mobile}}</td>
+        <td class="zoom1">{{list.sex}}</td>
         <td>
         </td>
-        <td> <span class="btn btn-danger font  w-50 m-4" (click)="Delete(list.id)">Delete</span></td>
+        <td> <span class="btn btn-danger font  w-50 m-4" (click)="deleteData(list.id)">Delete</span></td>
       </tr>
     </tbody>
   </table>
+  </div>

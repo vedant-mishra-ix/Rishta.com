@@ -1,36 +1,42 @@
-
 <div class="container-fluid mt-5">
-  <form [formGroup]="GenderList">
+  <form [formGroup]="genderList">
     <div class="row">
-    <div class="col-2">
-      <select class="form-control" (ngModelChange)="GenderData($event)"  name="Sex" id="Sex" formControlName="Sex">
-        <option>- Select Gender -</option>
-        <option *ngFor="let gender of Gender | keyvalue" >{{gender.value}}</option>
-      </select>
-    </div>
-    <div class="col-2">
-      <select class="form-control" (ngModelChange)="MartialStatusData($event)" name="MartialStatus" id="MartialStatus" formControlName="MartialStatus">
-        <option>- Select MartialStatus -</option>
-        <option *ngFor="let Martial of MartialStatus | keyvalue" >{{Martial.value}}</option>
-      </select>
-    </div>
-    <div class="col-2">
-      <select class="form-control" (ngModelChange)="FamilyTypeData($event)"  name="FamilyType" id="FamilyType" formControlName="FamilyType">
-        <option>- Select FamilyType -</option>
-        <option *ngFor="let Family of FamilyType | keyvalue" >{{Family.value}}</option>
-      </select>
-    </div>
-    <div class="col-2">
-      <input type="button" class="form-control btn btn-primary" value="Apply all" (click)="DependentFilter()">
-    </div>
-    <div class="col-2">
-      <input type="submit" class="form-control btn btn-primary" value="Reset All" (click)="ResetAll()">
-    </div>
+      <div class="col-2">
+        <select class="form-control" (ngModelChange)="genderData($event)"
+        name="Sex" id="Sex" formControlName="Sex">
+          <option>- Select Gender -</option>
+          <option *ngFor="let gender of gender | keyvalue">{{gender.value}}</option>
+        </select>
+      </div>
+      <div class="col-2">
+        <select class="form-control" (ngModelChange)="martialStatusData($event)"
+        name="MartialStatus" id="MartialStatus"
+          formControlName="MartialStatus">
+          <option>- Select MartialStatus -</option>
+          <option *ngFor="let Martial of martialStatus | keyvalue">{{Martial.value}}</option>
+        </select>
+      </div>
+      <div class="col-2">
+        <select class="form-control" (ngModelChange)="familyTypeData($event)"
+        name="FamilyType" id="FamilyType"
+          formControlName="FamilyType">
+          <option>- Select FamilyType -</option>
+          <option *ngFor="let Family of familyType | keyvalue">{{Family.value}}</option>
+        </select>
+      </div>
+      <div class="col-2">
+        <input type="button" class="form-control btn btn-primary" value="Apply all"
+        (click)="dependentFilter()">
+      </div>
+      <div class="col-2">
+        <input type="submit" class="form-control btn btn-primary" value="Reset All"
+        (click)="resetAll()">
+      </div>
     </div>
   </form>
 </div>
 <div class="container-fluid justify-content-start mt-5 table-overflow">
-  <table class="table table-striped">
+  <table class="table table-striped responsive">
     <thead>
       <tr>
         <th>Profile</th>
@@ -41,8 +47,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let list of GenderBasedList ">
-        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+      <tr *ngFor="let list of genderBasedList ">
+        <td><img src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
         <td>{{list.userName}}</td>
         <td>{{list.email}}</td>
         <td>{{list.mobile}}</td>
@@ -50,8 +56,8 @@
         <td>
         </td>
       </tr>
-      <tr *ngFor="let list of MartialBasedList ">
-        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+      <tr *ngFor="let list of martialBasedList ">
+        <td><img src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
         <td>{{list.userName}}</td>
         <td>{{list.email}}</td>
         <td>{{list.mobile}}</td>
@@ -59,8 +65,8 @@
         <td>
         </td>
       </tr>
-      <tr *ngFor="let list of FamilyBasedList ">
-        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+      <tr *ngFor="let list of familyBasedList ">
+        <td><img src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
         <td>{{list.userName}}</td>
         <td>{{list.email}}</td>
         <td>{{list.mobile}}</td>
@@ -68,8 +74,8 @@
         <td>
         </td>
       </tr>
-      <tr *ngFor="let list of DependentBasedList ">
-        <td><img src="http://localhost:8080/{{list.profilePhoto}}" width="50px" height="50px"></td>
+      <tr *ngFor="let list of dependentBasedList ">
+        <td><img src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
         <td>{{list.userName}}</td>
         <td>{{list.email}}</td>
         <td>{{list.mobile}}</td>
@@ -79,4 +85,3 @@
       </tr>
     </tbody>
   </table>
-

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ReportedProfilesService {
   constructor(private http: HttpClient) { }
-  ReportedAccount():Observable<any>
+  reportedAccount():Observable<any>
   {
     return this.http.get(`${environment.baseApiUrl}/api/Admin/ReportedProfileData`);
   }

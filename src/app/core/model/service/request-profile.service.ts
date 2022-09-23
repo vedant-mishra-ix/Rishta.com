@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,14 +9,30 @@ import { environment } from 'src/environments/environment';
 export class RequestProfileService {
 
   constructor(private http: HttpClient) { }
-  Request(RegisteredId:any):Observable<any>
+  request(registeredId:any):Observable<any>
   {
     const parm = {};
-    return this.http.post(`${environment.baseApiUrl}/api/User/RequestProfile`,RegisteredId,parm);
+    return this.http.post(`${environment.baseApiUrl}/api/User/RequestProfile`,registeredId,parm);
   }
-  RequestList(Id:any):Observable<any>
+  requestAccept(registeredId:any):Observable<any>
   {
     const parm = {};
-    return this.http.get(`${environment.baseApiUrl}/api/User/RequestProfiles?Id=`+Id,parm);
+    return this.http.post(`${environment.baseApiUrl}/api/User/RequestAccept`,registeredId,parm);
+  }
+  requestList(id:any):Observable<any>
+  {
+    const parm = {};
+    return this.http.get(`${environment.baseApiUrl}/api/User/RequestProfiles?id=`+id,parm);
+  }
+  delete(value:any):Observable<any>
+  {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: value
+    };
+    return this.http.delete(`${environment.baseApiUrl}/api/User/RequestDelete`,
+      options);
   }
 }

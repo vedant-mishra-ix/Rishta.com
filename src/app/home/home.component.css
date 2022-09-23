@@ -1,9 +1,5 @@
-.Background
+.hover:hover
 {
-  background-image: url('./homelist/HomeBackground.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 86vh;
-  background-attachment: fixed;
+  background-color: green;
+  border-radius: 10px;
 }

@@ -9,9 +9,9 @@ import { environment } from 'src/environments/environment';
 export class MartialStatusService {
 
   constructor(private http: HttpClient) { }
-  Martial(profile:string):Observable<any>
+  martial(profile:string):Observable<any>
   {
-    const options = { params: new HttpParams().set('MartialStatus', profile) };
+    const options = { params: new HttpParams().set('martialStatus', profile) };
     return this.http.get(`${environment.baseApiUrl}/api/User/Martial`,options);
   }
 }

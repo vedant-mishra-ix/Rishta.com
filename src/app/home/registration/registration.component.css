@@ -1,21 +1,22 @@
-.Margin
+.margin
 {
   padding-left: 26vw;
-  margin-left: -10px;
+  margin-left: -5px;
 }
-.Form-Overflow
+.form-overflow
 {
-  width: 99.5vw;
+  width: 97.8vw;
   overflow: auto;
   height: 76vh;
   padding-right: 5vw;
 }
-.Heading
+.heading
 {
-  margin-top: 30px;
+  margin-top: 20px;
   text-align: center;
+  font-weight: bolder;
 }
-.ValidationError
+.validationError
 {
   color: red;
   font-weight: lighter;
@@ -44,6 +45,13 @@ textarea.ng-valid
 {
   border-left:5px solid green;
 }
-
+.text-letter
+{
+  text-transform:capitalize;
+}
+.education-letter
+{
+  text-transform: uppercase;
+}
 
 

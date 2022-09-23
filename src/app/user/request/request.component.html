@@ -1,19 +1,31 @@
-<div class="container-fluid justify-content-start mt-5 table-overflow">
-  <table class="table table-striped">
+<div class="container-fluid justify-content-start mt-5">
+  <div class="d-flex justify-content-left">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
+  <table class="table table-striped responsive">
     <thead>
       <tr>
         <th>Profile</th>
         <th>Request Name</th>
         <th>Request Email</th>
-        <th>Request Times</th>
+        <th>Acccept</th>
+        <th>Remove</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let list of RequestList">
-        <td><img class="Zoom" src="http://localhost:8080/{{list.requestImage}}" width="50px" height="50px"></td>
-        <td class="Zoom1">{{list.requestUserName}}</td>
-        <td class="Zoom1">{{list.requestEmail}}</td>
-        <td class="Zoom1">{{list.requestCount}}</td>
+      <tr *ngFor="let list of requestList | paginate:{ itemsPerPage:this.tableSize,
+        currentPage:this.page,totalItems:this.count};let i = index">
+        <td><img class="zoom" src="http://localhost:55339/{{list.requestImage}}" width="50px"
+           height="50px"></td>
+        <td class="zoom1">{{list.requestUserName}}</td>
+        <td class="zoom1">{{list.requestEmail}}</td>
+        <td class="zoom1"><a class="btn btn-success" (click)="requestAccept(list)">Accept</a></td>
+        <td class="zoom1"><a class="btn btn-danger" (click)="decline(list)">Decline</a></td>
       </tr>
     </tbody>
   </table>

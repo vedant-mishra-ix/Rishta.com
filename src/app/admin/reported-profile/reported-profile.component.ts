@@ -8,18 +8,35 @@ import { ReportedProfilesService } from 'src/app/core/model/admin-service/report
 })
 export class ReportedProfileComponent implements OnInit {
 
-  ReportedList:any=[];
+  reportedList:any=[];
+  page:number=1;
+  count:number=0;
+  tableSize:number=3;
+  tableSizes:any=[3,6,9,12];
   constructor(private ReportedProfileService: ReportedProfilesService) { }
 
   ngOnInit(): void {
-    this.ReportedProfileService.ReportedAccount().subscribe({
+    this.reportedProfile();
+  }
+  reportedProfile()
+  {
+    this.ReportedProfileService.reportedAccount().subscribe({
       next: (res) => {
-        this.ReportedList =  res;
-        console.log("Reported data1: "+ this.ReportedList[0].reportedId);
+        this.reportedList =  res;
       }, error: () => {
         alert("something wrong");
       }
     })
   }
-
+  onTableDataChange(event:any)
+  {
+    this.page = event;
+    this.reportedProfile();
+  }
+  onTableSizeChange(event:any):void
+  {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.reportedProfile();
+  }
 }

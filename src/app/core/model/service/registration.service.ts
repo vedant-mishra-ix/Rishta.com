@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 export class RegistrationService {
 
   constructor(private http: HttpClient) { }
-  Registration(RegistrationData:any):Observable<any>
+  Registration(registrationData:any):Observable<any>
   {
-    return this.http.post(`${environment.baseApiUrl}/api/Authenticate/register`,RegistrationData);
+    return this.http.post(`${environment.baseApiUrl}/api/Authenticate/register`,registrationData);
   }
 }

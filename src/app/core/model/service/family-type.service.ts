@@ -8,9 +8,9 @@ import { environment } from 'src/environments/environment';
 })
 export class FamilyTypeService {
   constructor(private http: HttpClient) { }
-  FamilyType(profile:string):Observable<any>
+  familyType(profile:string):Observable<any>
   {
-    const options = { params: new HttpParams().set('FamilyType', profile) };
+    const options = { params: new HttpParams().set('familyType', profile) };
     return this.http.get(`${environment.baseApiUrl}/api/User/FamilyType`,options);
   }
 }
