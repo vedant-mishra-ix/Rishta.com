@@ -23,6 +23,7 @@ export class RegisteredComponent implements OnInit {
   tableSize: number = 3;
   tableSizes: any = [3, 6, 9, 12];
   filterTerm!: string;
+  image:any;
   constructor(private registeredService: RegisteredService,
     private deleteService: RegisteredDeleteService, private adminProfile: AdminProfileService
     , private toastr: ToastrService) { }
@@ -70,5 +71,9 @@ export class RegisteredComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
     this.profileRegistered(this.id);
+  }
+  imageOpen(event:any)
+  {
+    this.image = event.profilePhoto;
   }
 }

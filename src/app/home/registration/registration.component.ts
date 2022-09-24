@@ -111,8 +111,11 @@ export class RegistrationComponent implements OnInit {
         this.toastr.error("Age must be 18 or greater than");
       }
     }
+    else{
+      return;
+    }
   }
-  get registrationValidation(): { [key: string]: AbstractControl } {
+  get registrationValidation(){
     return this.registration.controls;
   }
   ngOnInit(): void {

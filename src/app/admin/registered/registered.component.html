@@ -30,7 +30,8 @@
     <tbody>
       <tr *ngFor="let list of registered | filter: filterTerm | paginate:{ itemsPerPage:this.tableSize,
         currentPage:this.page,totalItems:this.count};let i = index">
-        <td><img class="zoom" src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
+        <td><img class="zoom" (click)="imageOpen(list)"  data-bs-target="#staticBackdrop" data-bs-toggle="modal"
+          src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
         <td class="zoom1">{{list.userName}}</td>
         <td class="zoom1">{{list.email}}</td>
         <td class="zoom1">{{list.mobile}}</td>
@@ -38,6 +39,18 @@
         <td>
         </td>
         <td> <span class="btn btn-danger font  w-50 m-4" (click)="deleteData(list.id)">Delete</span></td>
+        <td>
+          <div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content bg-light">
+                  <button type="button" class="btn-close btn-success" data-bs-dismiss="modal" aria-label="Close">
+                  </button>
+                <img class="modal-img rounded-3" src="http://localhost:55339/{{image}}">
+              </div>
+            </div>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
