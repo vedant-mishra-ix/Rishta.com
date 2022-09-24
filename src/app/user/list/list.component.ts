@@ -20,7 +20,8 @@ export class ListComponent implements OnInit {
   ProfileCount = localStorage.getItem("ProfileVisible:");
   constructor(private userListService: UserListService, private route: Router,
     private reportService: ReportProfileService, private toastr: ToastrService,
-    private requestService: RequestProfileService, private historyService: RequestHistoryService) { }
+    private requestService: RequestProfileService, private historyService: RequestHistoryService
+    ) { }
 
   ngOnInit(): void {
     this.getData();

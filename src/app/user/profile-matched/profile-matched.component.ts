@@ -16,6 +16,7 @@ export class ProfileMatchedComponent implements OnInit {
   count:number=0;
   tableSize:number=3;
   tableSizes:any=[3,6,9,12];
+  image:any
   constructor(private userListService: UserListService) { }
 
   ngOnInit(): void {
@@ -42,5 +43,9 @@ export class ProfileMatchedComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
     this.getData();
+  }
+  imageOpen(event:any)
+  {
+    this.image = event.profilePhoto;
   }
 }

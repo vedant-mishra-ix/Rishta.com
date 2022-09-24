@@ -19,6 +19,8 @@ export class MembershipAddComponent implements OnInit {
   planId: any;
   memberShipList: any = [];
   count: number = 0;
+  planValidity:any;
+  hidden:any = false
   constructor(private fb: FormBuilder, private membershipPlans: MembershipPlansService,
     private toaster: ToastrService, private memberShipService: MembershipAddService,
     private route: Router) {
@@ -60,6 +62,8 @@ export class MembershipAddComponent implements OnInit {
   submit() {
     for (let i = 0; i < this.memberShipList.length; i++) {
       if (this.memberShipList[i].id == this.id) {
+        this.planValidity = this.memberShipList[i].planValidity;
+        this.hidden = true;
         this.count++;
         break;
       }

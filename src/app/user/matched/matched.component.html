@@ -29,7 +29,7 @@
         (click)="dependentFilter()">
       </div>
       <div class="col-2">
-        <input type="submit" class="form-control btn btn-primary" value="Reset All"
+        <input type="submit" id="reset" class="form-control btn btn-primary" value="Reset All"
         (click)="resetAll()">
       </div>
     </div>
@@ -47,6 +47,15 @@
       </tr>
     </thead>
     <tbody>
+      <tr *ngFor="let list of registeredList ">
+        <td><img src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
+        <td>{{list.userName}}</td>
+        <td>{{list.email}}</td>
+        <td>{{list.mobile}}</td>
+        <td>{{list.sex}}</td>
+        <td>
+        </td>
+      </tr>
       <tr *ngFor="let list of genderBasedList ">
         <td><img src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
         <td>{{list.userName}}</td>

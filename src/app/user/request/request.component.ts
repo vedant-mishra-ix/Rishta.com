@@ -17,6 +17,7 @@ export class RequestComponent implements OnInit {
   count: number = 0;
   tableSize: number = 3;
   tableSizes: any = [3, 6, 9, 12];
+  image:any;
   constructor(private requestService: RequestProfileService, private toastr: ToastrService,
     private route: Router) { }
 
@@ -68,5 +69,9 @@ export class RequestComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
     this.requestData();
+  }
+  imageOpen(event:any)
+  {
+    this.image = event.requestImage;
   }
 }

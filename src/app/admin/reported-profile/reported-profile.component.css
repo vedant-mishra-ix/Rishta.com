@@ -37,3 +37,13 @@
     font-size: 2rem;
   }
 }
+.modal-img
+{
+  width: 500px;
+  height: 450px;
+  border: none;
+}
+.modal-color
+{
+  background-color: black;
+}

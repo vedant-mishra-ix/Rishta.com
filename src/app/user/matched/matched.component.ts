@@ -6,6 +6,7 @@ import { MarriageStatus } from 'src/app/core/model/marriage-status';
 import { FamilyTypeService } from 'src/app/core/model/service/family-type.service';
 import { GenderListService } from 'src/app/core/model/service/gender-list.service';
 import { MartialStatusService } from 'src/app/core/model/service/martial-status.service';
+import { RegisteredService } from 'src/app/core/model/service/registered.service';
 
 @Component({
   selector: 'app-matched',
@@ -21,20 +22,39 @@ export class MatchedComponent implements OnInit {
   martialBasedList: any[] = [];
   familyBasedList: any[] = [];
   dependentBasedList: any[] = [];
+  registeredList: any[]=[];
   sex: any;
   martial: any;
   family: any;
   userName: any;
   genderList: FormGroup = new FormGroup({});
+  username = localStorage.getItem("UserName:");
   constructor(private genderService: GenderListService, private fb: FormBuilder,
-    private martialService: MartialStatusService, private familyTypeService: FamilyTypeService) {
+    private martialService: MartialStatusService, private familyTypeService: FamilyTypeService,
+    private registeredService:RegisteredService) {
     this.genderList = this.fb.group({
       Sex: [''],
       MartialStatus: [''],
       FamilyType: [''],
     })
   }
+  registeredAccounts()
+  {
+    this.registeredService.registered().subscribe({
+      next:(res)=>
+      {
+        for(let i = 0 ; i < res.length ; i++)
+        {
+          if(res[i].userName != 'pankaj' && res[i].userName != this.username && res[i].userName != 'Dheeru')
+          {
+            this.registeredList.push(res[i]);
+          }
+        }
+      }
+    })
+  }
   genderData(event: any) {
+    this.registeredList =[];
     this.dependentBasedList = [];
     this.sex = event;
     this.userName = localStorage.getItem("UserName:");
@@ -44,7 +64,7 @@ export class MatchedComponent implements OnInit {
         this.familyBasedList.length = 0;
         this.martialBasedList.length = 0;
         for (let i = 0; i < res.length; i++) {
-          if (res[i].userName != 'pankaj' && res[i].userName != this.userName) {
+          if (res[i].userName != 'pankaj' && res[i].userName != this.userName && res[i].userName != 'Dheeru') {
             this.genderBasedList.push(res[i]);
           }
         }
@@ -52,6 +72,7 @@ export class MatchedComponent implements OnInit {
     })
   }
   martialStatusData(event: any) {
+    this.registeredList =[];
     this.dependentBasedList = [];
     this.martial = event;
     this.userName = localStorage.getItem("UserName:");
@@ -61,7 +82,7 @@ export class MatchedComponent implements OnInit {
         this.genderBasedList.length = 0;
         this.familyBasedList.length = 0;
         for (let i = 0; i < res.length; i++) {
-          if (res[i].userName != 'pankaj' && res[i].userName != this.userName) {
+          if (res[i].userName != 'pankaj' && res[i].userName != this.userName && res[i].userName != 'Dheeru') {
             this.martialBasedList.push(res[i]);
           }
         }
@@ -69,6 +90,7 @@ export class MatchedComponent implements OnInit {
     })
   }
   familyTypeData(event: any) {
+    this.registeredList=[];
     this.dependentBasedList = [];
     this.family = event;
     this.userName = localStorage.getItem("UserName:");
@@ -78,7 +100,7 @@ export class MatchedComponent implements OnInit {
         this.genderBasedList.length = 0;
         this.familyBasedList.length = 0;
         for (let i = 0; i < res.length; i++) {
-          if (res[i].userName != 'pankaj' && res[i].userName != this.userName) {
+          if (res[i].userName != 'pankaj' && res[i].userName != this.userName && res[i].userName != 'Dheeru') {
             this.familyBasedList.push(res[i]);
           }
         }
@@ -86,13 +108,14 @@ export class MatchedComponent implements OnInit {
     })
   }
   dependentFilter() {
+    this.registeredList=[];
     this.familyBasedList = [];
     this.userName = localStorage.getItem("UserName:");
     this.dependentBasedList.length = 0;
     this.genderService.gender(this.sex).subscribe({
       next: (res) => {
         for (let i = 0; i < res.length; i++) {
-          if ((res[i].sex == this.sex && res[i].martialStatus == this.martial) &&
+          if ((res[i].sex == this.sex && res[i].martialStatus == this.martial && res[i].userName != 'Dheeru') &&
             res[i].familyType == this.family) {
             this.dependentBasedList.push(res[i]);
           }
@@ -101,11 +124,15 @@ export class MatchedComponent implements OnInit {
     })
   }
   resetAll() {
+    this.genderList.reset();
+    this.registeredList.length=0;
     this.genderBasedList.length = 0;
     this.familyBasedList.length = 0;
     this.martialBasedList.length = 0;
     this.dependentBasedList.length = 0
   }
   ngOnInit(): void {
+    this.registeredAccounts();
   }
+
 }

@@ -12,9 +12,9 @@ import { ForgotService } from 'src/app/core/model/service/forgot.service';
 export class ForgotPasswordComponent implements OnInit {
 
   resetPassword: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder, private toaster: ToastrService,private forgotService:ForgotService,
-    private route: Router)
-  {
+  submitted = false;
+  constructor(private fb: FormBuilder, private toaster: ToastrService, private forgotService: ForgotService,
+    private route: Router) {
     this.resetPassword = fb.group({
       userEmail: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -25,19 +25,24 @@ export class ForgotPasswordComponent implements OnInit {
     return this.resetPassword.controls;
   }
   submit() {
-    if (this.resetPassword.value.password == this.resetPassword.value.newPassword)
-    {
-      this.forgotService.changePassword(this.resetPassword.value).subscribe({next:(res)=>
-      {
-        this.toaster.success("Password change successfuly");
-        this.route.navigate(['login']);
-      },error:()=>
-    {
-      this.toaster.error("Something wrong or email didn't matched");
-    }})
+    this.submitted = true;
+    if (this.resetPassword.valid) {
+      if (this.resetPassword.value.password == this.resetPassword.value.newPassword) {
+        this.forgotService.changePassword(this.resetPassword.value).subscribe({
+          next: (res) => {
+            this.toaster.success("Password change successfuly");
+            this.route.navigate(['login']);
+          }, error: () => {
+            this.toaster.error("Something wrong or email didn't matched");
+          }
+        })
+      }
+      else {
+        this.toaster.error("Password did not mathced")
+      }
     }
     else {
-      this.toaster.error("Password did not mathced")
+      return;
     }
   }
   ngOnInit(): void {

@@ -13,6 +13,7 @@ export class ReportedProfileComponent implements OnInit {
   count:number=0;
   tableSize:number=3;
   tableSizes:any=[3,6,9,12];
+  image:any;
   constructor(private ReportedProfileService: ReportedProfilesService) { }
 
   ngOnInit(): void {
@@ -38,5 +39,9 @@ export class ReportedProfileComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
     this.reportedProfile();
+  }
+  imageOpen(event:any)
+  {
+    this.image = event.reportedImage;
   }
 }

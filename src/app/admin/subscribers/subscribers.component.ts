@@ -15,6 +15,7 @@ export class SubscribersComponent implements OnInit {
   tableSize:number=3;
   tableSizes:any=[3,6,9,12];
   filterTerm!: string;
+  image:any;
   constructor(private membershipService: MembershipProfilesService,private toaster:ToastrService) { }
 
   ngOnInit(): void {
@@ -48,5 +49,9 @@ export class SubscribersComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
     this.subscribers();
+  }
+  imageOpen(event:any)
+  {
+    this.image = event.profilePhoto;
   }
 }

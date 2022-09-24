@@ -45,3 +45,13 @@
     width: 210vw;
   }
 }
+.modal-img
+{
+  width: 500px;
+  height: 450px;
+  border: none;
+}
+.modal-color
+{
+  background-color: black;
+}
