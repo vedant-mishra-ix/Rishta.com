@@ -40,11 +40,11 @@
                   <div class="scroll">
                     <div *ngFor="let msg of senderMessageList"
                       class="modal-dialog modal-dialog-centered sender-message-padding">
-                      <p><small class="text-danger">Sender</small>- {{msg.message}}</p>
+                      <p><small class="text-danger">Send</small>- {{msg.message}}</p>
                     </div>
                     <div *ngFor="let msg of recieverMessageList"
                       class="modal-dialog modal-dialog-centered reciever-message-padding">
-                      <p><small class="text-success">Reciever</small>- {{msg.message}}</p>
+                      <p><small class="text-success">Recieved</small>- {{msg.message}}</p>
                     </div>
                   </div>
                   <form class="form  bg-light " [formGroup]="message" (ngSubmit)="submit()">
