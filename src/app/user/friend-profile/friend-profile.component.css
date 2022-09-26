@@ -1,0 +1,19 @@
+.table-overflow
+{
+  width: 51vw;
+  overflow: auto;
+  height: 70vh;
+  margin-left: 2vw;
+}
+.text:hover
+{
+  font-weight: bolder;
+  font-size: larger;
+}
+.zoom:hover {
+  margin-bottom: 10px;
+  -ms-transform: scale(1.2); /* IE 9 */
+  -webkit-transform: scale(1.2); /* Safari 3-8 */
+  transform: scale(1.2);
+  transition: transform .9s;
+}

@@ -59,7 +59,7 @@ export class ListComponent implements OnInit {
     for (let i = 0; i < this.historyList.length; i++) {
       this.history();
       if (this.historyList[i].requestId == event.id) {
-        this.count++;
+        this.count = 1;
         break
       }
     }
@@ -70,7 +70,7 @@ export class ListComponent implements OnInit {
         }
       })
     }
-    else {
+    else if( this.count == 1){
       this.toastr.error("you already sent the request");
     }
   }

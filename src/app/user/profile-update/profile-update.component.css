@@ -46,3 +46,8 @@ textarea.ng-valid
 {
   border-left:5px solid green;
 }
+.padding
+{
+  margin-top: 4px;
+  margin-left: 200px;
+}

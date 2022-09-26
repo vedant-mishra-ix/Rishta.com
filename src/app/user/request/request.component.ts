@@ -44,7 +44,7 @@ export class RequestComponent implements OnInit {
       next: (res) => {
         this.toastr.success("Request Accepted");
         this.removeAccept();
-        this.route.navigate(['./User'])
+        this.route.navigate(['./user'])
       }, error: () => { this.toastr.error("Something wrong") }
     })
   }

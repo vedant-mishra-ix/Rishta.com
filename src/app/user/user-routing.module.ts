@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FriendListComponent } from './friend-list/friend-list.component';
+import { FriendProfileComponent } from './friend-profile/friend-profile.component';
 import { HistoryComponent } from './history/history.component';
 import { ListComponent } from './list/list.component';
 import { MatchedComponent } from './matched/matched.component';
@@ -61,6 +62,10 @@ const routes: Routes = [
       {
         path:'friends',
         component:FriendListComponent
+      },
+      {
+        path:'friends-profile',
+        component:FriendProfileComponent
       }
     ]
   }

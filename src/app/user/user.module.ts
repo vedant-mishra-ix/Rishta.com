@@ -17,6 +17,7 @@ import { ShareModule } from '../share/share.module';
 import { ProfileMatchedComponent } from './profile-matched/profile-matched.component';
 import{NgxPaginationModule} from 'ngx-pagination';
 import { FriendListComponent } from './friend-list/friend-list.component';
+import { FriendProfileComponent } from './friend-profile/friend-profile.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { FriendListComponent } from './friend-list/friend-list.component';
     MembershipAddComponent,
     ProfileMatchedComponent,
     FriendListComponent,
+    FriendProfileComponent,
   ],
   imports: [
     CommonModule,

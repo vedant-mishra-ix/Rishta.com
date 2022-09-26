@@ -40,6 +40,7 @@ export class ProfileUpdateComponent implements OnInit {
   age:number=0;
   countryName:any;
   stateName:any;
+  profilePhoto = localStorage.getItem("ProfilePhoto:");
   constructor(private fb: FormBuilder, private cityService: CityService,
     private stateService: StateService,
     private route: Router, private idRoute: ActivatedRoute, private profileService: UserProfileService,

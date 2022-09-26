@@ -29,6 +29,7 @@ export class UserHeaderComponent implements OnInit {
       localStorage.removeItem("ProfileMatched:");
       localStorage.removeItem("NotificationCount:");
       localStorage.removeItem("RequestGet:");
+      localStorage.removeItem("RequestSenderId:");
       return this.authService.deleteToken();
     }
     ngOnInit(): void {

@@ -74,6 +74,10 @@ export class FriendListComponent implements OnInit {
     this.senderChat();
     this.recieverChat();
   }
+  friendProfile(event:any)
+  {
+    localStorage.setItem("RequestSenderId:",event.requestSenderId);
+  }
   senderChat()
   {
     this.chatService.senderMessage(this.id,this.recirverId).

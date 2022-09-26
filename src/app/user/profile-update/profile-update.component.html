@@ -2,8 +2,9 @@
 <div class="container-fluid ">
   <form class="form mt-4 rounded bg-light border border-3 shadow-lg margin form-overflow"
   [formGroup]="registration" (ngSubmit)="submit()">
-
-  <div class="row mt-3">
+     <img src="http://localhost:55339/{{profilePhoto}}" alt="avatar"
+      class="rounded-circle img-fluid zoom padding" style="width: 100px;height:100px;">
+    <div class="row mt-3">
     <div class="col-2">
       <label for="UserName">Id:<span class="validationError">*</span></label>
     </div>
@@ -14,7 +15,7 @@
       && (registrationValidation['Id']?.touched || registrationValidation['Id']?.dirty)"
       class="validationError">This field is required</span>
     </div>
-  </div>
+   </div>
     <div class="row mt-3">
       <div class="col-2">
         <label for="UserName">Name:<span class="validationError">*</span></label>
@@ -250,22 +251,22 @@
         </select>
       </div>
     </div>
-    <div class="row mt-3">
-      <div class="col-2">
+     <div class="row mt-3">
+        <div class="col-2">
         <label for="files">Photo:</label>
+        </div>
+        <div class="col-6">
+          <input class="form-control" type="file" (change)="handleFile($event)"
+          name="files" id="files" formControlName="files">
+           <span *ngIf="registrationValidation['files']?.errors?.['required']
+           && (registrationValidation['files']?.touched || registrationValidation['files']?.dirty)"
+           class="validationError">This field is required</span>
+        </div>
       </div>
-      <div class="col-6">
-        <input class="form-control" type="file" (change)="handleFile($event)"
-         name="files" id="files" formControlName="files">
-         <span *ngIf="registrationValidation['files']?.errors?.['required']
-         && (registrationValidation['files']?.touched || registrationValidation['files']?.dirty)"
-         class="validationError">This field is required</span>
+      <div class="row mt-3">
+        <div class="col-8">
+         <input class="btn btn-primary w-100" type="submit">
+        </div>
       </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-8">
-        <input class="btn btn-primary w-100" type="submit">
-      </div>
-    </div>
   </form>
 </div>

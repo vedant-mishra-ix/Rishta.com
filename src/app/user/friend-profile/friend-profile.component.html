@@ -1,0 +1,175 @@
+<section style="background-color: #eee;">
+  <div class="container-fluid pt-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-5">
+          <div *ngFor="let list of friendData" class="card-body text-center">
+            <img src="http://localhost:55339/{{list.profilePhoto}}" alt="avatar"
+              class="rounded-circle img-fluid zoom" style="width: 270px;height:270px;">
+            <h5 class="shadow my-2">{{list.userName}}</h5>
+            <p class="shadow text mb-1">{{list.occupation}}</p>
+            <p class="shadow  text mb-1">{{list.country}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 table-overflow">
+        <div *ngFor="let list of friendData" class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.userName}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.userEmail}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mobile</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.mobile}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.address}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Country</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.country}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">State</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.state}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">City</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.city}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Cast</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.cast}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Religious</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.religious}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Martial Status</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.martialStatus}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mother Tongue</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.motherTongue}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Height</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.height}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Highest Education</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.highestEducation}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Occupation</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.occupation}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Annual Income</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.annualIncome}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Family Type</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.familyType}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Family Status</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{list.familyStatus}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
