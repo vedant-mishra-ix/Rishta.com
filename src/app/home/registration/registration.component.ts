@@ -38,16 +38,21 @@ export class RegistrationComponent implements OnInit {
   countryName: any;
   stateName: any;
   submitted = false;
+  passwordRegex = "^(?=.*[0-9])"
+           + "(?=.*[a-z])(?=.*[A-Z])"
+           + "(?=.*[@#$%^&+=])"
+           + "(?=\\S+$).{8,20}$";
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   constructor(private fb: FormBuilder, private cityService: CityService,
     private stateService: StateService, private registrationService: RegistrationService,
     private route: Router, private toastr: ToastrService) {
     this.registration = this.fb.group({
       UserName: ['', Validators.required],
-      Email: ['', [Validators.required, Validators.email]],
+      Email: ['', [Validators.required,Validators.email,Validators.pattern(this.emailPattern)]],
       Mobile: ['', Validators.required],
       Dob: ['', Validators.required],
-      Password: ['', Validators.required],
+      Password: ['', [Validators.required,Validators.pattern(this.passwordRegex)]],
       Address: ['', Validators.required],
       Cast: [''],
       Sex: ['', Validators.required],
@@ -104,7 +109,7 @@ export class RegistrationComponent implements OnInit {
         this.registrationService.Registration(formData).subscribe((res) => {
           this.toastr.success("Successful Registration Done");
           this.route.navigate(['login']);
-        }, error => { this.toastr.error("Something wrong or User Name Already exist! ") }
+        }, error => { this.toastr.error("Email Already exist! ") }
         )
       }
       else {

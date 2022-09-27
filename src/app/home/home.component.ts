@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
       audio.play()
   }, 3000);
   }
-
   ngOnInit(): void {
    this.playAudio();
   }

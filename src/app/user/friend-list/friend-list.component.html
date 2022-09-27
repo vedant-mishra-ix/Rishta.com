@@ -16,7 +16,7 @@
     <tbody>
       <tr *ngFor="let list of friendList | paginate:{ itemsPerPage:this.tableSize,
         currentPage:this.page,totalItems:this.count};let i = index">
-        <td><img class="zoom" src="http://localhost:55339/{{list.profilePhoto}}" routerLink='/user/friends-profile'
+        <td><img class="zoom" src="http://localhost:55339/{{list.profilePhoto}}"
           (click)="friendProfile(list)"></td>
         <td class="zoom1">{{list.userName}}</td>
         <td class="zoom1">{{list.userEmail}}</td>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ChatService } from 'src/app/core/model/service/chat.service';
 import { FriendListService } from 'src/app/core/model/service/friend-list.service';
@@ -23,7 +24,7 @@ export class FriendListComponent implements OnInit {
   userName:any;
   message: FormGroup = new FormGroup({});
   constructor(private fb: FormBuilder,private friendService:FriendListService,
-    private chatService:ChatService,private toaster:ToastrService)
+    private chatService:ChatService,private toaster:ToastrService,private route:Router)
    {
     this.message = this.fb.group({
       Message:[''],
@@ -77,6 +78,7 @@ export class FriendListComponent implements OnInit {
   friendProfile(event:any)
   {
     localStorage.setItem("RequestSenderId:",event.requestSenderId);
+    this.route.navigate([`/user/friends-profile/${event.requestSenderId}`]);
   }
   senderChat()
   {

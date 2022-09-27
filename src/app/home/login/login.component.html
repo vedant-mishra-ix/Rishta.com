@@ -6,24 +6,24 @@
   <div class="row mt-4">
     <div class="col">
       <input type="text" id="userName" class="form-control w-50"
-      placeholder="user name" formControlName="userName">
-      <span *ngIf="loginValidation['userName'].errors?.['required'] &&
-       (loginValidation['userName'].touched || loginValidation['userName'].dirty)" class="validationError">
-       This field is required</span>
+      placeholder="Username" formControlName="userName">
+      <span *ngIf="(submitted || loginValidation['userName'].touched) &&
+       loginValidation['userName'].errors?.['required']" class="validationError">
+       user name is required</span>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col">
       <input type="password" id="password" class="form-control w-50"
-       placeholder="password" formControlName="password">
-      <span *ngIf="loginValidation['password'].errors?.['required'] &&
-       (loginValidation['password'].touched || loginValidation['password'].dirty)" class="validationError">
-       This field is required</span>
+       placeholder="Password" formControlName="password">
+      <span *ngIf="(submitted || loginValidation['password'].touched) &&
+       loginValidation['password'].errors?.['required']" class="validationError">
+       password is required</span>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col">
-      <input type="submit" [disabled]="loginProfile.invalid"  class="btn btn-primary w-50" value="Login" >
+      <input type="submit"  class="btn btn-primary w-50" value="Login" >
       <br>
       <span>For new user please register<a routerLink="/registration" class="px-2">Sign-up</a></span>
       <span> Password <a routerLink="/forgot" class="px-2"> Forgot</a></span>
