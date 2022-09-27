@@ -37,17 +37,26 @@ namespace RishtaAPI
             });
             services.AddDbContext<CoreDbContext>(op => op.UseSqlServer(Configuration.GetConnectionString("Database"))); //Add       
 
-
+            services.AddScoped<ICountry, CountryDA>();
             services.AddScoped<IState, StateDA>();
             services.AddScoped<ICity, CityDA>();
             services.AddScoped<IRegistration, RegistrationDA>();
             services.AddScoped<IReportProfile, ReportProfileDA>();
             services.AddScoped<IRequestProfile, RequestProfileDA>();
+            services.AddScoped<IRequestAccept, RequestAcceptDA>();
+            services.AddScoped<IMembershipPlans, Membership_PlansDA>();
+            services.AddScoped<IMembership, MemberShipDA>();
+            services.AddScoped<IChats, ChatsDA>();
+            services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IStateService, StateService>();
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IRegistrationService, RegistrationService>();
             services.AddScoped<IReportProfileService, ReportProfileService>();
             services.AddScoped<IRequestProfileService, RequestProfileService>();
+            services.AddScoped<IRequestAcceptService, RequestAcceptService>();
+            services.AddScoped<IMembership_PlansService, Membership_PlansService>();
+            services.AddScoped<IMembershipService, MemberShipService>();
+            services.AddScoped<IChatsService, ChatsService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<CoreDbContext>()
@@ -118,7 +127,7 @@ namespace RishtaAPI
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthentication();

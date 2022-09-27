@@ -1,11 +1,14 @@
 ﻿
 
+using System.ComponentModel.DataAnnotations;
+
 namespace RishtaAPI.Model
 {
     public class ReportProfile
     {
+        [Required]
         public int Id { get; set; }
-        // one to many
+        [Required]
         public int RegisteredId { get; set; }
     }
 }

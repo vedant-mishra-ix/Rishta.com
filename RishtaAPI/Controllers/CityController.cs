@@ -11,21 +11,22 @@ namespace RishtaAPI.Controllers
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly ICityService _CityService;
-        public CityController(ICityService CityService)
+        private readonly ICityService _service;
+        public CityController(ICityService service)
         {
-            _CityService = CityService;
+            _service = service;
         }
         [HttpGet]
-        public IActionResult Cities()
+        [Route("Cities")]
+        public IActionResult GetAll()
         {
             try
             {
-                return Ok(_CityService.Cities());
+                return Ok(_service.Cities());
             }
             catch(Exception)
             {
-                return StatusCode(StatusCodes.Status404NotFound,new Response { Status="Error",Message="Data not found in database"});
+                return StatusCode(StatusCodes.Status500InternalServerError,new Response { Status="Error",Message="Internal Server Error"});
             }
         }
     }

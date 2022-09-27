@@ -77,12 +77,35 @@ namespace JWTAuthenticationWithSwagger.Controllers
             }
             return Unauthorized();
         }
-
+        // Reset password
+        [HttpPut]
+        [Route("ResetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPassword resetPassword)
+        {
+            var UserEmail = await _userManager.FindByEmailAsync(resetPassword.UserEmail);
+            if (ModelState.IsValid)
+            {
+                if (UserEmail != null)
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(UserEmail);
+                    var PasswordChange = await _userManager.ResetPasswordAsync(UserEmail, token, resetPassword.NewPassword);
+                        return Ok(PasswordChange);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Data not found"});
+                }
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status400BadRequest,new Response {Status="Validation Error",Message="Bad Content Found" });
+            } 
+        }
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromForm] Registration model)
         {
-            var userExists = await _userManager.FindByNameAsync(model.UserName);
+             var userExists = await _userManager.FindByNameAsync(model.Email);
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError,new Response { Status="Error",Message="User Already Exist!"});
 
@@ -124,7 +147,7 @@ namespace JWTAuthenticationWithSwagger.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status204NoContent,new Response { Status="Error",Message="Internal server Error"});
+                return StatusCode(StatusCodes.Status204NoContent,new Response { Status="Error",Message="Content Not Found"});
             }  
           
         }

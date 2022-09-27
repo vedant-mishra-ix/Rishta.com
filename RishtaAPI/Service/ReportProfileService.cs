@@ -1,4 +1,5 @@
-﻿using RishtaAPI.DAL;
+﻿
+using RishtaAPI.DAL;
 using RishtaAPI.Model;
 using System;
 using System.Collections.Generic;
@@ -9,32 +10,32 @@ namespace RishtaAPI.Service
 {
     public interface IReportProfileService
     {
-        public Task<ReportProfile> ReportProfile(int Id);
+        public Task<ReportProfile> ReportProfile(int id);
         public IEnumerable<ReportProfileVM> ReportProfiles();
     }
     public class ReportProfileService : IReportProfileService
     {
-        private readonly IReportProfile _ReportProfileDa;
-        public ReportProfileService(IReportProfile ReportProfileDa)
+        private readonly IReportProfile _service;
+        public ReportProfileService(IReportProfile service)
         {
-            _ReportProfileDa = ReportProfileDa;
+            _service = service;
         }
-        public async Task<ReportProfile> ReportProfile(int Id)
+        public async Task<ReportProfile> ReportProfile(int id)
         {
             var AddReportProfile = new Entity.ReportProfile
             {
-                RegisteredId = Id,
+                RegisteredId = id,
                 CreatedDateTime = DateTime.Now,
             };
-            var AddData = await _ReportProfileDa.ReportProfile(AddReportProfile);
+            await _service.ReportProfile(AddReportProfile);
             return new ReportProfile { Id = AddReportProfile.Id };
         }
 
         public IEnumerable<ReportProfileVM> ReportProfiles()
         {
-            var ReportedData = _ReportProfileDa.ReportProfiles();
+            var ReportedData = _service.ReportProfiles();
             return (from AllData in ReportedData
-                    select new Model.ReportProfileVM
+                    select new ReportProfileVM
                     {
                         ReportedId = AllData.ReportedId,
                         ReportedUserName = AllData.ReportedUserName,
@@ -43,7 +44,6 @@ namespace RishtaAPI.Service
                         ReportedCount = AllData.ReportedCount
 
                     }).ToList();
-
         }
     }
 }

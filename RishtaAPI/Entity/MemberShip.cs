@@ -8,7 +8,10 @@ namespace RishtaAPI.Entity
     {
         [Key]
         public int Id { get; set; }
-        public string Pay { get; set; }
+
+        [ForeignKey("Membership_Plans")]
+        public int PlansId { get; set; }
+        public Membership_Plans Membership_Plans { get; set; }
         // one to one
         [ForeignKey("Registration")]
         public int RegisteredId { get; set; }

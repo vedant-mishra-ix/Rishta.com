@@ -11,21 +11,22 @@ namespace RishtaAPI.Controllers
     [ApiController]
     public class StateController : ControllerBase
     {
-        private readonly IStateService _StateService;
-        public StateController(IStateService StateService)
+        private readonly IStateService _service;
+        public StateController(IStateService service)
         {
-            _StateService = StateService;
+            _service = service;
         }
         [HttpGet]
-        public IActionResult States()
+        [Route("States")]
+        public IActionResult GetAll()
         {
             try
             {
-                return Ok(_StateService.States());
+                return Ok(_service.States());
             }
             catch(Exception)
             {
-                return StatusCode(StatusCodes.Status404NotFound,new Response { Status="Error",Message= "Data not found in database" });
+                return StatusCode(StatusCodes.Status500InternalServerError,new Response { Status="Error",Message= "Internal Server Error" });
             }
         }
     }

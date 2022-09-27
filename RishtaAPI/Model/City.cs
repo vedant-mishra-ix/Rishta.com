@@ -9,5 +9,7 @@ namespace RishtaAPI.Model
         public int Id { get; set; }
         [Required]
         public string Cities { get; set; }
+        [Required]
+        public int StatesId { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using RishtaAPI.Data;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using RishtaAPI.Data;
 using RishtaAPI.Entity;
 using System;
 using System.Collections.Generic;
@@ -9,62 +11,62 @@ namespace RishtaAPI.DAL
 {
     public interface IRegistration
     {
-        public Task<Registration> Registration(Registration obj);
-        public IEnumerable<Registration> Registrations(int Id);
+        public Task<Registration> Registration(Registration addUser);
+        public IEnumerable<Registration> Registrations(int id);
         public IEnumerable<Registration> Registrations();
-        public IEnumerable<Registration> RegistrationsGender(string Sex);
-        public IEnumerable<Registration> RegistrationsMartialStatus(string MartialStatus);
-        public IEnumerable<Registration> RegistrationsFamilyType(string FamilyType);
-        public Registration Registrations(string UserName);
-        public Task<Registration> Registration(Registration obj, int Id);
-        public bool Registration(int Id);
+        public IEnumerable<Registration> RegistrationsGender(string sex);
+        public IEnumerable<Registration> RegistrationsMartialStatus(string martialStatus);
+        public IEnumerable<Registration> RegistrationsFamilyType(string familyType);
+        public Registration Registrations(string userName);
+        public Task<Registration> Registration(Registration updateUser, int id);
+        public bool Registration(int id);
     }
     public class RegistrationDA : IRegistration
     {
-        private readonly CoreDbContext _RegistrationDb;
-        public RegistrationDA(CoreDbContext RegistrationDb)
+        private readonly CoreDbContext _context;
+        private readonly IHttpContextAccessor _HttpContextAccessor;
+        public RegistrationDA(CoreDbContext context, IHttpContextAccessor HttpContextAccessor)
         {
-            _RegistrationDb = RegistrationDb;
+            _context = context;
+            _HttpContextAccessor = HttpContextAccessor;
         }
-
-        public async Task<Registration> Registration(Registration obj)
+        public async Task<Registration> Registration(Registration addUser)
         {
-            var AddData = await _RegistrationDb.Registration.AddAsync(obj);
-            _RegistrationDb.SaveChanges();
+            var AddData = await _context.Registration.AddAsync(addUser);
+            _context.SaveChanges();
             return AddData.Entity;
         }
-
-        public async Task<Registration> Registration(Registration obj, int Id)
+        public async Task<Registration> Registration(Registration updateUser, int id)
         {
-            var DataUpdate = _RegistrationDb.Registration.FirstOrDefault(obj => obj.Id == Id);
+            var DataUpdate =  _context.Registration.FirstOrDefault(obj => obj.Id == id);
             if (DataUpdate != null)
             {
-                DataUpdate.UserName = obj.UserName;
-                DataUpdate.Email = obj.Email;
-                DataUpdate.Mobile = obj.Mobile;
-                DataUpdate.DateOfBirth = obj.DateOfBirth;
-                DataUpdate.CreatedDateTime = obj.CreatedDateTime;
+                DataUpdate.UserName = updateUser.UserName;
+                DataUpdate.Email = updateUser.Email;
+                DataUpdate.Mobile = updateUser.Mobile;
+                DataUpdate.DateOfBirth = updateUser.DateOfBirth;
+                DataUpdate.CreatedDateTime = updateUser.CreatedDateTime;
                 DataUpdate.ModifiedDateTime = DateTime.Now;
-                DataUpdate.Password = obj.Password;
-                DataUpdate.Address = obj.Address;
-                DataUpdate.Cast = obj.Cast;
-                DataUpdate.Sex = obj.Sex;
-                DataUpdate.Religious = obj.Religious;
-                DataUpdate.MartialStatus = obj.MartialStatus;
-                DataUpdate.MotherTongue = obj.MotherTongue;
-                DataUpdate.Height = obj.Height;
-                DataUpdate.Country = obj.Country;
-                DataUpdate.State = obj.State;
-                DataUpdate.City = obj.City;
-                DataUpdate.HighestEducation = obj.HighestEducation;
-                DataUpdate.Occupation = obj.Occupation;
-                DataUpdate.AnnualIncome = obj.AnnualIncome;
-                DataUpdate.ParentMobile = obj.ParentMobile;
-                DataUpdate.FamilyType = obj.FamilyType;
-                DataUpdate.FamilyStatus = obj.FamilyStatus;
-                DataUpdate.ProfilePhoto = obj.ProfilePhoto;
-                var data = _RegistrationDb.Registration.Update(DataUpdate);
-                _RegistrationDb.SaveChanges();
+                DataUpdate.Password = updateUser.Password;
+                DataUpdate.Address = updateUser.Address;
+                DataUpdate.Cast = updateUser.Cast;
+                DataUpdate.Sex = updateUser.Sex;
+                DataUpdate.Religious = updateUser.Religious;
+                DataUpdate.MartialStatus = updateUser.MartialStatus;
+                DataUpdate.MotherTongue = updateUser.MotherTongue;
+                DataUpdate.Height = updateUser.Height;
+                DataUpdate.Country = updateUser.Country;
+                DataUpdate.State = updateUser.State;
+                DataUpdate.City = updateUser.City;
+                DataUpdate.HighestEducation = updateUser.HighestEducation;
+                DataUpdate.Occupation = updateUser.Occupation;
+                DataUpdate.AnnualIncome = updateUser.AnnualIncome;
+                DataUpdate.ParentMobile = updateUser.ParentMobile;
+                DataUpdate.FamilyType = updateUser.FamilyType;
+                DataUpdate.FamilyStatus = updateUser.FamilyStatus;
+                DataUpdate.ProfilePhoto = updateUser.ProfilePhoto;
+                var data =  _context.Registration.Update(DataUpdate);
+                _context.SaveChanges();
                 return data.Entity;
             }
             else
@@ -72,28 +74,41 @@ namespace RishtaAPI.DAL
                 return null;
             }
         }
-
-        public bool Registration(int Id)
+        public bool Registration(int id)
         {
-            var DeleteData = _RegistrationDb.Registration.FirstOrDefault(obj => obj.Id == Id);
+            var DeleteData = _context.Registration.FirstOrDefault(obj => obj.Id == id);
             if (DeleteData != null)
             {
-                _RegistrationDb.Registration.Remove(DeleteData);
-                _RegistrationDb.SaveChanges();
+                _context.Registration.Remove(DeleteData);
+                _context.SaveChanges();
                 return true;
-            }
+            }      
             else
             {
                 return false;
             }
         }
-
-        public IEnumerable<Registration> Registrations(int Id)
+        public IEnumerable<Registration> Registrations(int id)
         {
-            var GetAllData = _RegistrationDb.Registration.Where(obj => obj.Id != Id).ToList();
+            bool IsAdmin = _HttpContextAccessor.HttpContext.User.IsInRole("Admin");
+            // Admin can get all registered records
+            if (IsAdmin)
+            {
+                return _context.Registration.Where(obj => obj.Id != id).ToList();
+            }
+            // User can get all registered records
+            // for membership user records getting 
+            // if user does not have membership then display only three profiles
+            // if  have membership then display profiles on h bassis of subscription
+            int MemberCount = 3;
+            bool HasMembership = _context.MemberShip.Any(obj => obj.RegisteredId == id);
+            if (HasMembership)
+            {
+                MemberCount = _context.Registration.Include(x => x.MemberShip.Membership_Plans).FirstOrDefault(obj => obj.Id == id).MemberShip.Membership_Plans.ProfileVisible;
+            }
+            var GetAllData = _context.Registration.Where(obj => obj.Id != id && obj.IsActive == true && obj.UserName != "pankaj").Take(MemberCount).ToList();
             if (GetAllData != null)
             {
-                _RegistrationDb.SaveChanges();
                 return GetAllData;
             }
             else
@@ -101,23 +116,20 @@ namespace RishtaAPI.DAL
                 return null;
             }
         }
-
-        public Registration Registrations(string UserName)
+        public Registration Registrations(string userName)
         {
-            var SpecificUser = _RegistrationDb.Registration.FirstOrDefault(obj => obj.UserName == UserName);
+            var SpecificUser = _context.Registration.FirstOrDefault(obj => obj.UserName == userName);
             return SpecificUser;
         }
-
         public IEnumerable<Registration> Registrations()
         {
-            var GetAll = _RegistrationDb.Registration.ToList();
-            _RegistrationDb.SaveChanges();
+            var GetAll = _context.Registration.ToList();
+            _context.SaveChanges();
             return GetAll;
         }
-
-        public IEnumerable<Registration> RegistrationsFamilyType(string FamilyType)
+        public IEnumerable<Registration> RegistrationsFamilyType(string familyType)
         {
-            var FamilyBasedList = _RegistrationDb.Registration.Where(obj => obj.FamilyType == FamilyType).ToList();
+            var FamilyBasedList = _context.Registration.Where(obj => obj.FamilyType == familyType).ToList();
             if (FamilyBasedList != null)
             {
                 return FamilyBasedList;
@@ -127,10 +139,9 @@ namespace RishtaAPI.DAL
                 return null;
             }
         }
-
-        public IEnumerable<Registration> RegistrationsGender(string Sex)
+        public IEnumerable<Registration> RegistrationsGender(string sex)
         {
-            var GenderBasedList = _RegistrationDb.Registration.Where(obj => obj.Sex == Sex).ToList();
+            var GenderBasedList = _context.Registration.Where(obj => obj.Sex == sex).ToList();
             if (GenderBasedList != null)
             {
                 return GenderBasedList;
@@ -140,10 +151,9 @@ namespace RishtaAPI.DAL
                 return null;
             }
         }
-
-        public IEnumerable<Registration> RegistrationsMartialStatus(string MartialStatus)
+        public IEnumerable<Registration> RegistrationsMartialStatus(string martialStatus)
         {
-            var MartialStatusBasedList = _RegistrationDb.Registration.Where(obj => obj.MartialStatus == MartialStatus).ToList();
+            var MartialStatusBasedList = _context.Registration.Where(obj => obj.MartialStatus == martialStatus).ToList();
             if (MartialStatusBasedList != null)
             {
                 return MartialStatusBasedList;

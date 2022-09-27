@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using RishtaAPI.Model;
 using RishtaAPI.Service;
 using System;
-
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RishtaAPI.Controllers
 {
-    [Authorize(Roles =UserRoles.Users)]
+    [Authorize(Roles = UserRoles.Users)]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -20,29 +20,55 @@ namespace RishtaAPI.Controllers
         private readonly IReportProfileService _ReportProfileService;
         private readonly IRequestProfileService _RequestProfileService;
         private readonly IWebHostEnvironment _WebHostEnvironment;
+        private readonly IRequestAcceptService _RequestAcceptService;
+        private readonly IMembershipService _MemberShipService;
+        private readonly IChatsService _ChatsService;
         public UserController(IRegistrationService RegistrationService, IWebHostEnvironment WebHostEnvironment,
-            IReportProfileService ReportProfileService, IRequestProfileService RequestProfileService
+            IReportProfileService ReportProfileService, IRequestProfileService RequestProfileService, IRequestAcceptService RequestAcceptService,
+            IMembershipService MemberShipService, IChatsService ChatsService
             )
         {
             _RegistrationService = RegistrationService;
             _WebHostEnvironment = WebHostEnvironment;
             _ReportProfileService = ReportProfileService;
             _RequestProfileService = RequestProfileService;
+            _RequestAcceptService = RequestAcceptService;
+            _MemberShipService = MemberShipService;
+            _ChatsService = ChatsService;
         }
+
+        // for getting all registered records
         [HttpGet]
-        public IActionResult Registrations(int Id)
+        [Route("Registered")]
+        public IActionResult GetAllUser()
         {
             try
             {
-                return Ok(_RegistrationService.Registrations(Id));
+                return Ok(_RegistrationService.Registrations());
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Id didn't found"});
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Internal Server Error" });
             }
         }
+        // for getting all registered accounts insted of his and admin records
+        [HttpGet]
+        [Route("Registrations")]
+        public IActionResult GetAll(int id)
+        {
+            try
+            {
+                return Ok(_RegistrationService.Registrations(id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
+            }
+        }
+        // for updating the registered records
         [HttpPut]
-        public IActionResult Registration([FromForm]Model.Update obj)
+        [Route("Registration")]
+        public IActionResult Update([FromForm] Update updateUser)
         {
             try
             {
@@ -50,129 +76,277 @@ namespace RishtaAPI.Controllers
                 {
                     Directory.CreateDirectory(_WebHostEnvironment.WebRootPath + "\\images\\");
                 }
-                using (FileStream fileStream = System.IO.File.Create(_WebHostEnvironment.WebRootPath + "\\images\\" + obj.Files.FileName))
+                using (FileStream fileStream = System.IO.File.Create(_WebHostEnvironment.WebRootPath + "\\images\\" + updateUser.Files.FileName))
                 {
-                    obj.Files.CopyTo(fileStream);
+                    updateUser.Files.CopyTo(fileStream);
                     fileStream.Flush();
-                    var filepath = "\\images\\" + obj.Files.FileName;
-                    obj.ProfilePhoto = filepath;
+                    var filepath = "\\images\\" + updateUser.Files.FileName;
+                    updateUser.ProfilePhoto = filepath;
                 }
-                return Ok(_RegistrationService.RegistrationUpdate(obj));
+                return Ok(_RegistrationService.RegistrationUpdate(updateUser));
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Image not uploaded"});
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Image not uploaded" });
             }
         }
+        // for getting the user specific records
         [HttpGet]
         [Route("profile")]
-        public IActionResult Regsistrations(string Username)
+        public IActionResult GetAll(string userName)
         {
             try
             {
-                return Ok(_RegistrationService.Registrationuser(Username));
+                return Ok(_RegistrationService.Registrationuser(userName));
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="User didn't matched"});
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
             }
         }
+        // for getting the gender based records
         [HttpGet]
         [Route("Gender")]
-        public IActionResult Registrations(string Sex)
+        public IActionResult GetAllGender(string sex)
         {
             try
             {
-                return Ok(_RegistrationService.RegistrationGenderBased(Sex));
+                return Ok(_RegistrationService.RegistrationGenderBased(sex));
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return StatusCode(StatusCodes.Status404NotFound,new Response { Status="Error",Message="Gender didn't found"});
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
             }
         }
+        // for getting the martial based records
         [HttpGet]
         [Route("Martial")]
-        public IActionResult RegistrationsMartialStatus(string MartialStatus)
+        public IActionResult GetAllMartial(string martialStatus)
         {
             try
             {
-                return Ok(_RegistrationService.RegistrationGenderMartialStatus(MartialStatus));
+                return Ok(_RegistrationService.RegistrationGenderMartialStatus(martialStatus));
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return StatusCode(StatusCodes.Status404NotFound,new Response { Status="Error",Message="MartialStatus didn't found"});
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
             }
         }
+        // for getting the familyType based records
         [HttpGet]
         [Route("FamilyType")]
-        public IActionResult RegistrationsFamilyType(string FamilyType)
+        public IActionResult GetAllFamilyType(string familyType)
         {
             try
             {
-                return Ok(_RegistrationService.RegistrationGenderFamilyType(FamilyType));
+                return Ok(_RegistrationService.RegistrationGenderFamilyType(familyType));
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return StatusCode(StatusCodes.Status404NotFound,new Response { Status="Error",Message="FamilyType didn't found"});
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
             }
         }
+        // it is used for reporting the profile
         [HttpPost]
         [Route("ReportProfile")]
-        public async Task<IActionResult> ReportProfiles( int Id)
+        public async Task<IActionResult> PostReportProfile(int id)
         {
             try
             {
-                var test = await _ReportProfileService.ReportProfile(Id);
+                var test = await _ReportProfileService.ReportProfile(id);
                 return Ok(test);
             }
             catch (Exception)
             {
-
-                return StatusCode(StatusCodes.Status204NoContent,new Response { Status="Error",Message="Internal server error"});
-           }
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Bad Content" });
+            }
         }
+        // it is used for sending the request 
         [HttpPost]
         [Route("RequestProfile")]
-        public async Task<IActionResult> RequestProfile(RequestSend request)
+        public async Task<IActionResult> PostRequestProfile(RequestSend request)
         {
-            try
+
+            if (ModelState.IsValid)
             {
-                var AddRequestData = await _RequestProfileService.RequestProfiles(request);
-                return Ok(AddRequestData);
+                try
+                {
+                    var AddRequestData = await _RequestProfileService.RequestProfiles(request);
+                    return Ok(AddRequestData);
+                }
+                catch (Exception)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Bad Content Found" });
+                }
             }
-            catch(Exception)
+            else
             {
-                return StatusCode(StatusCodes.Status204NoContent,new Response { Status="Error",Message=" No content found"});
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Validation Error", Message = "Data Is Not Accepted" });
             }
         }
+        // it is used for getting the request profiles list
         [HttpGet]
         [Route("RequestProfiles")]
-        public  IActionResult RequestProfiles(int Id)
+        public IActionResult GetRequestProfiles(int id)
         {
             try
             {
-                var GetRequestData =  _RequestProfileService.RequestProfiles(Id);
+                var GetRequestData = _RequestProfileService.RequestProfiles(id);
                 return Ok(GetRequestData);
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Id didn't matched"});
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
             }
         }
+        // for getting the request profile history
         [HttpGet]
         [Route("RequestProfileHistory")]
-        public IActionResult RequestProfileHistory(int Id)
+        public IActionResult GetHistory(int id)
         {
             try
             {
-                var RequestHistory = _RequestProfileService.RequestProfileHistory(Id);
+                var RequestHistory = _RequestProfileService.RequestProfileHistory(id);
                 return Ok(RequestHistory);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
+            }
+        }
+        // for accepting the request
+        [HttpPost]
+        [Route("RequestAccept")]
+        public async Task<IActionResult> PostRequestAccept(RequestSend request)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var AddRequestAccept = await _RequestAcceptService.RequestAccepts(request);
+                    return Ok(AddRequestAccept);
+                }
+                catch (Exception)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = " Bad Content Found" });
+                }
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Validation Error", Message = "Bad Content Found" });
+            }
+        }
+        // for getting Request accept data list
+        [HttpGet]
+        [Route("RequestAccept")]
+        public IActionResult GetRequestAccept(int id)
+        {
+            try
+            {
+                var GetRequestData = _RequestAcceptService.RequestAccept(id);
+                return Ok(GetRequestData);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
+            }
+        }
+        // for deleting the request
+        [HttpDelete]
+        [Route("RequestDelete")]
+        public IActionResult DeleteRequest(RequestDelete delete)
+        {
+            try
+            {
+                return Ok(_RequestProfileService.RequestProfile(delete));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data not Found" });
+            }
+        }
+        // for taking the membership
+        [HttpPost]
+        [Route("Membership")]
+        public async Task<IActionResult> PostMemberShip(MemberShip members)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var AddMembers = await _MemberShipService.MemberShips(members);
+                    return Ok(AddMembers);
+                }
+                catch (Exception)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Bad Content Found" });
+                }
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Validation Error", Message = "Bad Content Found" });
+            }
+        }
+        // for getting the membershiplist
+        [HttpGet]
+        [Route("MembersipList")]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                var MembersList = _MemberShipService.MemberShips();
+                return Ok(MembersList);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Internal Server Error" });
+            }
+        }
+        // for adding user chats
+        [HttpPost]
+        [Route("Chats")]
+        public async Task<IActionResult> PostChats(Chats userChats)
+        {
+            try
+            {
+              return Ok(await _ChatsService.Chat(userChats));
             }
             catch(Exception)
             {
-                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Id didn't matched"});
+                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Bad Request Data"});
             }
         }
-
+        // for getting sender messages
+        [HttpGet]
+        [Route("SenderMessages")]
+        public IActionResult GetSenderMessage(int senderId,int recieverId)
+        {
+            try
+            {
+                var Message = _ChatsService.Chats(senderId,recieverId); 
+                return Ok(Message);
+            }
+            catch(Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound,new Response { Status="Error",Message="Data Not Found"});
+            }
+        }
+        // for getting reciever messages
+        [HttpGet]
+        [Route("RecieverMessages")]
+        public IActionResult GetRecieverMessage(int senderId, int recieverId)
+        {
+            try
+            {
+                var Message = _ChatsService.Chat(senderId, recieverId);
+                return Ok(Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
+            }
+        }
     }
 }

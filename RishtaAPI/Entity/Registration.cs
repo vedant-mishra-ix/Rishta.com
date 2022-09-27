@@ -46,6 +46,8 @@ namespace RishtaAPI.Entity
         // one to many
         public ICollection<ReportProfile> ReportProfiles { get; set; }
         public ICollection<RequestProfile> RequestProfiles { get; set; }
+        public ICollection<RequestAccept> RequesAccepts { get; set; }
+        public ICollection<Chats> senderchat { get; set; }
         // one to one
         public virtual MemberShip MemberShip { get; set; }
     }

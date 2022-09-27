@@ -2,7 +2,6 @@
 using RishtaAPI.Data;
 using RishtaAPI.Entity;
 using RishtaAPI.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,25 +10,41 @@ namespace RishtaAPI.DAL
 {
     public interface IRequestProfile
     {
-        public Task<Entity.RequestProfile> RequestProfiles(Entity.RequestProfile obj);
-        public IEnumerable<RequestProfileVM> RequestProfiles(int Id);
-        public IEnumerable<RequestProfileVM> RequestProfileHistory(int Id);
+        public Task<Entity.RequestProfile> RequestProfiles(Entity.RequestProfile requestProfile);
+        public IEnumerable<RequestProfileVM> RequestProfiles(int id);
+        public IEnumerable<RequestProfileVM> RequestProfileHistory(int id);
+        public bool RequestProfile(RequestDelete delete);
     }
     public class RequestProfileDA : IRequestProfile
     {
-        private readonly CoreDbContext _RequestProfileDb;
-        public RequestProfileDA(CoreDbContext RequestProfileDb)
+        private readonly CoreDbContext _context;
+        public RequestProfileDA(CoreDbContext context)
         {
-            _RequestProfileDb = RequestProfileDb;
+            _context = context;
         }
 
-        public IEnumerable<RequestProfileVM> RequestProfileHistory(int Id)
+        public bool RequestProfile(RequestDelete delete)
         {
-            var Data = _RequestProfileDb.RequestProfile.Include(x => x.Registration);
-            var UserId = _RequestProfileDb.RequestProfile.Any(obj => obj.RequestId == Id);
+            var DeleteData = _context.RequestProfile.Where(obj => obj.RequestId == delete.RegisteredId && obj.RegisteredId == delete.RequestId).FirstOrDefault();
+            if (DeleteData != null)
+            {
+                _context.RequestProfile.Remove(DeleteData);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public IEnumerable<RequestProfileVM> RequestProfileHistory(int id)
+        {
+            var Data = _context.RequestProfile.Include(x => x.Registration);
+            var UserId = _context.RequestProfile.Any(obj => obj.RequestId == id);
             if (UserId)
             {
-                var RequestData = _RequestProfileDb.RequestProfile.Join(_RequestProfileDb.Registration,
+                var RequestData = _context.RequestProfile.Where(obj=>obj.RequestId==id).Join(_context.Registration,
                                     RequestId => RequestId.RegisteredId,
                                     RegisteredId => RegisteredId.Id,
                                     (RequestId, RegisteredId) => new RequestProfileVM
@@ -48,20 +63,20 @@ namespace RishtaAPI.DAL
             }
         }
 
-        public async Task<Entity.RequestProfile> RequestProfiles(Entity.RequestProfile obj)
+        public async Task<Entity.RequestProfile> RequestProfiles(Entity.RequestProfile requestProfile)
         {
-            var AddRequestProfile = await _RequestProfileDb.RequestProfile.AddAsync(obj);
-            _RequestProfileDb.SaveChanges();
+            var AddRequestProfile = await _context.RequestProfile.AddAsync(requestProfile);
+            _context.SaveChanges();
             return AddRequestProfile.Entity;
         }
 
-        public IEnumerable<RequestProfileVM> RequestProfiles(int Id)
+        public IEnumerable<RequestProfileVM> RequestProfiles(int id)
         {
-            var data = _RequestProfileDb.RequestProfile.Include(x => x.Registration);
-            var UserId = _RequestProfileDb.RequestProfile.Any(obj => obj.RegisteredId == Id);
+            var data = _context.RequestProfile.Include(x => x.Registration);
+            var UserId = _context.RequestProfile.Any(obj => obj.RegisteredId == id);
             if (UserId)
             {
-                var RequestData = _RequestProfileDb.RequestProfile.Join(_RequestProfileDb.Registration,
+                var RequestData = _context.RequestProfile.Join(_context.Registration,
                                     RequestId => RequestId.RequestId,
                                     RegisteredId => RegisteredId.Id,
                                     (RequestId, RegisteredId) => new RequestProfileVM
