@@ -16,7 +16,7 @@ namespace RishtaAPI.DAL
         public IEnumerable<Registration> Registrations();
         public IEnumerable<Registration> RegistrationsGender(string sex);
         public IEnumerable<Registration> RegistrationsMartialStatus(string martialStatus);
-        public IEnumerable<Registration> RegistrationsFamilyType(string familyType);
+        public IEnumerable<Registration> RegisteredSpecificProfile(int id);
         public Registration Registrations(string userName);
         public Task<Registration> Registration(Registration updateUser, int id);
         public bool Registration(int id);
@@ -100,13 +100,14 @@ namespace RishtaAPI.DAL
             // for membership user records getting 
             // if user does not have membership then display only three profiles
             // if  have membership then display profiles on h bassis of subscription
+            string RegisteredGender = _context.Registration.FirstOrDefault(obj => obj.Id == id).Sex;
             int MemberCount = 3;
             bool HasMembership = _context.MemberShip.Any(obj => obj.RegisteredId == id);
             if (HasMembership)
             {
                 MemberCount = _context.Registration.Include(x => x.MemberShip.Membership_Plans).FirstOrDefault(obj => obj.Id == id).MemberShip.Membership_Plans.ProfileVisible;
             }
-            var GetAllData = _context.Registration.Where(obj => obj.Id != id && obj.IsActive == true && obj.UserName != "pankaj").Take(MemberCount).ToList();
+            var GetAllData = _context.Registration.Where(obj => obj.Id != id && obj.Sex != RegisteredGender && obj.IsActive == true).Skip(MemberCount-1).Take(MemberCount+1).ToList();
             if (GetAllData != null)
             {
                 return GetAllData;
@@ -127,18 +128,6 @@ namespace RishtaAPI.DAL
             _context.SaveChanges();
             return GetAll;
         }
-        public IEnumerable<Registration> RegistrationsFamilyType(string familyType)
-        {
-            var FamilyBasedList = _context.Registration.Where(obj => obj.FamilyType == familyType).ToList();
-            if (FamilyBasedList != null)
-            {
-                return FamilyBasedList;
-            }
-            else
-            {
-                return null;
-            }
-        }
         public IEnumerable<Registration> RegistrationsGender(string sex)
         {
             var GenderBasedList = _context.Registration.Where(obj => obj.Sex == sex).ToList();
@@ -157,6 +146,19 @@ namespace RishtaAPI.DAL
             if (MartialStatusBasedList != null)
             {
                 return MartialStatusBasedList;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        IEnumerable<Registration> IRegistration.RegisteredSpecificProfile(int id)
+        {
+            var FamilyBasedList = _context.Registration.Where(obj => obj.Id == id).ToList();
+            if (FamilyBasedList != null)
+            {
+                return FamilyBasedList;
             }
             else
             {

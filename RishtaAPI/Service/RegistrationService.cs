@@ -16,7 +16,7 @@ namespace RishtaAPI.Service
         public IEnumerable<Registration> Registrations();
         public IEnumerable<Registration> RegistrationGenderBased(string sex);
         public IEnumerable<Registration> RegistrationGenderMartialStatus(string martialStatus);
-        public IEnumerable<Registration> RegistrationGenderFamilyType(string familyType);
+        public IEnumerable<UserProfile> RegisteredSpecificProfile(int id);
         public UserProfile Registrationuser(string username);
         public Task<Update> RegistrationUpdate(Update updateProfile);
         public Registration Registration(int id);
@@ -274,11 +274,11 @@ namespace RishtaAPI.Service
                     }).ToList();
         }
 
-        public IEnumerable<Registration> RegistrationGenderFamilyType(string familyType)
+        public IEnumerable<UserProfile> RegisteredSpecificProfile(int id)
         {
-            var FamilyTypeBased = _service.RegistrationsFamilyType(familyType);
+            var FamilyTypeBased = _service.RegisteredSpecificProfile(id);
             return (from Family in FamilyTypeBased
-                    select new Registration
+                    select new UserProfile
                     {
                         Id = Family.Id,
                         UserName = Family.UserName,

@@ -134,12 +134,12 @@ namespace RishtaAPI.Controllers
         }
         // for getting the familyType based records
         [HttpGet]
-        [Route("FamilyType")]
-        public IActionResult GetAllFamilyType(string familyType)
+        [Route("RegisteredSpecificProfile")]
+        public IActionResult GetAllFamilyType(int id)
         {
             try
             {
-                return Ok(_RegistrationService.RegistrationGenderFamilyType(familyType));
+                return Ok(_RegistrationService.RegisteredSpecificProfile(id));
             }
             catch (Exception)
             {
