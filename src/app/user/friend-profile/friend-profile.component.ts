@@ -18,7 +18,6 @@ export class FriendProfileComponent implements OnInit {
               private specificProfileService:FamilyTypeService) { }
   ngOnInit(): void {
     this.requestSenderId = this.idRoute.snapshot.paramMap.get('requestSenderId');
-    this.friends();
     this.preferenceProfile();
   }
   friends()
@@ -27,6 +26,7 @@ export class FriendProfileComponent implements OnInit {
     {
       for(let i = 0 ; i < res.length ; i++)
       {
+        this.friendData=[];
         if(res[i].requestSenderId == this.requestSenderId)
         {
           this.friendData.push(res[i]);

@@ -30,68 +30,75 @@ export class ProfileUpdateComponent implements OnInit {
   Files!: File;
   cityList: any = [];
   cityListContain: any = [];
-  countryList:any=[];
-  stateListContain:any=[];
+  countryList: any = [];
+  stateListContain: any = [];
   StateList: any = [];
   id: any;
   Id: any;
-  date:any;
-  currentYear:number=0;
-  age:number=0;
-  countryName:any;
-  stateName:any;
+  date: any;
+  currentYear: number = 0;
+  age: number = 0;
+  countryName: any;
+  stateName: any;
+  submitted = false;
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   profilePhoto = localStorage.getItem("ProfilePhoto:");
   constructor(private fb: FormBuilder, private cityService: CityService,
     private stateService: StateService,
     private route: Router, private idRoute: ActivatedRoute, private profileService: UserProfileService,
-    private updateService: ProfilUpdateService,private toastr: ToastrService) {
+    private updateService: ProfilUpdateService, private toastr: ToastrService) {
   }
   uservalue = localStorage.getItem('UserName:');
   submit() {
     this.registration.patchValue({
-      Country:this.countryName,
-      State:this.stateName
+      Country: this.countryName,
+      State: this.stateName
     });
-    if(this.age >= 18)
-    {
-    const formData: any = new FormData();
-    formData.append('files', this.registration.get('fileSource')?.value);
-    formData.append('Id', this.registration.get('Id')?.value);
-    formData.append('UserName', this.registration.get('UserName')?.value);
-    formData.append('Email', this.registration.get('Email')?.value);
-    formData.append('Mobile', this.registration.get('Mobile')?.value);
-    formData.append('DateOfBirth', this.registration.get('Dob')?.value);
-    formData.append('Password', this.registration.get('Password')?.value);
-    formData.append('Address', this.registration.get('Address')?.value);
-    formData.append('Cast', this.registration.get('Cast')?.value);
-    formData.append('Sex', this.registration.get('Sex')?.value);
-    formData.append('Religious', this.registration.get('Religious')?.value);
-    formData.append('MartialStatus', this.registration.get('MartialStatus')?.value);
-    formData.append('MotherTongue', this.registration.get('MotherTongue')?.value);
-    formData.append('Height', this.registration.get('Height')?.value);
-    formData.append('Country', this.registration.get('Country')?.value);
-    formData.append('State', this.registration.get('State')?.value);
-    formData.append('City', this.registration.get('City')?.value);
-    formData.append('HighestEducation', this.registration.get('HighestEducation')?.value);
-    formData.append('Occupation', this.registration.get('Occupation')?.value);
-    formData.append('AnnualIncome', this.registration.get('AnnualIncome')?.value);
-    formData.append('ParentMobile', this.registration.get('ParentMobile')?.value);
-    formData.append('FamilyType', this.registration.get('FamilyType')?.value);
-    formData.append('FamilyStatus', this.registration.get('FamilyStatus')?.value);
-    formData.append('image', this.registration.get('image')?.value);
-    this.updateService.update(formData).subscribe({
-      next: (res) => {
-        this.toastr.success("Profile Updated Successful");
-        location.reload();
-        this.route.navigate(['./user']);
-      }, error: () => {
-        this.toastr.error("Something Wrong")
+    this.submitted = true;
+    if (this.registration.valid) {
+      if (this.age >= 18) {
+        const formData: any = new FormData();
+        formData.append('files', this.registration.get('fileSource')?.value);
+        formData.append('Id', this.registration.get('Id')?.value);
+        formData.append('UserName', this.registration.get('UserName')?.value);
+        formData.append('Email', this.registration.get('Email')?.value);
+        formData.append('Mobile', this.registration.get('Mobile')?.value);
+        formData.append('DateOfBirth', this.registration.get('Dob')?.value);
+        formData.append('Password', this.registration.get('Password')?.value);
+        formData.append('Address', this.registration.get('Address')?.value);
+        formData.append('Cast', this.registration.get('Cast')?.value);
+        formData.append('Sex', this.registration.get('Sex')?.value);
+        formData.append('Religious', this.registration.get('Religious')?.value);
+        formData.append('MartialStatus', this.registration.get('MartialStatus')?.value);
+        formData.append('MotherTongue', this.registration.get('MotherTongue')?.value);
+        formData.append('Height', this.registration.get('Height')?.value);
+        formData.append('Country', this.registration.get('Country')?.value);
+        formData.append('State', this.registration.get('State')?.value);
+        formData.append('City', this.registration.get('City')?.value);
+        formData.append('HighestEducation', this.registration.get('HighestEducation')?.value);
+        formData.append('Occupation', this.registration.get('Occupation')?.value);
+        formData.append('AnnualIncome', this.registration.get('AnnualIncome')?.value);
+        formData.append('ParentMobile', this.registration.get('ParentMobile')?.value);
+        formData.append('FamilyType', this.registration.get('FamilyType')?.value);
+        formData.append('FamilyStatus', this.registration.get('FamilyStatus')?.value);
+        formData.append('image', this.registration.get('image')?.value);
+        this.updateService.update(formData).subscribe({
+          next: (res) => {
+            this.toastr.success("Profile Updated Successful");
+            location.reload();
+            this.route.navigate(['./user']);
+          }, error: () => {
+            this.toastr.error("Something Wrong")
+          }
+        });
       }
-    });
-  }
-  else{
-    this.toastr.error("Age must be greater than 18");
-  }
+      else {
+        this.toastr.error("Age must be greater than 18");
+      }
+    }
+    else{
+      return;
+    }
   }
   get registrationValidation() {
     return this.registration.controls;
@@ -100,7 +107,7 @@ export class ProfileUpdateComponent implements OnInit {
     this.registration = this.fb.group({
       Id: [''],
       UserName: ['', Validators.required],
-      Email: ['', Validators.required],
+      Email: ['',[Validators.required,Validators.email,Validators.pattern(this.emailPattern)]],
       Mobile: ['', Validators.required],
       Dob: ['', Validators.required],
       Password: ['', Validators.required],
@@ -121,7 +128,7 @@ export class ProfileUpdateComponent implements OnInit {
       FamilyType: [''],
       FamilyStatus: [''],
       ProfilePhoto: [''],
-      files: ['',Validators.required],
+      files: ['', Validators.required],
       fileSource: [''],
     });
     this.getCity();
@@ -162,11 +169,10 @@ export class ProfileUpdateComponent implements OnInit {
           );
         }
       })
-      this.date = new Date().toISOString().split('T')[0]
+    this.date = new Date().toISOString().split('T')[0]
   }
-  getCountry()
-  {
-    this.stateService.getCountry().subscribe(res =>{
+  getCountry() {
+    this.stateService.getCountry().subscribe(res => {
       this.countryList = res;
     })
   }
@@ -182,12 +188,12 @@ export class ProfileUpdateComponent implements OnInit {
   }
   onSelectCountry(country: any) {
     this.stateListContain = this.StateList.filter((e: any) => e.countryId == country.target.value);
-    let countryName = this.countryList.filter((e:any) => e.id == country.target.value);
+    let countryName = this.countryList.filter((e: any) => e.id == country.target.value);
     this.countryName = countryName[0].countries;
   }
   onSelect(state: any) {
     this.cityListContain = this.cityList.filter((e: any) => e.statesId == state.target.value);
-    let stateName = this.stateListContain.filter((e:any)=> e.id == state.target.value);
+    let stateName = this.stateListContain.filter((e: any) => e.id == state.target.value);
     this.stateName = stateName[0].states;
   }
   handleFile(event: any) {
