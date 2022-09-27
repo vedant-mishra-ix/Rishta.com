@@ -19,8 +19,9 @@ export class MembershipAddComponent implements OnInit {
   planId: any;
   memberShipList: any = [];
   count: number = 0;
-  planValidity:any;
-  hidden:any = false
+  beforeClickPlanValidity:any;
+  beforeClickHidden: any = true;
+  submitted = false;
   constructor(private fb: FormBuilder, private membershipPlans: MembershipPlansService,
     private toaster: ToastrService, private memberShipService: MembershipAddService,
     private route: Router) {
@@ -32,7 +33,7 @@ export class MembershipAddComponent implements OnInit {
     this.plans();
     this.membersList();
     this.memberShip = this.fb.group({
-      Pay: ['', Validators.required],
+      Pay: [''],
       RegisteredId: [this.id],
       PlansId: [],
       PlansName: ['', Validators.required],
@@ -42,6 +43,12 @@ export class MembershipAddComponent implements OnInit {
     this.memberShipService.memberShipList().subscribe({
       next: (res) => {
         this.memberShipList = res;
+        for (let i = 0; i < this.memberShipList.length; i++) {
+          if (this.memberShipList[i].id == this.id) {
+            this.beforeClickHidden = false;
+            this.beforeClickPlanValidity = this.memberShipList[i].planValidity;
+          }
+        }
       }
     })
   }
@@ -60,25 +67,29 @@ export class MembershipAddComponent implements OnInit {
     })
   }
   submit() {
-    for (let i = 0; i < this.memberShipList.length; i++) {
-      if (this.memberShipList[i].id == this.id) {
-        this.planValidity = this.memberShipList[i].planValidity;
-        this.hidden = true;
-        this.count++;
-        break;
+    this.submitted = true;
+    if (this.memberShip.valid) {
+      for (let i = 0; i < this.memberShipList.length; i++) {
+        if (this.memberShipList[i].id == this.id) {
+          this.count++;
+          break;
+        }
+      }
+      if (this.count >= 1) {
+        this.toaster.error("Already you have membership")
+        this.memberShip.reset();
+      }
+      else {
+        this.memberShipService.memberShip(this.memberShip.value).subscribe({
+          next: (res) => {
+            this.toaster.success("Subscription Added Successful");
+            this.route.navigate(['user']);
+          }, error: () => { this.toaster.error("Something Wrong") }
+        })
       }
     }
-    if (this.count >= 1) {
-      this.toaster.error("Already you have membership")
-      this.memberShip.reset();
-    }
-    else {
-      this.memberShipService.memberShip(this.memberShip.value).subscribe({
-        next: (res) => {
-          this.toaster.success("Subscription Added Successful");
-          this.route.navigate(['user']);
-        }, error: () => { this.toaster.error("Something Wrong") }
-      })
+    else{
+      return;
     }
   }
 }

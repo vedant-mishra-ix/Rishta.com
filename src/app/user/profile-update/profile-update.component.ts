@@ -127,7 +127,7 @@ export class ProfileUpdateComponent implements OnInit {
     this.getCity();
     this.getState();
     this.getCountry();
-    this.id = this.idRoute.snapshot.paramMap.get('Id');
+    this.id = this.idRoute.snapshot.paramMap.get('id');
     this.profileService.userProfile(this.uservalue ?? '').subscribe(
       {
         next: (res) => {

@@ -22,6 +22,7 @@ export class FriendListComponent implements OnInit {
   senderMessageList:any=[];
   recieverMessageList:any=[];
   userName:any;
+  requestSenderId:any;
   message: FormGroup = new FormGroup({});
   constructor(private fb: FormBuilder,private friendService:FriendListService,
     private chatService:ChatService,private toaster:ToastrService,private route:Router)
@@ -77,8 +78,8 @@ export class FriendListComponent implements OnInit {
   }
   friendProfile(event:any)
   {
-    localStorage.setItem("RequestSenderId:",event.requestSenderId);
-    this.route.navigate([`/user/friends-profile/${event.requestSenderId}`]);
+    this.requestSenderId = event.requestSenderId;
+    this.route.navigate([`/user/friends-profile/${this.requestSenderId}`]);
   }
   senderChat()
   {

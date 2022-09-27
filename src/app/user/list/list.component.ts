@@ -32,9 +32,7 @@ export class ListComponent implements OnInit {
     this.userListService.registered(this.id).subscribe({
       next: (res) => {
         for (let i = 0; i < res.length; i++) {
-          if (res[i].userName != 'pankaj') {
-            this.userList.push(res[i]);
-          }
+          this.userList.push(res[i]);
         }
       }
     })

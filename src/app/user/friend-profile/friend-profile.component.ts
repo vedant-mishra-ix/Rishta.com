@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FriendListService } from 'src/app/core/model/service/friend-list.service';
+import { FamilyTypeService } from 'src/app/core/model/service/family-type.service';
 
 @Component({
   selector: 'app-friend-profile',
@@ -9,11 +11,15 @@ import { FriendListService } from 'src/app/core/model/service/friend-list.servic
 export class FriendProfileComponent implements OnInit {
 
   friendData:any=[];
+  preferenceData:any=[];
   id = localStorage.getItem("Id:");
-  requestSenderId = localStorage.getItem("RequestSenderId:");
-  constructor(private friendService:FriendListService) { }
+  requestSenderId!:any;
+  constructor(private friendService:FriendListService,private idRoute: ActivatedRoute,
+              private specificProfileService:FamilyTypeService) { }
   ngOnInit(): void {
+    this.requestSenderId = this.idRoute.snapshot.paramMap.get('requestSenderId');
     this.friends();
+    this.preferenceProfile();
   }
   friends()
   {
@@ -28,5 +34,14 @@ export class FriendProfileComponent implements OnInit {
       }
     }})
   }
-
+  preferenceProfile()
+  {
+    this.specificProfileService.specificProfile(this.requestSenderId).subscribe({next:(res)=>
+      {
+        for(let i = 0 ; i < res.length ; i++)
+        {
+          this.friendData.push(res[i]);
+        }
+      }})
+  }
 }

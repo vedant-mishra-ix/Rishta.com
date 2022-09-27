@@ -28,7 +28,7 @@ const routes: Routes = [
         component:UserProfileComponent
       },
       {
-        path:"update/:Id",
+        path:"update/:id",
         component:ProfileUpdateComponent
       },
       {
@@ -64,7 +64,7 @@ const routes: Routes = [
         component:FriendListComponent
       },
       {
-        path:'friends-profile/:id',
+        path:'friends-profile/:requestSenderId',
         component:FriendProfileComponent
       }
     ]
