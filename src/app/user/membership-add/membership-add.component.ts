@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { MembershipPlansService } from 'src/app/core/model/membership-plans/membership-plans.service';
-import { MembershipAddService } from 'src/app/core/model/service/membership-add.service';
+import { MembershipPlansService } from 'src/app/core/membership-plans/membership-plans.service';
+import { MembershipAddService } from 'src/app/core/service/membership-add.service';
 
 @Component({
   selector: 'app-membership-add',

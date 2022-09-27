@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AdminProfileService } from 'src/app/core/model/admin-service/admin-profile.service';
-import { RegisteredDeleteService } from 'src/app/core/model/admin-service/registered-delete.service';
-import { RegisteredService } from 'src/app/core/model/admin-service/registered.service';
+import { AdminProfileService } from 'src/app/core/admin-service/admin-profile.service';
+import { RegisteredDeleteService } from 'src/app/core/admin-service/registered-delete.service';
+import { RegisteredService } from 'src/app/core/admin-service/registered.service';
 import { AlertBoxComponent } from 'src/app/share/component/alert-box/alert-box.component';
 
 

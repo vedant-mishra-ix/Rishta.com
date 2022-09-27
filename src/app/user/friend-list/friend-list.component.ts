@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ChatService } from 'src/app/core/model/service/chat.service';
-import { FriendListService } from 'src/app/core/model/service/friend-list.service';
+import { ChatService } from 'src/app/core/service/chat.service';
+import { FriendListService } from 'src/app/core/service/friend-list.service';
 
 @Component({
   selector: 'app-friend-list',

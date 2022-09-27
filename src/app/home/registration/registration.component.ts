@@ -7,9 +7,9 @@ import { Gender } from 'src/app/core/model/gender';
 import { MarriageStatus } from 'src/app/core/model/marriage-status';
 import { MotherTongue } from 'src/app/core/model/mother-tongue';
 import { Religious } from 'src/app/core/model/religious';
-import { CityService } from 'src/app/core/model/service/city.service';
-import { RegistrationService } from 'src/app/core/model/service/registration.service';
-import { StateService } from 'src/app/core/model/service/state.service';
+import { CityService } from 'src/app/core/service/city.service';
+import { RegistrationService } from 'src/app/core/service/registration.service';
+import { StateService } from 'src/app/core/service/state.service';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-registration',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestHistoryService } from 'src/app/core/model/service/request-history.service';
+import { RequestHistoryService } from 'src/app/core/service/request-history.service';
 
 @Component({
   selector: 'app-history',

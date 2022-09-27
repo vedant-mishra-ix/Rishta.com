@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserListService } from 'src/app/core/model/service/user-list.service';
+import { UserListService } from 'src/app/core/service/user-list.service';
 
 @Component({
   selector: 'app-profile-matched',

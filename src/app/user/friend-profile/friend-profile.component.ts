@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FriendListService } from 'src/app/core/model/service/friend-list.service';
-import { FamilyTypeService } from 'src/app/core/model/service/family-type.service';
+import { FriendListService } from 'src/app/core/service/friend-list.service';
+import { FamilyTypeService } from 'src/app/core/service/family-type.service';
 
 @Component({
   selector: 'app-friend-profile',

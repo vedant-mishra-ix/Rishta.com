@@ -19,6 +19,6 @@ export class HomeComponent implements OnInit {
   }, 3000);
   }
   ngOnInit(): void {
-   this.playAudio();
+   //this.playAudio();
   }
 }

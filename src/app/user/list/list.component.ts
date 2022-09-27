@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ReportProfileService } from 'src/app/core/model/service/report-profile.service';
-import { RequestHistoryService } from 'src/app/core/model/service/request-history.service';
-import { RequestProfileService } from 'src/app/core/model/service/request-profile.service';
-import { UserListService } from 'src/app/core/model/service/user-list.service';
+import { ReportProfileService } from 'src/app/core/service/report-profile.service';
+import { RequestHistoryService } from 'src/app/core/service/request-history.service';
+import { RequestProfileService } from 'src/app/core/service/request-profile.service';
+import { UserListService } from 'src/app/core/service/user-list.service';
 
 @Component({
   selector: 'app-list',

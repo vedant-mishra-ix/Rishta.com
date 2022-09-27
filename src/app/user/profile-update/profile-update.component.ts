@@ -8,10 +8,10 @@ import { Gender } from 'src/app/core/model/gender';
 import { MarriageStatus } from 'src/app/core/model/marriage-status';
 import { MotherTongue } from 'src/app/core/model/mother-tongue';
 import { Religious } from 'src/app/core/model/religious';
-import { CityService } from 'src/app/core/model/service/city.service';
-import { ProfilUpdateService } from 'src/app/core/model/service/profil-update.service';
-import { StateService } from 'src/app/core/model/service/state.service';
-import { UserProfileService } from 'src/app/core/model/service/user-profile.service';
+import { CityService } from 'src/app/core/service/city.service';
+import { ProfilUpdateService } from 'src/app/core/service/profil-update.service';
+import { StateService } from 'src/app/core/service/state.service';
+import { UserProfileService } from 'src/app/core/service/user-profile.service';
 
 @Component({
   selector: 'app-profile-update',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportedProfilesService } from 'src/app/core/model/admin-service/reported-profiles.service';
+import { ReportedProfilesService } from 'src/app/core/admin-service/reported-profiles.service';
 
 @Component({
   selector: 'app-reported-profile',

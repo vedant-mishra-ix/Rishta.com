@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GuardService } from 'src/app/core/guard/guard.service';
-import { UserProfileService } from 'src/app/core/model/service/user-profile.service';
+import { UserProfileService } from 'src/app/core/service/user-profile.service';
 
 @Component({
   selector: 'app-user-header',

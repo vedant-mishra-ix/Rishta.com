@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomelistComponent } from './homelist/homelist.component';
-import { CityService } from '../core/model/service/city.service';
+import { CityService } from '../core/service/city.service';
 import { ShareModule } from '../share/share.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';

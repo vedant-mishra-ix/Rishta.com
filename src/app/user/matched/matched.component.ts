@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FamilyType } from 'src/app/core/model/family-type';
 import { Gender } from 'src/app/core/model/gender';
 import { MarriageStatus } from 'src/app/core/model/marriage-status';
-import { UserListService } from 'src/app/core/model/service/user-list.service';
+import { UserListService } from 'src/app/core/service/user-list.service';
 
 @Component({
   selector: 'app-matched',

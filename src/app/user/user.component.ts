@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { MembershipAddService } from '../core/model/service/membership-add.service';
-import { UserListService } from '../core/model/service/user-list.service';
-import { UserProfileService } from '../core/model/service/user-profile.service';
+import { MembershipAddService } from '../core/service/membership-add.service';
+import { UserListService } from '../core/service/user-list.service';
+import { UserProfileService } from '../core/service/user-profile.service';
 
 @Component({
   selector: 'app-user',

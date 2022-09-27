@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { MembershipProfilesService } from 'src/app/core/model/admin-service/membership-profiles.service';
+import { MembershipProfilesService } from 'src/app/core/admin-service/membership-profiles.service';
 
 @Component({
   selector: 'app-subscribers',
