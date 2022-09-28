@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GuardService } from 'src/app/core/guard/guard.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-admin-header',
@@ -9,7 +9,7 @@ import { GuardService } from 'src/app/core/guard/guard.service';
 })
 export class AdminHeaderComponent implements OnInit {
 
-  constructor(private route: Router , private authService: GuardService) { }
+  constructor(private route: Router , private authService: AuthService) { }
 
   logOut()
   {

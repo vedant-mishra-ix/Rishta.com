@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GuardService } from 'src/app/core/guard/guard.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 import { UserProfileService } from 'src/app/core/service/user-profile.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class UserHeaderComponent implements OnInit {
 
   userProfile: any;
   userName = localStorage.getItem("UserName:")
-  constructor(private route: Router, private authService: GuardService,
+  constructor(private route: Router, private authService: AuthService,
     private profileService: UserProfileService) { }
     logOut() {
       this.route.navigate([''])

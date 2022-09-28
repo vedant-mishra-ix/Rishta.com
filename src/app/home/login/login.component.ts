@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { GuardService } from 'src/app/core/guard/guard.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 import { Role } from 'src/app/core/model/role';
 import { LoginService } from 'src/app/core/service/login.service';
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   loginProfile: FormGroup = new FormGroup({});
   constructor(private fb: FormBuilder, private loginService: LoginService,
-    private guardService: GuardService, private route: Router, private toastr: ToastrService) {
+    private guardService: AuthService, private route: Router, private toastr: ToastrService) {
     this.loginProfile = fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
