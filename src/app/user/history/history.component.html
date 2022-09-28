@@ -20,8 +20,8 @@
         currentPage:this.page,totalItems:this.count};let i = index">
         <td><img class="zoom" (click)="imageOpen(list)" data-bs-target="#staticBackdrop" data-bs-toggle="modal"
           src="http://localhost:55339/{{list.requestImage}}"></td>
-        <td class="zoom1">{{list.requestUserName}}</td>
-        <td class="zoom1">{{list.requestEmail}}</td>
+        <td>{{list.requestUserName}}</td>
+        <td>{{list.requestEmail}}</td>
         <td>
           <div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -18,10 +18,10 @@
         currentPage:this.page,totalItems:this.count};let i = index">
         <td><img class="zoom" src="http://localhost:55339/{{list.profilePhoto}}"
           (click)="friendProfile(list)"></td>
-        <td class="zoom1">{{list.userName}}</td>
-        <td class="zoom1">{{list.userEmail}}</td>
-        <td class="zoom1">{{list.gender}}</td>
-        <td class="zoom1">
+        <td>{{list.userName}}</td>
+        <td>{{list.userEmail}}</td>
+        <td>{{list.gender}}</td>
+        <td>
           <button type="button" class="btn btn-primary" (click)="open(list)" data-bs-toggle="modal"
             data-bs-target="#staticBackdrop">
             Message

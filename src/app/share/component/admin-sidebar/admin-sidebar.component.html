@@ -1,6 +1,6 @@
 <div class="sidebar">
   <ul class="item">
-    <li class="item-list " routerLink="registered" href="#">
+    <li class="item-list " (click)="navigateToRegistered()" href="#">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
       class="bi bi-person-lines-fill hover" viewBox="0 0 16 16">
         <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11
@@ -8,7 +8,7 @@
          0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
       </svg>
       <span class="icon">Registered Profiles</span></li>
-    <li class="item-list" routerLink="reported" href="#">
+    <li class="item-list" (click)="navigateToReported()" href="#">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
       class="bi bi-exclamation-octagon-fill hover" viewBox="0 0 16 16">
         <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0
@@ -18,7 +18,7 @@
           0 1 1 0 2 1 1 0 0 1 0-2z"/>
       </svg>
       <span class="icon">Reported Profiles</span></li>
-      <li class="item-list"  routerLink="subscriber" href="#">
+      <li class="item-list"  (click)="navigateToSubscriber()" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi
          bi-person-check-fill hover" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0

@@ -22,10 +22,10 @@
         currentPage:this.page,totalItems:this.count};let i = index">
         <td><img class="zoom" (click)="imageOpen(list)" data-bs-target="#staticBackdrop" data-bs-toggle="modal"
           src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"></td>
-        <td class="zoom1">{{list.userName}}</td>
-        <td class="zoom1">{{list.email}}</td>
-        <td class="zoom1">{{list.city}}</td>
-        <td class="zoom1">{{list.sex}}</td>
+        <td>{{list.userName}}</td>
+        <td>{{list.email}}</td>
+        <td>{{list.city}}</td>
+        <td>{{list.sex}}</td>
         <td>
           <div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">

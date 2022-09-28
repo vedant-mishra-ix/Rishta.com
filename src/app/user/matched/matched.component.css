@@ -21,3 +21,7 @@
   font-weight:lighter;
   font-size: 12px;
 }
+.img-click
+{
+  cursor: pointer;
+}

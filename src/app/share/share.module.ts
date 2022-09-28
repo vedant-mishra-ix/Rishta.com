@@ -6,6 +6,8 @@ import { UserHeaderComponent } from './component/user-header/user-header.compone
 import { FooterComponent } from './component/footer/footer.component';
 import { LoaderComponent } from './component/loader/loader.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserSidebarComponent } from './component/user-sidebar/user-sidebar.component';
+import { AdminSidebarComponent } from './component/admin-sidebar/admin-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserHeaderComponent,
     FooterComponent,
     LoaderComponent,
+    UserSidebarComponent,
+    AdminSidebarComponent,
   ],
   imports: [
     CommonModule,
     NgbModule,
   ],
-  exports:[AlertBoxComponent,AdminHeaderComponent,UserHeaderComponent,FooterComponent,LoaderComponent]
+  exports:[AlertBoxComponent,AdminHeaderComponent,UserSidebarComponent,
+          AdminSidebarComponent,UserHeaderComponent,FooterComponent,LoaderComponent]
 })
 export class ShareModule { }

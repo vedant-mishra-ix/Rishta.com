@@ -42,7 +42,7 @@ export class RegisteredComponent implements OnInit {
       next: (res) => {
         this.registered.length = 0;
         for (let i = 0; i < res.length; i++) {
-          if (res[i].userName != 'pankaj') {
+          if (res[i].userName != this.uservalue) {
             this.registered.push(res[i]);
           }
         }

@@ -1,12 +1,12 @@
 <div class="sidebar">
   <ul class="item">
-    <li class="item-list" routerLink="preference" href="#">
+    <li class="item-list" (click)="navigateToPreference()" href="#">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
        class="bi bi-person-heart hover" viewBox="0 0 16 16">
         <path d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6
          4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z"/>
       </svg><span class="icon text-hover">Preference</span></li>
-      <li class="item-list" routerLink="friends" href="#">
+      <li class="item-list" (click)="navigateToFriends()" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
         class="bi bi-arrow-through-heart-fill hover" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M2.854 15.854A.5.5 0 0 1 2 15.5V14H.5a.5.5 0 0 1-.354-.854l1.5-1.5A.5.5
@@ -19,7 +19,7 @@
         </svg>
         <span class="icon text-hover">Friend List
         </span></li>
-        <li class="item-list" routerLink="history" href="#">
+        <li class="item-list" (click)="navigateToHistory()" href="#">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
           class="bi bi-clock-history hover" viewBox="0 0 16 16">
             <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0
@@ -37,7 +37,7 @@
           </svg>
           <span class="icon text-hover">Pending Request</span>
         </li>
-      <li class="item-list"  routerLink="request" href="#">
+      <li class="item-list" (click)="navigateToRequest()" href="#">
         <svg xmlns="http://www.w3.org/2000/svg"
         width="30" height="30" fill="currentColor"
       class="bi bi-person-hearts hover" viewBox="0 0 16 16">
@@ -47,7 +47,7 @@
         1.942.428 0 1.711-1.942-1.283-.555-2.281 0-1.71Z"/>
       </svg><span class="icon text-hover">Request
       </span></li>
-      <li class="item-list"  routerLink="matches" href="#">
+      <li class="item-list"  (click)="navigateToMatches()" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
         class="bi bi-arrow-through-heart-fill hover" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M2.854 15.854A.5.5 0 0 1 2 15.5V14H.5a.5.5 0 0 1-.354-.854l1.5-1.5A.5.5
@@ -60,7 +60,7 @@
         </svg>
         <span class="icon text-hover">Perfect Matches
         </span></li>
-        <li class="item-list" routerLink="membership" href="#">
+        <li class="item-list" (click)="navigateToMembership()" href="#">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
           class="bi bi-receipt-cutoff hover" viewBox="0 0 16 16">
             <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5

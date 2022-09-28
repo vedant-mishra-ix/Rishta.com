@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatchedComponent } from './matched/matched.component';
 import { UserComponent } from './user.component';
 import { ListComponent } from './list/list.component';
@@ -22,7 +21,6 @@ import { FriendProfileComponent } from './friend-profile/friend-profile.componen
 
 @NgModule({
   declarations: [
-    SidebarComponent,
     MatchedComponent,
     UserComponent,
     ListComponent,
