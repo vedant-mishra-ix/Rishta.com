@@ -1,7 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { MembershipAddService } from '../core/service/membership-add.service';
-import { UserListService } from '../core/service/user-list.service';
 import { UserProfileService } from '../core/service/user-profile.service';
 
 @Component({
@@ -16,9 +13,10 @@ export class UserComponent implements OnInit {
   city = localStorage.getItem("City:");
   gender = localStorage.getItem("Gender:");
   count:any;
-  constructor(private profileService: UserProfileService, private memberShipService: MembershipAddService,
-    private userListService: UserListService,private toaster:ToastrService) {
-  }
+  constructor(
+    private profileService: UserProfileService
+    )
+    {}
   ngOnInit(): void {
     this.profileService.userProfile(this.userName ?? '').subscribe(
       {

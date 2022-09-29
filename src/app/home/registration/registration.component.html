@@ -47,8 +47,8 @@
         <label for="Dob">DOB:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
-        <input class="form-control" type="date" max={{date}} name="Dob" id="Dob" (keyup)="ageCalculate()"
-          formControlName="Dob">
+        <input class="form-control" type="date" max={{date}} name="Dob" id="Dob" (change)="ageCalculate()"
+          formControlName="Dob" >
         <span *ngIf="(submitted || registrationValidation['Dob'].touched)
         && registrationValidation['Dob']?.errors?.['required']"
         class="validationError">age must be 18 or greater than 18</span>

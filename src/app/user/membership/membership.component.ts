@@ -10,15 +10,19 @@ import { MembershipPlansService } from 'src/app/core/membership-plans/membership
 export class MembershipComponent implements OnInit {
 
   plansList:any=[];
-  constructor(private membershipPlans: MembershipPlansService,private toaster : ToastrService) { }
+  constructor(
+    private membershipPlans: MembershipPlansService,
+    private toaster : ToastrService)
+    { }
   ngOnInit(): void {
     this.plans();
   }
   plans()
   {
-    this.membershipPlans.plans().subscribe({next:(res)=>
-    {
-      this.plansList = res;
-    },error:()=>{this.toaster.error("Something wrong")}})
-  }
+    this.membershipPlans.plans().
+    subscribe({next:(res)=>
+      {
+       this.plansList = res;
+      },error:()=>{this.toaster.error("Something wrong")}})
+    }
 }

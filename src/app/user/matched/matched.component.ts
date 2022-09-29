@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { FamilyType } from 'src/app/core/model/family-type';
 import { Gender } from 'src/app/core/model/gender';
 import { MarriageStatus } from 'src/app/core/model/marriage-status';
+import { RequestHistoryService } from 'src/app/core/service/request-history.service';
+import { RequestProfileService } from 'src/app/core/service/request-profile.service';
 import { UserListService } from 'src/app/core/service/user-list.service';
 
 @Component({
@@ -29,12 +32,20 @@ export class MatchedComponent implements OnInit {
   genderValue=false;
   genderList: FormGroup = new FormGroup({});
   username = localStorage.getItem("UserName:");
-  constructor(private fb: FormBuilder,private route: Router,
-    private userListService: UserListService) {
-    this.genderList = this.fb.group({
-      Sex: [''],
-      MartialStatus: [''],
-      FamilyType: [''],
+  historyList: any = [];
+  count: number = 0;
+  constructor(
+              private fb: FormBuilder,
+              private route: Router,
+              private userListService: UserListService,
+              private requestService: RequestProfileService,
+              private historyService: RequestHistoryService,
+              private toastr: ToastrService)
+              {
+              this.genderList = this.fb.group({
+              Sex: [''],
+              MartialStatus: [''],
+              FamilyType: [''],
     })
   }
   registeredAccounts() {
@@ -93,6 +104,38 @@ export class MatchedComponent implements OnInit {
   }
   ngOnInit(): void {
     this.registeredAccounts();
+    this.history();
   }
 
+  requestSend(event: any) {
+    let reqdata = { "requestId": this.id, "registeredId": event.id }
+    for (let i = 0; i < this.historyList.length; i++) {
+      this.history();
+      if (this.historyList[i].requestId == event.id) {
+        this.count = 1;
+        break
+      }
+    }
+    if (this.count < 1) {
+      this.requestService.request(reqdata).subscribe({
+        next: (res) => {
+          this.toastr.success("Request send succesfuly");
+        }
+      })
+    }
+    else if( this.count == 1){
+      this.toastr.error("you already sent the request");
+    }
+  }
+  history() {
+    this.historyService.history(this.id).subscribe({
+      next: (res) => {
+        for (let i = 0; i < res.length; i++) {
+          if (this.id == res[i].registeredId) {
+            this.historyList.push(res[i]);
+          }
+        }
+      }
+    })
+  }
 }

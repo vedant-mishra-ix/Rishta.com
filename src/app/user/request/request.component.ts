@@ -18,8 +18,11 @@ export class RequestComponent implements OnInit {
   tableSize: number = 3;
   tableSizes: any = [3, 6, 9, 12];
   image:any;
-  constructor(private requestService: RequestProfileService, private toastr: ToastrService,
-    private route: Router) { }
+  constructor(
+    private requestService: RequestProfileService,
+    private toastr: ToastrService,
+    private route: Router)
+    { }
 
   ngOnInit(): void {
     this.requestData();

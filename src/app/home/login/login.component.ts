@@ -18,9 +18,14 @@ export class LoginComponent implements OnInit {
   color = "FireBrick";
   submitted = false;
   loginProfile: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder, private loginService: LoginService,
-    private guardService: AuthService, private route: Router, private toastr: ToastrService) {
-    this.loginProfile = fb.group({
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private guardService: AuthService,
+    private route: Router,
+    private toastr: ToastrService)
+    {
+    this.loginProfile = this.fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
     })
@@ -28,7 +33,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.submitted = true;
     if (!this.loginProfile.invalid) {
-      this.loginService.loginData(this.loginProfile.value).subscribe({
+      this.loginService.loginData(this.loginProfile.value).
+      subscribe({
         next: (res) => {
           if(res.token)
           {
@@ -38,17 +44,18 @@ export class LoginComponent implements OnInit {
           this.guardService.setToken(res.token);
           localStorage.setItem('role:', res.role);
           this.toastr.success("Successful Login")
-          var GetRole = localStorage.getItem('role:');
-          if( GetRole === "User")
+          var getRole = localStorage.getItem('role:');
+          if( getRole === "User")
           {
             this.route.navigate(['/user']);
           }
-          if(GetRole === "Admin"){
+          if(getRole === "Admin"){
             this.route.navigate(['/admin']);
           }
         }
-        }, error: () => {
-          this.toastr.error("Something wrong");
+        },
+        error: () => {
+          this.toastr.error("Credentials did not matched");
         }
       });
     }

@@ -44,9 +44,14 @@ export class RegistrationComponent implements OnInit {
            + "(?=\\S+$).{8,20}$";
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
-  constructor(private fb: FormBuilder, private cityService: CityService,
-    private stateService: StateService, private registrationService: RegistrationService,
-    private route: Router, private toastr: ToastrService) {
+  constructor(
+    private fb: FormBuilder,
+    private cityService: CityService,
+    private stateService: StateService,
+    private registrationService: RegistrationService,
+    private route: Router,
+    private toastr: ToastrService)
+    {
     this.registration = this.fb.group({
       UserName: ['', Validators.required],
       Email: ['', [Validators.required,Validators.email,Validators.pattern(this.emailPattern)]],

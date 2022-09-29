@@ -11,19 +11,19 @@ import { ForgotService } from 'src/app/core/service/forgot.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  passwordRegex = "^(?=.*[0-9])"
-  + "(?=.*[a-z])(?=.*[A-Z])"
-  + "(?=.*[@#$%^&+=])"
-  + "(?=\\S+$).{8,20}$";
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   resetPassword: FormGroup = new FormGroup({});
   submitted = false;
-  constructor(private fb: FormBuilder, private toaster: ToastrService, private forgotService: ForgotService,
-    private route: Router) {
-    this.resetPassword = fb.group({
-      userEmail: ['', [Validators.required,Validators.email,Validators.pattern(this.emailPattern)]],
-      password: ['', [Validators.required,Validators.pattern(this.passwordRegex)]],
-      newPassword: ['', [Validators.required,Validators.pattern(this.passwordRegex)]]
+  constructor(
+    private fb: FormBuilder,
+    private toaster: ToastrService,
+    private forgotService: ForgotService,
+    private route: Router)
+    {
+    this.resetPassword = this.fb.group({
+      userEmail: ['', [Validators.required,
+                       Validators.email,
+                       Validators.pattern(this.emailPattern)]],
     })
   }
   get loginValidation() {
@@ -32,19 +32,16 @@ export class ForgotPasswordComponent implements OnInit {
   submit() {
     this.submitted = true;
     if (this.resetPassword.valid) {
-      if (this.resetPassword.value.password == this.resetPassword.value.newPassword) {
-        this.forgotService.changePassword(this.resetPassword.value).subscribe({
+        this.forgotService.changePassword(this.resetPassword.value).
+        subscribe({
           next: (res) => {
-            this.toaster.success("Password change successfuly");
+            this.toaster.success("Your password changed successfuly please check your Gmail id");
             this.route.navigate(['login']);
-          }, error: () => {
+          },
+          error: () => {
             this.toaster.error("Email didn't matched");
           }
         })
-      }
-      else {
-        this.toaster.error("Password did not mathced")
-      }
     }
     else {
       return;

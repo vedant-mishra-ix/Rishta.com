@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 export class ForgotService {
 
   constructor(private http: HttpClient) { }
-  changePassword(password:any):Observable<any>
+  changePassword(email:any):Observable<any>
   {
-    return this.http.put(`${environment.baseApiUrl}/api/Authenticate/ResetPassword`,password);
+    return this.http.put(`${environment.baseApiUrl}/api/Authenticate/SendMail`,email);
   }
 }

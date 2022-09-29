@@ -47,6 +47,7 @@
         <th>Gender</th>
         <th>Martial</th>
         <th>FamilyType</th>
+        <th>Request Send</th>
       </tr>
     </thead>
     <tbody>
@@ -59,8 +60,7 @@
         <td>{{list.sex}}</td>
         <td>{{list.martialStatus}}</td>
         <td>{{list.familyType}}</td>
-        <td>
-        </td>
+        <td><a class="btn btn-success" (click)="requestSend(list)">Request</a></td>
       </tr>
       <tr *ngFor="let list of dependentBasedList ">
         <td><img class="img-click" src="http://localhost:55339/{{list.profilePhoto}}" width="50px" height="50px"
@@ -71,8 +71,7 @@
         <td>{{list.sex}}</td>
         <td>{{list.martialStatus}}</td>
         <td>{{list.familyType}}</td>
-        <td>
-        </td>
+        <td><a class="btn btn-success" (click)="requestSend(list)">Request</a></td>
       </tr>
     </tbody>
   </table>

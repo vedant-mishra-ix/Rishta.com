@@ -24,9 +24,12 @@ export class RegisteredComponent implements OnInit {
   tableSizes: any = [3, 6, 9, 12];
   filterTerm!: string;
   image:any;
-  constructor(private registeredService: RegisteredService,
-    private deleteService: RegisteredDeleteService, private adminProfile: AdminProfileService
-    , private toastr: ToastrService) { }
+  constructor(
+    private registeredService: RegisteredService,
+    private deleteService: RegisteredDeleteService,
+    private adminProfile: AdminProfileService
+    , private toastr: ToastrService)
+    { }
 
   ngOnInit(): void {
     this.adminProfile.userProfile(this.uservalue ?? '').subscribe(

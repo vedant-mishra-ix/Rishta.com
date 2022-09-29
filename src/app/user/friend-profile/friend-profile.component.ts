@@ -14,8 +14,11 @@ export class FriendProfileComponent implements OnInit {
   preferenceData:any=[];
   id = localStorage.getItem("Id:");
   requestSenderId!:any;
-  constructor(private friendService:FriendListService,private idRoute: ActivatedRoute,
-              private specificProfileService:FamilyTypeService) { }
+  constructor(
+    private friendService:FriendListService,
+    private idRoute: ActivatedRoute,
+    private specificProfileService:FamilyTypeService)
+    { }
   ngOnInit(): void {
     this.requestSenderId = this.idRoute.snapshot.paramMap.get('requestSenderId');
     this.preferenceProfile();
@@ -36,7 +39,8 @@ export class FriendProfileComponent implements OnInit {
   }
   preferenceProfile()
   {
-    this.specificProfileService.specificProfile(this.requestSenderId).subscribe({next:(res)=>
+    this.specificProfileService.specificProfile(this.requestSenderId).
+    subscribe({next:(res)=>
       {
         for(let i = 0 ; i < res.length ; i++)
         {

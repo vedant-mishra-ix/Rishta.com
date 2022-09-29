@@ -36,7 +36,10 @@ export class UserProfileComponent implements OnInit {
                 familyType:any;
                 familyStatus:any;
                 profilePhoto:any;
-  constructor(private profileService: UserProfileService, private route : Router) { }
+  constructor(
+    private profileService: UserProfileService,
+     private route : Router)
+     { }
   ngOnInit(): void {
     this.profileService.userProfile(this.userValue ?? '').subscribe(
       {

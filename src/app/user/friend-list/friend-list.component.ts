@@ -24,8 +24,12 @@ export class FriendListComponent implements OnInit {
   userName:any;
   requestSenderId:any;
   message: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder,private friendService:FriendListService,
-    private chatService:ChatService,private toaster:ToastrService,private route:Router)
+  constructor(
+    private fb: FormBuilder,
+    private friendService:FriendListService,
+    private chatService:ChatService,
+    private toaster:ToastrService,
+    private route:Router)
    {
     this.message = this.fb.group({
       Message:[''],
@@ -60,15 +64,17 @@ export class FriendListComponent implements OnInit {
       senderId:this.id,
       recieverId:this.recirverId,
     })
-    this.chatService.chat(this.message.value).subscribe({next:(res)=>
+    this.chatService.chat(this.message.value).
+    subscribe({next:(res)=>
+      {
+        this.toaster.success("Message Send Successfuly");
+      },
+    error:()=>
     {
-      this.toaster.success("Message Send Successfuly");
-    },error:()=>
-  {
-    this.toaster.error("Something wrong in message")
-  }})
-    this.message.reset();
-  }
+      this.toaster.error("Something wrong in message")
+    }})
+      this.message.reset();
+    }
   open(event:any)
   {
     this.recirverId = event.requestSenderId;

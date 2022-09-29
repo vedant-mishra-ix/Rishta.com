@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-   GetRole = localStorage.getItem('role:');
+   getRole = localStorage.getItem('role:');
   constructor(private route : Router) { }
   playAudio(){
     let audio = new Audio();
@@ -21,11 +21,11 @@ export class HomeComponent implements OnInit {
   }, 3000);
   }
   ngOnInit(): void {
-    if(this.GetRole == 'User')
+    if(this.getRole == 'User')
     {
       this.route.navigate(['/user']);
     }
-    if(this.GetRole == 'Admin')
+    if(this.getRole == 'Admin')
     {
       this.route.navigate(['/admin']);
     }
@@ -33,6 +33,6 @@ export class HomeComponent implements OnInit {
     {
       this.route.navigate(['']);
     }
-   //this.playAudio();
+  // this.playAudio();
   }
 }

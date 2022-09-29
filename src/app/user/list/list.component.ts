@@ -18,9 +18,13 @@ export class ListComponent implements OnInit {
   historyList: any = [];
   count: number = 0;
   ProfileCount = localStorage.getItem("ProfileVisible:");
-  constructor(private userListService: UserListService, private route: Router,
-    private reportService: ReportProfileService, private toastr: ToastrService,
-    private requestService: RequestProfileService, private historyService: RequestHistoryService
+  constructor(
+    private userListService: UserListService,
+     private route: Router,
+     private reportService: ReportProfileService,
+     private toastr: ToastrService,
+     private requestService: RequestProfileService,
+     private historyService: RequestHistoryService
     ) { }
 
   ngOnInit(): void {
@@ -46,10 +50,12 @@ export class ListComponent implements OnInit {
     this.route.navigate(['./user/specific']);
   }
   profileReport(event: any) {
-    this.reportService.reportProfile(event.id).subscribe({
+    this.reportService.reportProfile(event.id).
+    subscribe({
       next: (res) => {
         this.toastr.success("Profile Reported Successfuly")
-      }, error: () => { this.toastr.error("Something wrong") }
+      },
+       error: () => { this.toastr.error("Something wrong") }
     })
   }
   requestSend(event: any) {

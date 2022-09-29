@@ -43,11 +43,16 @@ export class ProfileUpdateComponent implements OnInit {
   submitted = false;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   profilePhoto = localStorage.getItem("ProfilePhoto:");
-  constructor(private fb: FormBuilder, private cityService: CityService,
+  constructor(
+    private fb: FormBuilder,
+    private cityService: CityService,
     private stateService: StateService,
-    private route: Router, private idRoute: ActivatedRoute, private profileService: UserProfileService,
-    private updateService: ProfilUpdateService, private toastr: ToastrService) {
-  }
+    private route: Router,
+    private idRoute: ActivatedRoute,
+    private profileService: UserProfileService,
+    private updateService: ProfilUpdateService,
+    private toastr: ToastrService)
+    {}
   uservalue = localStorage.getItem('UserName:');
   submit() {
     this.registration.patchValue({
