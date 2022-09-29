@@ -10,7 +10,5 @@ namespace RishtaAPI.Model
     {
         [Required]
         public string UserEmail { get; set; }
-        [Required]
-        public string NewPassword { get; set; }
     }
 }

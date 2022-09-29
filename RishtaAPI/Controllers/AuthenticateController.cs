@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,15 +28,19 @@ namespace JWTAuthenticationWithSwagger.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly RoleManager<IdentityRole> _RoleManager;
+        // forgot pass
+        private readonly IMailService _MailService;
 
         public AuthenticateController(UserManager<ApplicationUser> userManager, IConfiguration configuration,
-            IRegistrationService RegistrationService, IWebHostEnvironment webHostEnvironment, RoleManager<IdentityRole> RoleManager)
+            IRegistrationService RegistrationService, IWebHostEnvironment webHostEnvironment, RoleManager<IdentityRole> RoleManager,
+            IMailService MailService)
         {
             _userManager = userManager;
             _configuration = configuration;
             _RegistrationService = RegistrationService;
             _WebHostEnvironment = webHostEnvironment;
             _RoleManager = RoleManager;
+            _MailService = MailService;
         }
 
         [HttpPost]
@@ -77,35 +82,48 @@ namespace JWTAuthenticationWithSwagger.Controllers
             }
             return Unauthorized();
         }
-        // Reset password
-        [HttpPut]
-        [Route("ResetPassword")]
-        public async Task<IActionResult> ResetPassword([FromBody] ResetPassword resetPassword)
+     
+        // forgot password through email verification
+        [HttpPut("SendMail")]
+        public async Task<IActionResult> SendMail([FromBody] ResetPassword request)
         {
-            var UserEmail = await _userManager.FindByEmailAsync(resetPassword.UserEmail);
+             Random random = new Random();
+        var UserEmail = await _userManager.FindByEmailAsync(request.UserEmail);
+
             if (ModelState.IsValid)
             {
                 if (UserEmail != null)
                 {
+                    const string CharsCapital = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                    const string CharsSmall = "abcdefghijklmnopqrstwxyz";
+                    const string Digit = "1234567890";
+                    var pass1 = new string(Enumerable.Repeat(CharsCapital,1)
+                    .Select(s => s[random.Next(s.Length)]).ToArray());
+                    var pass2 = new string(Enumerable.Repeat(CharsSmall, 4)
+                    .Select(s => s[random.Next(s.Length)]).ToArray());
+                    var pass3 = new string(Enumerable.Repeat(Digit, 3)
+                    .Select(s => s[random.Next(s.Length)]).ToArray());
+                    var NewPassword = pass1 + pass2 + "@" + pass3;
                     var token = await _userManager.GeneratePasswordResetTokenAsync(UserEmail);
-                    var PasswordChange = await _userManager.ResetPasswordAsync(UserEmail, token, resetPassword.NewPassword);
-                        return Ok(PasswordChange);
+                    await _userManager.ResetPasswordAsync(UserEmail, token, NewPassword);
+                    return Ok(_MailService.SendEmailAsync(request, NewPassword));
                 }
                 else
                 {
-                    return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Data not found"});
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Data not found" });
                 }
             }
             else
             {
-                return StatusCode(StatusCodes.Status400BadRequest,new Response {Status="Validation Error",Message="Bad Content Found" });
-            } 
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Validation Error", Message = "Bad Content Found" });
+            }
         }
+
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromForm] Registration model)
         {
-             var userExists = await _userManager.FindByNameAsync(model.Email);
+             var userExists = await _userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError,new Response { Status="Error",Message="User Already Exist!"});
 

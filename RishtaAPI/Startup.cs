@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using RishtaAPI.Authentication;
 using RishtaAPI.DAL;
 using RishtaAPI.Data;
+using RishtaAPI.Model;
 using RishtaAPI.Service;
 using System.Text;
 
@@ -36,6 +37,8 @@ namespace RishtaAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RishtaAPI", Version = "v1" });
             });
             services.AddDbContext<CoreDbContext>(op => op.UseSqlServer(Configuration.GetConnectionString("Database"))); //Add       
+            // for mail setting
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
             services.AddScoped<ICountry, CountryDA>();
             services.AddScoped<IState, StateDA>();
@@ -57,6 +60,7 @@ namespace RishtaAPI
             services.AddScoped<IMembership_PlansService, Membership_PlansService>();
             services.AddScoped<IMembershipService, MemberShipService>();
             services.AddScoped<IChatsService, ChatsService>();
+            services.AddTransient<IMailService, MailService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<CoreDbContext>()
