@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
     if (!this.loginProfile.invalid) {
       this.loginService.loginData(this.loginProfile.value).subscribe({
         next: (res) => {
+          if(res.token)
+          {
           this.color = "ForestGreen";
           this.userName = this.loginProfile.value.userName;
           localStorage.setItem('UserName:', this.userName);
@@ -37,12 +39,14 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('role:', res.role);
           this.toastr.success("Successful Login")
           var GetRole = localStorage.getItem('role:');
-          if (GetRole == this.role.User) {
-            this.route.navigate(['user']);
+          if( GetRole === "User")
+          {
+            this.route.navigate(['/user']);
           }
-          else {
-            this.route.navigate(['admin']);
+          if(GetRole === "Admin"){
+            this.route.navigate(['/admin']);
           }
+        }
         }, error: () => {
           this.toastr.error("Something wrong");
         }

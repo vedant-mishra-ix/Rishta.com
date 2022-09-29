@@ -5,9 +5,9 @@
         <select class="form-control" (ngModelChange)="genderData($event)"
         name="Sex" id="Sex" formControlName="Sex">
           <option>- Select Gender -</option>
-          <option *ngFor="let gender of gender | keyvalue">{{gender.value}}</option>
+          <option *ngFor="let gender of gender | keyvalue" [disabled]="gender.value == userGender">
+            {{gender.value}}</option>
         </select>
-        <span [hidden]="!this.genderValue" class="gender-error">You can not see {{this.sex}} data</span>
       </div>
       <div class="col-2">
         <select class="form-control" (ngModelChange)="martialStatusData($event)"

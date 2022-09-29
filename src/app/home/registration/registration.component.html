@@ -243,7 +243,7 @@
       </div>
       <div class="col-6">
         <input class="form-control" type="file" (change)="handleFile($event)" name="files" id="files"
-          formControlName="files">
+          formControlName="files" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/jfif" >
         <span *ngIf="(submitted || registrationValidation['files'].touched)
          && registrationValidation['files']?.errors?.['required']"
           class="validationError">image is required</span>

@@ -47,10 +47,10 @@ export class MatchedComponent implements OnInit {
     })
   }
   genderData(event: any) {
-    this.hidden = true;
     this.sex = event;
     if(this.userGender == this.sex)
     {
+      this.hidden = true;
       this.genderValue = true;
     }
   }
@@ -64,6 +64,7 @@ export class MatchedComponent implements OnInit {
   }
   dependentFilter() {
     this.dependentBasedList.length = 0;
+    this.userList.length =0;
     this.userListService.registered(this.id).subscribe({
       next: (res) => {
         for (let i = 0; i < res.length; i++) {
@@ -84,6 +85,7 @@ export class MatchedComponent implements OnInit {
     })
     this.dependentBasedList.length = 0;
     this.hidden = false;
+    this.registeredAccounts();
   }
   friendProfile(event: any) {
     this.requestSenderId = event.id;

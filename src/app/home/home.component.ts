@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+   GetRole = localStorage.getItem('role:');
+  constructor(private route : Router) { }
   playAudio(){
     let audio = new Audio();
     audio.src = "../../../assets/sweet-wedding-melody-10053.mp3";
@@ -19,6 +21,18 @@ export class HomeComponent implements OnInit {
   }, 3000);
   }
   ngOnInit(): void {
+    if(this.GetRole == 'User')
+    {
+      this.route.navigate(['/user']);
+    }
+    if(this.GetRole == 'Admin')
+    {
+      this.route.navigate(['/admin']);
+    }
+    else
+    {
+      this.route.navigate(['']);
+    }
    //this.playAudio();
   }
 }
