@@ -158,7 +158,7 @@ namespace RishtaAPI.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Bad Content" });
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Bad Request" });
             }
         }
         // it is used for sending the request 
@@ -229,7 +229,7 @@ namespace RishtaAPI.Controllers
                 }
                 catch (Exception)
                 {
-                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = " Bad Content Found" });
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Bad Content Found" });
                 }
             }
             else

@@ -80,7 +80,7 @@ namespace JWTAuthenticationWithSwagger.Controllers
                     role = userRoles[0]
                 });
             }
-            return Unauthorized();
+            return StatusCode(StatusCodes.Status400BadRequest,new Response { Status = "Error", Message = "Credentials did not matched" });
         }
      
         // forgot password through email verification
@@ -110,7 +110,7 @@ namespace JWTAuthenticationWithSwagger.Controllers
                 }
                 else
                 {
-                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Data not found" });
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Email did not found" });
                 }
             }
             else
@@ -125,7 +125,7 @@ namespace JWTAuthenticationWithSwagger.Controllers
         {
              var userExists = await _userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError,new Response { Status="Error",Message="User Already Exist!"});
+                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Email Already Exist!"});
 
             ApplicationUser user = new ApplicationUser()
             {
