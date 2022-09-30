@@ -57,7 +57,7 @@ export class RegisteredComponent implements OnInit {
       this.deleteService.delete(this.deleteId ?? '').subscribe({
         next: (res) => {
           this.toastr.success("Data Deleted Successfuly")
-        }, error: () => { this.toastr.error("Something wrong") }
+        }, error: () => {}
       })
       this.profileRegistered(this.deleteId);
     }

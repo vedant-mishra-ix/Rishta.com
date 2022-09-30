@@ -23,6 +23,8 @@ export class MembershipComponent implements OnInit {
     subscribe({next:(res)=>
       {
        this.plansList = res;
-      },error:()=>{this.toaster.error("Something wrong")}})
+      },
+      error:()=>{}
+    })
     }
 }

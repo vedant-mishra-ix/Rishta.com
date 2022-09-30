@@ -111,11 +111,15 @@ export class RegistrationComponent implements OnInit {
         formData.append('FamilyType', this.registration.get('FamilyType')?.value);
         formData.append('FamilyStatus', this.registration.get('FamilyStatus')?.value);
         formData.append('image', this.registration.get('image')?.value);
-        this.registrationService.Registration(formData).subscribe((res) => {
+        this.registrationService.Registration(formData).subscribe({next: (res) => {
           this.toastr.success("Successful Registration Done");
           this.route.navigate(['login']);
-        }, error => { this.toastr.error("Email Already exist! ") }
-        )
+        },
+        error: () => {
+          this.toastr.error("Email already exist!");
+        }
+      }
+        );
       }
       else {
         this.toastr.error("Age must be 18 or greater than");

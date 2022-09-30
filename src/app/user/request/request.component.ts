@@ -34,7 +34,6 @@ export class RequestComponent implements OnInit {
         for (let i = 0; i < res.length; i++) {
           if (this.id == res[i].registeredId) {
             this.requestList.push(res[i]);
-            this.toastr.success("You have Received Request")
           }
         }
       }
@@ -48,7 +47,7 @@ export class RequestComponent implements OnInit {
         this.toastr.success("Request Accepted");
         this.removeAccept();
         this.route.navigate(['./user'])
-      }, error: () => { this.toastr.error("Something wrong") }
+      }, error: () => {}
     })
   }
   decline(event:any)

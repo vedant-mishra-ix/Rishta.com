@@ -59,7 +59,7 @@ export class MembershipAddComponent implements OnInit {
     this.membershipPlans.plans().subscribe({
       next: (res) => {
         this.plansList = res;
-      }, error: () => { this.toaster.error("Something wrong") }
+      }, error: () => {}
     })
   }
   onSelect(event: any) {
@@ -87,7 +87,7 @@ export class MembershipAddComponent implements OnInit {
           next: (res) => {
             this.toaster.success("Subscription Added Successful");
             this.route.navigate(['user']);
-          }, error: () => { this.toaster.error("Something Wrong") }
+          }, error: () => {}
         })
       }
     }

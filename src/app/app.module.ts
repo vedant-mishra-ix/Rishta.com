@@ -28,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     CommonModule,
     ToastrModule.forRoot({
-      timeOut:2000
+      timeOut:2000,
+      preventDuplicates:true
     }),
     BrowserAnimationsModule,
     NgxPaginationModule,

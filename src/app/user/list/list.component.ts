@@ -55,7 +55,7 @@ export class ListComponent implements OnInit {
       next: (res) => {
         this.toastr.success("Profile Reported Successfuly")
       },
-       error: () => { this.toastr.error("Something wrong") }
+       error: () => {}
     })
   }
   requestSend(event: any) {

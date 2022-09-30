@@ -54,9 +54,7 @@ export class LoginComponent implements OnInit {
           }
         }
         },
-        error: () => {
-          this.toastr.error("Credentials did not matched");
-        }
+        error: () => {}
       });
     }
   }

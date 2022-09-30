@@ -35,11 +35,10 @@ export class ForgotPasswordComponent implements OnInit {
         this.forgotService.changePassword(this.resetPassword.value).
         subscribe({
           next: (res) => {
-            this.toaster.success("Your password changed successfuly please check your Gmail id");
+            this.toaster.success("Your password changed successfully please check your Gmail");
             this.route.navigate(['login']);
           },
           error: () => {
-            this.toaster.error("Email didn't matched");
           }
         })
     }

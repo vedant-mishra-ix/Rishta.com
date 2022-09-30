@@ -39,7 +39,6 @@ export class SubscribersComponent implements OnInit {
       this.subscribers();
     },error:()=>
     {
-      this.toaster.error("Something wrong")
     }})
   }
   onTableDataChange(event:any)

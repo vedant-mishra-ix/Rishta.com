@@ -70,9 +70,8 @@ export class FriendListComponent implements OnInit {
         this.toaster.success("Message Send Successfuly");
       },
     error:()=>
-    {
-      this.toaster.error("Something wrong in message")
-    }})
+    {}
+  })
       this.message.reset();
     }
   open(event:any)
