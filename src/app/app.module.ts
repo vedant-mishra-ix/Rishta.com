@@ -29,7 +29,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ToastrModule.forRoot({
       timeOut:2000,
-      preventDuplicates:true
+      preventDuplicates:true,
+      progressBar:true,
+      progressAnimation:'increasing'
     }),
     BrowserAnimationsModule,
     NgxPaginationModule,

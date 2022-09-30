@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
      private reportService: ReportProfileService,
      private toastr: ToastrService,
      private requestService: RequestProfileService,
-     private historyService: RequestHistoryService
+     private historyService: RequestHistoryService,
     ) { }
 
   ngOnInit(): void {
@@ -64,17 +64,18 @@ export class ListComponent implements OnInit {
       this.history();
       if (this.historyList[i].requestId == event.id) {
         this.count = 1;
-        break
+        break;
       }
     }
     if (this.count < 1) {
       this.requestService.request(reqdata).subscribe({
         next: (res) => {
           this.toastr.success("Request send succesfuly");
+          this.history();
         }
       })
     }
-    else if( this.count == 1){
+     if( this.count == 1){
       this.toastr.error("you already sent the request");
     }
   }

@@ -5,12 +5,10 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpErrorResponse,
-  HttpResponse
 } from '@angular/common/http';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { LoaderService } from 'src/app/share/loader.service';
 
 @Injectable()
 export class HttpClientInterceptor implements HttpInterceptor {
@@ -20,7 +18,6 @@ export class HttpClientInterceptor implements HttpInterceptor {
     private GuardService: AuthService,
     private toaster: ToastrService,
   ) { }
-
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.GuardService.getToken();
