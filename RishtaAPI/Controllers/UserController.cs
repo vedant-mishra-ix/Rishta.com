@@ -70,24 +70,31 @@ namespace RishtaAPI.Controllers
         [Route("Registration")]
         public IActionResult Update([FromForm] Update updateUser)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (!Directory.Exists(_WebHostEnvironment.WebRootPath + "\\images\\"))
+                try
                 {
-                    Directory.CreateDirectory(_WebHostEnvironment.WebRootPath + "\\images\\");
+                    if (!Directory.Exists(_WebHostEnvironment.WebRootPath + "\\images\\"))
+                    {
+                        Directory.CreateDirectory(_WebHostEnvironment.WebRootPath + "\\images\\");
+                    }
+                    using (FileStream fileStream = System.IO.File.Create(_WebHostEnvironment.WebRootPath + "\\images\\" + updateUser.Files.FileName))
+                    {
+                        updateUser.Files.CopyTo(fileStream);
+                        fileStream.Flush();
+                        var filepath = "\\images\\" + updateUser.Files.FileName;
+                        updateUser.ProfilePhoto = filepath;
+                    }
+                    return Ok(_RegistrationService.RegistrationUpdate(updateUser));
                 }
-                using (FileStream fileStream = System.IO.File.Create(_WebHostEnvironment.WebRootPath + "\\images\\" + updateUser.Files.FileName))
+                catch (Exception)
                 {
-                    updateUser.Files.CopyTo(fileStream);
-                    fileStream.Flush();
-                    var filepath = "\\images\\" + updateUser.Files.FileName;
-                    updateUser.ProfilePhoto = filepath;
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Image not uploaded" });
                 }
-                return Ok(_RegistrationService.RegistrationUpdate(updateUser));
             }
-            catch (Exception)
+            else
             {
-                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Image not uploaded" });
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Validation Error", Message = "Data Is Not Accepted" });
             }
         }
         // for getting the user specific records
@@ -304,18 +311,40 @@ namespace RishtaAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Internal Server Error" });
             }
         }
+        // for deleting membership profiles
+        [HttpDelete]
+        [Route("MemberShipProfiles/{id}")]
+        public IActionResult DeleteById(int id)
+        {
+            try
+            {
+                var MembersProfile = _MemberShipService.MemberShip(id);
+                return Ok(MembersProfile);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
+            }
+        }
         // for adding user chats
         [HttpPost]
         [Route("Chats")]
         public async Task<IActionResult> PostChats(Chats userChats)
         {
-            try
+            if (ModelState.IsValid)
             {
-              return Ok(await _ChatsService.Chat(userChats));
+                try
+                {
+                    return Ok(await _ChatsService.Chat(userChats));
+                }
+                catch (Exception)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Bad Request Data" });
+                }
             }
-            catch(Exception)
+            else
             {
-                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Bad Request Data"});
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Validation Error", Message = "Data Is Not Accepted" });
             }
         }
         // for getting sender messages

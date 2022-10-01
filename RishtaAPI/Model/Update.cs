@@ -1,20 +1,28 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RishtaAPI.Model
 {
     public class Update
     {
+        [Required]
         public int Id { get; set; }
+        [Required]
         public string UserName { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string Mobile { get; set; }
+        [Required]
         public DateTime DateOfBirth { get; set; }
+        [Required]
         public DateTime CreatedDateTime { get; set; }
         public DateTime ModifiedDateTime { get; set; }
         public string Password { get; set; }
         public string Address { get; set; }
         public string Cast { get; set; }
+        [Required]
         public string Sex { get; set; }
         public string Religious { get; set; }
         public string MartialStatus { get; set; }

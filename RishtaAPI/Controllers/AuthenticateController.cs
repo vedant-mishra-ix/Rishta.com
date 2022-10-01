@@ -123,50 +123,57 @@ namespace JWTAuthenticationWithSwagger.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromForm] Registration model)
         {
-             var userExists = await _userManager.FindByEmailAsync(model.Email);
-            if (userExists != null)
-                return StatusCode(StatusCodes.Status400BadRequest,new Response { Status="Error",Message="Email Already Exist!"});
-
-            ApplicationUser user = new ApplicationUser()
+            if (ModelState.IsValid)
             {
-                Email = model.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.UserName
-            };
+                var userExists = await _userManager.FindByEmailAsync(model.Email);
+                if (userExists != null)
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Email Already Exist!" });
 
-            IdentityRole idetityrole = new IdentityRole
-            {
-                Name = "user"
-            };
-
-            await _RoleManager.CreateAsync(idetityrole);
-
-            try
-            {
-                if (!Directory.Exists(_WebHostEnvironment.WebRootPath + "\\images\\"))
+                ApplicationUser user = new ApplicationUser()
                 {
-                    Directory.CreateDirectory(_WebHostEnvironment.WebRootPath + "\\images\\");
-                }
-                using (FileStream fileStream = System.IO.File.Create(_WebHostEnvironment.WebRootPath + "\\images\\" + model.Files.FileName))
+                    Email = model.Email,
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    UserName = model.UserName
+                };
+
+                IdentityRole idetityrole = new IdentityRole
                 {
-                    model.Files.CopyTo(fileStream);
-                    fileStream.Flush();
-                    var filepath = "\\images\\" + model.Files.FileName;
-                    model.ProfilePhoto = filepath;
+                    Name = "user"
+                };
+
+                await _RoleManager.CreateAsync(idetityrole);
+
+                try
+                {
+                    if (!Directory.Exists(_WebHostEnvironment.WebRootPath + "\\images\\"))
+                    {
+                        Directory.CreateDirectory(_WebHostEnvironment.WebRootPath + "\\images\\");
+                    }
+                    using (FileStream fileStream = System.IO.File.Create(_WebHostEnvironment.WebRootPath + "\\images\\" + model.Files.FileName))
+                    {
+                        model.Files.CopyTo(fileStream);
+                        fileStream.Flush();
+                        var filepath = "\\images\\" + model.Files.FileName;
+                        model.ProfilePhoto = filepath;
+                    }
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (!await _RoleManager.RoleExistsAsync(UserRoles.Admin))
+                        await _RoleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                    if (!await _RoleManager.RoleExistsAsync(UserRoles.Users))
+                        await _RoleManager.CreateAsync(new IdentityRole(UserRoles.Users));
+                    if (await _RoleManager.RoleExistsAsync(UserRoles.Admin))
+                        await _userManager.AddToRoleAsync(user, UserRoles.Users);
+                    return Ok(_RegistrationService.Registration(model));
                 }
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (!await _RoleManager.RoleExistsAsync(UserRoles.Admin))
-                    await _RoleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-                if (!await _RoleManager.RoleExistsAsync(UserRoles.Users))
-                    await _RoleManager.CreateAsync(new IdentityRole(UserRoles.Users));
-                if (await _RoleManager.RoleExistsAsync(UserRoles.Admin))
-                    await _userManager.AddToRoleAsync(user, UserRoles.Users);
-                return Ok(_RegistrationService.Registration(model));
+                catch (Exception)
+                {
+                    return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Error", Message = "Content Not Found" });
+                }
             }
-            catch (Exception)
+            else
             {
-                return StatusCode(StatusCodes.Status204NoContent,new Response { Status="Error",Message="Content Not Found"});
-            }  
+                return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Validation Error", Message = "Bad Content Found" });
+            }
           
         }
 
