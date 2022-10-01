@@ -17,6 +17,7 @@ import { ProfileMatchedComponent } from './profile-matched/profile-matched.compo
 import{NgxPaginationModule} from 'ngx-pagination';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import { FriendProfileComponent } from './friend-profile/friend-profile.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { FriendProfileComponent } from './friend-profile/friend-profile.componen
     ReactiveFormsModule,
     ShareModule,
     NgxPaginationModule
-  ]
+  ],
+  providers:[DatePipe]
 })
 export class UserModule { }

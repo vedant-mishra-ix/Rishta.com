@@ -17,4 +17,8 @@ export class MembershipAddService {
   {
     return this.http.get(`${environment.baseApiUrl}/api/User/MembersipList`);
   }
+  deleteProfile(index:any):Observable<any>
+  {
+    return this.http.delete(`${environment.baseApiUrl}/api/User/MemberShipProfiles/${index}`)
+  }
 }

@@ -29,3 +29,9 @@ input.ng-valid
   font-size:large;
   color:green;
 }
+.btn:hover
+{
+  font-weight: bold;
+  background-color:black;
+  color: wheat;
+}

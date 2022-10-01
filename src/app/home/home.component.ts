@@ -21,18 +21,21 @@ export class HomeComponent implements OnInit {
   }, 3000);
   }
   ngOnInit(): void {
-    if(this.getRole == 'User')
+
+    if(this.getRole === "User")
     {
+      console.log("Role user: "+ this.getRole)
       this.route.navigate(['/user']);
     }
-    if(this.getRole == 'Admin')
+    else if(this.getRole === "Admin")
     {
+      console.log("Role admin: "+ this.getRole)
       this.route.navigate(['/admin']);
     }
     else
     {
       this.route.navigate(['']);
     }
-  // this.playAudio();
+   //this.playAudio();
   }
 }

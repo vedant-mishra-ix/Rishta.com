@@ -11,7 +11,6 @@ export class ProfilUpdateService {
   constructor(private http: HttpClient) { }
   update(profile:any):Observable<any>
   {
-    //const options = { params: new HttpParams().set('Username', profile) };
-    return this.http.put(`${environment.baseApiUrl}/api/User`,profile);
+    return this.http.put(`${environment.baseApiUrl}/api/User/Registration`,profile);
   }
 }

@@ -67,6 +67,21 @@
         class="validationError">age must be 18 or greater than 18</span>
       </div>
     </div>
+    <div hidden class="row mt-3">
+      <div class="col-2">
+        <label for="Password">Password:<span class="validationError">*</span></label>
+      </div>
+      <div class="col-6">
+        <input  class="form-control" type="password" name="Password" id="Password"
+        formControlName="Password">
+        <span *ngIf="(submitted || registrationValidation['Password'].touched)
+        && registrationValidation['Password']?.errors?.['required']"
+          class="validationError">password is required</span>
+          <span *ngIf="(submitted || registrationValidation['Password'].touched)
+        && registrationValidation['Password']?.errors?.['pattern']"
+          class="validationError">please follow this pattern(Vedant@123)</span>
+      </div>
+    </div>
     <div class="row mt-3">
       <div class="col-2">
         <label for="Address">Address:<span class="validationError">*</span></label>

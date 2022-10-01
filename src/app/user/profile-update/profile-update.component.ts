@@ -12,6 +12,7 @@ import { CityService } from 'src/app/core/service/city.service';
 import { ProfilUpdateService } from 'src/app/core/service/profil-update.service';
 import { StateService } from 'src/app/core/service/state.service';
 import { UserProfileService } from 'src/app/core/service/user-profile.service';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-profile-update',
@@ -51,7 +52,8 @@ export class ProfileUpdateComponent implements OnInit {
     private idRoute: ActivatedRoute,
     private profileService: UserProfileService,
     private updateService: ProfilUpdateService,
-    private toastr: ToastrService)
+    private toastr: ToastrService,
+    public datepipe: DatePipe)
     {}
   uservalue = localStorage.getItem('UserName:');
   submit() {
@@ -149,7 +151,7 @@ export class ProfileUpdateComponent implements OnInit {
               UserName: res.userName,
               Email: res.email,
               Mobile: res.mobile,
-              Dob: res.dateOfBirth,
+              Dob: this.datepipe.transform(res.dateOfBirth,'yyyy-MM-dd'),
               CreatedDateTime: res.createdDateTime,
               ModifiedDateTime: res.modifiedDateTime,
               Password: res.password,

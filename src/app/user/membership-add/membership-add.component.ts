@@ -95,4 +95,14 @@ export class MembershipAddComponent implements OnInit {
       return;
     }
   }
+  remove(id:any)
+  {
+    this.memberShipService.deleteProfile(id).subscribe({next:(res)=>
+    {
+      this.toaster.success("Your Membership Removed Successfully");
+      this.route.navigate(['/user']);
+    },error:()=>
+    {
+    }})
+  }
 }
