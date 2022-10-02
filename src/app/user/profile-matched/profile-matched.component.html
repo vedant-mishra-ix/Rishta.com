@@ -15,6 +15,7 @@
         <th>Email</th>
         <th>City</th>
         <th>Gender</th>
+        <th>Request Send</th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +27,7 @@
         <td>{{list.email}}</td>
         <td>{{list.city}}</td>
         <td>{{list.sex}}</td>
+        <td><a class="btn btn-success" (click)="requestSend(list)">Request</a></td>
         <td>
           <div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">

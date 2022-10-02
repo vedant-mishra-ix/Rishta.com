@@ -95,6 +95,7 @@ export class MatchedComponent implements OnInit {
       FamilyType: "- Select FamilyType -",
     })
     this.dependentBasedList.length = 0;
+    this.userList.length=0;
     this.hidden = false;
     this.registeredAccounts();
   }
