@@ -38,8 +38,8 @@ export class RegistrationComponent implements OnInit {
   countryName: any;
   stateName: any;
   submitted = false;
-  passwordRegex = "^(?=.*[0-9])"
-           + "(?=.*[a-z])(?=.*[A-Z])"
+  passwordRegex = "^([A-Z])(?=.*[0-9])"
+           + "(?=.*[a-z])"
            + "(?=.*[@#$%^&+=])"
            + "(?=\\S+$).{8,20}$";
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
