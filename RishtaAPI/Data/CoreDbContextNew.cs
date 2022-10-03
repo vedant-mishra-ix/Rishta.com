@@ -9,10 +9,10 @@ using RishtaAPI.Entity;
 
 namespace RishtaAPI.Data
 {
-    public partial class CoreDbContext : IdentityDbContext<ApplicationUser>
+    public partial class CoreDbContextNew : IdentityDbContext<ApplicationUser>
     {
 
-        public CoreDbContext(DbContextOptions<CoreDbContext> options)
+        public CoreDbContextNew(DbContextOptions<CoreDbContextNew> options)
             : base(options)
         {
         }
@@ -26,15 +26,15 @@ namespace RishtaAPI.Data
             base.OnModelCreating(builder);
         }
 
-        public DbSet<City> City { get; set; }
-        public DbSet<State> State { get; set; }
+        public DbSet<City> Rishta_City { get; set; }
+        public DbSet<State> Rishta_State { get; set; }
         public DbSet<Registration> Registration { get; set; }
         public DbSet<ReportProfile> ReportProfile { get; set; }
         public DbSet<RequestProfile> RequestProfile { get; set; }
         public DbSet<RequestAccept> RequestAccept { get; set; }
         public DbSet<Membership_Plans> Membership_Plans { get; set; }
         public DbSet<MemberShip> MemberShip { get; set; }
-        public DbSet<Country> Country { get; set; }
+        public DbSet<Country> Rishta_Country { get; set; }
         public DbSet<Chats> Chats { get; set; }
 
     }

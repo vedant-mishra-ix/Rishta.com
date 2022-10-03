@@ -17,8 +17,8 @@ namespace RishtaAPI.DAL
     }
     public class RequestProfileDA : IRequestProfile
     {
-        private readonly CoreDbContext _context;
-        public RequestProfileDA(CoreDbContext context)
+        private readonly CoreDbContextNew _context;
+        public RequestProfileDA(CoreDbContextNew context)
         {
             _context = context;
         }

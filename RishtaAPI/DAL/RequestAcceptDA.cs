@@ -14,8 +14,8 @@ namespace RishtaAPI.DAL
     }
     public class RequestAcceptDA : IRequestAccept
     {
-        private readonly CoreDbContext _context;
-        public RequestAcceptDA(CoreDbContext context)
+        private readonly CoreDbContextNew _context;
+        public RequestAcceptDA(CoreDbContextNew context)
         {
             _context = context;
         }

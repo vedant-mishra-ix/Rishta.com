@@ -23,9 +23,9 @@ namespace RishtaAPI.DAL
     }
     public class RegistrationDA : IRegistration
     {
-        private readonly CoreDbContext _context;
+        private readonly CoreDbContextNew _context;
         private readonly IHttpContextAccessor _HttpContextAccessor;
-        public RegistrationDA(CoreDbContext context, IHttpContextAccessor HttpContextAccessor)
+        public RegistrationDA(CoreDbContextNew context, IHttpContextAccessor HttpContextAccessor)
         {
             _context = context;
             _HttpContextAccessor = HttpContextAccessor;

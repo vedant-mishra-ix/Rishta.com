@@ -11,8 +11,8 @@ namespace RishtaAPI.DAL
     }
     public class Membership_PlansDA:IMembershipPlans
     {
-        private readonly CoreDbContext _context;
-        public Membership_PlansDA(CoreDbContext context)
+        private readonly CoreDbContextNew _context;
+        public Membership_PlansDA(CoreDbContextNew context)
         {
             _context = context;
         }

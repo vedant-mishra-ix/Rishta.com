@@ -17,8 +17,8 @@ namespace RishtaAPI.DAL
     }
     public class MemberShipDA : IMembership
     {
-        private readonly CoreDbContext _context;
-        public MemberShipDA(CoreDbContext context)
+        private readonly CoreDbContextNew _context;
+        public MemberShipDA(CoreDbContextNew context)
         {
             _context = context;
         }

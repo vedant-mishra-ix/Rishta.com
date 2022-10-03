@@ -11,14 +11,14 @@ namespace RishtaAPI.DAL
     }
     public class CountryDA:ICountry
     {
-        private readonly CoreDbContext _context;
-        public CountryDA(CoreDbContext context)
+        private readonly CoreDbContextNew _context;
+        public CountryDA(CoreDbContextNew context)
         {
             _context = context;
         }
         public IEnumerable<Country> Countries()
         {
-            var AllCountry = _context.Country.ToList();
+            var AllCountry = _context.Rishta_Country.ToList();
             return AllCountry;
         }
     }

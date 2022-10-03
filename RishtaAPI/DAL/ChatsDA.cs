@@ -14,8 +14,8 @@ namespace RishtaAPI.DAL
     }
     public class ChatsDA:IChats
     {
-        private readonly CoreDbContext _context;
-        public ChatsDA(CoreDbContext context)
+        private readonly CoreDbContextNew _context;
+        public ChatsDA(CoreDbContextNew context)
         {
             _context = context;
         }

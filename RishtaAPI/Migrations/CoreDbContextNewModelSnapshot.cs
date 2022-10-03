@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RishtaAPI.Data;
 
 namespace RishtaAPI.Migrations
 {
-    [DbContext(typeof(CoreDbContext))]
-    [Migration("20220915060943_AddProfileVisibleFieldInMEMBERSHIPPLANS")]
-    partial class AddProfileVisibleFieldInMEMBERSHIPPLANS
+    [DbContext(typeof(CoreDbContextNew))]
+    partial class CoreDbContextNewModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -217,6 +215,37 @@ namespace RishtaAPI.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("RishtaAPI.Entity.Chats", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RecieveDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RecieverId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SendDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecieverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Chats");
+                });
+
             modelBuilder.Entity("RishtaAPI.Entity.City", b =>
                 {
                     b.Property<int>("Id")
@@ -233,7 +262,23 @@ namespace RishtaAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("City");
+                    b.ToTable("Rishta_City");
+                });
+
+            modelBuilder.Entity("RishtaAPI.Entity.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Countries")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rishta_Country");
                 });
 
             modelBuilder.Entity("RishtaAPI.Entity.MemberShip", b =>
@@ -278,8 +323,8 @@ namespace RishtaAPI.Migrations
                     b.Property<string>("Price")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProfileVisible")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ProfileVisible")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -452,13 +497,16 @@ namespace RishtaAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("States")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("State");
+                    b.ToTable("Rishta_State");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -510,6 +558,25 @@ namespace RishtaAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("RishtaAPI.Entity.Chats", b =>
+                {
+                    b.HasOne("RishtaAPI.Entity.Registration", "RecieverRegistrationId")
+                        .WithMany()
+                        .HasForeignKey("RecieverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RishtaAPI.Entity.Registration", "Registration")
+                        .WithMany("senderchat")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("RecieverRegistrationId");
+
+                    b.Navigation("Registration");
                 });
 
             modelBuilder.Entity("RishtaAPI.Entity.MemberShip", b =>
@@ -578,6 +645,8 @@ namespace RishtaAPI.Migrations
                     b.Navigation("RequesAccepts");
 
                     b.Navigation("RequestProfiles");
+
+                    b.Navigation("senderchat");
                 });
 #pragma warning restore 612, 618
         }

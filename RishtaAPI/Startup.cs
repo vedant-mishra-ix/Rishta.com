@@ -36,7 +36,7 @@ namespace RishtaAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RishtaAPI", Version = "v1" });
             });
-            services.AddDbContext<CoreDbContext>(op => op.UseSqlServer(Configuration.GetConnectionString("Database"))); //Add       
+            services.AddDbContext<CoreDbContextNew>(op => op.UseSqlServer(Configuration.GetConnectionString("Database"))); //Add      
             // for mail setting
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
@@ -63,9 +63,9 @@ namespace RishtaAPI
             services.AddTransient<IMailService, MailService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<CoreDbContext>()
+                .AddEntityFrameworkStores<CoreDbContextNew>()
                 .AddDefaultTokenProviders();
-
+            // new application user
             // Adding Authentication  
             services.AddAuthentication(options =>
             {

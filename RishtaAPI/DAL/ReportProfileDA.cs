@@ -16,8 +16,8 @@ namespace RishtaAPI.DAL
     }
     public class ReportProfileDA : IReportProfile
     {
-        private readonly CoreDbContext _context;
-        public ReportProfileDA(CoreDbContext context)
+        private readonly CoreDbContextNew _context;
+        public ReportProfileDA(CoreDbContextNew context)
         {
             _context = context;
         }
@@ -34,21 +34,6 @@ namespace RishtaAPI.DAL
                 throw;
             }      
         }
-        // First way 
-        //public IEnumerable<ReportProfileVM> ReportProfiles()
-        //{
-        //    var ReportedProfiles = _ReportProfileDb.ReportProfile.Join(ReportProfileDb.Registration,
-        //                            ReportedId => ReportedId.RegisteredId,
-        //                            ReportProfileId => ReportProfileId.Id,
-        //                            (ReportedId, ReportProfileId) => new ReportProfileVM
-        //                            {
-        //                                ReportedId = ReportedId.RegisteredId,
-        //                                ReportedUserName = ReportProfileId.UserName,
-        //                                ReportedEmail = ReportProfileId.Email,
-        //                                ReportedImage = ReportProfileId.ProfilePhoto
-        //                            }).ToList();
-        //    return ReportedProfiles;
-        //}
         public IEnumerable<ReportProfileVM> ReportProfiles()
         {
             var data = _context.ReportProfile.Include(x => x.Registration);
