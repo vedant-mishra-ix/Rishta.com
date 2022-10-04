@@ -123,9 +123,12 @@ namespace RishtaAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RishtaAPI v1"));
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c => { 
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "RishtaAPI v1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseCors(x => x
                 .AllowAnyOrigin()
