@@ -107,7 +107,7 @@ namespace RishtaAPI.DAL
             {
                 MemberCount = _context.Registration.Include(x => x.MemberShip.Membership_Plans).FirstOrDefault(obj => obj.Id == id).MemberShip.Membership_Plans.ProfileVisible;
             }
-            var GetAllData = _context.Registration.Where(obj => obj.Id != id && obj.Sex != RegisteredGender && obj.IsActive == true).Skip(MemberCount-1).Take(MemberCount+1).ToList();
+            var GetAllData = _context.Registration.Where(obj => obj.Id != id && obj.Sex != RegisteredGender && obj.IsActive == true).Skip(MemberCount).Take(MemberCount+1).ToList();
             if (GetAllData != null)
             {
                 return GetAllData;
