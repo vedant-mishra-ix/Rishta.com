@@ -19,7 +19,7 @@
       <tr *ngFor="let list of historyList| paginate:{ itemsPerPage:this.tableSize,
         currentPage:this.page,totalItems:this.count};let i = index">
         <td><img class="zoom" (click)="imageOpen(list)" data-bs-target="#staticBackdrop" data-bs-toggle="modal"
-          src="http://localhost:55339/{{list.requestImage}}"></td>
+          src="https://rishta.azurewebsites.net/{{list.requestImage}}"></td>
         <td>{{list.requestUserName}}</td>
         <td>{{list.requestEmail}}</td>
         <td>
@@ -29,7 +29,7 @@
               <div class="modal-content modal-color">
                 <button type="button" class="btn-close btn-success" data-bs-dismiss="modal" aria-label="Close">
                 </button>
-                <img class="modal-img rounded-3" src="http://localhost:55339/{{image}}">
+                <img class="modal-img rounded-3" src="https://rishta.azurewebsites.net/{{image}}">
               </div>
             </div>
           </div>

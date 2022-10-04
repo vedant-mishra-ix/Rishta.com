@@ -6,7 +6,7 @@
   <div class="carousel-inner carsol">
     <div *ngFor="let list of userList;let index = index" class="carousel-item active"
       [ngClass]="{'active': index === 1}">
-      <img src="http://localhost:55339/{{list.profilePhoto}}" class="width " alt="...">
+      <img src="https://rishta.azurewebsites.net/{{list.profilePhoto}}" class="width " alt="...">
       <div class="carousel-caption ">
         <div class="profile-data">
           <span class="report-request"><a class="btn btn-success" (click)="requestSend(list)">Request</a>
