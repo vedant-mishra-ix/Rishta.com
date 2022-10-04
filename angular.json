@@ -27,7 +27,8 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/web.config"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -38,6 +39,9 @@
           },
           "configurations": {
             "production": {
+              "assets": [
+                "src/dist/web.config"
+              ],
               "budgets": [
                 {
                   "type": "initial",

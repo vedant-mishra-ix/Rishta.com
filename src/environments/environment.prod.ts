@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseApiUrl: 'http://localhost:55339'
+  baseApiUrl: 'https://rishta.azurewebsites.net'
 };
