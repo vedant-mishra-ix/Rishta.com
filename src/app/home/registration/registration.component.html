@@ -4,7 +4,7 @@
   [formGroup]="registration"(ngSubmit)="submit()">
     <div class="row">
       <div class="col-2">
-        <label for="UserName">Name:<span class="validationError">*</span></label>
+        <label class="label" for="UserName">Name:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <input class="form-control" type="text" name="UserName" id="UserName"
@@ -17,7 +17,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Email">Email:<span class="validationError">*</span></label>
+        <label class="label" for="Email">Email:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <input class="form-control" type="email" name="Email" id="Email"
@@ -32,7 +32,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Mobile">Mobile:<span class="validationError">*</span></label>
+        <label class="label" for="Mobile">Mobile:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <input class="form-control" type="text" name="Mobile" id="Mobile" formControlName="Mobile"
@@ -44,7 +44,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Dob">DOB:<span class="validationError">*</span></label>
+        <label class="label" for="Dob">DOB:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <input class="form-control" type="date" max={{date}} name="Dob" id="Dob" (change)="ageCalculate()"
@@ -56,7 +56,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Password">Password:<span class="validationError">*</span></label>
+        <label class="label" for="Password">Password:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <input class="form-control" type="password" name="Password" id="Password"
@@ -71,7 +71,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Address">Address:<span class="validationError">*</span></label>
+        <label class="label" for="Address">Address:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <textarea class="form-control text-letter" rows="1" name="Address" id="Address"
@@ -83,7 +83,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Cast">Cast:</label>
+        <label class="label" for="Cast">Cast:</label>
       </div>
       <div class="col-6">
         <input class="form-control text-letter" type="text" name="Cast" id="Cast" formControlName="Cast">
@@ -91,7 +91,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Sex">Gender:<span class="validationError">*</span></label>
+        <label class="label" for="Sex">Gender:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <select class="form-control" name="Sex" id="Sex" formControlName="Sex">
@@ -105,7 +105,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Religious">Religious:</label>
+        <label class="label" for="Religious">Religious:</label>
       </div>
       <div class="col-6">
         <select class="form-control" name="Religious" id="Religious" formControlName="Religious">
@@ -116,7 +116,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="MartialStatus">Martial Status:</label>
+        <label class="label" for="MartialStatus">Martial Status:</label>
       </div>
       <div class="col-6">
         <select class="form-control" name="MartialStatus" id="MartialStatus" formControlName="MartialStatus">
@@ -127,7 +127,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="MotherTongue">Mother Tongue</label>
+        <label class="label" for="MotherTongue">Mother Tongue</label>
       </div>
       <div class="col-6">
         <select class="form-control" name="MotherTongue" id="MotherTongue" formControlName="MotherTongue">
@@ -138,7 +138,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Height">Height</label>
+        <label class="label" for="Height">Height</label>
       </div>
       <div class="col-6">
         <input class="form-control" type="text" name="Height" id="Height" placeholder="Feet"
@@ -147,7 +147,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="Country">Country:</label>
+        <label class="label" for="Country">Country:</label>
       </div>
       <div class="col-6">
         <select (change)="onSelectCountry($event)" class="form-control" name="Country" id="Country"
@@ -159,7 +159,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="State">State:</label>
+        <label class="label" for="State">State:</label>
       </div>
       <div class="col-6">
         <select (change)="onSelect($event)" class="form-control" name="State" id="State" formControlName="State">
@@ -170,7 +170,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="City">City</label>
+        <label class="label" for="City">City</label>
       </div>
       <div class="col-6">
         <select class="form-control" name="City" id="City" formControlName="City">
@@ -181,7 +181,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="HighestEducation">Highest Education:</label>
+        <label class="label" for="HighestEducation">Highest Education:</label>
       </div>
       <div class="col-6">
         <input class="form-control education-letter" type="text" name="HighestEducation" id="HighestEducation"
@@ -189,8 +189,8 @@
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-2">
-        <label for="Occupation">Occupation:</label>
+      <div  class="col-2">
+        <label class="label" for="Occupation">Occupation:</label>
       </div>
       <div class="col-6">
         <input class="form-control text-letter" type="text" name="Occupation" id="Occupation"
@@ -199,7 +199,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="AnnualIncome">Annual Income(lakhs):</label>
+        <label class="label" for="AnnualIncome">Annual Income(lakhs):</label>
       </div>
       <div class="col-6">
         <input class="form-control" type="text" name="AnnualIncome" id="AnnualIncome"
@@ -208,7 +208,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="ParentMobile">Parent Pho:</label>
+        <label class="label" for="ParentMobile">Parent Pho:</label>
       </div>
       <div class="col-6">
         <input class="form-control" type="text" name="ParentMobile" id="ParentMobile"
@@ -217,7 +217,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="FamilyType">Family Type:</label>
+        <label class="label" for="FamilyType">Family Type:</label>
       </div>
       <div class="col-6">
         <select class="form-control" name="FamilyType" id="FamilyType" formControlName="FamilyType">
@@ -228,7 +228,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="FamilyStatus">Family Status:</label>
+        <label class="label" for="FamilyStatus">Family Status:</label>
       </div>
       <div class="col-6">
         <select class="form-control" name="FamilyStatus" id="FamilyStatus" formControlName="FamilyStatus">
@@ -239,7 +239,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-2">
-        <label for="files">Photo:<span class="validationError">*</span></label>
+        <label class="label" for="files">Photo:<span class="validationError">*</span></label>
       </div>
       <div class="col-6">
         <input class="form-control" type="file" (change)="handleFile($event)" name="files" id="files"

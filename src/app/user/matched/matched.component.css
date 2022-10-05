@@ -11,8 +11,10 @@
 }
 @media (max-width:500px) {
   .responsive {
-    height: 100vh;
+    height: 66vh;
+    width: 80vw;
     font-size: .7rem;
+    overflow: auto;
   }
 }
 .gender-error

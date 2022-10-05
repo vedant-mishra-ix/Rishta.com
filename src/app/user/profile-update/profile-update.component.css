@@ -51,3 +51,14 @@ textarea.ng-valid
   margin-top: 4px;
   margin-left: 200px;
 }
+@media(max-width:1050px)
+{
+  .zoom
+  {
+    margin-left: 20px;
+  }
+  .heading
+  {
+    margin-top: 15px;
+  }
+}
