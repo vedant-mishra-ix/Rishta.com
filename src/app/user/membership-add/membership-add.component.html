@@ -18,8 +18,8 @@
   [formGroup]="memberShip" (ngSubmit)="submit()">
     <h4 class="heading">Membership</h4>
   <div class="row mt-4">
-    <div class="col"><label for="PlansName"><span class="heading">Plans Name:</span></label>
-      <select  (change)="onSelect($event)"  class="form-control shadow w-50"
+    <div class="col-6 bt"><label for="PlansName"><span class="heading">Plans Name:</span></label>
+      <select  (change)="onSelect($event)"  class="form-control shadow"
       name="PlansName" id="PlansName" formControlName="PlansName">
         <option disabled>--Select Plans--</option>
         <option *ngFor="let list of plansList" value="{{list.plansName}}">{{list.plansName}}</option>
@@ -30,8 +30,8 @@
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col">
-      <input type="submit" [disabled]="!this.beforeClickHidden"  class="btn btn-primary w-50 " value="Subscribe" >
+    <div class="col-6 bt">
+      <input type="submit" [disabled]="!this.beforeClickHidden"  class="btn btn-primary w-100" value="Subscribe" >
     </div>
   </div>
   </form>

@@ -1,7 +1,9 @@
 .margin
 {
-  margin-top: 2vh;
-  margin-bottom: 20vh;
+  margin-top: 1vh;
+  margin-bottom: -9vh;
+  padding-bottom: 20vh;
+  animation: myanimation 10s infinite;
 }
 span
 {
@@ -39,6 +41,7 @@ p{
 {
   text-align: center;
   margin-top: 5px;
+  animation: myanimation 10s infinite;
 }
 .contact1:hover,.contact2:hover,.contact:hover{
   -ms-transform: scale(1.5); /* IE 9 */
@@ -52,7 +55,18 @@ p{
 }
 @media (max-width: 500px) and (max-height:950px){
   .contact1,.contact2,.contact{
-    background-color:black;
-    color: wheat;
+    animation: myanimation 10s infinite;
   }
+}
+@keyframes myanimation {
+  0% {background-color:blueviolet;
+      color: bisque;}
+  25%{background-color:yellow;
+      color: red;}
+  50%{background-color:green;}
+  75%{background-color:brown;
+      color: black;}
+  100% {background-color: purple;}
+  100%{background-color: black;
+      color: white;}
 }

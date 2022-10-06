@@ -1,9 +1,8 @@
-.table-overflow
-{
-  width: 80vw;
-  overflow: auto;
-  height: 76vh;
-  padding-right: 4vw;
+.table-overflow {
+  width: 100%;
+  overflow:auto;
+  height: auto;
+  margin-bottom: -1px;
 }
 .font
 {
@@ -20,10 +19,11 @@
   height: 90px;
   margin: 0 auto;
 }
-@media (max-width:500px) {
-  .responsive {
-    height: 100vh;
-    font-size: .7rem;
+@media(max-width:700px)
+{
+  .responsive-div
+  {
+    width: 60vw;
   }
 }
 .modal-img

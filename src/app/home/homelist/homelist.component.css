@@ -227,3 +227,10 @@
     padding-left:50px;
   }
 }
+@media(min-width:901px)
+{
+  .cards
+  {
+    padding-left:70px;
+  }
+}

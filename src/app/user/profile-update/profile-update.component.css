@@ -5,11 +5,11 @@
 }
 .form-overflow
 {
-  width: 79vw;
-  overflow: auto;
-  height: 72vh;
-  padding-right: 2vw;
-  padding-bottom: 30px;
+  width: 100%;
+  overflow:auto;
+  height: 70vh;
+  margin-bottom: -1px;
+  padding-bottom: 10px;
 }
 .heading
 {
@@ -60,5 +60,19 @@ textarea.ng-valid
   .heading
   {
     margin-top: 15px;
+  }
+  .responsive-div
+  {
+    width: 60vw;
+  }
+  .bt
+  {
+    width: 120px;
+  }
+  label
+  {
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: -50px;
   }
 }

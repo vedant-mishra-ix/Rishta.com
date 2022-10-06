@@ -1,23 +1,25 @@
-<div class="container-fluid justify-content-start mt-5 table-overflow">
+<div class="container-fluid justify-content-start mt-5 responsive-div">
   <div class="row d-flex justify-content-end">
-    <div class="col-3 ">
+    <div class="col-3 bt">
       <a class="btn btn-danger float-right" routerLink="/user/addmembership">Subscription</a>
     </div>
   </div>
-  <table class="table table-striped mt-3">
-    <thead>
-      <tr>
-        <th>Plans</th>
-        <th>Plans Benefits</th>
-        <th>Plans Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let list of plansList">
-        <td>{{list.plansName}}</td>
-        <td>{{list.benefits}}</td>
-        <td>{{list.price}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-striped mt-3 table-overflow">
+      <thead>
+        <tr>
+          <th>Plans</th>
+          <th>Plans Benefits</th>
+          <th>Plans Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let list of plansList">
+          <td>{{list.plansName}}</td>
+          <td>{{list.benefits}}</td>
+          <td>{{list.price}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

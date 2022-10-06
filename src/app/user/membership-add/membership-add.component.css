@@ -35,3 +35,15 @@ input.ng-valid
   background-color:black;
   color: wheat;
 }
+@media(max-width:750px)
+{
+  .bt
+  {
+    width: 140px;
+  }
+  label
+  {
+    font-size: 10px;
+    font-weight: bold;
+  }
+}

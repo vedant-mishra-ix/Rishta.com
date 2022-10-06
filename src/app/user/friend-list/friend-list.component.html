@@ -1,71 +1,73 @@
-<div class="container-fluid justify-content-start mt-5">
+<div class="container-fluid justify-content-start mt-5 responsive-div">
   <div class="d-flex justify-content-left">
     <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
     </pagination-controls>
   </div>
-  <table class="table table-striped responsive">
-    <thead>
-      <tr>
-        <th>Profile</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Gender</th>
-        <th>Chat Box</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let list of friendList | paginate:{ itemsPerPage:this.tableSize,
+  <div class="table-responsive">
+    <table class="table table-striped table-overflow ">
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>Chat Box</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let list of friendList | paginate:{ itemsPerPage:this.tableSize,
         currentPage:this.page,totalItems:this.count};let i = index">
-        <td><img class="zoom" src="https://rishta.azurewebsites.net/{{list.profilePhoto}}"
-          (click)="friendProfile(list)"></td>
-        <td>{{list.userName}}</td>
-        <td>{{list.userEmail}}</td>
-        <td>{{list.gender}}</td>
-        <td>
-          <button type="button" class="btn btn-primary" (click)="open(list)" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop">
-            Message
-          </button>
-        </td>
-        <!-- Modal -->
-        <td>
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">{{userName}}</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="scroll">
-                    <div *ngFor="let msg of senderMessageList"
-                      class="modal-dialog modal-dialog-centered sender-message-padding">
-                      <p><small class="text-danger">Send</small>- {{msg.message}}</p>
-                    </div>
-                    <div *ngFor="let msg of recieverMessageList"
-                      class="modal-dialog modal-dialog-centered reciever-message-padding">
-                      <p><small class="text-success">Recieved</small>- {{msg.message}}</p>
-                    </div>
+          <td><img class="zoom" src="https://rishta.azurewebsites.net/{{list.profilePhoto}}"
+              (click)="friendProfile(list)"></td>
+          <td>{{list.userName}}</td>
+          <td>{{list.userEmail}}</td>
+          <td>{{list.gender}}</td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="open(list)" data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop">
+              Message
+            </button>
+          </td>
+          <!-- Modal -->
+          <td>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{{userName}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form class="form  bg-light " [formGroup]="message" (ngSubmit)="submit()">
-                    <div class="row mt-4">
-                      <div class="col">
-                        <input type="text" id="Message" class="form-control py-3 w-100" formControlName="Message">
+                  <div class="modal-body">
+                    <div class="scroll">
+                      <div *ngFor="let msg of senderMessageList"
+                        class="modal-dialog modal-dialog-centered sender-message-padding">
+                        <p><small class="text-danger">Send</small>- {{msg.message}}</p>
+                      </div>
+                      <div *ngFor="let msg of recieverMessageList"
+                        class="modal-dialog modal-dialog-centered reciever-message-padding">
+                        <p><small class="text-success">Recieved</small>- {{msg.message}}</p>
                       </div>
                     </div>
-                    <div class="row mt-3">
-                      <div class="col">
-                        <input type="submit" class="btn btn-primary w-100" value="Sent">
+                    <form class="form  bg-light " [formGroup]="message" (ngSubmit)="submit()">
+                      <div class="row mt-4">
+                        <div class="col">
+                          <input type="text" id="Message" class="form-control py-3 w-100" formControlName="Message">
+                        </div>
                       </div>
-                    </div>
-                  </form>
+                      <div class="row mt-3">
+                        <div class="col">
+                          <input type="submit" class="btn btn-primary w-100" value="Sent">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

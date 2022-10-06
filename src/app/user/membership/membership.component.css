@@ -1,11 +1,23 @@
-
+.table-overflow {
+  width: 100%;
+  overflow:auto;
+  height: auto;
+  margin-bottom: -1px;
+}
 .font
 {
   font-size: 1rem;
 }
-@media (max-width:500px) {
-  .responsive {
-    height: 100vh;
-    font-size: .7rem;
+@media(max-width:700px)
+{
+  .bt
+  {
+    width: 120px;
+    margin-top: 5px;
+    padding-right: 150px;
+  }
+  .responsive-div
+  {
+    width: 60vw;
   }
 }

@@ -1,7 +1,17 @@
-
+.table-overflow {
+  width: 100%;
+  overflow:auto;
+  height: auto;
+  margin-bottom: -1px;
+}
 .font
 {
   font-size: 1rem;
+}
+.paging-margin
+{
+  width: 100%;
+  margin-top: 13px;
 }
 .zoom:hover {
   -ms-transform: scale(1.5); /* IE 9 */
@@ -14,12 +24,6 @@
   height: 90px;
   margin: 0 auto;
 }
-@media (max-width:500px) {
-  .responsive {
-    height: 100vh;
-    font-size: .7rem;
-  }
-}
 .modal-img
 {
   width: 500px;
@@ -29,4 +33,11 @@
 .modal-color
 {
   background-color: black;
+}
+@media(max-width:700px)
+{
+  .responsive-div
+  {
+    width: 60vw;
+  }
 }

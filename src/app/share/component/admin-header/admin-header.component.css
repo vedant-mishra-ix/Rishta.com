@@ -3,4 +3,32 @@
   background-color: green;
   border-radius: 10px;
 }
-
+.navbar
+{
+  height: 10vh;
+}
+@media(max-width:800px)
+{
+  .navbar
+  {
+    height: 7vh;
+  }
+}
+@media(min-width:801px)
+{
+  .navbar
+  {
+    height: 5vh;
+  }
+  .navbar
+  {
+    height: 10vh;
+  }
+}
+@media(width:820px)
+{
+  .navbar
+  {
+    height: 5vh;
+  }
+}
