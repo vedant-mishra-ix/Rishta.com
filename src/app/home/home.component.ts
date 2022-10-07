@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
    getRole = localStorage.getItem('role:');
-  constructor(private route : Router) { }
+  constructor(private route : Router)
+  {
+  }
   playAudio(){
     let audio = new Audio();
     audio.src = "../../../assets/sweet-wedding-melody-10053.mp3";
@@ -24,12 +26,10 @@ export class HomeComponent implements OnInit {
 
     if(this.getRole === "User")
     {
-      console.log("Role user: "+ this.getRole)
       this.route.navigate(['/user']);
     }
     else if(this.getRole === "Admin")
     {
-      console.log("Role admin: "+ this.getRole)
       this.route.navigate(['/admin']);
     }
     else

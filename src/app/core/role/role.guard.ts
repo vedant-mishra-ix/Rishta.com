@@ -12,11 +12,11 @@ export class RoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let role = localStorage.getItem("role:");
-      if(role == 'Admin')
+      if(role === 'Admin')
       {
         return true;
       }
-      else if(role == 'User')
+      else if(role === 'User')
       {
         return true;
       }

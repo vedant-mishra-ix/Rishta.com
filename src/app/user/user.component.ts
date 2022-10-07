@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { UserProfileService } from '../core/service/user-profile.service';
 
 @Component({
@@ -13,8 +14,10 @@ export class UserComponent implements OnInit {
   city = localStorage.getItem("City:");
   gender = localStorage.getItem("Gender:");
   count:any;
+  role = localStorage.getItem("role:");
   constructor(
-    private profileService: UserProfileService
+    private profileService: UserProfileService,
+    private route: Router
     )
     {}
   ngOnInit(): void {
@@ -26,5 +29,9 @@ export class UserComponent implements OnInit {
           localStorage.setItem("Gender:", res.sex);
         }
       })
+      if(this.role === "Admin")
+      {
+        this.route.navigate(['/admin']);
+      }
   }
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminGuard } from './core/admin-guard/admin-guard.guard';
 import { AuthGuard } from './core/auth-guard/auth-guard.guard';
 import { Role } from './core/model/role';
 import { RoleGuard } from './core/role/role.guard';

@@ -9,7 +9,7 @@ export class LoaderComponent implements OnInit {
   displayStyle = "none";
   loading!: boolean;
 
-  constructor(private loaderService:LoaderService) {
+  constructor(private loaderService: LoaderService) {
     this.loaderService.Loading.subscribe((v) => {
       this.loading = v;
     });
