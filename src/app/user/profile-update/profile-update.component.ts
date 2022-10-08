@@ -57,6 +57,7 @@ export class ProfileUpdateComponent implements OnInit {
     {}
   uservalue = localStorage.getItem('UserName:');
   submit() {
+    this.userProfile();
     this.registration.patchValue({
       Country: this.countryName,
       State: this.stateName
@@ -92,8 +93,8 @@ export class ProfileUpdateComponent implements OnInit {
         this.updateService.update(formData).subscribe({
           next: (res) => {
             this.toastr.success("Profile Updated Successful");
+            this.route.navigate(['/user/profile']);
             location.reload();
-            this.route.navigate(['./user']);
           }, error: () => {
             this.toastr.error("Something Wrong")
           }
@@ -111,6 +112,7 @@ export class ProfileUpdateComponent implements OnInit {
     return this.registration.controls;
   }
   ngOnInit(): void {
+    this.userProfile();
     this.registration = this.fb.group({
       Id: [''],
       UserName: ['', Validators.required],
@@ -142,6 +144,10 @@ export class ProfileUpdateComponent implements OnInit {
     this.getState();
     this.getCountry();
     this.id = this.idRoute.snapshot.paramMap.get('id');
+    this.date = new Date().toISOString().split('T')[0]
+  }
+  userProfile()
+  {
     this.profileService.userProfile(this.uservalue ?? '').subscribe(
       {
         next: (res) => {
@@ -176,7 +182,6 @@ export class ProfileUpdateComponent implements OnInit {
           );
         }
       })
-    this.date = new Date().toISOString().split('T')[0]
   }
   getCountry() {
     this.stateService.getCountry().subscribe(res => {
