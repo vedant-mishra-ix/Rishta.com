@@ -61,7 +61,7 @@
       </div>
       <div class="col-6 bt">
         <input class="form-control" max={{date}}  type="date" name="Dob" id="Dob"
-        (change)="ageCalculate()" formControlName="Dob">
+         formControlName="Dob">
         <span *ngIf="(submitted || registrationValidation['Dob'].touched)
         && registrationValidation['Dob']?.errors?.['required']"
         class="validationError">age must be 18 or greater than 18</span>
@@ -269,8 +269,14 @@
         </div>
       </div>
       <div class="row mt-3">
+        <div class="col-8">
+          <p><ngb-progressbar type="success" [value]="progressValue" *ngIf="progressValue"
+            [striped]="true" [animated]="true"></ngb-progressbar></p>
+        </div>
+      </div>
+      <div class="row mt-3">
         <div class="col-8 bt">
-         <input class="btn btn-primary w-100" type="submit">
+         <input class="btn btn-primary w-100" type="submit" (click)="ageCalculate()">
         </div>
       </div>
   </form>

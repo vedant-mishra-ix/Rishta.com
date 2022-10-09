@@ -13,6 +13,8 @@ import { ProfilUpdateService } from 'src/app/core/service/profil-update.service'
 import { StateService } from 'src/app/core/service/state.service';
 import { UserProfileService } from 'src/app/core/service/user-profile.service';
 import { DatePipe } from '@angular/common'
+import { map } from 'rxjs';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile-update',
@@ -44,6 +46,7 @@ export class ProfileUpdateComponent implements OnInit {
   submitted = false;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   profilePhoto = localStorage.getItem("ProfilePhoto:");
+  progressValue = 0;
   constructor(
     private fb: FormBuilder,
     private cityService: CityService,
@@ -53,8 +56,7 @@ export class ProfileUpdateComponent implements OnInit {
     private profileService: UserProfileService,
     private updateService: ProfilUpdateService,
     private toastr: ToastrService,
-    public datepipe: DatePipe)
-    {}
+    public datepipe: DatePipe) { }
   uservalue = localStorage.getItem('UserName:');
   submit() {
     this.userProfile();
@@ -90,21 +92,36 @@ export class ProfileUpdateComponent implements OnInit {
         formData.append('FamilyType', this.registration.get('FamilyType')?.value);
         formData.append('FamilyStatus', this.registration.get('FamilyStatus')?.value);
         formData.append('image', this.registration.get('image')?.value);
-        this.updateService.update(formData).subscribe({
-          next: (res) => {
-            this.toastr.success("Profile Updated Successful");
-            this.route.navigate(['/user/profile']);
-            location.reload();
-          }, error: () => {
-            this.toastr.error("Something Wrong")
-          }
-        });
+        this.updateService.update(formData).
+          pipe(
+            map(events => {
+              switch (events.type) {
+                case HttpEventType.UploadProgress:
+                  this.progressValue = Math.round(events.loaded / events.total! * 100);
+                  break;
+                case HttpEventType.Response:
+                  this.toastr.success("Profile Updated Successful");
+                  setTimeout(() => {
+                    this.progressValue = 0;
+                  }, 3000);
+                  location.reload();
+                  break;
+              }
+            }
+            )
+          )
+          .subscribe({
+            next: (res) => {
+            }, error: () => {
+              this.toastr.error("Something Wrong")
+            }
+          });
       }
       else {
         this.toastr.error("Age must be greater than 18");
       }
     }
-    else{
+    else {
       return;
     }
   }
@@ -116,7 +133,7 @@ export class ProfileUpdateComponent implements OnInit {
     this.registration = this.fb.group({
       Id: [''],
       UserName: ['', Validators.required],
-      Email: ['',[Validators.required,Validators.email,Validators.pattern(this.emailPattern)]],
+      Email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailPattern)]],
       Mobile: ['', Validators.required],
       Dob: ['', Validators.required],
       Password: ['', Validators.required],
@@ -146,8 +163,7 @@ export class ProfileUpdateComponent implements OnInit {
     this.id = this.idRoute.snapshot.paramMap.get('id');
     this.date = new Date().toISOString().split('T')[0]
   }
-  userProfile()
-  {
+  userProfile() {
     this.profileService.userProfile(this.uservalue ?? '').subscribe(
       {
         next: (res) => {
@@ -157,7 +173,7 @@ export class ProfileUpdateComponent implements OnInit {
               UserName: res.userName,
               Email: res.email,
               Mobile: res.mobile,
-              Dob: this.datepipe.transform(res.dateOfBirth,'yyyy-MM-dd'),
+              Dob: this.datepipe.transform(res.dateOfBirth, 'yyyy-MM-dd'),
               CreatedDateTime: res.createdDateTime,
               ModifiedDateTime: res.modifiedDateTime,
               Password: res.password,
@@ -223,5 +239,7 @@ export class ProfileUpdateComponent implements OnInit {
     let currentYearValue = currentYear.getFullYear()
     this.currentYear = currentYearValue;
     this.age = currentYearValue - year;
+    console.log("Age: " + this.age);
+
   }
 }

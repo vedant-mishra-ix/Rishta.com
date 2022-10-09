@@ -18,6 +18,7 @@ import{NgxPaginationModule} from 'ngx-pagination';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import { FriendProfileComponent } from './friend-profile/friend-profile.component';
 import { DatePipe } from '@angular/common';
+import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { DatePipe } from '@angular/common';
     UserRoutingModule,
     ReactiveFormsModule,
     ShareModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgbProgressbarModule,
   ],
   providers:[DatePipe]
 })

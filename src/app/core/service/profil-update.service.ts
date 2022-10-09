@@ -11,6 +11,8 @@ export class ProfilUpdateService {
   constructor(private http: HttpClient) { }
   update(profile:any):Observable<any>
   {
-    return this.http.put(`${environment.baseApiUrl}/api/User/Registration`,profile);
+    return this.http.put(`${environment.baseApiUrl}/api/User/Registration`,profile,
+    {reportProgress:true,
+    observe:'events'});
   }
 }
