@@ -13,8 +13,8 @@ import { ProfilUpdateService } from 'src/app/core/service/profil-update.service'
 import { StateService } from 'src/app/core/service/state.service';
 import { UserProfileService } from 'src/app/core/service/user-profile.service';
 import { DatePipe } from '@angular/common'
-import { map } from 'rxjs';
-import { HttpEventType } from '@angular/common/http';
+import { catchError, map, of } from 'rxjs';
+import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile-update',
@@ -30,7 +30,6 @@ export class ProfileUpdateComponent implements OnInit {
   familyType1 = FamilyType;
   familyStatus1 = FamilyStatus;
   registration: FormGroup = new FormGroup({});
-  Files!: File;
   cityList: any = [];
   cityListContain: any = [];
   countryList: any = [];
@@ -68,7 +67,7 @@ export class ProfileUpdateComponent implements OnInit {
     if (this.registration.valid) {
       if (this.age >= 18) {
         const formData: any = new FormData();
-        formData.append('files', this.registration.get('fileSource')?.value);
+        formData.append('files', this.registration.get('files')?.value);
         formData.append('Id', this.registration.get('Id')?.value);
         formData.append('UserName', this.registration.get('UserName')?.value);
         formData.append('Email', this.registration.get('Email')?.value);
@@ -91,7 +90,6 @@ export class ProfileUpdateComponent implements OnInit {
         formData.append('ParentMobile', this.registration.get('ParentMobile')?.value);
         formData.append('FamilyType', this.registration.get('FamilyType')?.value);
         formData.append('FamilyStatus', this.registration.get('FamilyStatus')?.value);
-        formData.append('image', this.registration.get('image')?.value);
         this.updateService.update(formData).
           pipe(
             map(events => {
@@ -108,14 +106,19 @@ export class ProfileUpdateComponent implements OnInit {
                   break;
               }
             }
+            ),
+            catchError((error:HttpErrorResponse)=>
+            {
+              this.progressValue = 0;
+              return of("Failed");
+            })
             )
-          )
-          .subscribe({
-            next: (res) => {
-            }, error: () => {
-              this.toastr.error("Something Wrong")
-            }
-          });
+            .subscribe({
+              next: (res) => {
+              }, error: () => {
+                this.toastr.error("Something Wrong")
+              }
+            });
       }
       else {
         this.toastr.error("Age must be greater than 18");
@@ -155,7 +158,6 @@ export class ProfileUpdateComponent implements OnInit {
       FamilyStatus: [''],
       ProfilePhoto: [''],
       files: ['', Validators.required],
-      fileSource: [''],
     });
     this.getCity();
     this.getState();
@@ -228,7 +230,7 @@ export class ProfileUpdateComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.registration.patchValue({
-        fileSource: file
+        files: file
       });
     }
   }

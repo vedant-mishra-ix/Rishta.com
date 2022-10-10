@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NavigationEnd, Router } from '@angular/router';
-
+import {Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +8,8 @@ import {NavigationEnd, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-   getRole = localStorage.getItem('role:');
+  getRole = localStorage.getItem('role:');
+  backgroundColor = "white";
   constructor(private route : Router)
   {
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { UserProfileService } from 'src/app/core/service/user-profile.service';
@@ -9,9 +9,9 @@ import { UserProfileService } from 'src/app/core/service/user-profile.service';
   styleUrls: ['./user-header.component.css']
 })
 export class UserHeaderComponent implements OnInit {
-
   userProfile: any;
-  userName = localStorage.getItem("UserName:")
+  userName = localStorage.getItem("UserName:");
+  refresh = false;
   constructor(private route: Router, private authService: AuthService,
     private profileService: UserProfileService) { }
     logOut() {
@@ -30,6 +30,7 @@ export class UserHeaderComponent implements OnInit {
       localStorage.removeItem("NotificationCount:");
       localStorage.removeItem("RequestGet:");
       localStorage.removeItem("RequestSenderId:");
+      localStorage.removeItem("Updatevalue:");
       return this.authService.deleteToken();
     }
     ngOnInit(): void {

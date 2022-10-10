@@ -11,8 +11,8 @@ import { CityService } from 'src/app/core/service/city.service';
 import { RegistrationService } from 'src/app/core/service/registration.service';
 import { StateService } from 'src/app/core/service/state.service';
 import { ToastrService } from 'ngx-toastr';
-import { map } from 'rxjs';
-import { HttpEventType } from '@angular/common/http';
+import { catchError, map, of } from 'rxjs';
+import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -27,7 +27,6 @@ export class RegistrationComponent implements OnInit {
   familyType = FamilyType;
   familyStatus = FamilyStatus;
   registration: FormGroup = new FormGroup({});
-  Files!: File;
   cityList: any = [];
   countryList: any = [];
   cityListContain: any = [];
@@ -78,7 +77,6 @@ export class RegistrationComponent implements OnInit {
       FamilyStatus: [''],
       ProfilePhoto: [''],
       files: ['', Validators.required],
-      fileSource: [''],
     })
   }
   submit() {
@@ -90,7 +88,7 @@ export class RegistrationComponent implements OnInit {
     if (!this.registration.invalid) {
       if (this.age >= 18) {
         const formData: any = new FormData();
-        formData.append('files', this.registration.get('fileSource')?.value);
+        formData.append('files', this.registration.get('files')?.value);
         formData.append('UserName', this.registration.get('UserName')?.value);
         formData.append('Email', this.registration.get('Email')?.value);
         formData.append('Mobile', this.registration.get('Mobile')?.value);
@@ -112,7 +110,6 @@ export class RegistrationComponent implements OnInit {
         formData.append('ParentMobile', this.registration.get('ParentMobile')?.value);
         formData.append('FamilyType', this.registration.get('FamilyType')?.value);
         formData.append('FamilyStatus', this.registration.get('FamilyStatus')?.value);
-        formData.append('image', this.registration.get('image')?.value);
         this.registrationService.Registration(formData).
         pipe(
           map(events => {
@@ -129,7 +126,12 @@ export class RegistrationComponent implements OnInit {
                 break;
             }
           }
-          )
+          ),
+          catchError((error:HttpErrorResponse)=>
+          {
+            this.progressValue = 0;
+            return of("Failed");
+          })
         )
         .subscribe({next: (res) => {
         },
@@ -185,7 +187,7 @@ export class RegistrationComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.registration.patchValue({
-        fileSource: file
+        files: file
       });
     }
   }
