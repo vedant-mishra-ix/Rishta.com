@@ -10,9 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomelistComponent } from './homelist/homelist.component';
 import { CityService } from '../core/service/city.service';
 import { ShareModule } from '../share/share.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -33,6 +33,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     ReactiveFormsModule,
     ShareModule,
     ToastrModule.forRoot(),
+    NgbProgressbarModule,
   ],
   providers:[CityService]
 })

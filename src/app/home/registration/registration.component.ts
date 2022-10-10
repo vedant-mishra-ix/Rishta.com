@@ -11,6 +11,8 @@ import { CityService } from 'src/app/core/service/city.service';
 import { RegistrationService } from 'src/app/core/service/registration.service';
 import { StateService } from 'src/app/core/service/state.service';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs';
+import { HttpEventType } from '@angular/common/http';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -43,7 +45,7 @@ export class RegistrationComponent implements OnInit {
            + "(?=.*[@#$%^&+=])"
            + "(?=\\S+$).{8,20}$";
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-
+  progressValue = 0;
   constructor(
     private fb: FormBuilder,
     private cityService: CityService,
@@ -111,9 +113,25 @@ export class RegistrationComponent implements OnInit {
         formData.append('FamilyType', this.registration.get('FamilyType')?.value);
         formData.append('FamilyStatus', this.registration.get('FamilyStatus')?.value);
         formData.append('image', this.registration.get('image')?.value);
-        this.registrationService.Registration(formData).subscribe({next: (res) => {
-          this.toastr.success("Successful Registration Done");
-          this.route.navigate(['login']);
+        this.registrationService.Registration(formData).
+        pipe(
+          map(events => {
+            switch (events.type) {
+              case HttpEventType.UploadProgress:
+                this.progressValue = Math.round(events.loaded / events.total! * 100);
+                break;
+              case HttpEventType.Response:
+                this.toastr.success("Successful Registration Done");
+                setTimeout(() => {
+                  this.progressValue = 0;
+                }, 3000);
+                this.route.navigate(['login']);
+                break;
+            }
+          }
+          )
+        )
+        .subscribe({next: (res) => {
         },
         error: () => {
           this.toastr.error("Email already exist!");

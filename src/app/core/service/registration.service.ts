@@ -11,6 +11,8 @@ export class RegistrationService {
   constructor(private http: HttpClient) { }
   Registration(registrationData:any):Observable<any>
   {
-    return this.http.post(`${environment.baseApiUrl}/api/Authenticate/register`,registrationData);
+    return this.http.post(`${environment.baseApiUrl}/api/Authenticate/register`,registrationData,
+    {reportProgress:true,
+      observe:'events'});
   }
 }
