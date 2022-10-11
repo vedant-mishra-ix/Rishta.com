@@ -23,7 +23,13 @@ import { AdminSidebarComponent } from './component/admin-sidebar/admin-sidebar.c
     CommonModule,
     NgbModule,
   ],
-  exports:[AlertBoxComponent,AdminHeaderComponent,UserSidebarComponent,
-          AdminSidebarComponent,UserHeaderComponent,FooterComponent,LoaderComponent]
+  exports:[
+          AlertBoxComponent,
+          AdminHeaderComponent,
+          UserSidebarComponent,
+          AdminSidebarComponent,
+          UserHeaderComponent,
+          FooterComponent,
+          LoaderComponent]
 })
 export class ShareModule { }

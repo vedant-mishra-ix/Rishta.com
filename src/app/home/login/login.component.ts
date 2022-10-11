@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Role } from 'src/app/core/model/role';
 import { LoginService } from 'src/app/core/service/login.service';
+import { VoiceRecognisizeService } from 'src/app/share/voice-recognisize.service';
 
 @Component({
   selector: 'app-login',
@@ -23,12 +24,14 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private guardService: AuthService,
     private route: Router,
-    private toastr: ToastrService)
+    private toastr: ToastrService,
+    public voiceService : VoiceRecognisizeService)
     {
     this.loginProfile = this.fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
     })
+    this.voiceService.init()
   }
   login() {
     this.submitted = true;
@@ -64,4 +67,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // speach to text
+  startService(){
+    this.voiceService.start()
+  }
+  stopService(){
+    this.voiceService.stop()
+  }
 }
