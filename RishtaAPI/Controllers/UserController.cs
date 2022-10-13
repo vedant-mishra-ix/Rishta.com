@@ -99,12 +99,26 @@ namespace RishtaAPI.Controllers
         }
         // for getting the user specific records
         [HttpGet]
+        [Route("deatils")]
+        public IActionResult GetProfile(int id)
+        {
+            try
+            {
+                return Ok(_RegistrationService.UserProfile(id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "Data Not Found" });
+            }
+        }
+        // for getting the user specific records
+        [HttpGet]
         [Route("profile")]
         public IActionResult GetAll(string userName)
         {
             try
             {
-                return Ok(_RegistrationService.Registrationuser(userName));
+                return Ok(_RegistrationService.Registrations(userName));
             }
             catch (Exception)
             {

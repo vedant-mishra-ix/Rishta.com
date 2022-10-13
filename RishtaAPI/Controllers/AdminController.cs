@@ -81,7 +81,7 @@ namespace RishtaAPI.Controllers
         {
             try
             {
-                return Ok(_RegistrationService.Registrationuser(userName));
+                return Ok(_RegistrationService.Registrations(userName));
             }
             catch(Exception)
             {

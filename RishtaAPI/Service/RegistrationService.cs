@@ -17,7 +17,8 @@ namespace RishtaAPI.Service
         public IEnumerable<Registration> RegistrationGenderBased(string sex);
         public IEnumerable<Registration> RegistrationGenderMartialStatus(string martialStatus);
         public IEnumerable<UserProfile> RegisteredSpecificProfile(int id);
-        public UserProfile Registrationuser(string username);
+        public UserProfile UserProfile(int id);
+        public UserProfile Registrations(string userName);
         public Task<Update> RegistrationUpdate(Update updateProfile);
         public Registration Registration(int id);
     }
@@ -72,9 +73,9 @@ namespace RishtaAPI.Service
             return new Registration { Id=id,UserName = data.UserName};
         }
 
-        public UserProfile Registrationuser(string username)
+        public UserProfile UserProfile(int id)
         {
-            var SpecificUser = _service.Registrations(username);
+            var SpecificUser = _service.UserProfile(id);
 
             return new UserProfile()
             {
@@ -304,6 +305,41 @@ namespace RishtaAPI.Service
                         FamilyStatus = Family.FamilyStatus,
                         ProfilePhoto = Family.ProfilePhoto,
                     }).ToList();
+        }
+
+        public UserProfile Registrations(string userName)
+        {
+            var SpecificUser = _service.Registrations(userName);
+
+            return new UserProfile()
+            {
+                Id = SpecificUser.Id,
+                UserName = SpecificUser.UserName,
+                Email = SpecificUser.Email,
+                Mobile = SpecificUser.Mobile,
+                DateOfBirth = SpecificUser.DateOfBirth.Date,
+                CreatedDateTime = SpecificUser.CreatedDateTime,
+                ModifiedDateTime = SpecificUser.ModifiedDateTime,
+                Password = SpecificUser.Password,
+                Address = SpecificUser.Address,
+                Cast = SpecificUser.Cast,
+                Sex = SpecificUser.Sex,
+                Religious = SpecificUser.Religious,
+                MartialStatus = SpecificUser.MartialStatus,
+                MotherTongue = SpecificUser.MotherTongue,
+                Height = SpecificUser.Height,
+                Country = SpecificUser.Country,
+                State = SpecificUser.State,
+                City = SpecificUser.City,
+                HighestEducation = SpecificUser.HighestEducation,
+                Occupation = SpecificUser.Occupation,
+                AnnualIncome = SpecificUser.AnnualIncome,
+                ParentMobile = SpecificUser.ParentMobile,
+                FamilyType = SpecificUser.FamilyType,
+                FamilyStatus = SpecificUser.FamilyStatus,
+                ProfilePhoto = SpecificUser.ProfilePhoto,
+            };
+
         }
     }
 }

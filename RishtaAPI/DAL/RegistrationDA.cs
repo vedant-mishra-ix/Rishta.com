@@ -17,6 +17,7 @@ namespace RishtaAPI.DAL
         public IEnumerable<Registration> RegistrationsGender(string sex);
         public IEnumerable<Registration> RegistrationsMartialStatus(string martialStatus);
         public IEnumerable<Registration> RegisteredSpecificProfile(int id);
+        public Registration UserProfile(int id);
         public Registration Registrations(string userName);
         public Task<Registration> Registration(Registration updateUser, int id);
         public bool Registration(int id);
@@ -117,9 +118,9 @@ namespace RishtaAPI.DAL
                 return null;
             }
         }
-        public Registration Registrations(string userName)
+        public Registration UserProfile(int id)
         {
-            var SpecificUser = _context.Registration.FirstOrDefault(obj => obj.UserName == userName);
+            var SpecificUser = _context.Registration.FirstOrDefault(obj => obj.Id == id);
             return SpecificUser;
         }
         public IEnumerable<Registration> Registrations()
@@ -164,6 +165,12 @@ namespace RishtaAPI.DAL
             {
                 return null;
             }
+        }
+
+        public Registration Registrations(string userName)
+        {
+            var SpecificUser = _context.Registration.FirstOrDefault(obj => obj.UserName == userName);
+            return SpecificUser;
         }
     }
 }
