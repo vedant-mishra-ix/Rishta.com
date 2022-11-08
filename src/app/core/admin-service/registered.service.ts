@@ -9,9 +9,17 @@ import { environment } from 'src/environments/environment';
 export class RegisteredService {
 
   constructor(private http: HttpClient) { }
-  registered(index:any):Observable<any>
+  registered(index:any,page?:any,tableSize?:any):Observable<any>
   {
-    const options = { params: new HttpParams().set('id', index)}
-    return this.http.get(`${environment.baseApiUrl}/api/Admin`, options);
+   // const options = { params: new HttpParams().set('id', index) };
+   if(page != null && tableSize != null && index != null)
+   {
+    return this.http.
+    get(`${environment.baseApiUrl}/api/Admin?id=${index}&pageNumber=${page}&pageSize=${tableSize}`);
+   }
+   else
+   {
+    return this.http.get(`${environment.baseApiUrl}/api/Admin?id=${index}`);
+   }
   }
 }

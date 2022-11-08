@@ -15,7 +15,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 
 
-
 @NgModule({
   declarations: [
     HomeComponent,
@@ -34,6 +33,7 @@ import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
     ShareModule,
     ToastrModule.forRoot(),
     NgbProgressbarModule,
+
   ],
   providers:[CityService]
 })

@@ -13,9 +13,8 @@ import { FriendListService } from 'src/app/core/service/friend-list.service';
 export class FriendListComponent implements OnInit {
 
   page:number=1;
-  count:number=0;
+  count:any;
   tableSize:number=3;
-  tableSizes:any=[3,6,9,12];
   friendList:any=[];
   id = localStorage.getItem("Id:");
   recirverId:any;
@@ -42,20 +41,22 @@ export class FriendListComponent implements OnInit {
   }
   friends()
   {
-    this.friendService.friendList(this.id).subscribe({next:(res)=>
+    this.friendService.friendList(this.id,this.page,this.tableSize).subscribe({next:(res)=>
     {
       this.friendList = res;
     }})
+    this.dataCount();
+  }
+  dataCount()
+  {
+    this.friendService.friendList(this.id).subscribe({next:(res)=>
+      {
+        this.count = res.length;
+      }})
   }
   onTableDataChange(event:any)
   {
     this.page = event;
-    this.friends();
-  }
-  onTableSizeChange(event:any):void
-  {
-    this.tableSize = event.target.value;
-    this.page = 1;
     this.friends();
   }
   submit()

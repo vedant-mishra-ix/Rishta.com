@@ -10,6 +10,7 @@ import { UserProfileService } from 'src/app/core/service/user-profile.service';
 export class UserProfileComponent implements OnInit {
 
   userValue = localStorage.getItem('UserName:');
+  userId = localStorage.getItem("Id:")
   userProfile:any=[];
                 id:any;
                 userName:any;

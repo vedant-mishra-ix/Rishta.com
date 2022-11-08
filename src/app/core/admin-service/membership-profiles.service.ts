@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,9 +9,18 @@ import { environment } from 'src/environments/environment';
 export class MembershipProfilesService {
 
   constructor(private http: HttpClient) { }
-  membershipProfiles():Observable<any>
+  membershipProfiles(page?:any,tableSize?:any):Observable<any>
   {
-    return this.http.get(`${environment.baseApiUrl}/api/Admin/MembersipProfiles`);
+    const options = { params: new HttpParams().set('pageNumber', page).
+    append('pageSize',tableSize)};
+    if(page != null && tableSize != null)
+    {
+    return this.http.get(`${environment.baseApiUrl}/api/Admin/MembersipProfiles`,options);
+    }
+    else
+    {
+      return this.http.get(`${environment.baseApiUrl}/api/Admin/MembersipProfiles`);
+    }
   }
   deleteProfile(index:any):Observable<any>
   {

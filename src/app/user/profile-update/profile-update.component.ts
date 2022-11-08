@@ -23,6 +23,7 @@ import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 })
 export class ProfileUpdateComponent implements OnInit {
 
+  userId = localStorage.getItem("Id:")
   gender = Gender;
   marriageStatus = MarriageStatus;
   motherTongue1 = MotherTongue;
@@ -132,6 +133,7 @@ export class ProfileUpdateComponent implements OnInit {
     return this.registration.controls;
   }
   ngOnInit(): void {
+    this.id = this.idRoute.snapshot.paramMap.get('id');
     this.userProfile();
     this.registration = this.fb.group({
       Id: [''],
@@ -162,11 +164,12 @@ export class ProfileUpdateComponent implements OnInit {
     this.getCity();
     this.getState();
     this.getCountry();
-    this.id = this.idRoute.snapshot.paramMap.get('id');
     this.date = new Date().toISOString().split('T')[0]
   }
   userProfile() {
-    this.profileService.userProfile(this.uservalue ?? '').subscribe(
+    if(this.id == this.userId)
+    {
+    this.profileService.profile(this.id).subscribe(
       {
         next: (res) => {
           this.registration.patchValue(
@@ -200,6 +203,9 @@ export class ProfileUpdateComponent implements OnInit {
           );
         }
       })
+    }
+    else{
+    }
   }
   getCountry() {
     this.stateService.getCountry().subscribe(res => {
@@ -241,7 +247,5 @@ export class ProfileUpdateComponent implements OnInit {
     let currentYearValue = currentYear.getFullYear()
     this.currentYear = currentYearValue;
     this.age = currentYearValue - year;
-    console.log("Age: " + this.age);
-
   }
 }

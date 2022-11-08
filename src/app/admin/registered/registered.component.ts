@@ -4,6 +4,7 @@ import { AdminProfileService } from 'src/app/core/admin-service/admin-profile.se
 import { RegisteredDeleteService } from 'src/app/core/admin-service/registered-delete.service';
 import { RegisteredService } from 'src/app/core/admin-service/registered.service';
 import { AlertBoxComponent } from 'src/app/share/component/alert-box/alert-box.component';
+import { VoiceRecognisizeService } from 'src/app/share/voice-recognisize.service';
 
 
 @Component({
@@ -19,17 +20,20 @@ export class RegisteredComponent implements OnInit {
   id: any;
   deleteId: any;
   page: number = 1;
-  count: number = 0;
+  count:any;
   tableSize: number = 3;
-  tableSizes: any = [3, 6, 9, 12];
   filterTerm!: string;
   image:any;
   constructor(
     private registeredService: RegisteredService,
     private deleteService: RegisteredDeleteService,
-    private adminProfile: AdminProfileService
-    , private toastr: ToastrService)
-    { }
+    private adminProfile: AdminProfileService,
+    private toastr: ToastrService,
+    public voiceService : VoiceRecognisizeService
+    )
+    {
+      this.voiceService.init()
+    }
 
   ngOnInit(): void {
     this.adminProfile.userProfile(this.uservalue ?? '').subscribe(
@@ -41,7 +45,7 @@ export class RegisteredComponent implements OnInit {
       })
   }
   profileRegistered(Id: any) {
-    this.registeredService.registered(Id ?? '').subscribe({
+    this.registeredService.registered(Id ,this.page,this.tableSize).subscribe({
       next: (res) => {
         this.registered.length = 0;
         for (let i = 0; i < res.length; i++) {
@@ -49,6 +53,15 @@ export class RegisteredComponent implements OnInit {
             this.registered.push(res[i]);
           }
         }
+      }
+    })
+    this.dataCount(this.id)
+  }
+  dataCount(Id:any)
+  {
+    this.registeredService.registered(Id).subscribe({
+      next: (res) => {
+        this.count = res.length;
       }
     })
   }
@@ -70,13 +83,15 @@ export class RegisteredComponent implements OnInit {
     this.page = event;
     this.profileRegistered(this.id);
   }
-  onTableSizeChange(event: any): void {
-    this.tableSize = event.target.value;
-    this.page = 1;
-    this.profileRegistered(this.id);
-  }
   imageOpen(event:any)
   {
     this.image = event.profilePhoto;
   }
+    // speach to text
+    startService(){
+      this.voiceService.start();
+    }
+    stopService(){
+      this.voiceService.stop()
+    }
 }

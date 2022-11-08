@@ -1,8 +1,8 @@
 <app-alert-box (PopItem)="deletePopup($event)"></app-alert-box>
 <div class="container-fluid responsive-div justify-content-start mt-3 responsive-div">
   <div class="form-group margin">
-    <input type="text" class="form-control  border border-3 rounded-pill" placeholder="Search..."
-      [(ngModel)]="filterTerm" />
+    <input type="text" class="form-control border border-3 rounded-pill" placeholder="Search..."
+      [(ngModel)]="filterTerm"/>
   </div>
   <div class="d-flex justify-content-left paging-margin">
     <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">

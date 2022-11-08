@@ -10,9 +10,8 @@ export class ReportedProfileComponent implements OnInit {
 
   reportedList:any=[];
   page:number=1;
-  count:number=0;
+  count:any;
   tableSize:number=3;
-  tableSizes:any=[3,6,9,12];
   image:any;
   constructor(private ReportedProfileService: ReportedProfilesService) { }
 
@@ -21,23 +20,29 @@ export class ReportedProfileComponent implements OnInit {
   }
   reportedProfile()
   {
-    this.ReportedProfileService.reportedAccount().subscribe({
+    this.ReportedProfileService.reportedAccount(this.page,this.tableSize).subscribe({
       next: (res) => {
         this.reportedList =  res;
+        console.log("data about data: "+ res);
+
       }, error: () => {
         alert("something wrong");
+      }
+    })
+    this.dataCount();
+  }
+  dataCount()
+  {
+    this.ReportedProfileService.reportedAccount().subscribe({
+      next: (res) => {
+        this.count = res.length;
+        console.log("size table: "+ this.count);
       }
     })
   }
   onTableDataChange(event:any)
   {
     this.page = event;
-    this.reportedProfile();
-  }
-  onTableSizeChange(event:any):void
-  {
-    this.tableSize = event.target.value;
-    this.page = 1;
     this.reportedProfile();
   }
   imageOpen(event:any)

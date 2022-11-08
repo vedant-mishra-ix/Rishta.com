@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'https://rishta.azurewebsites.net'
+  // baseApiUrl: 'https://rishta.azurewebsites.net'
+  baseApiUrl: 'http://localhost:5000'
 };
 
 /*

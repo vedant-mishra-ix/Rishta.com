@@ -11,10 +11,8 @@ export class SubscribersComponent implements OnInit {
 
   subscribersList:any=[];
   page:number=1;
-  count:number=0;
+  count:any;
   tableSize:number=3;
-  tableSizes:any=[3,6,9,12];
-  filterTerm!: string;
   image:any;
   constructor(
     private membershipService: MembershipProfilesService,
@@ -26,10 +24,11 @@ export class SubscribersComponent implements OnInit {
   }
   subscribers()
   {
-    this.membershipService.membershipProfiles().subscribe({next:(res)=>
+    this.membershipService.membershipProfiles(this.page,this.tableSize).subscribe({next:(res)=>
     {
       this.subscribersList = res;
     }})
+    this.dataCount();
   }
   remove(id:any)
   {
@@ -41,15 +40,17 @@ export class SubscribersComponent implements OnInit {
     {
     }})
   }
+  dataCount()
+  {
+    this.membershipService.membershipProfiles().subscribe({
+      next: (res) => {
+        this.count = res.length;
+      }
+    })
+  }
   onTableDataChange(event:any)
   {
     this.page = event;
-    this.subscribers();
-  }
-  onTableSizeChange(event:any):void
-  {
-    this.tableSize = event.target.value;
-    this.page = 1;
     this.subscribers();
   }
   imageOpen(event:any)

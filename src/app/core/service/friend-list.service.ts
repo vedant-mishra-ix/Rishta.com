@@ -9,9 +9,10 @@ import { environment } from 'src/environments/environment';
 export class FriendListService {
 
   constructor(private http: HttpClient) { }
-  friendList(profile:any):Observable<any>
+  friendList(profile:any,page?:any,tableSize?:any):Observable<any>
   {
-    const options = { params: new HttpParams().set('id', profile) };
+    const options = { params: new HttpParams().set('id', profile).
+    append('pageNumber', page).append('pageSize',tableSize) };
     return this.http.get(`${environment.baseApiUrl}/api/User/RequestAccept`,options);
   }
 }
